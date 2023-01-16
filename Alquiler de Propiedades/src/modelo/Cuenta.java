@@ -13,10 +13,19 @@ public class Cuenta {
     private Integer id;
     private String usuario;
     private Boolean estado;
+    private String contrasenia;
+    private Persona persona;
 
     public Cuenta() {
     }
-
+    
+    public Cuenta(String usuario, String contrasenia, Persona persona, Integer id, Boolean estado) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.persona = persona;
+        this.id = id;
+        this.estado = estado;
+    }
 
     public Integer getId() {
         return id;
@@ -42,12 +51,24 @@ public class Cuenta {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return "Cuenta{" + "id=" + id + ", usuario=" + usuario + ", estado=" + estado + '}';
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
     
-        
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
     
-    
+    @Override
+    public String toString() {
+        return "Cuenta{" + "usuario=" + usuario + ", constrasenia=" + contrasenia + ", persona=" + persona + ", id=" + id + ", estado=" + estado + '}';
+    }
 }

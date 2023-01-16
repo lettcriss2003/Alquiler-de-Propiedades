@@ -11,6 +11,7 @@ package modelo;
 public class Contrato {
     private Integer id;
     private Integer nroDias;
+    private MetodoPago metodoPago;
 
     public Contrato() {
     }
@@ -31,6 +32,14 @@ public class Contrato {
 
     public void setNroDias(Integer nroDias) {
         this.nroDias = nroDias;
+    }
+    
+    public MetodoPago getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(MetodoPago metodoPago) {
+        this.metodoPago = metodoPago;
     }
 
     @Override

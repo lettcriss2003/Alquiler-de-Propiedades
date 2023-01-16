@@ -9,6 +9,6 @@ package modelo;
  * @author lettc
  */
 public enum TipoIdentificacion {
-    Cedula, Ruc, Pasaporte;
+    CEDULA, PASAPORTE, RUC;
     
 }
