@@ -163,4 +163,17 @@ public class Utilidades {
         return horaActual;
     }
     
+    public static void verificarNumeroDeTarjeta(String NumTarjeta){
+        char[] recorrido=NumTarjeta.toCharArray();
+        String aux="";
+        for (int i = recorrido.length-1; i >= 0; i--) {
+            int n=2;
+            if (i%n==0) {
+                n=n+2;
+                aux=aux+aux.valueOf(2*Integer.valueOf(recorrido[i]));
+            }
+        }
+        System.out.println("NUMERO :  "+aux);
+    }
+    
 }
