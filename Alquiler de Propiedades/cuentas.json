@@ -1,0 +1,25 @@
+{
+  "cuentaList": {
+    "cabecera": {
+      "dato": {
+        "cuenta": {
+          "id": 1,
+          "usuario": "admin",
+          "estado": true,
+          "contrasenia": "admin"
+        }
+      },
+      "siguiente": {
+        "dato": {
+          "cuenta": {
+            "id": 2,
+            "usuario": "cliente",
+            "estado": true,
+            "contrasenia": "cliente"
+          }
+        }
+      }
+    },
+    "tamanio": 2
+  }
+}

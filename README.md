@@ -1,5 +1,4 @@
 # Alquiler-de-Propiedades
-Funcion de almacenamiento y métodos de pago
-Para esto se determino métodos en el DAO tanto para insertar,eliminar,listar y guardar.
-Para el aspecto de métodos de pago se diseño todo el apartado visual, con respecto a esta se diseño métodos
-y funciones para las restricciones de las mismas.
+Este proyecto busca construir un sistema que permita alquilar propiedades con fines turísticos.
+
+Los usuarios del sistema podrán alquilar una propiedad, además de poder registrar una propiedad para que otros usuarios la puedan alquilar.
