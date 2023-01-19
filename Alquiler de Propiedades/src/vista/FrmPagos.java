@@ -18,6 +18,7 @@ public class FrmPagos extends javax.swing.JFrame {
     public FrmPagos() {
         initComponents();
         cargarCombo();
+        this.setLocationRelativeTo(null);
     }
 
     public void cargarCombo() {
@@ -169,19 +170,16 @@ public class FrmPagos extends javax.swing.JFrame {
         switch (cbxMetodoDePago.getSelectedItem().toString()) {
             case "TarjetaDebito":
                 FrmTarjetaDeDebito fm = new FrmTarjetaDeDebito();
-                fm.setAlwaysOnTop(true);
                 this.setVisible(false);
                 fm.setVisible(true);
                 break;
             case "TarjetaCredito":
                 FrmTarjetaDeCredito fm1 = new FrmTarjetaDeCredito();
-                fm1.setAlwaysOnTop(true);
                 this.setVisible(false);
                 fm1.setVisible(true);
                 break;
             case "Transferencia":
                 FrmTransferencia fm2 = new FrmTransferencia();
-                fm2.setAlwaysOnTop(true);
                 this.setVisible(false);
                 fm2.setVisible(true);
                 break;

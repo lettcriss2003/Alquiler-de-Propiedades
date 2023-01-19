@@ -20,6 +20,8 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -147,12 +149,9 @@ public class Utilidades {
     }
     
     public static String obtenerFechaActual(){
-        Date fechaActual=new Date();
-        int anio=fechaActual.getYear()+1900;
-        int mes=fechaActual.getMonth()+1;
-        int dia=fechaActual.getDay()+25;
-        String fechaFormateada=dia+"/"+mes+"/"+anio;
-        return fechaFormateada;
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+        String fecha = dateFormat.format(new Date());
+        return fecha;
     }
     
     public static String obtenerHoraActual(){
