@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import Controlador.Utilidades;
+import controlador.utiles.Utilidades;
 
 
 
@@ -261,8 +261,8 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPrincipal principal = new FrmPrincipal();
-        principal.setVisible(true);
+        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        Propiedadprincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -272,7 +272,7 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
         int Camas = (int)spinCamas.getValue();
         int Banos = (int)spinBanios.getValue();
         
-        if(cbxTipoPropiedad.getSelectedItem().toString().isEmpty() || txtDescripcion.getText().isEmpty() 
+        if(cbxTipoPropiedad.getSelectedItem()==null || txtDescripcion.getText().isEmpty() 
                 || txtNumeroPropiedad.getText().isEmpty() || txtPrecio.getText().isEmpty()
                 || Huesped == 0 || Habitacio== 0|| Camas== 0||Banos== 0 || dateDisponibilidadDesde.getDate()==null || dateDisponibilidadHasta.getDate()==null){
             JOptionPane.showMessageDialog(null, "Campos vacios");

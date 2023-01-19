@@ -178,8 +178,8 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
-        FrmPrincipal principal = new FrmPrincipal();
-        principal.setVisible(true);
+        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        Propiedadprincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -242,7 +242,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
-        FrmPrincipal btndireccion = new FrmPrincipal();
+        FrmDescripcionPropiedad btndireccion = new FrmDescripcionPropiedad();
         btndireccion.setVisible(true);
         this.setVisible(false);
 

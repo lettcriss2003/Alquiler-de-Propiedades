@@ -340,8 +340,8 @@ public class FrmServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPrincipal principal = new FrmPrincipal();
-        principal.setVisible(true);
+        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        Propiedadprincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

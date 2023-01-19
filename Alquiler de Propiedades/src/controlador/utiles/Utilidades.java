@@ -4,6 +4,8 @@
  */
 package controlador.utiles;
 import java.lang.reflect.Field;
+import javax.swing.JComboBox;
+import modelo.TipoPropiedad;
 
 /**
  *
@@ -42,6 +44,16 @@ public class Utilidades {
             transformar = dato;
         }
         return transformar;
+    }
+    
+    public static void cargarTipoPropiedad(JComboBox cbx){
+            for(TipoPropiedad tipo: TipoPropiedad.values()){
+                 cbx.addItem(tipo);
+            }
+    }
+    
+    public static TipoPropiedad obtenerTipoPropiedad(JComboBox cbx){
+        return (TipoPropiedad) cbx.getSelectedItem();
     }
     
 

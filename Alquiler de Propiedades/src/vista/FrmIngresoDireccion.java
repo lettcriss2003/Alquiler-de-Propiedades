@@ -209,16 +209,16 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPrincipal principal = new FrmPrincipal();
-        principal.setVisible(true);
+        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        Propiedadprincipal.setVisible(true);
         this.dispose();
 //        this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        FrmPrincipal principal = new FrmPrincipal();
-        principal.setVisible(true);
+        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        Propiedadprincipal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
