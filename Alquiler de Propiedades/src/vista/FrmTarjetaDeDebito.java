@@ -61,7 +61,7 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         txtCVC = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tarjeta De Dédito"));
 

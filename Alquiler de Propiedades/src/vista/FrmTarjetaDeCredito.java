@@ -62,7 +62,7 @@ public class FrmTarjetaDeCredito extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         fechaExpiracion = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tarjeta De Crédito"));
 

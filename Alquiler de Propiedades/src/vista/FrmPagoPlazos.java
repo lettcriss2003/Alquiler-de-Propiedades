@@ -4,17 +4,23 @@
  */
 package vista;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import vista.Utilidades.Utilidades;
+
 /**
  *
  * @author Dennys
  */
 public class FrmPagoPlazos extends javax.swing.JFrame {
-
+    FrmPagos pagos= new FrmPagos();
     /**
      * Creates new form FrmPagoPlazos
      */
     public FrmPagoPlazos() {
         initComponents();
+        cargarDatos();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,27 +33,154 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        BtnAgregarMetodoDePago = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cbxMesesPlazo = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        txtPagoPorMes = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        dateFechaPagoTotal = new com.toedter.calendar.JDateChooser();
+        txtDiaDePago = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(630, 310));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccion a Plazos"));
+        jPanel1.setMinimumSize(new java.awt.Dimension(580, 300));
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        jLabel1.setText("Selección a Plazos");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(189, 24, 186, 30);
+
+        BtnAgregarMetodoDePago.setText("Agregar Método de Pago");
+        BtnAgregarMetodoDePago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarMetodoDePagoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnAgregarMetodoDePago);
+        BtnAgregarMetodoDePago.setBounds(21, 66, 190, 33);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Total:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(270, 70, 43, 25);
+        jPanel1.add(txtTotal);
+        txtTotal.setBounds(320, 70, 100, 30);
+
+        jLabel3.setText("Seleccione los meses plazo:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(21, 120, 160, 16);
+
+        cbxMesesPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxMesesPlazo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxMesesPlazoItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cbxMesesPlazo);
+        cbxMesesPlazo.setBounds(180, 110, 80, 30);
+
+        jLabel4.setText("Pago por mes:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(20, 160, 90, 16);
+        jPanel1.add(txtPagoPorMes);
+        txtPagoPorMes.setBounds(110, 160, 150, 30);
+
+        jButton1.setText("Aceptar");
+        jPanel1.add(jButton1);
+        jButton1.setBounds(180, 200, 96, 49);
+
+        jButton2.setText("Cancelar");
+        jPanel1.add(jButton2);
+        jButton2.setBounds(300, 200, 100, 49);
+
+        jLabel5.setText("Día de pago mensual:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(270, 120, 150, 16);
+
+        jLabel6.setText("Fecha esperada de pago total:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(270, 160, 190, 16);
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jButton3.setBounds(490, 20, 75, 22);
+        jPanel1.add(dateFechaPagoTotal);
+        dateFechaPagoTotal.setBounds(450, 160, 140, 30);
+        jPanel1.add(txtDiaDePago);
+        txtDiaDePago.setBounds(450, 110, 140, 30);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 10, 340, 290);
+        jPanel1.setBounds(0, 0, 610, 270);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnAgregarMetodoDePagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMetodoDePagoActionPerformed
+        Color fondo=new Color(121,189,154);
+        Color aux=BtnAgregarMetodoDePago.getBackground();
+        if (aux.toString().equalsIgnoreCase(fondo.toString())) {
+            JOptionPane.showMessageDialog(null, "Metodo de Pago ya seleccionado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            pagos.setAlwaysOnTop(true);
+            pagos.setVisible(true);
+            pagos.toFront();
+        }
+        
+    }//GEN-LAST:event_BtnAgregarMetodoDePagoActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        this.setEnabled(true);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+
+    }//GEN-LAST:event_formWindowLostFocus
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        BtnAgregarMetodoDePago.setBackground(new Color(121,189,154));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbxMesesPlazoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMesesPlazoItemStateChanged
+        dateFechaPagoTotal.setDate(Utilidades.calcularFechaDePagoMaximo(Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString())));
+    }//GEN-LAST:event_cbxMesesPlazoItemStateChanged
+
+    public void cargarDatos(){
+        txtDiaDePago.setText("Día "+Utilidades.calcularFechaDePago()+" de cada mes");
+        txtDiaDePago.setEnabled(false);
+        dateFechaPagoTotal.setEnabled(false);
+        txtPagoPorMes.setText(String.valueOf(Utilidades.calcularValorCuota(0.15, 200.0,10)));
+        txtTotal.setEnabled(false);
+        txtPagoPorMes.setEnabled(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -85,6 +218,21 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAgregarMetodoDePago;
+    private javax.swing.JComboBox<String> cbxMesesPlazo;
+    private com.toedter.calendar.JDateChooser dateFechaPagoTotal;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtDiaDePago;
+    private javax.swing.JTextField txtPagoPorMes;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -175,4 +175,34 @@ public class Utilidades {
         System.out.println("NUMERO :  "+aux);
     }
     
+    public static Double calcularValorCuota(Double tazaDeInterez,Double valorTotal,Integer mesesPlazo){
+        return (valorTotal/mesesPlazo)+((valorTotal/mesesPlazo)*tazaDeInterez);
+    }
+    
+    public static String calcularFechaDePago(){
+        Date fechaDePago=new Date();
+        if (fechaDePago.getDate()<=28) {
+            DateFormat dateFormat = new SimpleDateFormat("d");
+            String fecha = dateFormat.format(fechaDePago);
+            return fecha;
+        }else{
+            fechaDePago.setDate(28);
+            DateFormat dateFormat = new SimpleDateFormat("d");
+            String fecha = dateFormat.format(fechaDePago);
+            return fecha;
+        }
+    }
+    
+    public static Date calcularFechaDePagoMaximo(Integer mesesPlazo){
+        Date fechaDePago=new Date();
+        if (fechaDePago.getDate()<=28) {
+            fechaDePago.setMonth(fechaDePago.getMonth()+mesesPlazo);
+            return fechaDePago;
+        }else{
+            fechaDePago.setDate(28);
+            fechaDePago.setMonth(fechaDePago.getMonth()+mesesPlazo);
+            return fechaDePago;
+        }  
+        
+    }
 }

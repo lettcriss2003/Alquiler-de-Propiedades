@@ -32,7 +32,7 @@ public class AdaptadorDAO <T> implements InterfazDAO<T> {
 
     public AdaptadorDAO(Class<T> clazz) {
         this.clazz = clazz;
-        URL+=this.clazz.getSimpleName()+".xml";
+        URL+=this.clazz.getSimpleName()+".gson";
     }
        
     @Override
