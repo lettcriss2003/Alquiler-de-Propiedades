@@ -17,6 +17,7 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
     /**
      * Creates new form FrmPagoPlazos
      */
+    
     public FrmPagoPlazos() {
         initComponents();
         cargarDatos();
