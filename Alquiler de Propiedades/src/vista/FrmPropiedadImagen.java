@@ -4,10 +4,9 @@
  */
 package Vista;
 
+import controlador.listas.ListaEnlazada;
 import java.awt.Image;
 import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -19,7 +18,7 @@ import modelo.Propiedad;
  */
 public class FrmPropiedadImagen extends javax.swing.JFrame {
     
-    public static LinkedList PropiedadDatos = new LinkedList<>();
+    public static ListaEnlazada PropiedadDatos = new ListaEnlazada<>();
 
     /**
      * Creates new form FrmPropiedad
@@ -174,6 +173,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
         Image newimg = img.getScaledInstance(lblAgregarImagen.getWidth(), lblAgregarImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH);
         imagen = new ImageIcon(newimg);
         lblAgregarImagen.setIcon(imagen);
+        
     }//GEN-LAST:event_btnAgregarImgActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -234,7 +234,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
             Propiedad propiedad = new Propiedad(Ciudad, provincia, CalleP, CalleS, CodigoP,
                     Wifi, TV, Lavadora, Secadora, Estacionamiento, Cocina, Picina, Jacuzzi, Parrilla, Patio, Comedor, SalaJuegos, AireAcondicionado, AguaCaliente, Otros,
                     TipoPropiedad, Descripcion, NumeroPropiedad, Huesped, Habitaciones, Camas, Baños, Precio, FechaIngreso, FechaSalida, imagen);
-            PropiedadDatos.add(propiedad);
+            PropiedadDatos.añadir(propiedad);
             JOptionPane.showMessageDialog(null, "Propiedad guardada");
         }
         
@@ -247,7 +247,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
         this.setVisible(false);
 
         
-        for (int i = 0; i < PropiedadDatos.size(); i++) {
+        for (int i = 0; i < PropiedadDatos.getTamanio(); i++) {
             System.out.println(PropiedadDatos.get(i) + " ");
         }
         
