@@ -4,6 +4,8 @@
  */
 package alquiler.de.propiedades;
 
+import vistas.FrmLogin;
+
 /**
  *
  * @author LENOVO
@@ -14,7 +16,8 @@ public class Inicio {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
     }
     
 }

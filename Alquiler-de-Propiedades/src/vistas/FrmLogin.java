@@ -10,6 +10,7 @@ import controlador.listas.excepciones.PosicionNoEncontradaException;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +24,73 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/assets/images/favicon.png")).getImage());
         setLocationRelativeTo(null);
+    }
+
+    /**
+     * Carga el campo de contraseña a predeterminado
+     */
+    private void cargarCampoC() {
+        if (txtUsuario.getText().isEmpty()) {
+            txtUsuario.setText("Ingrese su nombre de usuario");
+            txtUsuario.setForeground(Color.gray);
+        }
+        if (String.valueOf(txtContrasenia.getPassword()).equals("Contrasenia")) {
+            txtContrasenia.setText("");
+            txtContrasenia.setForeground(Color.black);
+        }
+    }
+
+    /**
+     * Carga el campo de usuario a predeterminado
+     */
+    private void cargarCampoU() {
+        if (txtUsuario.getText().equals("Ingrese su nombre de usuario")) {
+            txtUsuario.setText("");
+            txtUsuario.setForeground(Color.black);
+        }
+        if (String.valueOf(txtContrasenia.getPassword()).isEmpty()) {
+            txtContrasenia.setText("Contrasenia");
+            txtContrasenia.setForeground(Color.gray);
+        }
+    }
+
+    /**
+     * Actualiza los campos de manera predeterminada de la interfaz de inicio de
+     * sesion
+     */
+    public void actualizarCampos() {
+        txtUsuario.setText("Ingrese su nombre de usuario");
+        txtContrasenia.setText("Contrasenia");
+        txtContrasenia.setForeground(Color.gray);
+        txtUsuario.setForeground(Color.gray);
+    }
+
+    /**
+     * Validar si las credenciales son correctas para iniciar sesion
+     */
+    public void iniciarSesion() {
+        if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
+            try {
+                if (CuentaController.autentificar(txtUsuario.getText(), txtContrasenia.getText())) {
+                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    FrmPrincipal frmPrincipal = new FrmPrincipal();
+                    frmPrincipal.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                    actualizarCampos();
+                }
+            } catch (ListaNullException | PosicionNoEncontradaException e) {
+                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                actualizarCampos();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene campos usuario y/o contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+            actualizarCampos();
+        }
     }
 
     /**
@@ -104,11 +171,6 @@ public class FrmLogin extends javax.swing.JFrame {
                 txtUsuarioMousePressed(evt);
             }
         });
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 250, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
@@ -165,16 +227,17 @@ public class FrmLogin extends javax.swing.JFrame {
         });
         jPanel1.add(chkMostrarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
-        btnRegistrar.setBackground(new java.awt.Color(30, 99, 208));
-        btnRegistrar.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(153, 153, 153));
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setBorder(null);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
 
         btnIngresar.setBackground(new java.awt.Color(30, 99, 208));
         btnIngresar.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
@@ -201,73 +264,30 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         FrmRegistro frmRegistro = new FrmRegistro(this, true);
         frmRegistro.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
-            try {
-                if (CuentaController.autentificar(txtUsuario.getText(), txtContrasenia.getText())) {
-                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
-                    FrmPrincipal frmPrincipal = new FrmPrincipal();
-                    frmPrincipal.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-
-                }
-            } catch (ListaNullException | PosicionNoEncontradaException e) {
-                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Rellene campos usuario y/o contraseña", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        iniciarSesion();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void chkMostrarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMostrarContraseniaActionPerformed
         if (chkMostrarContrasenia.isSelected()) {
             txtContrasenia.setEchoChar((char) 0);
         } else {
-            txtContrasenia.setEchoChar('*');
-
+            txtContrasenia.setEchoChar('•');
         }
     }//GEN-LAST:event_chkMostrarContraseniaActionPerformed
 
     private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
-        if (txtUsuario.getText().equals("Ingrese su nombre de usuario")) {
-            txtUsuario.setText("");
-            txtUsuario.setForeground(Color.black);
-        }
-
-        if (String.valueOf(txtContrasenia.getPassword()).isEmpty()) {
-            txtContrasenia.setText("Contrasenia");
-            txtContrasenia.setForeground(Color.gray);
-        }
-
-
+        cargarCampoU();
     }//GEN-LAST:event_txtUsuarioMousePressed
 
     private void txtContraseniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaMousePressed
-        if (txtUsuario.getText().isEmpty()) {
-            txtUsuario.setText("Ingrese su nombre de usuario");
-            txtUsuario.setForeground(Color.gray);
-        }
-
-        if (String.valueOf(txtContrasenia.getPassword()).equals("Contrasenia")) {
-
-            txtContrasenia.setText("");
-            txtContrasenia.setForeground(Color.black);
-        }
-
-
+        cargarCampoC();
     }//GEN-LAST:event_txtContraseniaMousePressed
 
     /**

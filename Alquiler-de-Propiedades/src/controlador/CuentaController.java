@@ -7,6 +7,7 @@ package controlador;
 import controlador.dao.CuentaDAO;
 import controlador.listas.excepciones.ListaNullException;
 import controlador.listas.excepciones.PosicionNoEncontradaException;
+import java.util.Base64;
 import modelo.Cuenta;
 
 /**
@@ -17,11 +18,20 @@ public class CuentaController {
 
     private static CuentaDAO cuentadao = new CuentaDAO();
 
+    /**
+     * Metodo para autentificar las credenciales ingresadas por el usuario
+     *
+     * @param usuario
+     * @param contrasenia
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException
+     */
     public static Boolean autentificar(String usuario, String contrasenia) throws ListaNullException, PosicionNoEncontradaException {
         if (obtener(usuario) != null) {
             Cuenta cuentaConsulta = obtener(usuario);
             if (cuentaConsulta.getUsuario().equals(usuario)
-                    && cuentaConsulta.getConstrasenia().equals(contrasenia)) {
+                    && CuentaController.desencriptarContrasenia(cuentaConsulta.getConstrasenia()).equals(contrasenia)) {
                 return true;
             } else {
                 return false;
@@ -48,6 +58,32 @@ public class CuentaController {
         return cuentadao.obtener(usuario);
     }
 
+    /**
+     * Permite encriptar constrasenias mediante el esquema de codificacion
+     * Base64
+     *
+     * @param dato
+     * @return
+     */
+    public static String encriptarContrasenia(String dato) {
+        if (dato != null) {
+            return Base64.getEncoder().encodeToString(dato.getBytes());
+        }
+        return "";
+    }
+
+    /**
+     * Permite desencriptar contraseñas mediante el esquema de codificacion
+     * Base64
+     *
+     * @param dato
+     * @return
+     */
+    public static String desencriptarContrasenia(String dato) {
+        return new String(Base64.getDecoder().decode(dato));
+    }
+
+    //GETTER AND SETTER
     public static CuentaDAO getCuentadao() {
         return cuentadao;
     }
@@ -56,10 +92,4 @@ public class CuentaController {
         CuentaController.cuentadao = cuentadao;
     }
 
-    @Override
-    public String toString() {
-        return "CuentaController{" + '}';
-    }
-
-    
 }
