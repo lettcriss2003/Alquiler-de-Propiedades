@@ -20,6 +20,7 @@ import modelo.Persona;
 import vistas.utilidades.Utilidades;
 import controlador.Utiles.Utiles;
 import controlador.Utiles.excepciones.cedulaNoValidaException;
+import controlador.Utiles.excepciones.contraseniaNoCoincideException;
 import controlador.Utiles.excepciones.correoNoValidoException;
 
 /**
@@ -74,16 +75,9 @@ public class FrmRegistro extends javax.swing.JDialog {
     }
 
     /**
-     * Verificar si las contraseñas son iguales
-     */
-    public void validarContrasenias() {
-        txtContraseniaR.getText().equals(txtContraseniaR1.getText());
-    }
-
-    /**
      * Registrar una nueva cuenta con los datos que el usuario ingrese
      */
-    public void registrar() throws correoNoValidoException, cedulaNoValidaException {
+    public void registrar() throws correoNoValidoException, cedulaNoValidaException, contraseniaNoCoincideException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()
                 && !txtNombreR.getText().isEmpty() && !txtApellidoR.getText().isEmpty()
@@ -103,7 +97,7 @@ public class FrmRegistro extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Cedula no válida", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                if (verificar && txtContraseniaR.getText().equals(txtContraseniaR1.getText()) && Utiles.validarCorreo(txtCorreoR.getText())) {
+                if (verificar && Utiles.validarContrasenias(txtContraseniaR.getText(), txtContraseniaR1.getText()) && Utiles.validarCorreo(txtCorreoR.getText())) {
                     Date dtf = formato.parse(txtFechaNac.getText().trim());
                     Persona personar = new Persona(CuentaController.getCuentadao().getCuentas().getSize() + 1, txtNombreR.getText(),
                             txtApellidoR.getText(), dtf, txtIndentificacionR.getText(),
@@ -119,11 +113,12 @@ public class FrmRegistro extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(this, "El usuario ya se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
                         actualizarCamposRegistro();
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
-
-                }
-            } catch (ListaNullException | PosicionNoEncontradaException | NumberFormatException | ParseException | correoNoValidoException | cedulaNoValidaException ex) {
+                } 
+//                else {
+//                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+//
+//                }
+            } catch (ListaNullException | PosicionNoEncontradaException | NumberFormatException | ParseException | correoNoValidoException | cedulaNoValidaException | contraseniaNoCoincideException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             }

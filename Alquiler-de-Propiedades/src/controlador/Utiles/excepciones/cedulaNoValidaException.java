@@ -16,7 +16,7 @@ public class cedulaNoValidaException extends Exception {
     }
 
     public cedulaNoValidaException() {
-        super("La cedula no es valida");
+        super("Ingrese una cedula valida");
     }
 
 }

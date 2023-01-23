@@ -5,6 +5,7 @@
 package controlador.Utiles;
 
 import controlador.Utiles.excepciones.cedulaNoValidaException;
+import controlador.Utiles.excepciones.contraseniaNoCoincideException;
 import controlador.Utiles.excepciones.correoNoValidoException;
 import java.util.Base64;
 import java.util.regex.Matcher;
@@ -18,8 +19,9 @@ public class Utiles {
 
     /**
      * Validar cedula ecuatoriana
+     *
      * @param cedula
-     * @return 
+     * @return
      */
     public static boolean validadorDeCedula(String cedula) throws cedulaNoValidaException {
         boolean cedulaCorrecta = false;
@@ -59,12 +61,12 @@ public class Utiles {
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
         } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+
             cedulaCorrecta = false;
         }
 
         if (!cedulaCorrecta) {
-            System.out.println("La Cédula ingresada es Incorrecta");
+
         }
         return cedulaCorrecta;
     }
@@ -77,7 +79,7 @@ public class Utiles {
      * @throws correoNoValidoException
      */
     public static Boolean validarCorreo(String correo) throws correoNoValidoException {
-        Boolean correoValido = true;
+        Boolean correoValido = false;
         Pattern pattern = Pattern
                 .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -115,4 +117,13 @@ public class Utiles {
         return new String(Base64.getDecoder().decode(dato));
     }
 
+    public static Boolean validarContrasenias(String contrasenia1, String constrasenia2) throws contraseniaNoCoincideException {
+        Boolean cedulaValida = false;
+        if (contrasenia1.equals(constrasenia2)) {
+            cedulaValida = true;
+        } else {
+            throw new contraseniaNoCoincideException();
+        }
+        return cedulaValida;
+    }
 }

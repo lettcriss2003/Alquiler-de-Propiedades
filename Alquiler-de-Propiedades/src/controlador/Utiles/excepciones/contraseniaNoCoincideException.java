@@ -8,13 +8,14 @@ package controlador.Utiles.excepciones;
  *
  * @author LENOVO
  */
-public class correoNoValidoException extends Exception {
+public class contraseniaNoCoincideException extends Exception {
 
-    public correoNoValidoException(String msg) {
+    public contraseniaNoCoincideException(String msg) {
         super(msg);
+
     }
-    
-    public correoNoValidoException(){
-        super("Ingrese un correo valido");
+
+    public contraseniaNoCoincideException() {
+        super("Las contraseñas no coinciden");
     }
 }

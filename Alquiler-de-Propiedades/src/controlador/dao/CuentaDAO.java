@@ -16,7 +16,6 @@ import modelo.Cuenta;
 public class CuentaDAO {
 
     private ListaEnlazada<Cuenta> cuentas = new ListaEnlazada<>();
-//    private Cuenta cuenta;
 
     public CuentaDAO() {
 
