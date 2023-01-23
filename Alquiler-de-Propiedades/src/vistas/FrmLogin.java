@@ -8,8 +8,6 @@ import controlador.CuentaController;
 import controlador.listas.excepciones.ListaNullException;
 import controlador.listas.excepciones.PosicionNoEncontradaException;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -73,7 +71,7 @@ public class FrmLogin extends javax.swing.JFrame {
     public void iniciarSesion() {
         if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
             try {
-                if (CuentaController.autentificar(txtUsuario.getText(), txtContrasenia.getText())) {
+                if (CuentaController.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
                     JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     FrmPrincipal frmPrincipal = new FrmPrincipal();

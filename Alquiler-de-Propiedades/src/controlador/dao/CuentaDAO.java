@@ -22,6 +22,15 @@ public class CuentaDAO {
 
     }
 
+    //TODO cambiar por busqueda binaria
+    /**
+     * Buscar el usuario en el registro de cuentas
+     *
+     * @param usuario
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException
+     */
     public int buscar(String usuario) throws ListaNullException, PosicionNoEncontradaException {
         int n = -1;
         for (int i = 0; i < cuentas.getSize(); i++) {
@@ -33,6 +42,14 @@ public class CuentaDAO {
         return n;
     }
 
+    /**
+     * Insertar la nueva cuenta registrada en la lista de cuentas
+     *
+     * @param cuenta
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException
+     */
     public Boolean insertar(Cuenta cuenta) throws ListaNullException, PosicionNoEncontradaException {
         if (buscar(cuenta.getUsuario()) == -1) {
             cuentas.insertar(cuenta);
@@ -43,6 +60,15 @@ public class CuentaDAO {
 
     }
 
+    /**
+     * Modificar una cuenta registrada de la lista de cuentas, solo para
+     * administradores
+     *
+     * @param cuenta
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException
+     */
     public Boolean modificar(Cuenta cuenta) throws ListaNullException, PosicionNoEncontradaException {
         if (buscar(cuenta.getUsuario()) != -1) {
             Cuenta cuentaaux = obtener(cuenta.getUsuario());
@@ -65,6 +91,15 @@ public class CuentaDAO {
         }
     }
 
+    /**
+     * Eliminar una cuenta registrada de la lista de cuentas, solo para
+     * administradores
+     *
+     * @param cuenta
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException
+     */
     public Boolean eliminar(String cuenta) throws ListaNullException, PosicionNoEncontradaException {
         if (buscar(cuenta) != -1) {
 
@@ -76,6 +111,13 @@ public class CuentaDAO {
         }
     }
 
+    /**
+     * Metodo accesor para obtener los usuarios de las cuentas
+     * @param usuario
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException 
+     */
     public Cuenta obtener(String usuario) throws ListaNullException, PosicionNoEncontradaException {
         if (buscar(usuario) != 1) {
             return cuentas.obtener(buscar(usuario));
@@ -84,6 +126,7 @@ public class CuentaDAO {
         }
     }
 
+    //GETTER AND SETTER
     public ListaEnlazada<Cuenta> getCuentas() {
         return cuentas;
     }
@@ -92,18 +135,9 @@ public class CuentaDAO {
         this.cuentas = cuentas;
     }
 
-//    public Cuenta getCuenta() {
-//        return cuenta;
-//    }
-//
-//    public void setCuenta(Cuenta cuenta) {
-//        this.cuenta = cuenta;
-//    }
-
     @Override
     public String toString() {
         return "CuentaDAO{" + "cuentas=" + cuentas + '}';
     }
-    
-    
+
 }

@@ -6,7 +6,6 @@ package vistas;
 
 import controlador.CuentaController;
 import controlador.dao.CuentaDAO;
-import controlador.listas.ListaEnlazada;
 import controlador.listas.excepciones.ListaNullException;
 import controlador.listas.excepciones.PosicionNoEncontradaException;
 import java.awt.Color;
@@ -19,6 +18,9 @@ import javax.swing.JOptionPane;
 import modelo.Cuenta;
 import modelo.Persona;
 import vistas.utilidades.Utilidades;
+import controlador.Utiles.Utiles;
+import controlador.Utiles.excepciones.cedulaNoValidaException;
+import controlador.Utiles.excepciones.correoNoValidoException;
 
 /**
  *
@@ -72,24 +74,43 @@ public class FrmRegistro extends javax.swing.JDialog {
     }
 
     /**
+     * Verificar si las contraseñas son iguales
+     */
+    public void validarContrasenias() {
+        txtContraseniaR.getText().equals(txtContraseniaR1.getText());
+    }
+
+    /**
      * Registrar una nueva cuenta con los datos que el usuario ingrese
      */
-    public void registrar() {
+    public void registrar() throws correoNoValidoException, cedulaNoValidaException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()
                 && !txtNombreR.getText().isEmpty() && !txtApellidoR.getText().isEmpty()
                 && !txtFechaNac.getText().isEmpty() && !txtIndentificacionR.getText().isEmpty()
                 && !txtContraseniaR.getText().isEmpty() && !txtContraseniaR1.getText().isEmpty()
                 && !txtCorreoR.getText().isEmpty()) {
-            if (txtContraseniaR.getText().equals(txtContraseniaR1.getText())) {
-                try {
-                    Date dtf = formato.parse(txtFechaNac.getText());
+
+            try {
+                Boolean verificar = false;
+                if (cbxIndentificacion.getSelectedItem().toString().equalsIgnoreCase("PASAPORTE")) {
+                    verificar = true;
+                } else if (!(cbxIndentificacion.getSelectedItem().toString().equalsIgnoreCase("PASAPORTE"))
+                        && Utiles.validadorDeCedula(txtIndentificacionR.getText())) {
+                    verificar = true;
+                } else {
+                    verificar = false;
+                    JOptionPane.showMessageDialog(null, "Cedula no válida", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                if (verificar && txtContraseniaR.getText().equals(txtContraseniaR1.getText()) && Utiles.validarCorreo(txtCorreoR.getText())) {
+                    Date dtf = formato.parse(txtFechaNac.getText().trim());
                     Persona personar = new Persona(CuentaController.getCuentadao().getCuentas().getSize() + 1, txtNombreR.getText(),
                             txtApellidoR.getText(), dtf, txtIndentificacionR.getText(),
                             Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                             true, txtCorreoR.getText());
 
-                    Cuenta cuenta = new Cuenta(txtUsuario.getText(), CuentaController.encriptarContrasenia(txtContraseniaR.getText()), personar, CuentaController.getCuentadao().getCuentas().getSize() + 1, true);
+                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utiles.encriptarContrasenia(txtContraseniaR.getText().trim()), personar, CuentaController.getCuentadao().getCuentas().getSize() + 1, true);
                     if (CuentaController.insertar(cuenta)) {
                         JOptionPane.showMessageDialog(this, "El usuario se ha registrado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println(cuenta);
@@ -98,14 +119,15 @@ public class FrmRegistro extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(this, "El usuario ya se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
                         actualizarCamposRegistro();
                     }
-                } catch (ListaNullException | PosicionNoEncontradaException | NumberFormatException | ParseException ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage(), "?????", JOptionPane.ERROR_MESSAGE);
-                    actualizarCamposRegistro();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (ListaNullException | PosicionNoEncontradaException | NumberFormatException | ParseException | correoNoValidoException | cedulaNoValidaException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             }
+
         } else {
             JOptionPane.showMessageDialog(this, "Por favor rellene los campos", "Error", JOptionPane.ERROR_MESSAGE);
             actualizarCamposRegistro();
@@ -113,6 +135,10 @@ public class FrmRegistro extends javax.swing.JDialog {
 
     }
 
+    /**
+     * Modificar las cuentas del usuario, solo para administradores
+     *
+     */
     public void modificar() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()
@@ -140,6 +166,9 @@ public class FrmRegistro extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Eliminar cuentas de usuario, solo para administradores
+     */
     public void eliminar() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()) {
@@ -356,6 +385,11 @@ public class FrmRegistro extends javax.swing.JDialog {
         cbxIndentificacion.setForeground(new java.awt.Color(153, 153, 153));
         cbxIndentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxIndentificacion.setBorder(null);
+        cbxIndentificacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbxIndentificacionMousePressed(evt);
+            }
+        });
         jPanel1.add(cbxIndentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 240, -1));
 
         txtContraseniaR.setBackground(new java.awt.Color(255, 255, 255));
@@ -527,7 +561,11 @@ public class FrmRegistro extends javax.swing.JDialog {
     }//GEN-LAST:event_chkMostrarContrasenia1ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        registrar();
+        try {
+            registrar();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -541,6 +579,10 @@ public class FrmRegistro extends javax.swing.JDialog {
         frmLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void cbxIndentificacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxIndentificacionMousePressed
+        cbxIndentificacion.setForeground(Color.black);
+    }//GEN-LAST:event_cbxIndentificacionMousePressed
 
     /**
      * @param args the command line arguments

@@ -7,8 +7,8 @@ package controlador;
 import controlador.dao.CuentaDAO;
 import controlador.listas.excepciones.ListaNullException;
 import controlador.listas.excepciones.PosicionNoEncontradaException;
-import java.util.Base64;
 import modelo.Cuenta;
+import controlador.Utiles.Utiles;
 
 /**
  *
@@ -31,7 +31,7 @@ public class CuentaController {
         if (obtener(usuario) != null) {
             Cuenta cuentaConsulta = obtener(usuario);
             if (cuentaConsulta.getUsuario().equals(usuario)
-                    && CuentaController.desencriptarContrasenia(cuentaConsulta.getConstrasenia()).equals(contrasenia)) {
+                    && Utiles.desencriptarContrasenia(cuentaConsulta.getConstrasenia()).equals(contrasenia)) {
                 return true;
             } else {
                 return false;
@@ -42,45 +42,48 @@ public class CuentaController {
 
     }
 
+    /**
+     * Metodo para insertar una cuenta
+     * @param cuenta
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException 
+     */
     public static Boolean insertar(Cuenta cuenta) throws ListaNullException, PosicionNoEncontradaException {
         return cuentadao.insertar(cuenta);
     }
 
+    /**
+     * Metodo para modificar una cuenta
+     * @param cuenta
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException 
+     */
     public static Boolean modificar(Cuenta cuenta) throws ListaNullException, PosicionNoEncontradaException {
         return cuentadao.modificar(cuenta);
     }
 
+    /**
+     * Metodo para eliminar un usuario
+     * @param usuario
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException 
+     */
     public static Boolean eliminar(String usuario) throws ListaNullException, PosicionNoEncontradaException {
         return cuentadao.eliminar(usuario);
     }
 
+    /**
+     * Metodo para obtener un usuario
+     * @param usuario
+     * @return
+     * @throws ListaNullException
+     * @throws PosicionNoEncontradaException 
+     */
     public static Cuenta obtener(String usuario) throws ListaNullException, PosicionNoEncontradaException {
         return cuentadao.obtener(usuario);
-    }
-
-    /**
-     * Permite encriptar constrasenias mediante el esquema de codificacion
-     * Base64
-     *
-     * @param dato
-     * @return
-     */
-    public static String encriptarContrasenia(String dato) {
-        if (dato != null) {
-            return Base64.getEncoder().encodeToString(dato.getBytes());
-        }
-        return "";
-    }
-
-    /**
-     * Permite desencriptar contraseñas mediante el esquema de codificacion
-     * Base64
-     *
-     * @param dato
-     * @return
-     */
-    public static String desencriptarContrasenia(String dato) {
-        return new String(Base64.getDecoder().decode(dato));
     }
 
     //GETTER AND SETTER
