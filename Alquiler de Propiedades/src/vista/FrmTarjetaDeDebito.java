@@ -22,7 +22,8 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         limitarDatos();
         this.setLocationRelativeTo(null);
     }
-    public void limitarDatos(){
+
+    public void limitarDatos() {
         lblHoraActual.setText(Utilidades.obtenerHoraActual());
         lblDateActual.setText(Utilidades.obtenerFechaActual());
         Utilidades.permitirSoloNumTxt(txtNumeroTarjeta);
@@ -31,6 +32,7 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         Utilidades.limitarTamanioTxt(txtCVC, 4);
         Utilidades.permitirSoloNumTxt(txtCVC);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,12 +56,13 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtNombreTitular = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        FechaExpiracion = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtNumeroTarjeta = new javax.swing.JTextField();
         txtCVC = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
+        dateMesExpiracion = new com.toedter.calendar.JMonthChooser();
+        dateYearExpiracion = new com.toedter.calendar.JYearChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -90,15 +93,14 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
 
         jLabel14.setText("Fecha de expiración:");
 
-        FechaExpiracion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                FechaExpiracionPropertyChange(evt);
-            }
-        });
-
         jLabel4.setText("CVC:");
 
         jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -154,14 +156,16 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(FechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblValorACancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(56, 56, 56))
+                                .addComponent(lblValorACancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateMesExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dateYearExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(8, 8, 8))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,28 +178,29 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(lblDateActual))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
-                                    .addComponent(lblHoraActual)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel14)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dateMesExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateYearExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(txtNumeroTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(lblValorACancelar))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(FechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel12)
+                                .addComponent(lblHoraActual)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addComponent(jLabel14))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtNumeroTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(lblValorACancelar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombreTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +224,7 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,21 +234,39 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FechaExpiracionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_FechaExpiracionPropertyChange
-        Date fechaActual=new Date();
-        if (FechaExpiracion.getDate()!=null) {
-            if (FechaExpiracion.getDate().before(fechaActual)) {
-                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual","Error",JOptionPane.ERROR_MESSAGE);
-                FechaExpiracion.setDate(null);
-            }
-        }
-    }//GEN-LAST:event_FechaExpiracionPropertyChange
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPagos fm=new FrmPagos();
+        FrmPagos fm = new FrmPagos();
         fm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Boolean ver1 = Utilidades.verificarNumeroDeTarjeta(txtNumeroTarjeta.getText());
+        Boolean ver2 = verificarFecha();
+        if (ver1) {
+            if (ver2 && txtNombreTitular.getText().length()>=1 && txtCVC.getText().length()>=1) {
+                JOptionPane.showMessageDialog(null, "Pago realizado", "Verificacion Completa", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Llene correctamente los datos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Tarjeta de crédito no valida", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private Boolean verificarFecha() {
+        Date fechaActual = new Date();
+        Date fechaObtenida = new Date();
+        fechaObtenida.setMonth(dateMesExpiracion.getMonth());
+        fechaObtenida.setYear(dateYearExpiracion.getYear() - 1900);
+        if (fechaObtenida.before(fechaActual)) {
+            JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -282,8 +305,9 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser FechaExpiracion;
     private javax.swing.JButton btnCancelar;
+    private com.toedter.calendar.JMonthChooser dateMesExpiracion;
+    private com.toedter.calendar.JYearChooser dateYearExpiracion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

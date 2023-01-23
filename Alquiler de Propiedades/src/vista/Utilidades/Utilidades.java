@@ -39,17 +39,18 @@ import modelo.MetodoPago;
  * @author leomah
  */
 public class Utilidades {
+
     public static String DIRCARPDATA = "data";
-    
-    public static ListaEnlazada<CuentasController> cargarCuentas() throws IOException{
+
+    public static ListaEnlazada<CuentasController> cargarCuentas() throws IOException {
         Mapeo mapeo = new Mapeo();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
         Gson gson = new Gson();
         mapeo = (gson.fromJson(lector, Mapeo.class));
         return mapeo.getCuentaList();
     }
-    
-    public static void guardarCuentas(ListaEnlazada<CuentasController> cuentaControllerLista) throws FileNotFoundException{
+
+    public static void guardarCuentas(ListaEnlazada<CuentasController> cuentaControllerLista) throws FileNotFoundException {
         Mapeo mapeo = new Mapeo(cuentaControllerLista);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
@@ -62,7 +63,7 @@ public class Utilidades {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar");
             System.out.println(e);
-        }        
+        }
     }
 
     public static void cargarTipoIndentificacion(JComboBox cbx) {
@@ -75,7 +76,8 @@ public class Utilidades {
     public static TipoIdentificacion obtenerTipoIdentificacion(JComboBox cbx) {
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
-/*
+
+    /*
     public static boolean guardarJSON(CuentaDAO cuentas) {
         Gson gson = new Gson();
         String json = gson.toJson(cuentas);
@@ -90,119 +92,130 @@ public class Utilidades {
         }
 
     }
-*/
-    public static void DefinirImagenLabel(JLabel label,String ruta){
-        ImageIcon image=new ImageIcon(ruta);
-        Icon icon=new ImageIcon( image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+     */
+    public static void DefinirImagenLabel(JLabel label, String ruta) {
+        ImageIcon image = new ImageIcon(ruta);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
         label.repaint();
     }
-    public static JComboBox cargarCombo(JComboBox combo){
+
+    public static JComboBox cargarCombo(JComboBox combo) {
         combo.removeAllItems();
-        for(MetodoPago Metodo: MetodoPago.values()) {
+        for (MetodoPago Metodo : MetodoPago.values()) {
             combo.addItem(Metodo);
         }
         return combo;
     }
-    public static void InsertarPanel(JPanel panelPrincipal,JPanel panelSecundario){
-        panelSecundario.setSize(641,290 );
+
+    public static void InsertarPanel(JPanel panelPrincipal, JPanel panelSecundario) {
+        panelSecundario.setSize(641, 290);
         panelSecundario.setLocation(0, 0);
-        
+
         //panelPrincipal
         panelPrincipal.removeAll();
-        panelPrincipal.add(panelSecundario,BorderLayout.CENTER);
+        panelPrincipal.add(panelSecundario, BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }
-    
-    public static void permitirSoloNumTxt(JTextField txt){
-        txt.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                char c =e.getKeyChar();
+
+    public static void permitirSoloNumTxt(JTextField txt) {
+        txt.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
                 if (!Character.isDigit(c)) {
                     e.consume();
                 }
             }
         });
     }
-    
-    public static void permitirSoloLetrasTxt(JTextField txt){
-        txt.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                char c =e.getKeyChar();
+
+    public static void permitirSoloLetrasTxt(JTextField txt) {
+        txt.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
                 if (Character.isDigit(c)) {
                     e.consume();
                 }
             }
         });
     }
-    
-    public static void limitarTamanioTxt(JTextField txt,Integer tamanio){
-        txt.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                if (txt.getText().length()>=tamanio) {
+
+    public static void limitarTamanioTxt(JTextField txt, Integer tamanio) {
+        txt.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (txt.getText().length() >= tamanio) {
                     e.consume();
-                    JOptionPane.showMessageDialog(txt, "Solo se permiten "+tamanio+" caracteres");
+                    JOptionPane.showMessageDialog(txt, "Solo se permiten " + tamanio + " caracteres");
                 }
             }
         });
     }
-    
-    public static String obtenerFechaActual(){
+
+    public static String obtenerFechaActual() {
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
         String fecha = dateFormat.format(new Date());
         return fecha;
     }
-    
-    public static String obtenerHoraActual(){
-        Calendar calendario=new GregorianCalendar();
-        int hora =calendario.get(Calendar.HOUR_OF_DAY);
+
+    public static String obtenerHoraActual() {
+        Calendar calendario = new GregorianCalendar();
+        int hora = calendario.get(Calendar.HOUR_OF_DAY);
         int minutos = calendario.get(Calendar.MINUTE);
-        String horaActual=hora+":"+minutos;
+        String horaActual = hora + ":" + minutos;
         return horaActual;
     }
-    
-    public static void verificarNumeroDeTarjeta(String NumTarjeta){
-        char[] recorrido=NumTarjeta.toCharArray();
-        String aux="";
-        for (int i = recorrido.length-1; i >= 0; i--) {
-            int n=2;
-            if (i%n==0) {
-                n=n+2;
-                aux=aux+aux.valueOf(2*Integer.valueOf(recorrido[i]));
+
+    public static Boolean verificarNumeroDeTarjeta(String NumTarjeta) {
+        //112423425370
+        if (NumTarjeta.length() >= 11) {
+            Integer total = 0;
+            boolean alternarPosicion = false;
+            for (int i = NumTarjeta.length() - 1; i >= 0; i--) {
+                int n = Integer.parseInt(NumTarjeta.substring(i, i + 1));
+                if (alternarPosicion) {
+                    n *= 2;
+                    if (n > 9) {
+                        n = (n % 10) + 1;
+                    }
+                }
+                total += n;
+                alternarPosicion = !alternarPosicion;
             }
+            return (total % 10 == 0);
+        }else{
+            return false;
         }
-        System.out.println("NUMERO :  "+aux);
     }
-    
-    public static Double calcularValorCuota(Double tazaDeInterez,Double valorTotal,Integer mesesPlazo){
-        return (valorTotal/mesesPlazo)+((valorTotal/mesesPlazo)*tazaDeInterez);
+
+    public static Double calcularValorCuota(Double tazaDeInterez, Double valorTotal, Integer mesesPlazo) {
+        return (valorTotal / mesesPlazo) + ((valorTotal / mesesPlazo) * tazaDeInterez);
     }
-    
-    public static String calcularFechaDePago(){
-        Date fechaDePago=new Date();
-        if (fechaDePago.getDate()<=28) {
+
+    public static String calcularFechaDePago() {
+        Date fechaDePago = new Date();
+        if (fechaDePago.getDate() <= 28) {
             DateFormat dateFormat = new SimpleDateFormat("d");
             String fecha = dateFormat.format(fechaDePago);
             return fecha;
-        }else{
+        } else {
             fechaDePago.setDate(28);
             DateFormat dateFormat = new SimpleDateFormat("d");
             String fecha = dateFormat.format(fechaDePago);
             return fecha;
         }
     }
-    
-    public static Date calcularFechaDePagoMaximo(Integer mesesPlazo){
-        Date fechaDePago=new Date();
-        if (fechaDePago.getDate()<=28) {
-            fechaDePago.setMonth(fechaDePago.getMonth()+mesesPlazo);
+
+    public static Date calcularFechaDePagoMaximo(Integer mesesPlazo) {
+        Date fechaDePago = new Date();
+        if (fechaDePago.getDate() <= 28) {
+            fechaDePago.setMonth(fechaDePago.getMonth() + mesesPlazo);
             return fechaDePago;
-        }else{
+        } else {
             fechaDePago.setDate(28);
-            fechaDePago.setMonth(fechaDePago.getMonth()+mesesPlazo);
+            fechaDePago.setMonth(fechaDePago.getMonth() + mesesPlazo);
             return fechaDePago;
-        }  
-        
+        }
+
     }
 }

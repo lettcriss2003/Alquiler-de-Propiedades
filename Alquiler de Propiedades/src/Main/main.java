@@ -4,6 +4,8 @@
  */
 package Main;
 
+import vista.Utilidades.Utilidades;
+
 /**
  *
  * @author lettc
@@ -14,7 +16,7 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Utilidades.verificarNumeroDeTarjeta("5474170016334580");
     }
     
 }
