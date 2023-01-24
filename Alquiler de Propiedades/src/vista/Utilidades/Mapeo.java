@@ -13,22 +13,22 @@ import modelo.Cuenta;
  * @author leomah
  */
 public class Mapeo {
-    private ListaEnlazada<CuentasController> cuentaList;
+    private CuentasController cc;
 
     public Mapeo() {
     }
 
-    public Mapeo(ListaEnlazada<CuentasController> cuentaList) {
-        this.cuentaList = cuentaList;
+    public Mapeo(CuentasController cc) {
+        this.cc = cc;
     }
 
-    public ListaEnlazada<CuentasController> getCuentaList() {
-        return cuentaList;
+    public CuentasController getCc() {
+        return cc;
     }
 
-    public void setCuentaList(ListaEnlazada<CuentasController> cuentaList) {
-        this.cuentaList = cuentaList;
+    public void setCc(CuentasController cc) {
+        this.cc = cc;
     }
 
-   
+    
 }

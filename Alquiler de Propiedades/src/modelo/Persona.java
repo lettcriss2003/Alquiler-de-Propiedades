@@ -16,14 +16,23 @@ public class Persona {
     private String apellidos;
     private Date fechaNacimiento;
     private String identificacion;
-    TipoIdentificacion tipoIdentificacion;
+    private TipoIdentificacion tipoIdentificacion;
     private Boolean estado;
     private String correo;
 
     public Persona() {
     }
-
-   
+    
+    public Persona(Integer id, String nombres, String apellidos, Date fechaNacimiento, String identificacion, TipoIdentificacion tipoIdentificacion, Boolean estado, String correo) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.identificacion = identificacion;
+        this.tipoIdentificacion = tipoIdentificacion;
+        this.estado = estado;
+        this.correo = correo;
+    }   
 
     public Integer getId() {
         return id;
@@ -93,10 +102,5 @@ public class Persona {
     public String toString() {
         return "Persona{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", identificacion=" + identificacion + ", tipoIdentificacion=" + tipoIdentificacion + ", estado=" + estado + ", correo=" + correo + '}';
     }
-    
-    
-    
-    
-    
     
 }

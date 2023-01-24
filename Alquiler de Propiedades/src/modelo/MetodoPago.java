@@ -9,6 +9,6 @@ package modelo;
  * @author lettc
  */
 public enum MetodoPago {
-    TarjetaCredito, Transferencia;
+    TarjetaCredito, Transferencia,TarjetaDebito;
     
 }

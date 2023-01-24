@@ -5,6 +5,8 @@
 package vista;
 
 import controlador.CuentasController;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -18,8 +20,8 @@ import vista.Utilidades.Utilidades;
  * @author leomah
  */
 public class CuentaDialog extends javax.swing.JDialog {
-    private CuentasController cuentaController = new CuentasController();
-    private ListaEnlazada<CuentasController> cuentasList = new ListaEnlazada<>();
+    private CuentasController cuentaController;
+    //private ListaEnlazada<CuentasController> cuentasList = new ListaEnlazada<>();
     private Integer posicion;
 
     public Integer getPosicion() {
@@ -30,13 +32,13 @@ public class CuentaDialog extends javax.swing.JDialog {
         this.posicion = posicion;
     }
 
-    public ListaEnlazada<CuentasController> getCuentasList() {
-        return cuentasList;
-    }
-
-    public void setCuentasList(ListaEnlazada<CuentasController> cuentasList) {
-        this.cuentasList = cuentasList;
-    }
+//    public ListaEnlazada<CuentasController> getCuentasList() {
+//        return cuentasList;
+//    }
+//
+//    public void setCuentasList(ListaEnlazada<CuentasController> cuentasList) {
+//        this.cuentasList = cuentasList;
+//    }
 
     public CuentasController getCuentaController() {
         return cuentaController;
@@ -55,12 +57,27 @@ public class CuentaDialog extends javax.swing.JDialog {
         this.setLocationByPlatform(true);
     }
     
-    public void cargarDatos(){
+    public CuentaDialog(java.awt.Frame parent, boolean modal, Integer pos, CuentasController cc) {
+        super(parent, modal);
+        this.posicion = pos;
+        this.cuentaController = cc;
+        initComponents();
+        try {
+            cargarDatos();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setLocationByPlatform(true);
+    }
+    
+    public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException{
         if (cuentaController != null) {
-            txtId.setText(String.valueOf(cuentaController.getCuenta().getId()));
-            txtUsuario.setText(cuentaController.getCuenta().getUsuario());
-            txtContrasenia.setText(cuentaController.getCuenta().getContrasenia());
-            if (cuentaController.getCuenta().getEstado()) {
+            txtId.setText(String.valueOf(cuentaController.getCuentaslList().obtener(posicion).getId()));
+            txtUsuario.setText(cuentaController.getCuentaslList().obtener(posicion).getUsuario());
+            txtContrasenia.setText(cuentaController.getCuentaslList().obtener(posicion).getContrasenia());
+            if (cuentaController.getCuentaslList().obtener(posicion).getEstado()) {
                 rbtnSi.doClick();
             }else{
                 rbtnNo.doClick();
@@ -183,11 +200,12 @@ public class CuentaDialog extends javax.swing.JDialog {
             } else {
                 c.setEstado(false);
             }
-            cuentaController.setCuenta(c);
-            cuentasList.modificarPoscicion(cuentaController, posicion);
+//            cuentaController.setCuenta(c);
+//            cuentasList.modificarPoscicion(cuentaController, posicion);
+            cuentaController.getCuentaslList().modificarPoscicion(c, posicion);
             try {
-                Utilidades.guardarCuentas(cuentasList);
-                JOptionPane.showMessageDialog(this, "Recuerde actualizar el listado");
+                Utilidades.guardarCuentas(cuentaController);
+                //JOptionPane.showMessageDialog(this, "Recuerde actualizar el listado");
                 this.dispose();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
