@@ -1,1 +1,0 @@
-Controlador.Controlador_Propiedad
