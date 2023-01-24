@@ -113,16 +113,19 @@ public class ListaEnlazada <E> {
     
     public void modificarPoscicion(E dato, Integer pos){
         if(pos >= 0 && pos < tamanio){
+            NodoLista aux = this.cabecera;
             for(int i = 0; i < tamanio; i++){
                 if(i == pos){
-                    
+                    aux.setDato(dato);
                 }
+                aux = aux.getSiguiente();
             }
-        }else if (pos == tamanio){
-            
-        }else {
-            
         }
+//        else if (pos == tamanio){
+//            
+//        }else {
+//            
+        //}
     }
     
     public E obtener(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{

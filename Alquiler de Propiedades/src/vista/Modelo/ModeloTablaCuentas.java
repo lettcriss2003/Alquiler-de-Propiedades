@@ -18,15 +18,15 @@ import modelo.Cuenta;
  * @author leomah
  */
 public class ModeloTablaCuentas extends AbstractTableModel{
-    private ListaEnlazada<CuentasController> cuentaList = new ListaEnlazada<>();
+    private CuentasController cc = new CuentasController();
 
-    public ListaEnlazada<CuentasController> getCuentaList() {
-        return cuentaList;
+    public CuentasController getCc() {
+        return cc;
     }
 
-    public void setCuentaList(ListaEnlazada<CuentasController> cuentaList) {
-        this.cuentaList = cuentaList;
-    }    
+    public void setCc(CuentasController cc) {
+        this.cc = cc;
+    }
     
     @Override
     public int getColumnCount(){
@@ -35,7 +35,7 @@ public class ModeloTablaCuentas extends AbstractTableModel{
     
     @Override 
     public int getRowCount(){
-        return cuentaList.getTamanio();
+        return cc.getCuentaslList().getTamanio();
     }
     
     @Override
@@ -52,7 +52,7 @@ public class ModeloTablaCuentas extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cuenta c = null;
         try {
-            c = cuentaList.obtener(rowIndex).getCuenta();
+            c = cc.getCuentaslList().obtener(rowIndex);
             
         } catch (ListaVaciaException ex) {
             Logger.getLogger(ModeloTablaCuentas.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,7 +65,15 @@ public class ModeloTablaCuentas extends AbstractTableModel{
             case 1:
                 return (c != null) ? c.getUsuario() : "No definido";
             case 2:
-                return (c != null) ? c.getEstado() : "No definido";
+                if (c != null){
+                    if (c.getEstado()) {
+                        return "Activo";
+                    }else{
+                        return "Inactivo";
+                    }
+                }else{
+                    return "No definido";
+                }
             default:
                 return null;
         }

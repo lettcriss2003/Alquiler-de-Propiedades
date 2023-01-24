@@ -1,25 +1,23 @@
 {
-  "cuentaList": {
-    "cabecera": {
-      "dato": {
-        "cuenta": {
+  "cc": {
+    "cuentaslList": {
+      "cabecera": {
+        "dato": {
           "id": 1,
           "usuario": "admin",
           "estado": true,
           "contrasenia": "admin"
-        }
-      },
-      "siguiente": {
-        "dato": {
-          "cuenta": {
+        },
+        "siguiente": {
+          "dato": {
             "id": 2,
             "usuario": "cliente",
-            "estado": true,
+            "estado": false,
             "contrasenia": "cliente"
           }
         }
-      }
-    },
-    "tamanio": 2
+      },
+      "tamanio": 2
+    }
   }
 }
