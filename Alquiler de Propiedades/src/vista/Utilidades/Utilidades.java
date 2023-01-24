@@ -7,6 +7,7 @@ package vista.Utilidades;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import controlador.CuentasController;
+import controlador.RolesController;
 import controlador.listas.ListaEnlazada;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,19 +41,42 @@ public class Utilidades {
     public static String DIRCARPDATA = "data";
     
     public static CuentasController cargarCuentas() throws IOException{
-        Mapeo mapeo = new Mapeo();
+        MapeoCuentas mapeo = new MapeoCuentas();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
         Gson gson = new Gson();
-        mapeo = (gson.fromJson(lector, Mapeo.class));
+        mapeo = (gson.fromJson(lector, MapeoCuentas.class));
         return mapeo.getCc();
     }
     
     public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
-        Mapeo mapeo = new Mapeo(cc);
+        MapeoCuentas mapeo = new MapeoCuentas(cc);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
         try {
             PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
+            escritor.write(json);
+            escritor.flush();
+            escritor.close();
+            JOptionPane.showMessageDialog(null, "Se guardó");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar");
+            System.out.println(e);
+        }        
+    }
+    
+    public static RolesController cargarRoles() throws IOException{
+        RolesController rc = new RolesController();
+        Reader lector = Files.newBufferedReader(Paths.get("roles.json"));
+        Gson gson = new Gson();
+        rc = (gson.fromJson(lector, RolesController.class));
+        return rc;
+    }
+    
+    public static void guardarRoles(RolesController rc) throws FileNotFoundException{
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(rc);
+        try {
+            PrintWriter escritor = new PrintWriter(new File("roles.json"));
             escritor.write(json);
             escritor.flush();
             escritor.close();
