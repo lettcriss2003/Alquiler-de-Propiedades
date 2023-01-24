@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vista;
+package vista;
 
 import javax.swing.JOptionPane;
 
@@ -200,7 +200,7 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
         if(txtCiudad.getText().isEmpty() || txtProcincia.getText().isEmpty() || txtCallePrincipal.getText().isEmpty() || txtCalleSecundaria.getText().isEmpty() || txtCodigoPostal.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Campos vacios");
         }else{
-            FrmServicio btndireccion = new FrmServicio();
+            Frmservicio btndireccion = new Frmservicio();
         btndireccion.setVisible(true);
         this.setVisible(false);
         }
