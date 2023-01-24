@@ -113,11 +113,8 @@ public class FrmRegistro extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(this, "El usuario ya se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
                         actualizarCamposRegistro();
                     }
-                } 
-//                else {
-//                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
-//
-//                }
+                }
+
             } catch (ListaNullException | PosicionNoEncontradaException | NumberFormatException | ParseException | correoNoValidoException | cedulaNoValidaException | contraseniaNoCoincideException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 

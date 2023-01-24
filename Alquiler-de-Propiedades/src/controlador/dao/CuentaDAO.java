@@ -21,7 +21,7 @@ public class CuentaDAO {
 
     }
 
-    //TODO cambiar por busqueda binaria
+    
     /**
      * Buscar el usuario en el registro de cuentas
      *

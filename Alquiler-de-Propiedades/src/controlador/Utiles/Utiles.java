@@ -118,12 +118,12 @@ public class Utiles {
     }
 
     public static Boolean validarContrasenias(String contrasenia1, String constrasenia2) throws contraseniaNoCoincideException {
-        Boolean cedulaValida = false;
+        Boolean contraseniaCoincide = false;
         if (contrasenia1.equals(constrasenia2)) {
-            cedulaValida = true;
+            contraseniaCoincide = true;
         } else {
             throw new contraseniaNoCoincideException();
         }
-        return cedulaValida;
+        return contraseniaCoincide;
     }
 }

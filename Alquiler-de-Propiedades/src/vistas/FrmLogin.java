@@ -5,9 +5,13 @@
 package vistas;
 
 import controlador.CuentaController;
+import controlador.excepciones.DatoIncorrectoException;
+import controlador.excepciones.intentoExcedidoException;
 import controlador.listas.excepciones.ListaNullException;
 import controlador.listas.excepciones.PosicionNoEncontradaException;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -16,6 +20,8 @@ import javax.swing.JOptionPane;
  * @author LENOVO
  */
 public class FrmLogin extends javax.swing.JFrame {
+
+    public CuentaController cc = new CuentaController();
 
     /**
      * Creates new form FrmLogin
@@ -68,21 +74,17 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Validar si las credenciales son correctas para iniciar sesion
      */
-    public void iniciarSesion() {
+    public void iniciarSesion() throws intentoExcedidoException, DatoIncorrectoException {
         if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
             try {
-                if (CuentaController.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
+                if (cc.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
                     JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     FrmPrincipal frmPrincipal = new FrmPrincipal();
                     frmPrincipal.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-                    actualizarCampos();
                 }
-            } catch (ListaNullException | PosicionNoEncontradaException e) {
-                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-                actualizarCampos();
+            } catch (ListaNullException | PosicionNoEncontradaException | intentoExcedidoException | DatoIncorrectoException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
@@ -269,7 +271,12 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        iniciarSesion();
+        try {
+            iniciarSesion();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void chkMostrarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMostrarContraseniaActionPerformed
