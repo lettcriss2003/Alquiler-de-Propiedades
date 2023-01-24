@@ -21,7 +21,6 @@ public class CuentaDAO {
 
     }
 
-    
     /**
      * Buscar el usuario en el registro de cuentas
      *
@@ -112,10 +111,11 @@ public class CuentaDAO {
 
     /**
      * Metodo accesor para obtener los usuarios de las cuentas
+     *
      * @param usuario
      * @return
      * @throws ListaNullException
-     * @throws PosicionNoEncontradaException 
+     * @throws PosicionNoEncontradaException
      */
     public Cuenta obtener(String usuario) throws ListaNullException, PosicionNoEncontradaException {
         if (buscar(usuario) != 1) {
@@ -127,6 +127,9 @@ public class CuentaDAO {
 
     //GETTER AND SETTER
     public ListaEnlazada<Cuenta> getCuentas() {
+        if (cuentas == null) {
+            cuentas = new ListaEnlazada<>();
+        }
         return cuentas;
     }
 

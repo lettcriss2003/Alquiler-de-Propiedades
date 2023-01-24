@@ -7,6 +7,7 @@ package controlador.listas;
 
 import controlador.listas.excepciones.ListaNullException;
 import controlador.listas.excepciones.PosicionNoEncontradaException;
+import java.lang.reflect.Array;
 import modelo.Cuenta;
 
 /**
@@ -17,7 +18,7 @@ public class ListaEnlazada<E> {
 
     private NodoLista<E> cabecera;
     private Integer size;
-    private Cuenta cuenta;
+    private Integer tamanio;
 
     public ListaEnlazada() {
         cabecera = null;
@@ -166,6 +167,27 @@ public class ListaEnlazada<E> {
         }
     }
 
+    public E[] toArray() {
+        E[] matriz = null;
+        if (this.tamanio > 0) {
+            matriz = (E[]) Array.newInstance(cabecera.getDato().getClass(), this.tamanio);
+            NodoLista<E> aux = cabecera;
+            for (int i = 0; i < this.tamanio; i++) {
+                matriz[i] = aux.getDato();
+                aux = aux.getSiguiente();
+            }
+        }
+        return matriz;
+    }
+
+    public ListaEnlazada toList(E[] a) {
+        ListaEnlazada lista = new ListaEnlazada<>();
+        for (int i = 0; i < a.length; i++) {
+            lista.insertar(a[i]);
+        }
+        return lista;
+    }
+
     //Getter and Setter
     public NodoLista<E> getCabecera() {
         return cabecera;
@@ -183,13 +205,12 @@ public class ListaEnlazada<E> {
         this.size = size;
     }
 
-//    public Cuenta getCuenta() {
-//        return cuenta;
-//    }
-//
-//    public void setCuenta(Cuenta cuenta) {
-//        this.cuenta = cuenta;
-//    }
+    public Integer getTamanio() {
+        return tamanio;
+    }
 
+    public void setTamanio(Integer tamanio) {
+        this.tamanio = tamanio;
+    }
 
 }
