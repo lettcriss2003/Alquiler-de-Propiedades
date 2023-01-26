@@ -4,6 +4,8 @@
  */
 package Main;
 
+import vista.FrmLogin;
+
 /**
  *
  * @author lettc
@@ -14,7 +16,8 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
     }
     
 }

@@ -77,6 +77,9 @@ public class CuentaDAO {
     }
 
     public ListaEnlazada<Cuenta> getCuentas() {
+        if(cuentas == null){
+            cuentas = new ListaEnlazada<>();
+        }
         return cuentas;
     }
 
