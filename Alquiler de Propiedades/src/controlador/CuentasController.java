@@ -137,7 +137,7 @@ public class CuentasController {
     }
 
     //GETTER AND SETTER
-    public static CuentaDAO getCuentadao() {
+    public CuentaDAO getCuentadao() {
         if (cuentadao == null) {
             cuentadao = new CuentaDAO();
         }
@@ -145,7 +145,7 @@ public class CuentasController {
         return cuentadao;
     }
 
-    public static void setCuentadao(CuentaDAO cuentadao) {
+    public void setCuentadao(CuentaDAO cuentadao) {
         CuentasController.cuentadao = cuentadao;
     }
 

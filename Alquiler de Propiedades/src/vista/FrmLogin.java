@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.CuentaDAO;
 import controlador.CuentasController;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
@@ -14,6 +15,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import ordenacion.Excepciones.AtributoNoEncontradoException;
+import vista.Utilidades.Utilidades;
 
 /**
  *
@@ -28,6 +30,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        cargarJSon();
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
     }
@@ -106,6 +109,19 @@ public class FrmLogin extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Rellene campos usuario y/o contraseña", "Error", JOptionPane.ERROR_MESSAGE);
             actualizarCampos();
+        }
+    }
+
+    /**
+     * Carga los usuarios que han sido registrados y guardados en un archivo tipo .json
+     */
+    private void cargarJSon() {
+        try {
+            CuentaDAO cd = new CuentaDAO();
+            cd = Utilidades.cargarJson();
+            cc.setCuentadao(cd);
+           
+        } catch (Exception e) {
         }
     }
 

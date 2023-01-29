@@ -14,6 +14,7 @@ import controlador.loginExcepciones.contraseniaNoCoincideException;
 import controlador.loginExcepciones.correoNoValidoException;
 import java.awt.Color;
 import java.awt.HeadlessException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,6 +40,7 @@ public class FrmRegistro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         cargarCombos();
+        cargarJSon();
         setLocationRelativeTo(this);
     }
 
@@ -140,13 +142,13 @@ public class FrmRegistro extends javax.swing.JDialog {
     private Boolean ordenarCuentas() throws IllegalAccessException, AtributoNoEncontradoException {
         try {
             MetodoQuickSort mqs = new MetodoQuickSort();
-            CuentasController.getCuentadao().setCuentas(mqs.quickSort(CuentasController.getCuentadao().getCuentas(), "usuario", MetodoQuickSort.ASCENDENTE));
-            CuentasController.getCuentadao().getCuentas().imprimir();
+            cc.getCuentadao().setCuentas(mqs.quickSort(cc.getCuentadao().getCuentas(), "usuario", MetodoQuickSort.ASCENDENTE));
+            cc.getCuentadao().getCuentas().imprimir();
 
         } catch (IllegalAccessException | IllegalArgumentException | AtributoNoEncontradoException e) {
             System.out.println(e.getMessage());
         }
-        
+
         return true;
     }
 
@@ -162,15 +164,15 @@ public class FrmRegistro extends javax.swing.JDialog {
                         && Utilidades.validarContrasenia(txtCont.getText(), txtCont1.getText())
                         && Utilidades.validarCorreo(txtCorreoR.getText())) {
                     Date dtf = formato.parse(txtFechaNac.getText().trim());
-                    Persona personar = new Persona(CuentasController.getCuentadao().getCuentas().getTamanio() + 1,
+                    Persona personar = new Persona(cc.getCuentadao().getCuentas().getTamanio() + 1,
                             txtNombreR.getText(),
                             txtApellidoR.getText(), dtf, txtIndentificacionR.getText().trim(),
                             Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                             true, txtCorreoR.getText());
 
-                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, CuentasController.getCuentadao().getCuentas().getTamanio() + 1, true);
-                    if (CuentasController.insertar(cuenta)) {
-//                        ordenarCuentas();
+                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true);
+                    if (cc.insertar(cuenta)) {
+                        ordenarCuentas();
                         actualizarCamposRegistro();
                         JOptionPane.showMessageDialog(this, "El usuario se ha registrado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
@@ -240,8 +242,18 @@ public class FrmRegistro extends javax.swing.JDialog {
         }
     }
 
-    public void guardarjson() {
+    /**
+     * Carga los usuarios que han sido registrados y guardados en un archivo
+     * tipo .json
+     */
+    private void cargarJSon() {
+        try {
+            CuentaDAO cd = new CuentaDAO();
+            cd = Utilidades.cargarJson();
+            cc.setCuentadao(cd);
 
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -611,7 +623,8 @@ public class FrmRegistro extends javax.swing.JDialog {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
             registrar();
-        } catch (cedulaNovalidaException | contraseniaNoCoincideException | correoNoValidoException ex) {
+            Utilidades.guardar(cc.getCuentadao());
+        } catch (cedulaNovalidaException | contraseniaNoCoincideException | correoNoValidoException | IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 

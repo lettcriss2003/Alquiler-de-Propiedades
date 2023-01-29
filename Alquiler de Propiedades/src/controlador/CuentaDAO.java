@@ -14,7 +14,6 @@ import ordenacion.Excepciones.AtributoNoEncontradoException;
 public class CuentaDAO {
 
     private ListaEnlazada<Cuenta> cuentas = new ListaEnlazada<>();
-//    private Cuenta cuenta;
 
     public CuentaDAO() {
 
@@ -139,15 +138,4 @@ public class CuentaDAO {
         this.cuentas = cuentas;
     }
 
-//    public Cuenta getCuenta() {
-//        return cuenta;
-//    }
-//
-//    public void setCuenta(Cuenta cuenta) {
-//        this.cuenta = cuenta;
-//    }
-    @Override
-    public String toString() {
-        return "Usuarios:" + cuentas;
-    }
 }

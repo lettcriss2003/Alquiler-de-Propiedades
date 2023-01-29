@@ -6,6 +6,7 @@ package vista.Utilidades;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controlador.CuentaDAO;
 import controlador.CuentasController;
 import controlador.listas.ListaEnlazada;
 import controlador.loginExcepciones.cedulaNovalidaException;
@@ -23,7 +24,9 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Base64;
 import java.util.Calendar;
@@ -59,7 +62,7 @@ public class Utilidades {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
         try {
-            
+
             PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
             escritor.write(json);
             escritor.flush();
@@ -82,22 +85,6 @@ public class Utilidades {
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
 
-    /*
-    public static boolean guardarJSON(CuentaDAO cuentas) {
-        Gson gson = new Gson();
-        String json = gson.toJson(cuentas);
-
-        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(DIRCARPDATA + File.separatorChar + "datos.json"))) {
-            bw.write(json);
-            bw.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println("Error" + e);
-            return false;
-        }
-
-    }
-     */
     public static void DefinirImagenLabel(JLabel label, String ruta) {
         ImageIcon image = new ImageIcon(ruta);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
@@ -281,24 +268,42 @@ public class Utilidades {
         return contraseniaCoincide;
     }
 
-    
-    private static String URL = "data" + File.separator;
-    
-    public static Boolean guardar(ListaEnlazada dato) throws IOException {
+    private static String URL = "data";
+
+    public static Boolean guardar(CuentaDAO dato) throws IOException {
+        Parse parse = new Parse(dato);
         Gson gson = new Gson();
-        String json = gson.toJson(dato);
-        File file;
-        file = new File(URL);
-        file.createNewFile();
-        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(file + "datos.json"))) {
+        String json = gson.toJson(parse);
+        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(URL + File.separatorChar + "datos.json"))) {
             bw.write(json);
             bw.flush();
             bw.close();
             System.out.println("Se guardo perrin");
             return true;
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            return true;
+            System.out.println("Error al guardar: " + e.getMessage());
+            return false;
         }
     }
+
+    public static CuentaDAO cargarJson() throws FileNotFoundException {
+        Parse parse = new Parse();
+        String json = "";
+        Gson gson = new Gson();
+        try ( BufferedReader br = new BufferedReader(new FileReader(URL + File.separatorChar + "datos.json"))) {
+
+            String linea = "";
+            while ((linea = br.readLine()) != null) {
+                json += linea;
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        parse = (gson.fromJson(json, Parse.class));
+
+        return parse.getCd();
+    }
+
+   
 }
