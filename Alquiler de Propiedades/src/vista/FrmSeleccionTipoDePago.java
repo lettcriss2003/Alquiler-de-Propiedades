@@ -7,7 +7,6 @@ package vista;
 import controlador.PagoDAO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.Contrato;
 import modelo.MetodoPago;
 import modelo.Pago;
 import modelo.TipoDePago;
@@ -21,7 +20,6 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
     PagoDAO pagoDAO = new PagoDAO();
     
     FrmPagos fPagoUnico = new FrmPagos();
-    Contrato cont = new Contrato();
     public static boolean verificadorPago;
     public static Integer verificadorMetodoDePago;
     Pago pago = new Pago();
@@ -35,9 +33,8 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public FrmSeleccionTipoDePago(Contrato contrato) {
+    public FrmSeleccionTipoDePago(Integer id) {
         initComponents();
-        this.cont = contrato;
         this.setLocationRelativeTo(null);
     }
 
@@ -161,7 +158,6 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
     private void cargarVentana() {
         if (CbxTipoDePago.getSelectedItem().toString().equals("Pago a plazos")) {
             FrmPagoPlazos fpagosplazos = new FrmPagoPlazos(pagoDAO.listar().getTamanio());
-            System.out.println(pagoDAO.listar().getTamanio());
             fpagosplazos.setVisible(true);
             //this.dispose();
         } else {

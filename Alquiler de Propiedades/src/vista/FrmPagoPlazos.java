@@ -211,9 +211,6 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
             pago=DaoPago.obtenerPago(pago.getId());
             pago.setMesesPlazo(Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString()));
             pago.setCuotaPorMes(Double.valueOf(txtPagoPorMes.getText()));
-            System.out.println(pago.getCuotaPorMes());
-            System.out.println(pago.getId()-1);
-            System.out.println(pago.toString());
             DaoPago.modificar(pago, pago.getId()-1);
         } catch (Exception e) {
         }
