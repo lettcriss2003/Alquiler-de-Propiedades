@@ -6,6 +6,7 @@ package controlador;
 
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
 import modelo.Cuenta;
 
 /**
@@ -13,24 +14,24 @@ import modelo.Cuenta;
  * @author leomah
  */
 public class CuentasController {
-    private Cuenta cuenta = new Cuenta();
+    private ListaEnlazada<Cuenta> cuentaslList = new ListaEnlazada<>();
     private static CuentaDAO cuentadao = new CuentaDAO();
 
     public CuentasController() {
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
+    public ListaEnlazada<Cuenta> getCuentaslList() {
+        return cuentaslList;
     }
 
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
+    public void setCuentaslList(ListaEnlazada<Cuenta> cuentaslList) {
+        this.cuentaslList = cuentaslList;
     }
-
-    @Override
-    public String toString() {
-        return "CuentasController{" + "cuenta=" + cuenta + '}';
-    }
+//
+//    @Override
+//    public String toString() {
+//        return "CuentasController{" + "cuenta=" + cuenta + '}';
+//    }
     
     public static Boolean autentificar(String usuario, String contrasenia) throws ListaVaciaException, PosicionNoEncontradaException {
         if (obtener(usuario) != null) {

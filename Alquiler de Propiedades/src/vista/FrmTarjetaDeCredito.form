@@ -27,6 +27,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="655" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeCredito.form
+=======
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeCredito.form
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,7 +88,11 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeCredito.form
                                           <Component id="dateMesExpiracion" min="-2" max="-2" attributes="0"/>
+=======
+                                          <Component id="FechaExpiracion" min="-2" pref="143" max="-2" attributes="0"/>
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeCredito.form
                                       </Group>
                                   </Group>
                               </Group>
@@ -125,9 +134,13 @@
                           <Component id="btnCancelar" min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeCredito.form
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="dateYearExpiracion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+=======
+                  <EmptySpace pref="100" max="32767" attributes="0"/>
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeCredito.form
               </Group>
           </Group>
         </DimensionLayout>
@@ -157,11 +170,18 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeCredito.form
                               <Component id="dateMesExpiracion" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                               <Component id="dateYearExpiracion" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+=======
+                              <Component id="FechaExpiracion" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeCredito.form
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -288,6 +308,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCVC">
         </Component>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeCredito.form
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
@@ -299,6 +320,9 @@
         <Component class="com.toedter.calendar.JMonthChooser" name="dateMesExpiracion">
         </Component>
         <Component class="com.toedter.calendar.JYearChooser" name="dateYearExpiracion">
+=======
+        <Component class="com.toedter.calendar.JDateChooser" name="FechaExpiracion">
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeCredito.form
         </Component>
       </SubComponents>
     </Container>

@@ -41,17 +41,28 @@ import modelo.MetodoPago;
 public class Utilidades {
 
     public static String DIRCARPDATA = "data";
+<<<<<<< HEAD
 
     public static ListaEnlazada<CuentasController> cargarCuentas() throws IOException {
+=======
+    
+    public static CuentasController cargarCuentas() throws IOException{
+>>>>>>> develop
         Mapeo mapeo = new Mapeo();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
         Gson gson = new Gson();
         mapeo = (gson.fromJson(lector, Mapeo.class));
-        return mapeo.getCuentaList();
+        return mapeo.getCc();
     }
+<<<<<<< HEAD
 
     public static void guardarCuentas(ListaEnlazada<CuentasController> cuentaControllerLista) throws FileNotFoundException {
         Mapeo mapeo = new Mapeo(cuentaControllerLista);
+=======
+    
+    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
+        Mapeo mapeo = new Mapeo(cc);
+>>>>>>> develop
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
         try {

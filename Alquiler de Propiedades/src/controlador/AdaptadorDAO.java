@@ -3,15 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import controlador.listas.ListaEnlazada;
 import controlador.utiles.Utilidades;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -32,31 +33,35 @@ public class AdaptadorDAO <T> implements InterfazDAO<T> {
 
     public AdaptadorDAO(Class<T> clazz) {
         this.clazz = clazz;
+<<<<<<< HEAD
         URL+=this.clazz.getSimpleName()+".gson";
+=======
+        URL+=this.clazz.getSimpleName()+".json";
+>>>>>>> develop
     }
        
     @Override
     public void guardar(T dato) throws FileNotFoundException, JAXBException{
         ListaEnlazada<T> lista = listar();
         lista.insertar(dato);
-        FileOutputStream file = new FileOutputStream(URL);
-        JAXBContext jabxc = JAXBContext.newInstance(new Class[]{ListaEnlazada.class, this.clazz});
-        Marshaller marshaller = jabxc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(lista, file);
+
+        try (PrintWriter out = new PrintWriter(new FileWriter(URL))) {
+            Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonString = prettyGson.toJson(lista);
+            out.write(jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    //todo
     @Override
     public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException{
-        ListaEnlazada<T> Lista=listar();
-        try {
-            Lista.modificarPoscicion(dato, pos);
-            FileOutputStream file=new FileOutputStream(URL);
-            JAXBContext jaxb=JAXBContext.newInstance(new Class[]{ListaEnlazada.class,this.clazz});
-            Marshaller marshaller=jaxb.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
-            marshaller.marshal(Lista,file);
+        ListaEnlazada<T> lista=listar();
+        try (PrintWriter out = new PrintWriter(new FileWriter(URL))){
+            lista.modificarPoscicion(dato, pos);
+            Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonString = prettyGson.toJson(lista);
+            out.write(jsonString);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -100,21 +105,25 @@ public class AdaptadorDAO <T> implements InterfazDAO<T> {
 
     @Override
     public T obtener(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ListaEnlazada<T> Lista=listar();
+        try {
+            return Lista.obtener(id);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }    
 
     @Override
     public void eliminar(Integer pos) {
-        ListaEnlazada<T> Lista=listar();
-        try {
-            Lista.eliminarPosicion(pos);
-            FileOutputStream file=new FileOutputStream(URL);
-            JAXBContext jaxb=JAXBContext.newInstance(new Class[]{ListaEnlazada.class,this.clazz});
-            Marshaller marshaller=jaxb.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
-            marshaller.marshal(Lista,file);
+        ListaEnlazada<T> lista=listar();
+        try (PrintWriter out = new PrintWriter(new FileWriter(URL))){
+            lista.eliminarPosicion(pos);
+            Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonString = prettyGson.toJson(lista);
+            out.write(jsonString);
         } catch (Exception e) {
             System.out.println(e);
-        } 
+        }
     }
 }

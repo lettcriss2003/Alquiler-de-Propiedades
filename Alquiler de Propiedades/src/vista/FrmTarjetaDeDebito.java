@@ -60,11 +60,15 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtNumeroTarjeta = new javax.swing.JTextField();
         txtCVC = new javax.swing.JTextField();
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
         btnCancelar = new javax.swing.JButton();
         dateMesExpiracion = new com.toedter.calendar.JMonthChooser();
         dateYearExpiracion = new com.toedter.calendar.JYearChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+=======
+        FechaExpiracion = new com.toedter.calendar.JDateChooser();
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tarjeta De Dédito"));
 
@@ -162,10 +166,15 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
                                 .addComponent(dateMesExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(dateYearExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(8, 8, 8))
+=======
+                                .addComponent(FechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(83, 83, 83))
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +190,7 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dateMesExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dateYearExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -188,6 +198,13 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(4, 4, 4)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+=======
+                        .addComponent(FechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
                                 .addComponent(jLabel12)
                                 .addComponent(lblHoraActual)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -305,9 +322,13 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
     private javax.swing.JButton btnCancelar;
     private com.toedter.calendar.JMonthChooser dateMesExpiracion;
     private com.toedter.calendar.JYearChooser dateYearExpiracion;
+=======
+    private com.toedter.calendar.JDateChooser FechaExpiracion;
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

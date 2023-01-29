@@ -110,14 +110,22 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.form
                                   <Component id="dateMesExpiracion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="dateYearExpiracion" min="-2" max="-2" attributes="0"/>
+=======
+                                  <Component id="FechaExpiracion" min="-2" pref="130" max="-2" attributes="0"/>
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.form
                               </Group>
                           </Group>
                       </Group>
                   </Group>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.form
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+=======
+                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.form
               </Group>
           </Group>
         </DimensionLayout>
@@ -138,6 +146,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.form
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="dateMesExpiracion" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="dateYearExpiracion" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -152,6 +161,19 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
+=======
+                          <Component id="FechaExpiracion" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHoraActual" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.form
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -276,6 +298,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCVC">
         </Component>
+<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.form
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
@@ -287,6 +310,9 @@
         <Component class="com.toedter.calendar.JMonthChooser" name="dateMesExpiracion">
         </Component>
         <Component class="com.toedter.calendar.JYearChooser" name="dateYearExpiracion">
+=======
+        <Component class="com.toedter.calendar.JDateChooser" name="FechaExpiracion">
+>>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.form
         </Component>
       </SubComponents>
     </Container>
