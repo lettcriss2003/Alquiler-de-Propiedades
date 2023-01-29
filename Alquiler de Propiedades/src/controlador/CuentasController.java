@@ -54,29 +54,28 @@ public class CuentasController {
         if (cuentadao.getCuentas().estaVacia()) {
             throw new ListaVaciaException();
         } else {
-        try {
-            if (obtener(usuario) != null) {
-                Cuenta cuentaConsulta = obtener(usuario);
-                if (cuentaConsulta.getUsuario().equals(usuario)
-                        && Utilidades.desencriptarContrasenia(cuentaConsulta.getContrasenia()).equals(contrasenia)) {
-                    autentificacion = true;
-                    limite = 5;
-                    return autentificacion;
-                } else if (limite > 1) {
-                    throw new datoIncorrectoException(--limite);
+            try {
+                if (obtener(usuario) != null) {
+                    Cuenta cuentaConsulta = obtener(usuario);
+                    if (cuentaConsulta.getUsuario().equals(usuario)
+                            && Utilidades.desencriptarContrasenia(cuentaConsulta.getContrasenia()).equals(contrasenia)) {
+                        autentificacion = true;
+                        limite = 5;
+                        return autentificacion;
+                    } else if (limite > 1) {
+                        throw new datoIncorrectoException(--limite);
+                    } else {
+                        System.exit(0);
+                        throw new intentoExcedidoException();
+                    }
                 } else {
-                    System.exit(0);
-                    throw new intentoExcedidoException();
+                    throw new usuarioNoExisteException();
                 }
-            } else {
-                throw new usuarioNoExisteException();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            
-            return autentificacion;
-        }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
 
+                return autentificacion;
+            }
         }
     }
 
@@ -149,29 +148,4 @@ public class CuentasController {
         CuentasController.cuentadao = cuentadao;
     }
 
-    @Override
-    public String toString() {
-        return "Cuenta: " + cuentadao;
-    }
-
 }
-
-/*
-public class CuentaController {
-
-    public static CuentaDAO getCuentadao() {
-        return cuentadao;
-    }
-
-    public static void setCuentadao(CuentaDAO cuentadao) {
-        CuentaController.cuentadao = cuentadao;
-    }
-
-    @Override
-    public String toString() {
-        return "CuentaController{" + '}';
-    }
-
-    
-}
- */

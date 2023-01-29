@@ -143,8 +143,6 @@ public class FrmRegistro extends javax.swing.JDialog {
         try {
             MetodoQuickSort mqs = new MetodoQuickSort();
             cc.getCuentadao().setCuentas(mqs.quickSort(cc.getCuentadao().getCuentas(), "usuario", MetodoQuickSort.ASCENDENTE));
-            cc.getCuentadao().getCuentas().imprimir();
-
         } catch (IllegalAccessException | IllegalArgumentException | AtributoNoEncontradoException e) {
             System.out.println(e.getMessage());
         }
@@ -158,7 +156,6 @@ public class FrmRegistro extends javax.swing.JDialog {
     public void registrar() throws cedulaNovalidaException, contraseniaNoCoincideException, correoNoValidoException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (campoCompletado() && compararCampos()) {
-
             try {
                 if (validarCedula()
                         && Utilidades.validarContrasenia(txtCont.getText(), txtCont1.getText())
@@ -203,12 +200,12 @@ public class FrmRegistro extends javax.swing.JDialog {
                 && !txtCorreoR.getText().isEmpty()) {
             try {
                 Date dtf = formato.parse(txtFechaNac.getText());
-                Persona personar = new Persona(1, txtNombreR.getText(),
+                Persona personar = new Persona(cc.getCuentadao().getCuentas().getTamanio() + 1, txtNombreR.getText(),
                         txtApellidoR.getText(), dtf, txtIndentificacionR.getText(),
                         Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                         true, txtCorreoR.getText());
 
-                Cuenta cuenta = new Cuenta(txtUsuario.getText(), txtCont.getText(), personar, 1, true);
+                Cuenta cuenta = new Cuenta(txtUsuario.getText(), txtCont.getText(), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true);
                 if (CuentasController.modificar(cuenta)) {
                     JOptionPane.showMessageDialog(this, "El usuario se ha modificado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -225,7 +222,6 @@ public class FrmRegistro extends javax.swing.JDialog {
      * Eliminar cuentas de usuario, solo para administradores
      */
     public void eliminar() throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()) {
 
             try {

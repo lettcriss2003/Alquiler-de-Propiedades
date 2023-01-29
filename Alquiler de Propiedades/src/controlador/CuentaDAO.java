@@ -15,10 +15,6 @@ public class CuentaDAO {
 
     private ListaEnlazada<Cuenta> cuentas = new ListaEnlazada<>();
 
-    public CuentaDAO() {
-
-    }
-
     /**
      * Buscar los usuarios registrados
      *
@@ -27,7 +23,7 @@ public class CuentaDAO {
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
      */
-    public int buscar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public int buscar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException{
         int n = -1;
         for (int i = 0; i < cuentas.getTamanio(); i++) {
             if (cuentas.obtener(i).getUsuario().equals(usuario)) {
@@ -45,10 +41,8 @@ public class CuentaDAO {
      * @return
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
-     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
-     * @throws java.lang.IllegalAccessException
      */
-    public Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException{
         if (buscar(cuenta.getUsuario()) == -1) {
             cuentas.insertar(cuenta);
             return true;
@@ -68,7 +62,7 @@ public class CuentaDAO {
      * @throws ordenacion.Excepciones.AtributoNoEncontradoException
      * @throws java.lang.IllegalAccessException
      */
-    public Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalAccessException{
         if (buscar(cuenta.getUsuario()) != -1) {
             Cuenta cuentaaux = obtener(cuenta.getUsuario());
 
@@ -97,10 +91,8 @@ public class CuentaDAO {
      * @return
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
-     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
-     * @throws java.lang.IllegalAccessException
      */
-    public Boolean eliminar(String cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public Boolean eliminar(String cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
         if (buscar(cuenta) != -1) {
             cuentas.eliminarPosicion(buscar(cuenta));
             return true;

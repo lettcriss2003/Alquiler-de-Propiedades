@@ -49,6 +49,8 @@ import modelo.MetodoPago;
  */
 public class Utilidades {
 
+    private static String URL = "data";
+
     public static CuentasController cargarCuentas() throws IOException {
         Mapeo mapeo = new Mapeo();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
@@ -184,8 +186,6 @@ public class Utilidades {
     public static boolean validadorDeCedula(String cedula) throws cedulaNovalidaException {
         boolean cedulaCorrecta = false;
         cedula = (cedula.length() == 13) ? cedula.substring(0, 10) : cedula;
-//        String baj = cedula.substring(10, 13);
-
         try {
 
             if (cedula.length() == 10) // ConstantesApp.LongitudCedula
@@ -202,7 +202,6 @@ public class Utilidades {
                         digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
                         suma += ((digito % 10) + (digito / 10));
                     }
-
                     if ((suma % 10 == 0) && (suma % 10 == verificador)) {
                         cedulaCorrecta = true;
                     } else if ((10 - (suma % 10)) == verificador) {
@@ -219,12 +218,9 @@ public class Utilidades {
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
         } catch (Exception err) {
-
             cedulaCorrecta = false;
         }
-
         if (!cedulaCorrecta) {
-
         }
         return cedulaCorrecta;
     }
@@ -268,8 +264,13 @@ public class Utilidades {
         return contraseniaCoincide;
     }
 
-    private static String URL = "data";
-
+    /**
+     * Guardar la cuentas registradas en un archivo de tipo .json
+     *
+     * @param dato
+     * @return
+     * @throws IOException
+     */
     public static Boolean guardar(CuentaDAO dato) throws IOException {
         Parse parse = new Parse(dato);
         Gson gson = new Gson();
@@ -286,6 +287,12 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Cargar las cuentas que hayan sido registradas de un archivo .json
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
     public static CuentaDAO cargarJson() throws FileNotFoundException {
         Parse parse = new Parse();
         String json = "";
@@ -305,5 +312,4 @@ public class Utilidades {
         return parse.getCd();
     }
 
-   
 }
