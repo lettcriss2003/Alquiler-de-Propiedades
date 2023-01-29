@@ -51,26 +51,6 @@ public class Utilidades {
         return mapeo.getCc();
     }
 
-//    public static void guardarCuentas(ListaEnlazada<CuentasController> cuentaControllerLista) throws FileNotFoundException {
-//        Mapeo mapeo = new Mapeo(cuentaControllerLista);
-//
-//    
-//    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
-//        Mapeo mapeo = new Mapeo(cc);
-//
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        String json = gson.toJson(mapeo);
-//        try {
-//            PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
-//            escritor.write(json);
-//            escritor.flush();
-//            escritor.close();
-//            JOptionPane.showMessageDialog(null, "Se guardó");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Error al guardar");
-//            System.out.println(e);
-//        }
-//    }
 
     public static void cargarTipoIndentificacion(JComboBox cbx) {
         cbx.removeAllItems();
@@ -82,22 +62,8 @@ public class Utilidades {
     public static TipoIdentificacion obtenerTipoIdentificacion(JComboBox cbx) {
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
-
-    /*
-    public static boolean guardarJSON(CuentaDAO cuentas) {
-        Gson gson = new Gson();
-        String json = gson.toJson(cuentas);
-
-        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(DIRCARPDATA + File.separatorChar + "datos.json"))) {
-            bw.write(json);
-            bw.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println("Error" + e);
-            return false;
-        }
-
-    }
+    /**
+     * <b>Permite mostrar en un Jlabel una imagen por medio de su ruta </b>
      */
     public static void DefinirImagenLabel(JLabel label, String ruta) {
         ImageIcon image = new ImageIcon(ruta);
@@ -105,15 +71,21 @@ public class Utilidades {
         label.setIcon(icon);
         label.repaint();
     }
-
-    public static JComboBox cargarCombo(JComboBox combo) {
+    /**
+     * <b>Permite mostrar en un JComboBox un Enum en este caso de Metodo de pago </b>
+     */
+    public static JComboBox cargarComboMetodoDePago(JComboBox combo) {
         combo.removeAllItems();
         for (MetodoPago Metodo : MetodoPago.values()) {
             combo.addItem(Metodo);
         }
         return combo;
     }
-
+    /**
+     * <b>Permite definir un panel secundario en un panel principal</b>
+     * Informacion: Se utiliza para paneles cambiantes en el que se desee insertar
+     * un panel secundario en un panel principal
+     */
     public static void InsertarPanel(JPanel panelPrincipal, JPanel panelSecundario) {
         panelSecundario.setSize(641, 290);
         panelSecundario.setLocation(0, 0);
@@ -124,7 +96,9 @@ public class Utilidades {
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }
-
+    /**
+     * <b>Bloquea otros tipos de datos a ingresar que no sean NUMEROS en un jTextField </b>
+     */
     public static void permitirSoloNumTxt(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -135,7 +109,9 @@ public class Utilidades {
             }
         });
     }
-
+    /**
+     * <b>Bloquea otros tipos de datos a ingresar que no sean TEXTO en un jTextField </b>
+     */
     public static void permitirSoloLetrasTxt(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -146,7 +122,9 @@ public class Utilidades {
             }
         });
     }
-
+    /**
+     * <b>Permite restringir el tamanio maximo de dijitos que se pueden ingresar en un TextField</b>
+     */
     public static void limitarTamanioTxt(JTextField txt, Integer tamanio) {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -157,13 +135,17 @@ public class Utilidades {
             }
         });
     }
-
+    /**
+     * <b>Permite obtener la fecha actual, y retorna un String con la Fecha formateada </b>
+     */
     public static String obtenerFechaActual() {
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
         String fecha = dateFormat.format(new Date());
         return fecha;
     }
-
+    /**
+     * <b>Permite obtener la hora actual, y retorna un String con la Hora formateada</b>
+     */
     public static String obtenerHoraActual() {
         Calendar calendario = new GregorianCalendar();
         int hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -171,7 +153,12 @@ public class Utilidades {
         String horaActual = hora + ":" + minutos;
         return horaActual;
     }
-
+    /**
+     * <b>Verificador de Tarjeta</b><br>
+     * <b>Información:</b> Permite verificar que la tarjeta de crédito sea valida
+     * por medio del algoritmo de <b>LUHN</b>, metodo necesita del String del número
+     * de Tarjeta y retorna un Boolean dependiendo de la validez de la tarjeta
+     */
     public static Boolean verificarNumeroDeTarjeta(String NumTarjeta) {
         //112423425370
         if (NumTarjeta.length() >= 11) {
@@ -193,11 +180,16 @@ public class Utilidades {
             return false;
         }
     }
-
+    /**
+     * <b>Permite calcular el valor de la cuota dependiendo de la taza de interez, el valor total y los meses plazo</b>
+     */
     public static Double calcularValorCuota(Double tazaDeInterez, Double valorTotal, Integer mesesPlazo) {
         return (valorTotal / mesesPlazo) + ((valorTotal / mesesPlazo) * tazaDeInterez);
     }
 
+     /**
+     * <b>Permite calcular la fecha de pago máximo dependiendo del dia en el que se encuentre</b>
+     */
     public static String calcularFechaDePago() {
         Date fechaDePago = new Date();
         if (fechaDePago.getDate() <= 28) {
@@ -211,7 +203,9 @@ public class Utilidades {
             return fecha;
         }
     }
-
+     /**
+     * <b>Permite calcular la fecha de pago maximo dependiendo de los meses plazo que sean enviados</b>
+     */
     public static Date calcularFechaDePagoMaximo(Integer mesesPlazo) {
         Date fechaDePago = new Date();
         if (fechaDePago.getDate() <= 28) {

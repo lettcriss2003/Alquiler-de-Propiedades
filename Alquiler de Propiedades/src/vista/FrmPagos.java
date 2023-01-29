@@ -28,11 +28,16 @@ public class FrmPagos extends javax.swing.JFrame {
         cargarCombo();
         this.setLocationRelativeTo(null);
     }
-
+    
+    /**
+     * Permite cargar el combo seleccionado con el Enum metodo de pago
+     */
     public void cargarCombo() {
-        Utilidades.cargarCombo(cbxMetodoDePago);
+        Utilidades.cargarComboMetodoDePago(cbxMetodoDePago);
     }
-
+    /**
+     * Permite cargar una imagen especifica dependiendo del metodo de pago seleccionado
+     */
     public void cargarImagen() {
         switch (cbxMetodoDePago.getSelectedItem().toString()) {
             case "TarjetaCredito":

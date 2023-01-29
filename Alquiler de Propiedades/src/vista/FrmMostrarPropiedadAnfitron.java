@@ -24,7 +24,9 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
     public FrmMostrarPropiedadAnfitron() {
         initComponents();
     }
-
+    /**
+     * Permite cargar los datos de las propiedades guardadas en la propiedadDAO de acuerdo al anfitrion
+     */
     public void cargarDatos() {
         if (propiedadDao.obtenerPropiedad(iterador) != null) {
             aux = propiedadDao.obtenerPropiedad(iterador);
@@ -40,7 +42,9 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
         txtCiudad.setText((aux.getCiudad() != null) ? aux.getCiudad() : "No definido");
         iterador++;
     }
-
+    /**
+     * Permite cargar los datos de las propiedades guardadas en la propiedadDAO de acuerdo al anfitrion en el otro sentido
+     */
     public void cargarDatosAlreves() {
         if (iterador > 1) {
             if (propiedadDao.obtenerPropiedad(iterador) != null) {
@@ -106,12 +110,6 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
         lblImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Descripcion:");
-
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Nro propiedad:");
 
@@ -236,10 +234,6 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-
-    }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         cargarDatos();

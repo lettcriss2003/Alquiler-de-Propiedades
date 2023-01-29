@@ -85,8 +85,6 @@ public class ListaEnlazada <E> {
                 nodo.setSiguiente(siguiente);
                 tamanio++;
             }
-        //}else if(pos == tamanio){
-            //insertar(dato);
         }else {
             throw new PosicionNoEncontradaException();
         }
@@ -127,8 +125,7 @@ public class ListaEnlazada <E> {
             return dato;
         }else 
             throw new ListaVaciaException();
-                
-        //return dato;
+               
     }
     
     public E eliminarPosicion(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{

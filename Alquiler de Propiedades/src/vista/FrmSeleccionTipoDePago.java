@@ -32,7 +32,9 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
     }
-
+    /**
+     * <b>Crea un nuevo FrmSeleccionTipoDePago con un id unica para hacer referencia a al contrato/b>
+     */
     public FrmSeleccionTipoDePago(Integer id) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -155,6 +157,9 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+     /**
+     * <b>Permite mostrar una ventana dependiendo del tipo de pago que seleccione el usuario</b>
+     */
     private void cargarVentana() {
         if (CbxTipoDePago.getSelectedItem().toString().equals("Pago a plazos")) {
             FrmPagoPlazos fpagosplazos = new FrmPagoPlazos(pagoDAO.listar().getTamanio());
@@ -165,7 +170,9 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
             //this.dispose();
         }
     }
-
+     /**
+     * <b>Permite guardar el pago dependiendo de los verificadore enviados desde los frames FrmPagoPlazos o FrmPago</b>
+     */
     private Boolean guardarPago() {
         if (FrmPagoPlazos.verificador != null || FrmPagos.verificador != null) {
             if (FrmPagoPlazos.verificador || FrmPagos.verificador) {

@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- * @author leomah
+ * @author Dennys
  */
 public class AdaptadorDao<T> implements InterfazDao<T> {
 
@@ -39,6 +39,12 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         URL2 += this.clazz.getSimpleName() + ".json";
     }
 
+    /**
+     * <b>Este método es utilizado para guardar los datos enviados desde las
+     * clases </b>
+     * <b>Información:</b> Este método guarda todo tipo de objeto en un archivo
+     * json y xml ambos utilizados para poder acceder a la información
+     */
     @Override
     public void guardar(T dato) throws FileNotFoundException, JAXBException {
         listar().imprimir();
@@ -49,11 +55,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         Marshaller marshaller = jabxc.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(lista, file);
-//        ObjectMapper JSON_MAPPER = new ObjectMapper();
-//        try {
-//            JSON_MAPPER.writeValue(new File(URL2), lista);
-//        } catch (Exception e) {
-//        }
         try ( PrintWriter out = new PrintWriter(new FileWriter(URL2))) {
             Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
             String jsonString = prettyGson.toJson(lista);
@@ -63,7 +64,14 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         }
     }
 
-    //todo
+    /**
+     * <b>Este método es utilizado para modificar los datos enviados desde las
+     * clases</b> ´<br>
+     * <b>Información:</b> Este método necesita de un T dato cualquiera y la
+     * posición dentro de la lista, este método remplaza el dato en la posición
+     * seleccionada para posteriormente volver a crear los archivos json y xml
+     * esto con el objetivo de actualizar la lista
+     */
     @Override
     public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException {
         ListaEnlazada<T> lista = listar();
@@ -83,15 +91,19 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
 
     }
 
+    /**
+     * <b>Este método es utilizado para listar los datos guardados dentro de los
+     * archivos json y xml </b>
+     * <b>Información:</b> Lo que hace este método es obtener los datos que se
+     * guardaron anteriormente en el archivo, estos datos los guarda en una
+     * Lista Enlazada para que estos puedan ser accesibles para ser utilizados
+     */
     @Override
     public ListaEnlazada<T> listar() {
         ListaEnlazada<T> lista = new ListaEnlazada<>();
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-//            String result = new String(Files.readAllBytes(Paths.get(URL2)));  
-//            String xml = Utilidades.convertToXML(result, "root"); 
-//            FileWriter file = new FileWriter(xml);
             Document doc = db.parse(URL);
             NodeList datos = doc.getElementsByTagName(this.clazz.getSimpleName().toLowerCase());
             for (int i = 0; i < datos.getLength(); i++) {
@@ -122,11 +134,18 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         return lista;
     }
 
+    /**
+     * <b>Este método es utilizado para obtener el dato en particular dentro del
+     * archivo </b>
+     * <b>Información:</b> Este método genera una lista enlazada nueva y llama
+     * al método listar y mediante el id único llamar y obtener al objeto
+     * deseado presente dentro de la <b>Lista Enlazada</b>
+     */
     @Override
     public T obtener(Integer id) {
         ListaEnlazada<T> lista = listar();
         try {
-            T dato = lista.obtener(id-1);
+            T dato = lista.obtener(id - 1);
             return dato;
         } catch (Exception e) {
             System.out.println(e);

@@ -9,7 +9,7 @@ import controlador.listas.ListaEnlazada;
 
 /**
  *
- * @author leomah
+ * @author Dennys
  */
 public interface InterfazDao <T>{
     public void guardar(T dato) throws FileNotFoundException, JAXBException;

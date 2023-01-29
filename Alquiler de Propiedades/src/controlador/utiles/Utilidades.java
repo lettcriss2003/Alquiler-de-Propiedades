@@ -10,7 +10,7 @@ import modelo.TipoPropiedad;
 
 /**
  *
- * @author leomah
+ * @author Dennys
  */
 public class Utilidades {
     public static Integer[] valorLetrasString(String cadena) {
@@ -36,6 +36,12 @@ public class Utilidades {
         return valor;
     }
     
+    /**
+     * <b>Este método permite capitalizar un dato por medio de su nombre </b>
+     * <b>Información:</b> En principios básicos este método permite generalizar
+     * o formatear los atributos de las clases, en este caso en tuUpperCase, necesario
+     * para poder trabajar más adecuadamente con las clases y sus atributos
+     */
     public static String capitalizar(String nombre){
         char aux[] = nombre.toCharArray();
         aux[0] = Character.toUpperCase(aux[0]);
@@ -52,7 +58,12 @@ public class Utilidades {
         }
         return atributo;
     }
-    
+    /**
+     * <b>Este método permite transformar un dato mediante el atributo y el dato </b>
+     * <b>Información:</b> En terminos generales obtiene de las clases el tipo de dato
+     * del que se trata y transforma el dato enviado dependiendo de la super clase a la 
+     * que pertenezca el mismo
+     */
     public static Object transformarDato(Field atributo, String dato){
         Object transformar = null;
         if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")){

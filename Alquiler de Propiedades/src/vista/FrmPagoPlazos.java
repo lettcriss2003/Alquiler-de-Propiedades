@@ -33,7 +33,9 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         cambiarColorBtn();
         this.setLocationRelativeTo(null);
     }
-    
+    /**
+     * Crea un nuevo FrmPagoPlazos con un id para hacer referencia al Pago guardado en especifico
+     */
     public FrmPagoPlazos(Integer id) {
         pago=DaoPago.obtenerPago(id);
         initComponents();
@@ -43,7 +45,9 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    
+     /**
+     * Crea un nuevo FrmPagoPlazos con un id para hacer referencia al Pago guardado en especifico
+     */
     public  void cambiarColorBtn() {
         if (verificador != null) {
             if (verificador) {
@@ -183,7 +187,7 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
             if (verificador) {
                 JOptionPane.showMessageDialog(null, "TODO CORRECTO", "Información", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
-                cargarDatosPago();
+                guardarDatosPago();
             } else {
                 JOptionPane.showMessageDialog(null, "Vuelva a Intentar el pago por Favor", "Atencion", JOptionPane.ERROR_MESSAGE);
             }
@@ -196,7 +200,9 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Permite cargar los datos del pago seleccionado en especifico
+     */
     public void cargarDatos() {
         txtDiaDePago.setText("Día " + Utilidades.calcularFechaDePago() + " de cada mes");
         txtDiaDePago.setEnabled(false);
@@ -205,8 +211,10 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         txtTotal.setEnabled(false);
         txtPagoPorMes.setEnabled(false);
     }
-
-    private void cargarDatosPago(){
+    /**
+     * Permite guardar los datos del pago seleccionado en especifico
+     */
+    private void guardarDatosPago(){
         try {
             pago=DaoPago.obtenerPago(pago.getId());
             pago.setMesesPlazo(Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString()));
