@@ -4,6 +4,8 @@
  */
 package Main;
 
+import controlador.PagoDAO;
+import modelo.TipoDePago;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -16,7 +18,13 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Utilidades.verificarNumeroDeTarjeta("5474170016334580");
+        PagoDAO pg=new PagoDAO();
+        pg.getPago().setMesesPlazo(15);
+        pg.getPago().setTipoDePago(TipoDePago.unSoloPago);
+        try {
+            pg.guardar();
+        } catch (Exception e) {
+        }
     }
     
 }

@@ -4,6 +4,10 @@
  */
 package vista;
 
+import controlador.PagoDAO;
+import javax.swing.ImageIcon;
+import modelo.MetodoPago;
+import modelo.TipoDePago;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -11,12 +15,16 @@ import vista.Utilidades.Utilidades;
  * @author Dennys
  */
 public class FrmPagos extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmPagos
-     */
+    public MetodoPago metDePago;
+    
+    
+    
+    public static Boolean verificador;
+    
     public FrmPagos() {
+        
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         cargarCombo();
         this.setLocationRelativeTo(null);
     }
@@ -57,13 +65,9 @@ public class FrmPagos extends javax.swing.JFrame {
         BtnSeleccionarMetodo = new javax.swing.JButton();
         cbxMetodoDePago = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -106,6 +110,13 @@ public class FrmPagos extends javax.swing.JFrame {
 
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,15 +127,16 @@ public class FrmPagos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnSeleccionarMetodo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxMetodoDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(BtnSeleccionarMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbxMetodoDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +148,9 @@ public class FrmPagos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cbxMetodoDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(BtnSeleccionarMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnSeleccionarMetodo, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -173,20 +187,26 @@ public class FrmPagos extends javax.swing.JFrame {
 
     private void BtnSeleccionarMetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeleccionarMetodoActionPerformed
         switch (cbxMetodoDePago.getSelectedItem().toString()) {
-            case "TarjetaDebito":
-                FrmTarjetaDeDebito fm = new FrmTarjetaDeDebito();
+            case "TarjetaDebito":          
                 this.setVisible(false);
+                FrmTarjetaDeDebito fm = new FrmTarjetaDeDebito();
                 fm.setVisible(true);
+                metDePago=MetodoPago.TarjetaDebito;
+                FrmSeleccionTipoDePago.verificadorMetodoDePago=1;
                 break;
             case "TarjetaCredito":
                 FrmTarjetaDeCredito fm1 = new FrmTarjetaDeCredito();
                 this.setVisible(false);
                 fm1.setVisible(true);
+                metDePago=MetodoPago.TarjetaCredito;
+                FrmSeleccionTipoDePago.verificadorMetodoDePago=2;
                 break;
-            case "Transferencia":
-                FrmTransferencia fm2 = new FrmTransferencia();
+            case "Transferencia": 
                 this.setVisible(false);
+                FrmTransferencia fm2 = new FrmTransferencia();
                 fm2.setVisible(true);
+                metDePago=MetodoPago.Transferencia;
+                FrmSeleccionTipoDePago.verificadorMetodoDePago=3;
                 break;
             default:
                 throw new AssertionError();
@@ -197,13 +217,11 @@ public class FrmPagos extends javax.swing.JFrame {
         cargarImagen();
     }//GEN-LAST:event_cbxMetodoDePagoActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_formWindowClosed
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -238,12 +256,13 @@ public class FrmPagos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnSeleccionarMetodo;
+    public static javax.swing.JButton BtnSeleccionarMetodo;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> cbxMetodoDePago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

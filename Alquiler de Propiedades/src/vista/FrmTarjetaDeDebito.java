@@ -5,6 +5,7 @@
 package vista;
 
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import vista.Utilidades.Utilidades;
 
@@ -13,13 +14,15 @@ import vista.Utilidades.Utilidades;
  * @author Dennys
  */
 public class FrmTarjetaDeDebito extends javax.swing.JFrame {
-
+    //public Boolean verificador=false;
+    FrmPagos fm = new FrmPagos();
     /**
      * Creates new form FrmTarjetaDeDebito
      */
     public FrmTarjetaDeDebito() {
         initComponents();
         limitarDatos();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
     }
 
@@ -60,15 +63,12 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtNumeroTarjeta = new javax.swing.JTextField();
         txtCVC = new javax.swing.JTextField();
-<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
         btnCancelar = new javax.swing.JButton();
         dateMesExpiracion = new com.toedter.calendar.JMonthChooser();
         dateYearExpiracion = new com.toedter.calendar.JYearChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-=======
-        FechaExpiracion = new com.toedter.calendar.JDateChooser();
->>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
+        setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tarjeta De Dédito"));
 
@@ -166,15 +166,10 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
                                 .addComponent(dateMesExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(dateYearExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(8, 8, 8))
-=======
-                                .addComponent(FechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(83, 83, 83))
->>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +185,6 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dateMesExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dateYearExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -198,13 +192,6 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(4, 4, 4)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-=======
-                        .addComponent(FechaExpiracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
->>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
                                 .addComponent(jLabel12)
                                 .addComponent(lblHoraActual)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -252,7 +239,9 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPagos fm = new FrmPagos();
+        
+        FrmPagoPlazos.verificador=false;
+        FrmPagos.verificador=false;
         fm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -263,6 +252,9 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
         if (ver1) {
             if (ver2 && txtNombreTitular.getText().length()>=1 && txtCVC.getText().length()>=1) {
                 JOptionPane.showMessageDialog(null, "Pago realizado", "Verificacion Completa", JOptionPane.INFORMATION_MESSAGE);
+                FrmPagoPlazos.verificador=true;
+                FrmPagos.verificador=true;
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Llene correctamente los datos", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -322,13 +314,9 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD:Alquiler de Propiedades/src/vista/FrmTarjetaDeDebito.java
     private javax.swing.JButton btnCancelar;
     private com.toedter.calendar.JMonthChooser dateMesExpiracion;
     private com.toedter.calendar.JYearChooser dateYearExpiracion;
-=======
-    private com.toedter.calendar.JDateChooser FechaExpiracion;
->>>>>>> develop:Alquiler de Propiedades/src/vista/PanelTarjetaDeDebito.java
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -339,7 +327,7 @@ public class FrmTarjetaDeDebito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
-    public javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDateActual;
     private javax.swing.JLabel lblHoraActual;
     private javax.swing.JLabel lblNombreCliente;

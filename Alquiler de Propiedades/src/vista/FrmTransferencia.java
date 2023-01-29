@@ -4,6 +4,7 @@
  */
 package vista;
 
+import javax.swing.ImageIcon;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -11,13 +12,15 @@ import vista.Utilidades.Utilidades;
  * @author Dennys
  */
 public class FrmTransferencia extends javax.swing.JFrame {
-
+    //public Boolean verificador=false;
     /**
      * Creates new form FrmTransferencia
      */
     public FrmTransferencia() {
+        
         initComponents();
         limitarDatos();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
     }
     
@@ -50,6 +53,7 @@ public class FrmTransferencia extends javax.swing.JFrame {
         lblFechaActual3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Transferencia"));
 
@@ -73,6 +77,11 @@ public class FrmTransferencia extends javax.swing.JFrame {
         jLabel36.setText("Hora:");
 
         jButton5.setText("Transferencia Realizada");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         btnCancelar4.setText("Cancelar");
         btnCancelar4.addActionListener(new java.awt.event.ActionListener() {
@@ -178,8 +187,16 @@ public class FrmTransferencia extends javax.swing.JFrame {
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
         FrmPagos fm=new FrmPagos();
         fm.setVisible(true);
+        FrmPagoPlazos.verificador=false;
+        FrmPagos.verificador=false;
         this.dispose();
     }//GEN-LAST:event_btnCancelar1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        FrmPagoPlazos.verificador=true;
+        FrmPagos.verificador=true;
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,47 +235,19 @@ public class FrmTransferencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar2;
-    private javax.swing.JButton btnCancelar3;
     private javax.swing.JButton btnCancelar4;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel lblFechaActual1;
-    private javax.swing.JLabel lblFechaActual2;
+    public static javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblFechaActual3;
-    private javax.swing.JLabel lblHora1;
-    private javax.swing.JLabel lblHora2;
     private javax.swing.JLabel lblHora3;
     // End of variables declaration//GEN-END:variables
 }

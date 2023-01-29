@@ -230,11 +230,11 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
             String FechaSalida = vista.FrmIngresoPropiedad.dateDisponibilidadHasta.getDate().toString();
 
             ImageIcon imagen = (ImageIcon) lblAgregarImagen.getIcon();
-
-            Propiedad propiedad = new Propiedad(Ciudad, provincia, CalleP, CalleS, CodigoP,
-                    Wifi, TV, Lavadora, Secadora, Estacionamiento, Cocina, Picina, Jacuzzi, Parrilla, Patio, Comedor, SalaJuegos, AireAcondicionado, AguaCaliente, Otros,
-                    TipoPropiedad, Descripcion, NumeroPropiedad, Huesped, Habitaciones, Camas, Baños, Precio, FechaIngreso, FechaSalida, imagen);
-            PropiedadDatos.añadir(propiedad);
+//
+//            Propiedad propiedad = new Propiedad(Ciudad, provincia, CalleP, CalleS, CodigoP,
+//                    Wifi, TV, Lavadora, Secadora, Estacionamiento, Cocina, Picina, Jacuzzi, Parrilla, Patio, Comedor, SalaJuegos, AireAcondicionado, AguaCaliente, Otros,
+//                    TipoPropiedad, Descripcion, NumeroPropiedad, Huesped, Habitaciones, Camas, Baños, Precio, FechaIngreso, FechaSalida, imagen);
+//            PropiedadDatos.añadir(propiedad);
             JOptionPane.showMessageDialog(null, "Propiedad guardada");
         }
         
@@ -246,10 +246,10 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
         btndireccion.setVisible(true);
         this.setVisible(false);
 
-        
-        for (int i = 0; i < PropiedadDatos.getTamanio(); i++) {
-            System.out.println(PropiedadDatos.get(i) + " ");
-        }
+//        
+//        for (int i = 0; i < PropiedadDatos.getTamanio(); i++) {
+//            System.out.println(PropiedadDatos.get(i) + " ");
+//        }
         
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
