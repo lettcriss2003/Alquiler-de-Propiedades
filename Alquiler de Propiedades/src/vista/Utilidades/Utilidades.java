@@ -23,6 +23,8 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,8 +46,6 @@ import modelo.MetodoPago;
  */
 public class Utilidades {
 
-    public static String DIRCARPDATA = "data";
-
     public static CuentasController cargarCuentas() throws IOException {
         Mapeo mapeo = new Mapeo();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
@@ -59,6 +59,7 @@ public class Utilidades {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
         try {
+            
             PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
             escritor.write(json);
             escritor.flush();
@@ -280,4 +281,24 @@ public class Utilidades {
         return contraseniaCoincide;
     }
 
+    
+    private static String URL = "data" + File.separator;
+    
+    public static Boolean guardar(ListaEnlazada dato) throws IOException {
+        Gson gson = new Gson();
+        String json = gson.toJson(dato);
+        File file;
+        file = new File(URL);
+        file.createNewFile();
+        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(file + "datos.json"))) {
+            bw.write(json);
+            bw.flush();
+            bw.close();
+            System.out.println("Se guardo perrin");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return true;
+        }
+    }
 }

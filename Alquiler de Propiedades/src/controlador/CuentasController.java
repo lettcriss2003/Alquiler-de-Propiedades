@@ -12,6 +12,7 @@ import controlador.loginExcepciones.intentoExcedidoException;
 import controlador.loginExcepciones.usuarioNoExisteException;
 import controlador.utiles.Utilidades;
 import modelo.Cuenta;
+import ordenacion.Excepciones.AtributoNoEncontradoException;
 
 /**
  *
@@ -33,11 +34,6 @@ public class CuentasController {
     public void setCuentaslList(ListaEnlazada<Cuenta> cuentaslList) {
         this.cuentaslList = cuentaslList;
     }
-//
-//    @Override
-//    public String toString() {
-//        return "CuentasController{" + "cuenta=" + cuenta + '}';
-//    }
 
     /**
      * Metodo para autentificar las credenciales ingresadas por el usuario
@@ -49,12 +45,16 @@ public class CuentasController {
      * @throws PosicionNoEncontradaException
      * @throws controlador.loginExcepciones.intentoExcedidoException
      * @throws controlador.loginExcepciones.datoIncorrectoException
+     * @throws controlador.loginExcepciones.usuarioNoExisteException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
      */
-    public Boolean autentificar(String usuario, String contrasenia) throws ListaVaciaException, PosicionNoEncontradaException, intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException {
+    public Boolean autentificar(String usuario, String contrasenia) throws ListaVaciaException, PosicionNoEncontradaException, intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         Boolean autentificacion = false;
         if (cuentadao.getCuentas().estaVacia()) {
-            throw new usuarioNoExisteException();
+            throw new ListaVaciaException();
         } else {
+        try {
             if (obtener(usuario) != null) {
                 Cuenta cuentaConsulta = obtener(usuario);
                 if (cuentaConsulta.getUsuario().equals(usuario)
@@ -69,10 +69,15 @@ public class CuentasController {
                     throw new intentoExcedidoException();
                 }
             } else {
-                throw new ListaVaciaException();
+                throw new usuarioNoExisteException();
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            
+            return autentificacion;
         }
-        
+
+        }
     }
 
     /**
@@ -82,8 +87,10 @@ public class CuentasController {
      * @return
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
      */
-    public static Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException {
+    public static Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         return cuentadao.obtener(usuario);
     }
 
@@ -94,8 +101,10 @@ public class CuentasController {
      * @return
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
      */
-    public static Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
+    public static Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         return cuentadao.insertar(cuenta);
     }
 
@@ -106,8 +115,10 @@ public class CuentasController {
      * @return
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
      */
-    public static Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
+    public static Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         return cuentadao.modificar(cuenta);
     }
 
@@ -118,8 +129,10 @@ public class CuentasController {
      * @return
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
      */
-    public static Boolean eliminar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException {
+    public static Boolean eliminar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         return cuentadao.eliminar(usuario);
     }
 
@@ -136,12 +149,9 @@ public class CuentasController {
         CuentasController.cuentadao = cuentadao;
     }
 
-    public Integer getLimite() {
-        return limite;
-    }
-
-    public void setLimite(Integer limite) {
-        this.limite = limite;
+    @Override
+    public String toString() {
+        return "Cuenta: " + cuentadao;
     }
 
 }

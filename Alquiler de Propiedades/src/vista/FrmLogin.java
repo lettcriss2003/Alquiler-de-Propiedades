@@ -11,10 +11,9 @@ import controlador.loginExcepciones.datoIncorrectoException;
 import controlador.loginExcepciones.intentoExcedidoException;
 import controlador.loginExcepciones.usuarioNoExisteException;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import ordenacion.Excepciones.AtributoNoEncontradoException;
 
 /**
  *
@@ -87,7 +86,7 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Validar si las credenciales son correctas para iniciar sesion
      */
-    public void iniciarSesion() throws intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException {
+    public void iniciarSesion() throws intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && compararCampos()) {
 
             try {
@@ -252,8 +251,6 @@ public class FrmLogin extends javax.swing.JFrame {
         FrmRegistro frmRegistro = new FrmRegistro(this, true);
         frmRegistro.setVisible(true);
         actualizarCampos();
-
-
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -269,7 +266,6 @@ public class FrmLogin extends javax.swing.JFrame {
             txtContrasenia.setEchoChar((char) 0);
         } else {
             txtContrasenia.setEchoChar('•');
-
         }
     }//GEN-LAST:event_chkMostrarContraseniaActionPerformed
 

@@ -6,7 +6,7 @@ package vista;
 
 import controlador.CuentaDAO;
 import controlador.CuentasController;
-import controlador.listas.ListaEnlazada;
+import controlador.QuickSort.MetodoQuickSort;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.loginExcepciones.cedulaNovalidaException;
@@ -17,11 +17,10 @@ import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Cuenta;
 import modelo.Persona;
+import ordenacion.Excepciones.AtributoNoEncontradoException;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -31,6 +30,7 @@ import vista.Utilidades.Utilidades;
 public class FrmRegistro extends javax.swing.JDialog {
 
     private static CuentaDAO cuentadao = new CuentaDAO();
+    private CuentasController cc = new CuentasController();
 
     /**
      * Creates new form JdialogRegistro
@@ -58,20 +58,96 @@ public class FrmRegistro extends javax.swing.JDialog {
         txtUsuario.setText("Ingrese su nombre de Usuario");
         txtUsuario.setForeground(Color.gray);
         txtNombreR.setText("Ingrese su nombre");
-        txtUsuario.setForeground(Color.gray);
+        txtNombreR.setForeground(Color.gray);
         txtApellidoR.setText("Ingrese su apellido");
         txtApellidoR.setForeground(Color.gray);
         txtFechaNac.setText("dd/MM/aaaa");
         txtFechaNac.setForeground(Color.gray);
         txtIndentificacionR.setText("Ingrese su identificación");
         txtIndentificacionR.setForeground(Color.gray);
-        txtContraseniaR.setText("Contrasenia");
-        txtContraseniaR.setForeground(Color.gray);
-        txtContraseniaR1.setText("Contrasenia");
-        txtContraseniaR1.setForeground(Color.gray);
+        txtCont.setText("Contrasenia");
+        txtCont.setForeground(Color.gray);
+        txtCont1.setText("Contrasenia");
+        txtCont1.setForeground(Color.gray);
         txtCorreoR.setText("Ingrese su correo");
         txtCorreoR.setForeground(Color.gray);
 
+    }
+
+    /**
+     * Compara los campos de cuenta y usuario
+     *
+     * @return
+     */
+    public Boolean compararCampos() {
+        Boolean valido = true;
+        if (txtUsuario.getText().equals("Ingrese su nombre de Usuario")
+                && txtNombreR.getText().equals("Ingrese su nombre")
+                && txtApellidoR.getText().equals("Ingrese su apellido")
+                && txtFechaNac.getText().equals("dd/MM/aaaa")
+                && txtIndentificacionR.getText().equals("Ingrese su identificación")
+                && txtCont.getText().equals("Contrasenia")
+                && txtCont1.getText().equals("Contrasenia")
+                && txtCorreoR.getText().equals("Ingrese su correo")) {
+            valido = false;
+        }
+        return valido;
+    }
+
+    /**
+     * Comprabar que la cedula ingresada sea valida
+     *
+     * @return
+     * @throws cedulaNovalidaException
+     */
+    private Boolean validarCedula() throws cedulaNovalidaException {
+        Boolean verificar = false;
+        if (cbxIndentificacion.getSelectedItem().toString().equalsIgnoreCase("PASAPORTE")) {
+            verificar = true;
+        } else if (!(cbxIndentificacion.getSelectedItem().toString().equalsIgnoreCase("PASAPORTE"))
+                && Utilidades.validadorDeCedula(txtIndentificacionR.getText())) {
+            verificar = true;
+        } else {
+            verificar = false;
+            JOptionPane.showMessageDialog(null, "Cedula no válida", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return verificar;
+    }
+
+    /**
+     * Comprobar si los campos estan compleatados
+     *
+     * @return
+     */
+    private Boolean campoCompletado() {
+        Boolean vacio = false;
+        if (!txtUsuario.getText().isEmpty()
+                && !txtNombreR.getText().isEmpty() && !txtApellidoR.getText().isEmpty()
+                && !txtFechaNac.getText().isEmpty() && !txtIndentificacionR.getText().isEmpty()
+                && !txtCont.getText().isEmpty() && !txtCont1.getText().isEmpty()
+                && !txtCorreoR.getText().isEmpty()) {
+            vacio = true;
+        }
+        return vacio;
+    }
+
+    /**
+     * Ordena las cuentas en orden ascedente con el atributo de "usuario"
+     *
+     * @throws IllegalAccessException
+     * @throws AtributoNoEncontradoException
+     */
+    private Boolean ordenarCuentas() throws IllegalAccessException, AtributoNoEncontradoException {
+        try {
+            MetodoQuickSort mqs = new MetodoQuickSort();
+            CuentasController.getCuentadao().setCuentas(mqs.quickSort(CuentasController.getCuentadao().getCuentas(), "usuario", MetodoQuickSort.ASCENDENTE));
+            CuentasController.getCuentadao().getCuentas().imprimir();
+
+        } catch (IllegalAccessException | IllegalArgumentException | AtributoNoEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return true;
     }
 
     /**
@@ -79,62 +155,49 @@ public class FrmRegistro extends javax.swing.JDialog {
      */
     public void registrar() throws cedulaNovalidaException, contraseniaNoCoincideException, correoNoValidoException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        if (!txtUsuario.getText().isEmpty()
-                && !txtNombreR.getText().isEmpty() && !txtApellidoR.getText().isEmpty()
-                && !txtFechaNac.getText().isEmpty() && !txtIndentificacionR.getText().isEmpty()
-                && !txtContraseniaR.getText().isEmpty() && !txtContraseniaR1.getText().isEmpty()
-                && !txtCorreoR.getText().isEmpty()) {
+        if (campoCompletado() && compararCampos()) {
 
             try {
-                Boolean verificar = false;
-                if (cbxIndentificacion.getSelectedItem().toString().equalsIgnoreCase("PASAPORTE")) {
-                    verificar = true;
-                } else if (!(cbxIndentificacion.getSelectedItem().toString().equalsIgnoreCase("PASAPORTE"))
-                        && Utilidades.validadorDeCedula(txtIndentificacionR.getText())) {
-                    verificar = true;
-                } else {
-                    verificar = false;
-                    JOptionPane.showMessageDialog(null, "Cedula no válida", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                if (verificar && Utilidades.validarContrasenia(txtContraseniaR.getText(), txtContraseniaR1.getText()) && Utilidades.validarCorreo(txtCorreoR.getText())) {
+                if (validarCedula()
+                        && Utilidades.validarContrasenia(txtCont.getText(), txtCont1.getText())
+                        && Utilidades.validarCorreo(txtCorreoR.getText())) {
                     Date dtf = formato.parse(txtFechaNac.getText().trim());
-                    Persona personar = new Persona(CuentasController.getCuentadao().getCuentas().getTamanio() + 1, txtNombreR.getText(),
+                    Persona personar = new Persona(CuentasController.getCuentadao().getCuentas().getTamanio() + 1,
+                            txtNombreR.getText(),
                             txtApellidoR.getText(), dtf, txtIndentificacionR.getText().trim(),
                             Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                             true, txtCorreoR.getText());
 
-                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtContraseniaR.getText().trim()), personar, CuentasController.getCuentadao().getCuentas().getTamanio() + 1, true);
+                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, CuentasController.getCuentadao().getCuentas().getTamanio() + 1, true);
                     if (CuentasController.insertar(cuenta)) {
-                        JOptionPane.showMessageDialog(this, "El usuario se ha registrado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println(cuenta);
+//                        ordenarCuentas();
                         actualizarCamposRegistro();
+                        JOptionPane.showMessageDialog(this, "El usuario se ha registrado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
                     } else {
                         JOptionPane.showMessageDialog(this, "El usuario ya se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-
-            } catch (ListaVaciaException | PosicionNoEncontradaException | NumberFormatException | ParseException | correoNoValidoException | cedulaNovalidaException | contraseniaNoCoincideException ex) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
+                ex.printStackTrace();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor rellene los campos", "Error", JOptionPane.ERROR_MESSAGE);
             actualizarCamposRegistro();
         }
-
     }
 
     /**
      * Modificar las cuentas del usuario, solo para administradores
      *
      */
-    public void modificar() {
+    public void modificar() throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()
                 && !txtNombreR.getText().isEmpty() && !txtApellidoR.getText().isEmpty()
                 && !txtFechaNac.getText().isEmpty() && !txtIndentificacionR.getText().isEmpty()
-                && !txtContraseniaR.getText().isEmpty() && !txtContraseniaR1.getText().isEmpty()
+                && !txtCont.getText().isEmpty() && !txtCont1.getText().isEmpty()
                 && !txtCorreoR.getText().isEmpty()) {
             try {
                 Date dtf = formato.parse(txtFechaNac.getText());
@@ -143,7 +206,7 @@ public class FrmRegistro extends javax.swing.JDialog {
                         Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                         true, txtCorreoR.getText());
 
-                Cuenta cuenta = new Cuenta(txtUsuario.getText(), txtContraseniaR.getText(), personar, 1, true);
+                Cuenta cuenta = new Cuenta(txtUsuario.getText(), txtCont.getText(), personar, 1, true);
                 if (CuentasController.modificar(cuenta)) {
                     JOptionPane.showMessageDialog(this, "El usuario se ha modificado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -159,7 +222,7 @@ public class FrmRegistro extends javax.swing.JDialog {
     /**
      * Eliminar cuentas de usuario, solo para administradores
      */
-    public void eliminar() {
+    public void eliminar() throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()) {
 
@@ -212,10 +275,10 @@ public class FrmRegistro extends javax.swing.JDialog {
         txtCorreoR = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         cbxIndentificacion = new javax.swing.JComboBox<>();
-        txtContraseniaR = new javax.swing.JPasswordField();
+        txtCont = new javax.swing.JPasswordField();
         chkMostrarContrasenia = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
-        txtContraseniaR1 = new javax.swing.JPasswordField();
+        txtCont1 = new javax.swing.JPasswordField();
         jSeparator11 = new javax.swing.JSeparator();
         chkMostrarContrasenia1 = new javax.swing.JCheckBox();
         btnRegistrar = new javax.swing.JButton();
@@ -361,17 +424,17 @@ public class FrmRegistro extends javax.swing.JDialog {
         });
         jPanel1.add(cbxIndentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 240, -1));
 
-        txtContraseniaR.setBackground(new java.awt.Color(255, 255, 255));
-        txtContraseniaR.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtContraseniaR.setForeground(new java.awt.Color(153, 153, 153));
-        txtContraseniaR.setText("Contrasenia");
-        txtContraseniaR.setBorder(null);
-        txtContraseniaR.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCont.setBackground(new java.awt.Color(255, 255, 255));
+        txtCont.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCont.setForeground(new java.awt.Color(153, 153, 153));
+        txtCont.setText("Contrasenia");
+        txtCont.setBorder(null);
+        txtCont.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtContraseniaRMousePressed(evt);
+                txtContMousePressed(evt);
             }
         });
-        jPanel1.add(txtContraseniaR, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 240, -1));
+        jPanel1.add(txtCont, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 240, -1));
 
         chkMostrarContrasenia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chkMostrarContrasenia.setText("Mostrar Contraseña");
@@ -387,17 +450,17 @@ public class FrmRegistro extends javax.swing.JDialog {
         jLabel14.setText("CONTRASEÑA");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
 
-        txtContraseniaR1.setBackground(new java.awt.Color(255, 255, 255));
-        txtContraseniaR1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtContraseniaR1.setForeground(new java.awt.Color(153, 153, 153));
-        txtContraseniaR1.setText("Contrasenia");
-        txtContraseniaR1.setBorder(null);
-        txtContraseniaR1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCont1.setBackground(new java.awt.Color(255, 255, 255));
+        txtCont1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCont1.setForeground(new java.awt.Color(153, 153, 153));
+        txtCont1.setText("Contrasenia");
+        txtCont1.setBorder(null);
+        txtCont1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtContraseniaR1MousePressed(evt);
+                txtCont1MousePressed(evt);
             }
         });
-        jPanel1.add(txtContraseniaR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 240, -1));
+        jPanel1.add(txtCont1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 240, -1));
         jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 240, 10));
 
         chkMostrarContrasenia1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -471,27 +534,32 @@ public class FrmRegistro extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIndentificacionRActionPerformed
 
-    private void txtContraseniaRMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaRMousePressed
-        txtContraseniaR.setText("");
-        txtContraseniaR.setForeground(Color.BLACK);
+    private void txtContMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContMousePressed
+        if (txtCont.getText().equalsIgnoreCase("Contrasenia")) {
+            txtCont.setText("");
+            txtCont.setForeground(Color.BLACK);
+        }
 
-    }//GEN-LAST:event_txtContraseniaRMousePressed
+
+    }//GEN-LAST:event_txtContMousePressed
 
     private void txtNombreRMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreRMousePressed
-        txtNombreR.setText("");
-        txtNombreR.setForeground(Color.BLACK);
+        if (txtNombreR.getText().equals("Ingrese su nombre")) {
+            txtNombreR.setText("");
+            txtNombreR.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_txtNombreRMousePressed
 
     private void txtApellidoRMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidoRMousePressed
-        txtApellidoR.setText("");
-        txtApellidoR.setForeground(Color.BLACK);
+        if (txtApellidoR.getText().equals("Ingrese su apellido")) {
+            txtApellidoR.setText("");
+            txtApellidoR.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_txtApellidoRMousePressed
 
     private void txtFechaNacMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaNacMousePressed
-        if (txtFechaNac.getText().isEmpty()) {
-            txtFechaNac.setText("dd/MM/aaaa");
-            txtFechaNac.setForeground(Color.gray);
-        }
+
         if (txtFechaNac.getText().equals("dd/MM/aaaa")) {
             txtFechaNac.setText("");
             txtFechaNac.setForeground(Color.black);
@@ -499,34 +567,43 @@ public class FrmRegistro extends javax.swing.JDialog {
     }//GEN-LAST:event_txtFechaNacMousePressed
 
     private void txtIndentificacionRMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIndentificacionRMousePressed
-        txtIndentificacionR.setText("");
-        txtIndentificacionR.setForeground(Color.BLACK);
+        if (txtIndentificacionR.getText().equals("Ingrese su identificación")) {
+            txtIndentificacionR.setText("");
+            txtIndentificacionR.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_txtIndentificacionRMousePressed
 
     private void txtCorreoRMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoRMousePressed
-        txtCorreoR.setText("");
-        txtCorreoR.setForeground(Color.BLACK);
+        if (txtCorreoR.getText().equals("Ingrese su correo")) {
+            txtCorreoR.setText("");
+            txtCorreoR.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_txtCorreoRMousePressed
 
     private void chkMostrarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMostrarContraseniaActionPerformed
         if (chkMostrarContrasenia.isSelected()) {
-            txtContraseniaR.setEchoChar((char) 0);
+            txtCont.setEchoChar((char) 0);
         } else {
-            txtContraseniaR.setEchoChar('•');
+            txtCont.setEchoChar('•');
 
         }
     }//GEN-LAST:event_chkMostrarContraseniaActionPerformed
 
-    private void txtContraseniaR1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaR1MousePressed
-        txtContraseniaR1.setText("");
-        txtContraseniaR1.setForeground(Color.BLACK);
-    }//GEN-LAST:event_txtContraseniaR1MousePressed
+    private void txtCont1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCont1MousePressed
+        if (txtCont1.getText().equals("Contrasenia")) {
+            txtCont1.setText("");
+            txtCont1.setForeground(Color.BLACK);
+        }
+
+    }//GEN-LAST:event_txtCont1MousePressed
 
     private void chkMostrarContrasenia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMostrarContrasenia1ActionPerformed
         if (chkMostrarContrasenia1.isSelected()) {
-            txtContraseniaR1.setEchoChar((char) 0);
+            txtCont1.setEchoChar((char) 0);
         } else {
-            txtContraseniaR1.setEchoChar('•');
+            txtCont1.setEchoChar('•');
 
         }
     }//GEN-LAST:event_chkMostrarContrasenia1ActionPerformed
@@ -541,8 +618,11 @@ public class FrmRegistro extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
-        txtUsuario.setText("");
-        txtUsuario.setForeground(Color.BLACK);
+        if (txtUsuario.getText().equals("Ingrese su nombre de Usuario")) {
+            txtUsuario.setText("");
+            txtUsuario.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_txtUsuarioMousePressed
 
     private void cbxIndentificacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxIndentificacionMousePressed
@@ -623,8 +703,8 @@ public class FrmRegistro extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField txtApellidoR;
-    private javax.swing.JPasswordField txtContraseniaR;
-    private javax.swing.JPasswordField txtContraseniaR1;
+    private javax.swing.JPasswordField txtCont;
+    private javax.swing.JPasswordField txtCont1;
     private javax.swing.JTextField txtCorreoR;
     private javax.swing.JTextField txtFechaNac;
     private javax.swing.JTextField txtIndentificacionR;

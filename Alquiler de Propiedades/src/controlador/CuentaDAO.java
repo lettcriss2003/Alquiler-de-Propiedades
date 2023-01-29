@@ -3,12 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+
+import busqueda.controlador.LinealBinaria.BusquedaLinealBinaria;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import modelo.Cuenta;
+import ordenacion.Excepciones.AtributoNoEncontradoException;
 
 public class CuentaDAO {
+
     private ListaEnlazada<Cuenta> cuentas = new ListaEnlazada<>();
 //    private Cuenta cuenta;
 
@@ -16,7 +20,15 @@ public class CuentaDAO {
 
     }
 
-    public int buscar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException {
+    /**
+     * Buscar los usuarios registrados
+     *
+     * @param usuario
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     */
+    public int buscar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         int n = -1;
         for (int i = 0; i < cuentas.getTamanio(); i++) {
             if (cuentas.obtener(i).getUsuario().equals(usuario)) {
@@ -27,7 +39,17 @@ public class CuentaDAO {
         return n;
     }
 
-    public Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
+    /**
+     * Inserta en la lista de cuentas un nuevo usuario
+     *
+     * @param cuenta
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
+     */
+    public Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         if (buscar(cuenta.getUsuario()) == -1) {
             cuentas.insertar(cuenta);
             return true;
@@ -37,7 +59,17 @@ public class CuentaDAO {
 
     }
 
-    public Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
+    /**
+     * Modifica en la lista de cuentas un usuario que haya sido registrado
+     *
+     * @param cuenta
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
+     */
+    public Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         if (buscar(cuenta.getUsuario()) != -1) {
             Cuenta cuentaaux = obtener(cuenta.getUsuario());
 
@@ -59,7 +91,17 @@ public class CuentaDAO {
         }
     }
 
-    public Boolean eliminar(String cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
+    /**
+     * Elimina un usurio de la lista de cuentas
+     *
+     * @param cuenta
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
+     */
+    public Boolean eliminar(String cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         if (buscar(cuenta) != -1) {
             cuentas.eliminarPosicion(buscar(cuenta));
             return true;
@@ -68,7 +110,17 @@ public class CuentaDAO {
         }
     }
 
-    public Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException {
+    /**
+     * Obtener un usuario de la lista de cuentas
+     *
+     * @param usuario
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws ordenacion.Excepciones.AtributoNoEncontradoException
+     * @throws java.lang.IllegalAccessException
+     */
+    public Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         if (buscar(usuario) != 1) {
             return cuentas.obtener(buscar(usuario));
         } else {
@@ -77,7 +129,7 @@ public class CuentaDAO {
     }
 
     public ListaEnlazada<Cuenta> getCuentas() {
-        if(cuentas == null){
+        if (cuentas == null) {
             cuentas = new ListaEnlazada<>();
         }
         return cuentas;
@@ -94,9 +146,8 @@ public class CuentaDAO {
 //    public void setCuenta(Cuenta cuenta) {
 //        this.cuenta = cuenta;
 //    }
-
     @Override
     public String toString() {
-        return "CuentaDAO{" + "cuentas=" + cuentas + '}';
+        return "Usuarios:" + cuentas;
     }
 }
