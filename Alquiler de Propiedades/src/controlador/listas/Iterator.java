@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 /**
  *
- * @author Victor
+ * @author lettc
  */
 public interface Iterator<E> {
 

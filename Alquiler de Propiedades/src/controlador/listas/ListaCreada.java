@@ -6,7 +6,7 @@ package controlador.listas;
 
 /**
  *
- * @author Victor
+ * @author lettc
  */
 public interface ListaCreada<E> extends java.util.Iterator<E> {
 

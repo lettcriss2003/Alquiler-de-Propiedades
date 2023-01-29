@@ -33,6 +33,11 @@ public class FrmAgregarImagenes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JFCImg.setCurrentDirectory(new java.io.File("C:\\Users\\lettc\\OneDrive\\Pictures"));
+        JFCImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFCImgActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,6 +58,10 @@ public class FrmAgregarImagenes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JFCImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFCImgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JFCImgActionPerformed
 
     /**
      * @param args the command line arguments

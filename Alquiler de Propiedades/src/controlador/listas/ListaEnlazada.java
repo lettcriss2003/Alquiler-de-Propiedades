@@ -8,7 +8,9 @@ import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class ListaEnlazada <E> {
     private NodoLista<E> cabecera;
     private Integer tamanio;
@@ -20,15 +22,6 @@ public class ListaEnlazada <E> {
     
     public Boolean estaVacia(){
         return cabecera == null;
-    }
-    
-    transient Node<E> primero;
-
-    transient Node<E> ultimo;
-    
-    public ListaEnlazada(Collection<? extends E> c) {
-        this();
-        addAll(c);
     }
     
     /*private Integer tamanio(){
@@ -58,35 +51,6 @@ public class ListaEnlazada <E> {
         }
         
         tamanio++;
-    }
-    
-    public E[] toArray(){
-        E[] matriz = null;
-        if (this.tamanio > 0) {
-            matriz = (E[]) Array.newInstance(cabecera.getDato().getClass(), this.tamanio);
-            NodoLista<E> aux = cabecera;
-            for (int i = 0; i < this.tamanio; i++) {
-                matriz[i] = aux.getDato();
-                aux = aux.getSiguiente();
-            }
-        }
-        return matriz;
-    }
-    /*
-    public Object[] toArray() {
-        Object[] result = new Object[tamanio];
-        int i = 0;
-        for (Node<E> x = primero; x != null; x = x.siguiente)
-            result[i++] = x.item;
-        return result;
-    }*/
-    
-    public ListaEnlazada toList(E []a){
-        ListaEnlazada lista = new ListaEnlazada<>();
-        for (int i = 0; i < a.length; i++) {
-            lista.insertar(a[i]);
-        }
-        return lista;
     }
     
     public void imprimir(){
@@ -126,28 +90,27 @@ public class ListaEnlazada <E> {
                 nodo.setSiguiente(siguiente);
                 tamanio++;
             }
-        }else if(pos == tamanio){
-            insertar(dato);
+        //}else if(pos == tamanio){
+            //insertar(dato);
         }else {
             throw new PosicionNoEncontradaException();
         }
     }
     
     public void modificarPoscicion(E dato, Integer pos){
-        if(pos >= 0 && pos < tamanio){
-            NodoLista aux = this.cabecera;
-            for(int i = 0; i < tamanio; i++){
-                if(i == pos){
-                    aux.setDato(dato);
+        E[] arreglo=this.toArray();
+        if (pos<=tamanio) {
+            for (int i = 0; i < arreglo.length; i++) {
+                if (i==pos) {
+                    arreglo[i]=dato;
                 }
-                aux = aux.getSiguiente();
             }
         }
-//        else if (pos == tamanio){
-//            
-//        }else {
-//            
-        //}
+        else{
+            System.out.println("OUT OF SIZE");
+        }
+        this.toList(arreglo);
+  
     }
     
     public E obtener(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
@@ -173,6 +136,13 @@ public class ListaEnlazada <E> {
         //return dato;
     }
     
+    /**
+     * elimina el valor en la posicion del indice
+     * @param pos
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
     public E eliminarPosicion(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
         if(!estaVacia()){
             E dato = null;
@@ -197,24 +167,90 @@ public class ListaEnlazada <E> {
         }else 
             throw new ListaVaciaException();
     }
-
+    
+    
+    /**
+     * Obtiene la cabecera
+     * @return 
+     */
     public NodoLista<E> getCabecera() {
         return cabecera;
     }
-
+    
+    /**
+     * Establece la cabecera
+     * @param cabecera 
+     */
     public void setCabecera(NodoLista<E> cabecera) {
         this.cabecera = cabecera;
     }
 
+    /**
+     * Obtiene el tamaño de la lista
+     * @return 
+     */
     public Integer getTamanio() {
         //this.tamanio = tamanio();
         return tamanio;
     }
 
+    /**
+     * Establece el tamaño de la lista 
+     * @param tamanio 
+     */
     public void setTamanio(Integer tamanio) {
         this.tamanio = tamanio;
-    }   
+    }
     
+    /**
+     * convierte la lista en un arreglo en la pocicion indicada
+     * @return 
+     */
+    public E[] toArray(){
+        //Class<E> clazz=(Class<E>) ;
+        E[] matriz =null;
+        if (this.tamanio>0) {
+            matriz=(E[])Array.newInstance(cabecera.getDato().getClass(),this.tamanio);
+            NodoLista<E> aux=cabecera;
+            for (int i = 0; i < this.tamanio; i++) {
+                matriz[i]=aux.getDato();
+                aux=aux.getSiguiente();
+            }
+        }
+        return matriz;
+    }
+    
+    /**
+     * Convierte a lista simple
+     * @param array
+     * @return 
+     */
+    public ListaEnlazada<E> toList(E[] array){
+        this.vaciar();
+        for (int i = 0; i < array.length; i++) {
+            insertar(array[i]);
+        }
+        return this;
+    }
+     public void vaciar(){
+        this.cabecera=null;
+        setTamanio(0);
+    }
+     
+    transient Node<E> primero;
+
+    transient Node<E> ultimo;
+    
+    
+    public ListaEnlazada(Collection<? extends E> c) {
+        this();
+        ListaEnlazada.this.agregarTodos(c);
+    }
+    
+    /**
+     * muestra el final de la lista
+     * @param e 
+     */
     void finallista(E e) {
         final Node<E> l = ultimo;
         final Node<E> newNode = new Node<>(l, e, null);
@@ -226,6 +262,12 @@ public class ListaEnlazada <E> {
         tamanio++;
         modCount++;
     }
+    
+    /**
+     * Enlazar
+     * @param e
+     * @param succ 
+     */
 
     void EnlasarDespues(E e, Node<E> succ) {
         final Node<E> pred = succ.previo;
@@ -239,8 +281,12 @@ public class ListaEnlazada <E> {
         modCount++;
     }
     
-
-    public E unalista(Node<E> x) {
+    /**
+     * Crea una lista
+     * @param x
+     * @return 
+     */
+    E unalista(Node<E> x) {
         // assert x != null;
         final E element = x.item;
         final Node<E> siguientes = x.siguiente;
@@ -267,12 +313,21 @@ public class ListaEnlazada <E> {
     }
 
 
-
+    /**
+     * Añade a la lista
+     * @param e
+     * @return 
+     */
     public boolean añadir(E e) {
         finallista(e);
         return true;
     }
     
+    /**
+     * Elimina la lista
+     * @param o
+     * @return 
+     */
     public boolean eliminar(Object o) {
         if (o == null) {
             for (Node<E> x = primero; x != null; x = x.siguiente) {
@@ -292,12 +347,17 @@ public class ListaEnlazada <E> {
         return false;
     }
     
-    public boolean addAll(Collection<? extends E> c) {
-        return addAll(tamanio, c);
+    /**
+     * Agrega todos los elementos a la lista
+     * @param c
+     * @return 
+     */
+    public boolean agregarTodos(Collection<? extends E> c) {
+        return agregarTodos(tamanio, c);
     }
     
-    public boolean addAll(int index, Collection<? extends E> c) {
-        checkPositionIndex(index);
+    public boolean agregarTodos(int index, Collection<? extends E> c) {
+        revisarPosicionenIndex(index);
 
         Object[] a = c.toArray();
         int numNew = a.length;
@@ -315,12 +375,12 @@ public class ListaEnlazada <E> {
 
         for (Object o : a) {
             @SuppressWarnings("desconocido") E e = (E) o;
-            Node<E> newNode = new Node<>(pred, e, null);
+            Node<E> nuevoNodo = new Node<>(pred, e, null);
             if (pred == null)
-                primero = newNode;
+                primero = nuevoNodo;
             else
-                pred.siguiente = newNode;
-            pred = newNode;
+                pred.siguiente = nuevoNodo;
+            pred = nuevoNodo;
         }
 
         if (succ == null) {
@@ -335,6 +395,9 @@ public class ListaEnlazada <E> {
         return true;
     }
     
+    /**
+     * limipia la lista
+     */
     public void clear() {
         for (Node<E> x = primero; x != null; ) {
             Node<E> next = x.siguiente;
@@ -361,8 +424,9 @@ public class ListaEnlazada <E> {
         return oldVal;
     }
     
-    public void add(int index, E element) {
-        checkPositionIndex(index);
+    
+    public void Anadir(int index, E element) {
+        revisarPosicionenIndex(index);
 
         if (index == tamanio)
             finallista(element);
@@ -392,12 +456,13 @@ public class ListaEnlazada <E> {
             throw new IndexOutOfBoundsException(FueraLugar(index));
     }
 
-    private void checkPositionIndex(int index) {
+    private void revisarPosicionenIndex(int index) {
         if (!PosicionIndice(index))
             throw new IndexOutOfBoundsException(FueraLugar(index));
     }
     
-    public Node<E> node(int index) {
+    
+    Node<E> node(int index) {
 
         if (index < (tamanio >> 1)) {
             Node<E> x = primero;
@@ -412,6 +477,11 @@ public class ListaEnlazada <E> {
         }
     }
     
+    /**
+     * Indicce
+     * @param o
+     * @return 
+     */
     public int Indice(Object o) {
         int index = 0;
         if (o == null) {
@@ -450,7 +520,7 @@ public class ListaEnlazada <E> {
    
     
     public ListIterator<E> listIterator(int index) {
-        checkPositionIndex(index);
+        revisarPosicionenIndex(index);
         return new ListaCreada(index);
     }
 
@@ -577,5 +647,5 @@ public class ListaEnlazada <E> {
     }
     
     protected transient int modCount = 0;
-
+    
 }

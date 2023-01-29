@@ -20,11 +20,16 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,29 +44,29 @@ import modelo.MetodoPago;
 public class Utilidades {
     public static String DIRCARPDATA = "data";
     
-    public static ListaEnlazada<CuentasController> cargarCuentas() throws IOException{
-        Mapeo mapeo = new Mapeo();
-        Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
-        Gson gson = new Gson();
-        mapeo = (gson.fromJson(lector, Mapeo.class));
-        return mapeo.getCuentaList();
-    }
-    
-    public static void guardarCuentas(ListaEnlazada<CuentasController> cuentaControllerLista) throws FileNotFoundException{
-        Mapeo mapeo = new Mapeo(cuentaControllerLista);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(mapeo);
-        try {
-            PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
-            escritor.write(json);
-            escritor.flush();
-            escritor.close();
-            JOptionPane.showMessageDialog(null, "Se guardó");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar");
-            System.out.println(e);
-        }        
-    }
+//    public static CuentasController cargarCuentas() throws IOException{
+//        Mapeo mapeo = new Mapeo();
+//        Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
+//        Gson gson = new Gson();
+//        mapeo = (gson.fromJson(lector, Mapeo.class));
+//        return mapeo.getCc();
+//    }
+//    
+//    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
+//        Mapeo mapeo = new Mapeo(cc);
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        String json = gson.toJson(mapeo);
+//        try {
+//            PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
+//            escritor.write(json);
+//            escritor.flush();
+//            escritor.close();
+//            JOptionPane.showMessageDialog(null, "Se guardó");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Error al guardar");
+//            System.out.println(e);
+//        }        
+//    }
 
     public static void cargarTipoIndentificacion(JComboBox cbx) {
         cbx.removeAllItems();
@@ -73,6 +78,44 @@ public class Utilidades {
     public static TipoIdentificacion obtenerTipoIdentificacion(JComboBox cbx) {
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
+    
+//    public static void guardar(Object expresiones[]) throws IOException {
+//        Gson json = new Gson();
+//        Integer ocupados = ultimoIndiceOcupado(expresiones);
+//
+//        Object[] expresionesCompletas = new Object[ocupados];
+//        System.arraycopy(expresiones, 0, expresionesCompletas, 0, expresionesCompletas.length);
+//
+//        String jsons = json.toJson(expresionesCompletas);
+//        FileWriter fw = new FileWriter("ObjectsArray" + ".json");
+//        fw.write(jsons);
+//        fw.flush();
+//    }
+//
+//    public static int cargar(Object expresiones[]) {
+//        int counter = 0;
+//
+//        try {
+//            Gson json = new Gson();
+//            FileReader fr = new FileReader("ObjectsArray" + ".json");
+//            StringBuilder jsons = new StringBuilder();
+//            int valor = fr.read();
+//            while (valor != -1) {
+//                jsons.append((char) valor);
+//                valor = fr.read();
+//            }
+//            Object[] aux = json.fromJson(jsons.toString(), Object[].class);
+//            for (int i = 0; i < aux.length; i++) {
+//                expresiones[i] = aux[i];
+//                counter += 1;
+//            }
+//
+//        } catch (Exception e) {
+//            System.out.println("No se encontraron objetos guardados en el json!");
+//        } finally {
+//            return counter;
+//        }
+//    }
 /*
     public static boolean guardarJSON(CuentaDAO cuentas) {
         Gson gson = new Gson();
@@ -94,6 +137,13 @@ public class Utilidades {
         Icon icon=new ImageIcon( image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
         label.repaint();
+    }
+    
+    public static void DefinirImagenBoton(JButton btn, String ruta) {
+        ImageIcon image = new ImageIcon(ruta);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(btn.getWidth(), btn.getHeight(), Image.SCALE_DEFAULT));
+        btn.setIcon(icon);
+        btn.repaint();
     }
     public static JComboBox cargarCombo(JComboBox combo){
         combo.removeAllItems();
@@ -146,7 +196,7 @@ public class Utilidades {
         });
     }
     
-    public static String obtenerFechaActual(){
+       public static String obtenerFechaActual(){
         Date fechaActual=new Date();
         int anio=fechaActual.getYear()+1900;
         int mes=fechaActual.getMonth()+1;
@@ -162,5 +212,18 @@ public class Utilidades {
         String horaActual=hora+":"+minutos;
         return horaActual;
     }
+    
+    /**
+     * Sirve para parsear el date de jcalendarr
+     * 
+     * @param fecha
+     * @return 
+     */
+    public static String obtenerFechaFormateada(Date fecha) {
+        DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy");
+        String fechaFormateada = dateFormat.format(fecha);
+        return fechaFormateada;
+    }
+    
     
 }
