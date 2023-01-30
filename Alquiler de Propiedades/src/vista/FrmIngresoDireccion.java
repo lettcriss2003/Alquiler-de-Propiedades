@@ -4,7 +4,10 @@
  */
 package vista;
 
+import controlador.PropiedadDao;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import modelo.Propiedad;
 
 /**
  *
@@ -12,28 +15,43 @@ import javax.swing.JOptionPane;
  */
 public class FrmIngresoDireccion extends javax.swing.JFrame {
 
+    PropiedadDao propiedadDao = new PropiedadDao();
+    Propiedad aux = new Propiedad();
+
     /**
      * Creates new form IngresoDireccion
      */
     public FrmIngresoDireccion() {
-       // limpiar();
+        // limpiar();
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
         btnOk.requestFocus();
-
+        cargarRestriciones();
     }
     
-   /* private void limpiar(){
+    /**
+     * Guarda los datos inggresados
+     */
+
+    private void guardarDATOS() {
+
+        propiedadDao.getPropiedad().setCiudad(txtCiudad.getText());
+        propiedadDao.getPropiedad().setProvincia(txtProvincia.getText());
+        propiedadDao.getPropiedad().setCalleP(txtCallePrincipal.getText());
+        propiedadDao.getPropiedad().setCalleS(txtCalleSecundaria.getText());
+        propiedadDao.getPropiedad().setCodigoP(txtCodigoPostal.getText());
+
+    }
+
+    /* private void limpiar(){
     txtCallePrincipal.setText("");
     txtCalleSecundaria.setText("");
     txtCiudad.setText("");
     txtCodigoPostal.setText("");
     txtProvincia.setText("");
     }
-    */
-    
-    
-
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +69,7 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
         lblcallesecundaria = new javax.swing.JLabel();
         lblcodigopostal = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
-        txtProcincia = new javax.swing.JTextField();
+        txtProvincia = new javax.swing.JTextField();
         txtCalleSecundaria = new javax.swing.JTextField();
         txtCodigoPostal = new javax.swing.JTextField();
         txtCallePrincipal = new javax.swing.JTextField();
@@ -60,10 +78,12 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Dirección");
 
@@ -77,14 +97,29 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
 
         lblcodigopostal.setText("Codigo Postal:");
 
+        txtCiudad.setBackground(null);
         txtCiudad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCiudadActionPerformed(evt);
+            }
+        });
 
-        txtProcincia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtProvincia.setBackground(null);
+        txtProvincia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtCalleSecundaria.setBackground(null);
         txtCalleSecundaria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtCodigoPostal.setBackground(null);
         txtCodigoPostal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigoPostal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoPostalActionPerformed(evt);
+            }
+        });
 
+        txtCallePrincipal.setBackground(null);
         txtCallePrincipal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -94,9 +129,7 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,14 +139,14 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
                             .addComponent(lblcallesecundaria)
                             .addComponent(lblcodigopostal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtProcincia, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                                .addComponent(txtCiudad)
-                                .addComponent(txtCalleSecundaria))
-                            .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCallePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtProvincia, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(txtCiudad)
+                            .addComponent(txtCodigoPostal)
+                            .addComponent(txtCallePrincipal)
+                            .addComponent(txtCalleSecundaria))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,20 +160,20 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblciudad)
-                    .addComponent(txtProcincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcalleprincipal)
-                    .addComponent(txtCalleSecundaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCallePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcallesecundaria)
-                    .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCalleSecundaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcodigopostal)
-                    .addComponent(txtCallePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("CANCELAR");
@@ -171,7 +204,9 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,15 +232,38 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if(txtCiudad.getText().isEmpty() || txtProcincia.getText().isEmpty() || txtCallePrincipal.getText().isEmpty() || txtCalleSecundaria.getText().isEmpty() || txtCodigoPostal.getText().isEmpty()){
+
+        if (txtCiudad.getText().isEmpty() || txtProvincia.getText().isEmpty() || txtCallePrincipal.getText().isEmpty() || txtCalleSecundaria.getText().isEmpty() || txtCodigoPostal.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campos vacios");
+<<<<<<< HEAD
         }else{
             Frmservicio btndireccion = new Frmservicio();
         btndireccion.setVisible(true);
         this.setVisible(false);
+=======
+        } else {
+            try {
+                guardarDATOS();
+                propiedadDao.guardar();
+                if (propiedadDao.listar().getTamanio() == 0) {
+                    aux=propiedadDao.obtenerPropiedad(0);
+                    System.out.println(aux.getId());
+                } else {
+                    aux=propiedadDao.obtenerPropiedad(propiedadDao.listar().getTamanio()-1);
+                    System.out.println(aux.getId());
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            
+            Frmservicio btndireccion = new Frmservicio(aux.getId()+1);
+
+            btndireccion.setVisible(true);
+            this.setVisible(false);
+>>>>>>> propiedad-contrato_Rojas
         }
-        
-        
+
+
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -216,11 +274,28 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        // TODO Anadir your handling code here:
         FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
         Propiedadprincipal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtCodigoPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPostalActionPerformed
+
+    }//GEN-LAST:event_txtCodigoPostalActionPerformed
+
+    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
+        // TODO Anadir your handling code here:
+    }//GEN-LAST:event_txtCiudadActionPerformed
+
+    private void cargarRestriciones() {
+        vista.Utilidades.Utilidades.permitirSoloNumTxt(txtCodigoPostal);
+        vista.Utilidades.Utilidades.permitirSoloLetrasTxt(txtCallePrincipal);
+        vista.Utilidades.Utilidades.permitirSoloLetrasTxt(txtCalleSecundaria);
+        vista.Utilidades.Utilidades.permitirSoloLetrasTxt(txtCiudad);
+        vista.Utilidades.Utilidades.permitirSoloLetrasTxt(txtProvincia);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -273,6 +348,6 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
     public static javax.swing.JTextField txtCalleSecundaria;
     public static javax.swing.JTextField txtCiudad;
     public static javax.swing.JTextField txtCodigoPostal;
-    public static javax.swing.JTextField txtProcincia;
+    public static javax.swing.JTextField txtProvincia;
     // End of variables declaration//GEN-END:variables
 }

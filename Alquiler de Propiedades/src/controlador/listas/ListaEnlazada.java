@@ -3,12 +3,21 @@ package controlador.listas;
 import java.lang.reflect.Array;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
+<<<<<<< HEAD
+=======
+import java.lang.reflect.Array;
+>>>>>>> propiedad-contrato_Rojas
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+<<<<<<< HEAD
+=======
+import javax.xml.bind.annotation.XmlRootElement;
+>>>>>>> propiedad-contrato_Rojas
 
+@XmlRootElement
 public class ListaEnlazada <E> {
     private NodoLista<E> cabecera;
     private Integer tamanio;
@@ -51,6 +60,7 @@ public class ListaEnlazada <E> {
         tamanio++;
     }
     
+<<<<<<< HEAD
     public E[] toArray(){
         E[] matriz = null;
         if (this.tamanio > 0) {
@@ -83,6 +93,8 @@ public class ListaEnlazada <E> {
         return lista;
     }
     
+=======
+>>>>>>> propiedad-contrato_Rojas
     public void imprimir(){
         System.out.println("Lista Enlazada");
         NodoLista<E> aux = cabecera;
@@ -120,28 +132,44 @@ public class ListaEnlazada <E> {
                 nodo.setSiguiente(siguiente);
                 tamanio++;
             }
-        }else if(pos == tamanio){
-            insertar(dato);
+        //}else if(pos == tamanio){
+            //insertar(dato);
         }else {
             throw new PosicionNoEncontradaException();
         }
     }
     
     public void modificarPoscicion(E dato, Integer pos){
+<<<<<<< HEAD
         if(pos >= 0 && pos < tamanio){
             NodoLista aux = this.cabecera;
             for(int i = 0; i < tamanio; i++){
                 if(i == pos){
                     aux.setDato(dato);
+=======
+        E[] arreglo=this.toArray();
+        if (pos<=tamanio) {
+            for (int i = 0; i < arreglo.length; i++) {
+                if (i==pos) {
+                    arreglo[i]=dato;
+>>>>>>> propiedad-contrato_Rojas
                 }
                 aux = aux.getSiguiente();
             }
         }
+<<<<<<< HEAD
 //        else if (pos == tamanio){
 //            
 //        }else {
 //            
         //}
+=======
+        else{
+            System.out.println("OUT OF SIZE");
+        }
+        this.toList(arreglo);
+  
+>>>>>>> propiedad-contrato_Rojas
     }
     
     public E obtener(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
@@ -167,7 +195,17 @@ public class ListaEnlazada <E> {
         //return dato;
     }
     
+<<<<<<< HEAD
     /*
+=======
+    /**
+     * elimina el valor en la posicion del indice
+     * @param pos
+     * @return
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
+>>>>>>> propiedad-contrato_Rojas
     public E eliminarPosicion(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
         if(!estaVacia()){
             E dato = null;
@@ -192,6 +230,7 @@ public class ListaEnlazada <E> {
         }else 
             throw new ListaVaciaException();
     }
+<<<<<<< HEAD
     */
     
     public E eliminarPosicion(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
@@ -228,23 +267,44 @@ public class ListaEnlazada <E> {
     }
     
 
+=======
+    
+    
+    /**
+     * Obtiene la cabecera
+     * @return 
+     */
+>>>>>>> propiedad-contrato_Rojas
     public NodoLista<E> getCabecera() {
         return cabecera;
     }
-
+    
+    /**
+     * Establece la cabecera
+     * @param cabecera 
+     */
     public void setCabecera(NodoLista<E> cabecera) {
         this.cabecera = cabecera;
     }
 
+    /**
+     * Obtiene el tamaño de la lista
+     * @return 
+     */
     public Integer getTamanio() {
         //this.tamanio = tamanio();
         return tamanio;
     }
 
+    /**
+     * Establece el tamaño de la lista 
+     * @param tamanio 
+     */
     public void setTamanio(Integer tamanio) {
         this.tamanio = tamanio;
     }
     
+<<<<<<< HEAD
     transient Node<E> primero;
 
     transient Node<E> ultimo;
@@ -254,6 +314,57 @@ public class ListaEnlazada <E> {
         addAll(c);
     }
     
+=======
+    /**
+     * convierte la lista en un arreglo en la pocicion indicada
+     * @return 
+     */
+    public E[] toArray(){
+        //Class<E> clazz=(Class<E>) ;
+        E[] matriz =null;
+        if (this.tamanio>0) {
+            matriz=(E[])Array.newInstance(cabecera.getDato().getClass(),this.tamanio);
+            NodoLista<E> aux=cabecera;
+            for (int i = 0; i < this.tamanio; i++) {
+                matriz[i]=aux.getDato();
+                aux=aux.getSiguiente();
+            }
+        }
+        return matriz;
+    }
+    
+    /**
+     * Convierte a lista simple
+     * @param array
+     * @return 
+     */
+    public ListaEnlazada<E> toList(E[] array){
+        this.vaciar();
+        for (int i = 0; i < array.length; i++) {
+            insertar(array[i]);
+        }
+        return this;
+    }
+     public void vaciar(){
+        this.cabecera=null;
+        setTamanio(0);
+    }
+     
+    transient Node<E> primero;
+
+    transient Node<E> ultimo;
+    
+    
+    public ListaEnlazada(Collection<? extends E> c) {
+        this();
+        ListaEnlazada.this.agregarTodos(c);
+    }
+    
+    /**
+     * muestra el final de la lista
+     * @param e 
+     */
+>>>>>>> propiedad-contrato_Rojas
     void finallista(E e) {
         final Node<E> l = ultimo;
         final Node<E> newNode = new Node<>(l, e, null);
@@ -265,6 +376,15 @@ public class ListaEnlazada <E> {
         tamanio++;
         modCount++;
     }
+<<<<<<< HEAD
+=======
+    
+    /**
+     * Enlazar
+     * @param e
+     * @param succ 
+     */
+>>>>>>> propiedad-contrato_Rojas
 
     void EnlasarDespues(E e, Node<E> succ) {
         final Node<E> pred = succ.previo;
@@ -278,7 +398,15 @@ public class ListaEnlazada <E> {
         modCount++;
     }
     
+<<<<<<< HEAD
 
+=======
+    /**
+     * Crea una lista
+     * @param x
+     * @return 
+     */
+>>>>>>> propiedad-contrato_Rojas
     E unalista(Node<E> x) {
         // assert x != null;
         final E element = x.item;
@@ -306,12 +434,28 @@ public class ListaEnlazada <E> {
     }
 
 
+<<<<<<< HEAD
 
+=======
+    /**
+     * Añade a la lista
+     * @param e
+     * @return 
+     */
+>>>>>>> propiedad-contrato_Rojas
     public boolean añadir(E e) {
         finallista(e);
         return true;
     }
     
+<<<<<<< HEAD
+=======
+    /**
+     * Elimina la lista
+     * @param o
+     * @return 
+     */
+>>>>>>> propiedad-contrato_Rojas
     public boolean eliminar(Object o) {
         if (o == null) {
             for (Node<E> x = primero; x != null; x = x.siguiente) {
@@ -331,12 +475,26 @@ public class ListaEnlazada <E> {
         return false;
     }
     
+<<<<<<< HEAD
     public boolean addAll(Collection<? extends E> c) {
         return addAll(tamanio, c);
     }
     
     public boolean addAll(int index, Collection<? extends E> c) {
         checkPositionIndex(index);
+=======
+    /**
+     * Agrega todos los elementos a la lista
+     * @param c
+     * @return 
+     */
+    public boolean agregarTodos(Collection<? extends E> c) {
+        return agregarTodos(tamanio, c);
+    }
+    
+    public boolean agregarTodos(int index, Collection<? extends E> c) {
+        revisarPosicionenIndex(index);
+>>>>>>> propiedad-contrato_Rojas
 
         Object[] a = c.toArray();
         int numNew = a.length;
@@ -354,12 +512,21 @@ public class ListaEnlazada <E> {
 
         for (Object o : a) {
             @SuppressWarnings("desconocido") E e = (E) o;
+<<<<<<< HEAD
             Node<E> newNode = new Node<>(pred, e, null);
             if (pred == null)
                 primero = newNode;
             else
                 pred.siguiente = newNode;
             pred = newNode;
+=======
+            Node<E> nuevoNodo = new Node<>(pred, e, null);
+            if (pred == null)
+                primero = nuevoNodo;
+            else
+                pred.siguiente = nuevoNodo;
+            pred = nuevoNodo;
+>>>>>>> propiedad-contrato_Rojas
         }
 
         if (succ == null) {
@@ -374,6 +541,12 @@ public class ListaEnlazada <E> {
         return true;
     }
     
+<<<<<<< HEAD
+=======
+    /**
+     * limipia la lista
+     */
+>>>>>>> propiedad-contrato_Rojas
     public void clear() {
         for (Node<E> x = primero; x != null; ) {
             Node<E> next = x.siguiente;
@@ -400,8 +573,14 @@ public class ListaEnlazada <E> {
         return oldVal;
     }
     
+<<<<<<< HEAD
     public void add(int index, E element) {
         checkPositionIndex(index);
+=======
+    
+    public void Anadir(int index, E element) {
+        revisarPosicionenIndex(index);
+>>>>>>> propiedad-contrato_Rojas
 
         if (index == tamanio)
             finallista(element);
@@ -431,11 +610,19 @@ public class ListaEnlazada <E> {
             throw new IndexOutOfBoundsException(FueraLugar(index));
     }
 
+<<<<<<< HEAD
     private void checkPositionIndex(int index) {
+=======
+    private void revisarPosicionenIndex(int index) {
+>>>>>>> propiedad-contrato_Rojas
         if (!PosicionIndice(index))
             throw new IndexOutOfBoundsException(FueraLugar(index));
     }
     
+<<<<<<< HEAD
+=======
+    
+>>>>>>> propiedad-contrato_Rojas
     Node<E> node(int index) {
 
         if (index < (tamanio >> 1)) {
@@ -451,6 +638,14 @@ public class ListaEnlazada <E> {
         }
     }
     
+<<<<<<< HEAD
+=======
+    /**
+     * Indicce
+     * @param o
+     * @return 
+     */
+>>>>>>> propiedad-contrato_Rojas
     public int Indice(Object o) {
         int index = 0;
         if (o == null) {
@@ -489,7 +684,11 @@ public class ListaEnlazada <E> {
    
     
     public ListIterator<E> listIterator(int index) {
+<<<<<<< HEAD
         checkPositionIndex(index);
+=======
+        revisarPosicionenIndex(index);
+>>>>>>> propiedad-contrato_Rojas
         return new ListaCreada(index);
     }
 

@@ -62,13 +62,16 @@ public class Utilidades {
         }else if(atributo.getType().isEnum()){
             Enum enumeracion = Enum.valueOf((Class)atributo.getType(), dato.toString());
             transformar = enumeracion;
-        } else if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Boolean")){
+        } else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
             transformar = Boolean.parseBoolean(dato);
         } else{
             transformar = dato;
         }
         return transformar;
     }
+    
+    
+    
     
     public static void cargarTipoPropiedad(JComboBox cbx){
             for(TipoPropiedad tipo: TipoPropiedad.values()){

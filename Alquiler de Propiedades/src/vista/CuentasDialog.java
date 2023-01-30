@@ -33,6 +33,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationByPlatform(true);
+<<<<<<< HEAD
         cargarCuentas();
         cargarTabla(cuentasController);
     }
@@ -45,6 +46,20 @@ public class CuentasDialog extends javax.swing.JDialog {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+=======
+//        cargarCuentas();
+        cargarTabla();
+    }
+        
+//    private void cargarCuentas(){
+//        try {
+//            this.cuentasList = Utilidades.cargarCuentas();
+//        } catch (IOException ex) {
+//            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+//            Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+>>>>>>> propiedad-contrato_Rojas
     
     private void cargarTabla(CuentasController cc){
         mtc.setCc(cc);
@@ -296,12 +311,21 @@ public class CuentasDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+<<<<<<< HEAD
         try {
             // TODO add your handling code here:
             Utilidades.guardarCuentas(cuentasController);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+//        try {
+//            // TODO add your handling code here:
+//            Utilidades.guardarCuentas(cuentasList);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+>>>>>>> propiedad-contrato_Rojas
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -318,6 +342,7 @@ public class CuentasDialog extends javax.swing.JDialog {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         cargarCuentas();
         cargarTabla(cuentasController);
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -345,6 +370,35 @@ public class CuentasDialog extends javax.swing.JDialog {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         cargarCuentas();
         cargarTabla(cuentasController);
+=======
+//        cargarCuentas();
+        cargarTabla();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+//        // TODO add your handling code here:
+//        if (tblCuentas.getSelectedRow() >= 0) {
+//            try {
+//                cuentasList.eliminarPosicion(tblCuentas.getSelectedRow());
+//                Utilidades.guardarCuentas(cuentasList);
+//                cargarCuentas();
+//                cargarTabla();
+//            } catch (ListaVaciaException ex) {
+//                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (PosicionNoEncontradaException ex) {
+//                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Seleccione un elemento");
+//        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+//        cargarCuentas();
+        cargarTabla();
+>>>>>>> propiedad-contrato_Rojas
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnIdDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdDescendenteActionPerformed
