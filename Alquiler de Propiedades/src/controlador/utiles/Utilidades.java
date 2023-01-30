@@ -61,28 +61,39 @@ public class Utilidades {
         return atributo;
     }
 
-    public static Object transformarDato(Field atributo, String dato) {
+   public static Object transformarDato(Field atributo, String dato){
         Object transformar = null;
-        if (atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")) {
-            if (atributo.getType().getSimpleName().equals("Integer")) {
+        if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")){
+            if(atributo.getType().getSimpleName().equals("Integer")){
                 transformar = Integer.parseInt(dato);
             }
-        } else if (atributo.getType().isEnum()) {
-            Enum enumeracion = Enum.valueOf((Class) atributo.getType(), dato.toString());
+        }else if(atributo.getType().isEnum()){
+            Enum enumeracion = Enum.valueOf((Class)atributo.getType(), dato.toString());
             transformar = enumeracion;
-<<<<<<< HEAD
-        } else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
-=======
-        } else if (atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Boolean")) {
->>>>>>> inicioSesion-registroUsuario_chimbo
+        } else if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Boolean")){
             transformar = Boolean.parseBoolean(dato);
-        } else {
+        } else{
             transformar = dato;
         }
         return transformar;
     }
-<<<<<<< HEAD
-    
+//    
+//   public static Object transformarDato(Field atributo, String dato){
+//        Object transformar = null;
+//        if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")){
+//            if(atributo.getType().getSimpleName().equals("Integer")){
+//                transformar = Integer.parseInt(dato);
+//            }
+//        }else if(atributo.getType().isEnum()){
+//            Enum enumeracion = Enum.valueOf((Class)atributo.getType(), dato.toString());
+//            transformar = enumeracion;
+//        } else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
+//            transformar = Boolean.parseBoolean(dato);
+//        } else{
+//            transformar = dato;
+//        }
+//        return transformar;
+//    }
     
     
     
@@ -90,13 +101,6 @@ public class Utilidades {
             for(TipoPropiedad tipo: TipoPropiedad.values()){
                  cbx.addItem(tipo);
             }
-=======
-
-    public static void cargarTipoPropiedad(JComboBox cbx) {
-        for (TipoPropiedad tipo : TipoPropiedad.values()) {
-            cbx.addItem(tipo);
-        }
->>>>>>> inicioSesion-registroUsuario_chimbo
     }
 
     public static TipoPropiedad obtenerTipoPropiedad(JComboBox cbx) {
@@ -155,6 +159,5 @@ public class Utilidades {
     }
     
     
-    
-
+   
 }

@@ -190,7 +190,6 @@ public class CuentaDialog extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-
         if (!txtId.getText().isEmpty() && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && (rbtnSi.isSelected() || rbtnNo.isSelected())) {
             Cuenta c = new Cuenta();
             c.setId(Integer.parseInt(txtId.getText()));
@@ -214,7 +213,6 @@ public class CuentaDialog extends javax.swing.JDialog {
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
         }
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

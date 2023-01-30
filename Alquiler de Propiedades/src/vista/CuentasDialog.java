@@ -87,6 +87,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         rbtngBusqueda = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCuentas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -98,11 +99,10 @@ public class CuentasDialog extends javax.swing.JDialog {
         rbtnUsuario = new javax.swing.JRadioButton();
         rbtnEstado = new javax.swing.JRadioButton();
         btnBuscar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnGuardar = new javax.swing.JMenuItem();
-        btnCargar = new javax.swing.JMenuItem();
+        btnCargar = new javax.swing.JCheckBoxMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         btnIdAscendente = new javax.swing.JMenuItem();
@@ -125,6 +125,14 @@ public class CuentasDialog extends javax.swing.JDialog {
             }
         });
         jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 560, -1, -1));
+
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 560, -1, -1));
 
         tblCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -186,9 +194,6 @@ public class CuentasDialog extends javax.swing.JDialog {
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 56, 820, 90));
-
-        btnEliminar.setText("ELIMINAR");
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 560, -1, -1));
 
         jMenu1.setText("Archivo");
 
@@ -291,15 +296,12 @@ public class CuentasDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
         try {
             // TODO add your handling code here:
             Utilidades.guardarCuentas(cuentasController);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -316,12 +318,11 @@ public class CuentasDialog extends javax.swing.JDialog {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-
         cargarCuentas();
         cargarTabla(cuentasController);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         if (tblCuentas.getSelectedRow() >= 0) {
             try {
@@ -339,7 +340,12 @@ public class CuentasDialog extends javax.swing.JDialog {
         }else{
             JOptionPane.showMessageDialog(this, "Seleccione un elemento");
         }
-    }                                           
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        cargarCuentas();
+        cargarTabla(cuentasController);
+    }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnIdDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdDescendenteActionPerformed
         // TODO add your handling code here:
@@ -453,11 +459,6 @@ public class CuentasDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        cargarCuentas();
-        cargarTabla(cuentasController);
-    }//GEN-LAST:event_btnCargarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -503,7 +504,7 @@ public class CuentasDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JMenuItem btnCargar;
+    private javax.swing.JCheckBoxMenuItem btnCargar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JMenuItem btnEstadoAscendente;
     private javax.swing.JMenuItem btnEstadoDescendente;

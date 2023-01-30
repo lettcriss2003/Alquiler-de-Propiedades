@@ -326,6 +326,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCuentas.setForeground(new java.awt.Color(0, 0, 102));
         btnCuentas.setText("Cuentas");
         btnCuentas.setBorder(null);
+        btnCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuentasActionPerformed(evt);
+            }
+        });
 
         btnIngresarNuevaPropiedad.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         btnIngresarNuevaPropiedad.setForeground(new java.awt.Color(0, 0, 102));
@@ -596,6 +601,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnPagos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagos1ActionPerformed
        
     }//GEN-LAST:event_btnPagos1ActionPerformed
+
+    private void btnCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentasActionPerformed
+        
+    }//GEN-LAST:event_btnCuentasActionPerformed
 
     /**
      * @param args the command line arguments

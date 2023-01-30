@@ -43,6 +43,12 @@ public class AdaptadorDao<T> implements InterfazDAO<T> {
         URL2 += this.clazz.getSimpleName() + ".json";
 
     }
+    /**
+     * 
+     * @param dato
+     * @throws FileNotFoundException
+     * @throws JAXBException 
+     */
 
     @Override
     public void guardar(T dato) throws FileNotFoundException, JAXBException {

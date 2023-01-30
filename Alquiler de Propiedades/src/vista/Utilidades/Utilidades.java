@@ -25,18 +25,15 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-<<<<<<< HEAD
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-=======
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Base64;
->>>>>>> inicioSesion-registroUsuario_chimbo
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -57,11 +54,9 @@ import modelo.MetodoPago;
  * @author leomah
  */
 public class Utilidades {
-<<<<<<< HEAD
-    public static String DIRCARPDATA = "data";
-    
+  
 
-    
+    private static String URL = "data";
     public static RolesController cargarRoles() throws IOException{
         RolesController rc = new RolesController();
         Reader lector = Files.newBufferedReader(Paths.get("roles.json"));
@@ -85,33 +80,19 @@ public class Utilidades {
         }        
     }
 
-    public static CuentasController cargarCuentas() throws IOException{
+public static CuentasController cargarCuentas() throws IOException{
         MapeoCuentas mapeo = new MapeoCuentas();
-=======
-
-    private static String URL = "data";
-
-    public static CuentasController cargarCuentas() throws IOException {
-        Mapeo mapeo = new Mapeo();
->>>>>>> inicioSesion-registroUsuario_chimbo
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
         Gson gson = new Gson();
         mapeo = (gson.fromJson(lector, MapeoCuentas.class));
         return mapeo.getCc();
     }
-<<<<<<< HEAD
     
     public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
         MapeoCuentas mapeo = new MapeoCuentas(cc);
-=======
-
-    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException {
-        Mapeo mapeo = new Mapeo(cc);
->>>>>>> inicioSesion-registroUsuario_chimbo
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
         try {
-
             PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
             escritor.write(json);
             escritor.flush();
@@ -120,7 +101,7 @@ public class Utilidades {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar");
             System.out.println(e);
-        }
+        }        
     }
 
 
@@ -134,7 +115,7 @@ public class Utilidades {
     public static TipoIdentificacion obtenerTipoIdentificacion(JComboBox cbx) {
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
-<<<<<<< HEAD
+
     
 //    public static void guardar(Object expresiones[]) throws IOException {
 //        Gson json = new Gson();
@@ -187,18 +168,8 @@ public class Utilidades {
         btn.setIcon(icon);
         btn.repaint();
     }
-    public static JComboBox cargarCombo(JComboBox combo){
-=======
-
-    public static void DefinirImagenLabel(JLabel label, String ruta) {
-        ImageIcon image = new ImageIcon(ruta);
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-        label.setIcon(icon);
-        label.repaint();
-    }
-
+  
     public static JComboBox cargarCombo(JComboBox combo) {
->>>>>>> inicioSesion-registroUsuario_chimbo
         combo.removeAllItems();
         for (MetodoPago Metodo : MetodoPago.values()) {
             combo.addItem(Metodo);
@@ -249,15 +220,8 @@ public class Utilidades {
             }
         });
     }
-<<<<<<< HEAD
-    
-       public static String obtenerFechaActual(){
-        Date fechaActual=new Date();
-        int anio=fechaActual.getYear()+1900;
-        int mes=fechaActual.getMonth()+1;
-        int dia=fechaActual.getDay()+25;
-        String fechaFormateada=dia+"/"+mes+"/"+anio;
-=======
+
+
 
     public static String obtenerFechaActual() {
         Date fechaActual = new Date();
@@ -265,7 +229,6 @@ public class Utilidades {
         int mes = fechaActual.getMonth() + 1;
         int dia = fechaActual.getDay() + 25;
         String fechaFormateada = dia + "/" + mes + "/" + anio;
->>>>>>> inicioSesion-registroUsuario_chimbo
         return fechaFormateada;
     }
 
@@ -276,7 +239,7 @@ public class Utilidades {
         String horaActual = hora + ":" + minutos;
         return horaActual;
     }
-<<<<<<< HEAD
+
     
     /**
      * Sirve para parsear el date de jcalendarr
@@ -290,8 +253,6 @@ public class Utilidades {
         return fechaFormateada;
     }
     
-    
-=======
 
     /**
      * Permite encriptar constrasenias mediante el esquema de codificacion
@@ -442,5 +403,4 @@ public class Utilidades {
         return parse.getCd();
     }
 
->>>>>>> inicioSesion-registroUsuario_chimbo
 }
