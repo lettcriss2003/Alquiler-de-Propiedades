@@ -4,10 +4,6 @@
  */
 package vista;
 
-<<<<<<< HEAD
-import static vista.FrmPropiedadImagen.PropiedadDatos;
-import modelo.Propiedad;
-=======
 import controlador.PropiedadDao;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -53,29 +49,20 @@ import static vista.FrmIngresoPropiedad.dateDisponibilidadDesde;
 //import static vista.FrmIngresoPropiedad.dateDisponibilidadDesde;
 //import static vista.FrmIngresoPropiedad.dateDisponibilidadHasta;
 import vista.Utilidades.Utilidades;
->>>>>>> propiedad-contrato_Rojas
 
 /**
  *
  * @author lettc
  */
 public class FrmContratoUsuario extends javax.swing.JFrame {
-<<<<<<< HEAD
-    int index = 0;
-=======
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 1;
->>>>>>> propiedad-contrato_Rojas
 
     /**
      * Creates new form FrmContratoUsuario
      */
     public FrmContratoUsuario() {
-<<<<<<< HEAD
-        initComponents();
-    }
-=======
 
         initComponents();
         cargarDatos();
@@ -152,7 +139,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
     }
 
->>>>>>> propiedad-contrato_Rojas
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,11 +171,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         txtNumeroPropiedad = new javax.swing.JTextField();
         txtHabitaciones = new javax.swing.JTextField();
-<<<<<<< HEAD
-        txtBaños = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescripcion = new javax.swing.JTextArea();
-=======
         txtBanios = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
@@ -197,7 +178,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         txtHuespedes = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         txtCamas = new javax.swing.JTextField();
->>>>>>> propiedad-contrato_Rojas
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -213,14 +193,11 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         txtAguaCaliente = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         lblImagen = new javax.swing.JLabel();
-<<<<<<< HEAD
-=======
         lblImagen1 = new javax.swing.JLabel();
         lblImagen2 = new javax.swing.JLabel();
         lblImagen3 = new javax.swing.JLabel();
         lblImagen4 = new javax.swing.JLabel();
         lblImagen5 = new javax.swing.JLabel();
->>>>>>> propiedad-contrato_Rojas
         jPanel3 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -255,26 +232,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         txtFechaI = new javax.swing.JTextField();
         txtFechaF = new javax.swing.JTextField();
-<<<<<<< HEAD
-        dateDisponibilidadDesde = new com.toedter.calendar.JDateChooser();
-        label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
-        dateDisponibilidadDesde1 = new com.toedter.calendar.JDateChooser();
-        btnPagar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("DATOS DE LA PROPIEDAD");
-
-        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 0, 0));
-=======
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         btnPagar = new javax.swing.JButton();
@@ -298,7 +255,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("DIRECCION");
 
@@ -312,25 +268,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         jLabel8.setText("Codigo postal");
 
-<<<<<<< HEAD
-        txtCiudad.setEditable(false);
-        txtCiudad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCiudad.setFocusable(false);
-
-        txtProvincia.setEditable(false);
-        txtProvincia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtProvincia.setFocusable(false);
-
-        txtCallePrincipal.setEditable(false);
-        txtCallePrincipal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCallePrincipal.setFocusable(false);
-
-        txtCalleSegundaria.setEditable(false);
-        txtCalleSegundaria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCalleSegundaria.setFocusable(false);
-
-        txtCodigoPostal.setEditable(false);
-=======
         txtCiudad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCiudad.setFocusable(false);
 
@@ -343,7 +280,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         txtCalleSegundaria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCalleSegundaria.setFocusable(false);
 
->>>>>>> propiedad-contrato_Rojas
         txtCodigoPostal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoPostal.setFocusable(false);
 
@@ -364,11 +300,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-                            .addComponent(txtCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-=======
                             .addComponent(txtCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
->>>>>>> propiedad-contrato_Rojas
                             .addComponent(txtProvincia)
                             .addComponent(txtCallePrincipal)
                             .addComponent(txtCalleSegundaria)
@@ -403,17 +335,10 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
-        jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(204, 0, 0));
-=======
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("TIPO DE PROPIEDAD");
 
@@ -425,21 +350,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         jLabel33.setText("Baños");
 
-<<<<<<< HEAD
-        txtNumeroPropiedad.setEditable(false);
-        txtNumeroPropiedad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNumeroPropiedad.setFocusable(false);
-
-        txtHabitaciones.setEditable(false);
-        txtHabitaciones.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtHabitaciones.setFocusable(false);
-
-        txtBaños.setEditable(false);
-        txtBaños.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtBaños.setFocusable(false);
-
-        txtDescripcion.setEditable(false);
-=======
         txtNumeroPropiedad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNumeroPropiedad.setFocusable(false);
 
@@ -451,14 +361,11 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         txtDescripcion.setEditable(false);
         txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
->>>>>>> propiedad-contrato_Rojas
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         txtDescripcion.setFocusable(false);
         jScrollPane1.setViewportView(txtDescripcion);
 
-<<<<<<< HEAD
-=======
         jLabel36.setText("Huepedes");
 
         txtHuespedes.setEditable(false);
@@ -473,7 +380,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         txtCamas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCamas.setFocusable(false);
 
->>>>>>> propiedad-contrato_Rojas
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -481,11 +387,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-=======
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
->>>>>>> propiedad-contrato_Rojas
                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -497,9 +399,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtHabitaciones)
                             .addComponent(txtNumeroPropiedad)
-<<<<<<< HEAD
-                            .addComponent(txtBaños))))
-=======
                             .addComponent(txtBanios)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -509,7 +408,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtHuespedes)
                             .addComponent(txtCamas))))
->>>>>>> propiedad-contrato_Rojas
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -532,13 +430,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
-<<<<<<< HEAD
-                    .addComponent(txtBaños, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-=======
                     .addComponent(txtBanios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -552,7 +443,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
->>>>>>> propiedad-contrato_Rojas
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel10.setText("CONECTIVIDAD");
@@ -561,13 +451,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         jLabel12.setText("TV");
 
-<<<<<<< HEAD
-        txtWifi.setEditable(false);
-        txtWifi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtWifi.setFocusable(false);
-
-        txtTV.setEditable(false);
-=======
         txtWifi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtWifi.setFocusable(false);
         txtWifi.addActionListener(new java.awt.event.ActionListener() {
@@ -576,16 +459,11 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             }
         });
 
->>>>>>> propiedad-contrato_Rojas
         txtTV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTV.setFocusable(false);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-<<<<<<< HEAD
-        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
-=======
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("SERVICIOS");
 
@@ -603,11 +481,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-                            .addComponent(txtWifi)
-=======
                             .addComponent(txtWifi, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
->>>>>>> propiedad-contrato_Rojas
                             .addComponent(txtTV)))
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -630,33 +504,19 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-<<<<<<< HEAD
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-=======
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel26.setText("AMBIENTACION");
 
         jLabel27.setText("Aire acondicionado");
 
         jLabel28.setText("Agua caliente");
 
-<<<<<<< HEAD
-        txtAireAcondicionado.setEditable(false);
         txtAireAcondicionado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtAireAcondicionado.setFocusable(false);
 
-        txtAguaCaliente.setEditable(false);
-=======
-        txtAireAcondicionado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtAireAcondicionado.setFocusable(false);
-
->>>>>>> propiedad-contrato_Rojas
         txtAguaCaliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtAguaCaliente.setFocusable(false);
 
@@ -666,18 +526,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-<<<<<<< HEAD
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAireAcondicionado)
-                            .addComponent(txtAguaCaliente)))))
-=======
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -689,7 +537,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
->>>>>>> propiedad-contrato_Rojas
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -707,12 +554,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-=======
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -727,23 +568,10 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         lblImagen5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
->>>>>>> propiedad-contrato_Rojas
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-=======
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -781,24 +609,15 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel22.setText("SERVICIOS DE LIMPIEZA");
 
         jLabel23.setText("Lavadora");
 
         jLabel24.setText("Secadora");
 
-<<<<<<< HEAD
-        txtLavadora.setEditable(false);
         txtLavadora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtLavadora.setFocusable(false);
 
-        txtSecadora.setEditable(false);
-=======
-        txtLavadora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtLavadora.setFocusable(false);
-
->>>>>>> propiedad-contrato_Rojas
         txtSecadora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSecadora.setFocusable(false);
 
@@ -808,18 +627,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-<<<<<<< HEAD
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtLavadora)
-                            .addComponent(txtSecadora))))
-=======
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -830,7 +637,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(txtLavadora, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                     .addComponent(txtSecadora))
->>>>>>> propiedad-contrato_Rojas
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -849,16 +655,10 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-=======
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel13.setText("AREAS");
 
         jLabel14.setText("Cocina");
@@ -879,41 +679,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
         jLabel2.setText("Otros");
 
-<<<<<<< HEAD
-        txtCocina.setEditable(false);
-        txtCocina.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCocina.setFocusable(false);
-
-        txtEstacionamiento.setEditable(false);
-        txtEstacionamiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtEstacionamiento.setFocusable(false);
-
-        txtPicina.setEditable(false);
-        txtPicina.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPicina.setFocusable(false);
-
-        txtJacuzzi.setEditable(false);
-        txtJacuzzi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtJacuzzi.setFocusable(false);
-
-        txtParrilla.setEditable(false);
-        txtParrilla.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtParrilla.setFocusable(false);
-
-        txtPatio.setEditable(false);
-        txtPatio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPatio.setFocusable(false);
-
-        txtComedor.setEditable(false);
-        txtComedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtComedor.setFocusable(false);
-
-        txtSalaJuegos.setEditable(false);
-        txtSalaJuegos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtSalaJuegos.setFocusable(false);
-
-        txtOtros.setEditable(false);
-=======
         txtCocina.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCocina.setFocusable(false);
 
@@ -938,7 +703,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         txtSalaJuegos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSalaJuegos.setFocusable(false);
 
->>>>>>> propiedad-contrato_Rojas
         txtOtros.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -947,35 +711,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-<<<<<<< HEAD
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCocina)
-                            .addComponent(txtEstacionamiento)
-                            .addComponent(txtPicina)
-                            .addComponent(txtJacuzzi, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtParrilla, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtPatio, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtComedor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtSalaJuegos)
-                            .addComponent(txtOtros))))
-                .addContainerGap())
-=======
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1004,7 +739,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
->>>>>>> propiedad-contrato_Rojas
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1064,30 +798,18 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-=======
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 51));
->>>>>>> propiedad-contrato_Rojas
         jLabel25.setText("DISPONIBILIDAD");
 
         jLabel34.setText("Fecha Inicio");
 
         jLabel35.setText("Fecha final");
 
-<<<<<<< HEAD
-        txtFechaI.setEditable(false);
         txtFechaI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtFechaF.setEditable(false);
-=======
-        txtFechaI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
->>>>>>> propiedad-contrato_Rojas
         txtFechaF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1097,17 +819,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel35)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFechaF, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel34)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaI)))
-=======
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1120,7 +831,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)))
->>>>>>> propiedad-contrato_Rojas
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -1150,8 +860,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-=======
         jLabel38.setText("Precio por noche");
 
         txtPrecio.setEditable(false);
@@ -1172,7 +880,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             }
         });
 
->>>>>>> propiedad-contrato_Rojas
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1181,46 +888,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addComponent(dateDisponibilidadDesde1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dateDisponibilidadDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnVerSiguientePropiedad)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(btnPagar)))))
-                        .addGap(0, 19, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSalir)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-=======
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1265,7 +932,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> propiedad-contrato_Rojas
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1276,42 +942,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateDisponibilidadDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateDisponibilidadDesde1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalir)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPagar)
-                            .addComponent(btnVerSiguientePropiedad))
-                        .addContainerGap(20, Short.MAX_VALUE))))
-=======
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1354,7 +984,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                                     .addComponent(btnVerSiguientePropiedad)
                                     .addComponent(btnPagar))))))
                 .addGap(17, 17, 17))
->>>>>>> propiedad-contrato_Rojas
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1362,13 +991,8 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
-=======
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
->>>>>>> propiedad-contrato_Rojas
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1386,173 +1010,13 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerSiguientePropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSiguientePropiedadActionPerformed
-<<<<<<< HEAD
-        // TODO add your handling code here:
-        if(index > PropiedadDatos.getTamanio()){
-            System.out.println("hola");
-        }else{
-            index++;
-            if(index == PropiedadDatos.getTamanio()){
-                index = 0;
-            }
-            Propiedad SacarDtoPro;
-            for (int i = PropiedadDatos.getTamanio() - 1; i >= 0; i--) {
-
-                SacarDtoPro = (Propiedad) PropiedadDatos.get(index);
-
-                vista.FrmDescripcionPropiedad.lblImagen.setIcon(SacarDtoPro.getImagen());
-                vista.FrmDescripcionPropiedad.txtCiudad.setText(SacarDtoPro.getCiudad());
-                vista.FrmDescripcionPropiedad.txtProvincia.setText(SacarDtoPro.getProvincia());
-                vista.FrmDescripcionPropiedad.txtCallePrincipal.setText(SacarDtoPro.getCalleP());
-                vista.FrmDescripcionPropiedad.txtCalleSegundaria.setText(SacarDtoPro.getCalleS());
-                vista.FrmDescripcionPropiedad.txtCodigoPostal.setText(SacarDtoPro.getCodigoP());
-
-                vista.FrmDescripcionPropiedad.txtDescripcion.setText(SacarDtoPro.getDescripcion());
-                vista.FrmDescripcionPropiedad.txtNumeroPropiedad.setText(SacarDtoPro.getNumeroPropiedad());
-                vista.FrmDescripcionPropiedad.txtHabitaciones.setText(SacarDtoPro.getHabitaciones());
-                vista.FrmDescripcionPropiedad.txtBaños.setText(SacarDtoPro.getBaños());
-
-                vista.FrmDescripcionPropiedad.txtFechaI.setText(SacarDtoPro.getFechaIngreso());
-                vista.FrmDescripcionPropiedad.txtFechaF.setText(SacarDtoPro.getFechaSalida());
-
-                if (SacarDtoPro.Wifi) {
-                    String Wifi = "Si";
-                    vista.FrmDescripcionPropiedad.txtWifi.setText(Wifi);
-                } else {
-                    String Wifi = "No";
-                    vista.FrmDescripcionPropiedad.txtWifi.setText(Wifi);
-                }
-
-                if (SacarDtoPro.TV) {
-                    String TV = "Si";
-                    vista.FrmDescripcionPropiedad.txtTV.setText(TV);
-                } else {
-                    String TV = "No";
-                    vista.FrmDescripcionPropiedad.txtTV.setText(TV);
-                }
-
-                if (SacarDtoPro.Lavadora) {
-                    String Lavadora = "Si";
-                    vista.FrmDescripcionPropiedad.txtLavadora.setText(Lavadora);
-                } else {
-                    String Lavadora = "No";
-                    vista.FrmDescripcionPropiedad.txtLavadora.setText(Lavadora);
-                }
-
-                if (SacarDtoPro.Secadora) {
-                    String Secadora = "Si";
-                    vista.FrmDescripcionPropiedad.txtSecadora.setText(Secadora);
-                } else {
-                    String Secadora = "No";
-                    vista.FrmDescripcionPropiedad.txtSecadora.setText(Secadora);
-                }
-
-                if (SacarDtoPro.AireAcondicionado) {
-                    String AireAcondicionado = "Si";
-                    vista.FrmDescripcionPropiedad.txtAireAcondicionado.setText(AireAcondicionado);
-                } else {
-                    String AireAcondicionado = "No";
-                    vista.FrmDescripcionPropiedad.txtAireAcondicionado.setText(AireAcondicionado);
-                }
-
-                if (SacarDtoPro.AguaCaliente) {
-                    String AguaCaliente = "Si";
-                    vista.FrmDescripcionPropiedad.txtAguaCaliente.setText(AguaCaliente);
-                } else {
-                    String AguaCaliente = "No";
-                    vista.FrmDescripcionPropiedad.txtAguaCaliente.setText(AguaCaliente);
-                }
-
-                if (SacarDtoPro.Cocina) {
-                    String Cocina = "Si";
-                    vista.FrmDescripcionPropiedad.txtCocina.setText(Cocina);
-                } else {
-                    String Cocina = "No";
-                    vista.FrmDescripcionPropiedad.txtCocina.setText(Cocina);
-                }
-
-                if (SacarDtoPro.Estacionamiento) {
-                    String Estacionamiento = "Si";
-                    vista.FrmDescripcionPropiedad.txtEstacionamiento.setText(Estacionamiento);
-                } else {
-                    String Estacionamiento = "No";
-                    vista.FrmDescripcionPropiedad.txtEstacionamiento.setText(Estacionamiento);
-                }
-
-                if (SacarDtoPro.Picina) {
-                    String Picina = "Si";
-                    vista.FrmDescripcionPropiedad.txtPicina.setText(Picina);
-                } else {
-                    String Picina = "No";
-                    vista.FrmDescripcionPropiedad.txtPicina.setText(Picina);
-                }
-
-                if (SacarDtoPro.Jacuzzi) {
-                    String Jacuzzi = "Si";
-                    vista.FrmDescripcionPropiedad.txtJacuzzi.setText(Jacuzzi);
-                } else {
-                    String Jacuzzi = "No";
-                    vista.FrmDescripcionPropiedad.txtJacuzzi.setText(Jacuzzi);
-                }
-
-                if (SacarDtoPro.Parrilla) {
-                    String Parrilla = "Si";
-                    vista.FrmDescripcionPropiedad.txtParrilla.setText(Parrilla);
-                } else {
-                    String Parrilla = "No";
-                    vista.FrmDescripcionPropiedad.txtParrilla.setText(Parrilla);
-                }
-
-                if (SacarDtoPro.Patio) {
-                    String Patio = "Si";
-                    vista.FrmDescripcionPropiedad.txtPatio.setText(Patio);
-                } else {
-                    String Patio = "No";
-                    vista.FrmDescripcionPropiedad.txtPatio.setText(Patio);
-                }
-
-                if (SacarDtoPro.Comedor) {
-                    String Comedor = "Si";
-                    vista.FrmDescripcionPropiedad.txtComedor.setText(Comedor);
-                } else {
-                    String Comedor = "No";
-                    vista.FrmDescripcionPropiedad.txtComedor.setText(Comedor);
-                }
-
-                if (SacarDtoPro.SalaJuegos) {
-                    String SalaJuegos = "Si";
-                    vista.FrmDescripcionPropiedad.txtSalaJuegos.setText(SalaJuegos);
-                } else {
-                    String SalaJuegos = "No";
-                    vista.FrmDescripcionPropiedad.txtSalaJuegos.setText(SalaJuegos);
-                }
-                if (SacarDtoPro.Otros) {
-                    String Otros = vista.Frmservicio.txtOtros.getText();
-                    vista.FrmDescripcionPropiedad.txtOtros.setText(Otros);
-                } else {
-                    String Otros = "No";
-                    vista.FrmDescripcionPropiedad.txtOtros.setText(Otros);
-                }
-
-            }
-        }
-
-        //        for (int i = 0; i < PropiedadDatos.size(); i++) {
-            //            System.out.println(PropiedadDatos.get(i) + " ");
-            //        }
-    }//GEN-LAST:event_btnVerSiguientePropiedadActionPerformed
-
-=======
      
     }//GEN-LAST:event_btnVerSiguientePropiedadActionPerformed
        
->>>>>>> propiedad-contrato_Rojas
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPagarActionPerformed
 
-<<<<<<< HEAD
-=======
     private void txtWifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWifiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtWifiActionPerformed
@@ -1577,7 +1041,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dateDisponibilidadHastaPropertyChange
 
->>>>>>> propiedad-contrato_Rojas
     /**
      * @param args the command line arguments
      */
@@ -1618,11 +1081,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerSiguientePropiedad;
     public static com.toedter.calendar.JDateChooser dateDisponibilidadDesde;
-<<<<<<< HEAD
-    public static com.toedter.calendar.JDateChooser dateDisponibilidadDesde1;
-=======
     public static com.toedter.calendar.JDateChooser dateDisponibilidadHasta;
->>>>>>> propiedad-contrato_Rojas
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1652,12 +1111,9 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-<<<<<<< HEAD
-=======
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
->>>>>>> propiedad-contrato_Rojas
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1677,13 +1133,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     private java.awt.Label label1;
     private java.awt.Label label2;
     public static javax.swing.JLabel lblImagen;
-<<<<<<< HEAD
-    public static javax.swing.JTextField txtAguaCaliente;
-    public static javax.swing.JTextField txtAireAcondicionado;
-    public static javax.swing.JTextField txtBaños;
-    public static javax.swing.JTextField txtCallePrincipal;
-    public static javax.swing.JTextField txtCalleSegundaria;
-=======
     public static javax.swing.JLabel lblImagen1;
     public static javax.swing.JLabel lblImagen2;
     public static javax.swing.JLabel lblImagen3;
@@ -1695,7 +1144,6 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     public static javax.swing.JTextField txtCallePrincipal;
     public static javax.swing.JTextField txtCalleSegundaria;
     public static javax.swing.JTextField txtCamas;
->>>>>>> propiedad-contrato_Rojas
     public static javax.swing.JTextField txtCiudad;
     public static javax.swing.JTextField txtCocina;
     public static javax.swing.JTextField txtCodigoPostal;
@@ -1705,10 +1153,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     public static javax.swing.JTextField txtFechaF;
     public static javax.swing.JTextField txtFechaI;
     public static javax.swing.JTextField txtHabitaciones;
-<<<<<<< HEAD
-=======
     public static javax.swing.JTextField txtHuespedes;
->>>>>>> propiedad-contrato_Rojas
     public static javax.swing.JTextField txtJacuzzi;
     public static javax.swing.JTextField txtLavadora;
     public static javax.swing.JTextField txtNumeroPropiedad;
@@ -1716,10 +1161,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     public static javax.swing.JTextField txtParrilla;
     public static javax.swing.JTextField txtPatio;
     public static javax.swing.JTextField txtPicina;
-<<<<<<< HEAD
-=======
     public static javax.swing.JTextField txtPrecio;
->>>>>>> propiedad-contrato_Rojas
     public static javax.swing.JTextField txtProvincia;
     public static javax.swing.JTextField txtSalaJuegos;
     public static javax.swing.JTextField txtSecadora;

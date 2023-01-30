@@ -45,30 +45,7 @@ import modelo.MetodoPago;
 public class Utilidades {
     public static String DIRCARPDATA = "data";
     
-<<<<<<< HEAD
-    public static CuentasController cargarCuentas() throws IOException{
-        MapeoCuentas mapeo = new MapeoCuentas();
-        Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
-        Gson gson = new Gson();
-        mapeo = (gson.fromJson(lector, MapeoCuentas.class));
-        return mapeo.getCc();
-    }
-    
-    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
-        MapeoCuentas mapeo = new MapeoCuentas(cc);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(mapeo);
-        try {
-            PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
-            escritor.write(json);
-            escritor.flush();
-            escritor.close();
-            JOptionPane.showMessageDialog(null, "Se guardó");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar");
-            System.out.println(e);
-        }        
-    }
+
     
     public static RolesController cargarRoles() throws IOException{
         RolesController rc = new RolesController();
@@ -92,31 +69,31 @@ public class Utilidades {
             System.out.println(e);
         }        
     }
-=======
-//    public static CuentasController cargarCuentas() throws IOException{
-//        Mapeo mapeo = new Mapeo();
-//        Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
-//        Gson gson = new Gson();
-//        mapeo = (gson.fromJson(lector, Mapeo.class));
-//        return mapeo.getCc();
-//    }
-//    
-//    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
-//        Mapeo mapeo = new Mapeo(cc);
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        String json = gson.toJson(mapeo);
-//        try {
-//            PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
-//            escritor.write(json);
-//            escritor.flush();
-//            escritor.close();
-//            JOptionPane.showMessageDialog(null, "Se guardó");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Error al guardar");
-//            System.out.println(e);
-//        }        
-//    }
->>>>>>> propiedad-contrato_Rojas
+
+    public static CuentasController cargarCuentas() throws IOException{
+        MapeoCuentas mapeo = new MapeoCuentas();
+        Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
+        Gson gson = new Gson();
+        mapeo = (gson.fromJson(lector, MapeoCuentas.class));
+        return mapeo.getCc();
+    }
+    
+    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
+        MapeoCuentas mapeo = new MapeoCuentas(cc);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(mapeo);
+        try {
+            PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
+            escritor.write(json);
+            escritor.flush();
+            escritor.close();
+            JOptionPane.showMessageDialog(null, "Se guardó");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar");
+            System.out.println(e);
+        }        
+    }
+
 
     public static void cargarTipoIndentificacion(JComboBox cbx) {
         cbx.removeAllItems();
@@ -141,47 +118,32 @@ public class Utilidades {
 //        fw.write(jsons);
 //        fw.flush();
 //    }
-//
-//    public static int cargar(Object expresiones[]) {
-//        int counter = 0;
-//
-//        try {
-//            Gson json = new Gson();
-//            FileReader fr = new FileReader("ObjectsArray" + ".json");
-//            StringBuilder jsons = new StringBuilder();
-//            int valor = fr.read();
-//            while (valor != -1) {
-//                jsons.append((char) valor);
-//                valor = fr.read();
-//            }
-//            Object[] aux = json.fromJson(jsons.toString(), Object[].class);
-//            for (int i = 0; i < aux.length; i++) {
-//                expresiones[i] = aux[i];
-//                counter += 1;
-//            }
-//
-//        } catch (Exception e) {
-//            System.out.println("No se encontraron objetos guardados en el json!");
-//        } finally {
-//            return counter;
-//        }
-//    }
-/*
-    public static boolean guardarJSON(CuentaDAO cuentas) {
-        Gson gson = new Gson();
-        String json = gson.toJson(cuentas);
 
-        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(DIRCARPDATA + File.separatorChar + "datos.json"))) {
-            bw.write(json);
-            bw.close();
-            return true;
+    public static int cargar(Object expresiones[]) {
+        int counter = 0;
+
+        try {
+            Gson json = new Gson();
+            FileReader fr = new FileReader("ObjectsArray" + ".json");
+            StringBuilder jsons = new StringBuilder();
+            int valor = fr.read();
+            while (valor != -1) {
+                jsons.append((char) valor);
+                valor = fr.read();
+            }
+            Object[] aux = json.fromJson(jsons.toString(), Object[].class);
+            for (int i = 0; i < aux.length; i++) {
+                expresiones[i] = aux[i];
+                counter += 1;
+            }
+
         } catch (Exception e) {
-            System.out.println("Error" + e);
-            return false;
+            System.out.println("No se encontraron objetos guardados en el json!");
+        } finally {
+            return counter;
         }
-
     }
-*/
+
     public static void DefinirImagenLabel(JLabel label,String ruta){
         ImageIcon image=new ImageIcon(ruta);
         Icon icon=new ImageIcon( image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));

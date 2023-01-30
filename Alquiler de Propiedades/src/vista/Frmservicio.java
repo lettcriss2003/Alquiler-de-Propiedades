@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-<<<<<<< HEAD
-=======
 
 import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
@@ -13,19 +11,15 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import modelo.Propiedad;
 import static vista.FrmPropiedadImagen.PropiedadDatos;
->>>>>>> propiedad-contrato_Rojas
 
 /**
  *
  * @author lettc
  */
 public class Frmservicio extends javax.swing.JFrame {
-<<<<<<< HEAD
-=======
 
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
->>>>>>> propiedad-contrato_Rojas
 
     /**
      * Creates new form Frmservicio

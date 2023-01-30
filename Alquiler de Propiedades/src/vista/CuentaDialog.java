@@ -190,7 +190,7 @@ public class CuentaDialog extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
+
         if (!txtId.getText().isEmpty() && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && (rbtnSi.isSelected() || rbtnNo.isSelected())) {
             Cuenta c = new Cuenta();
             c.setId(Integer.parseInt(txtId.getText()));
@@ -214,28 +214,7 @@ public class CuentaDialog extends javax.swing.JDialog {
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
         }
-=======
-//        if (!txtId.getText().isEmpty() && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && (rbtnSi.isSelected() || rbtnNo.isSelected())) {
-//            Cuenta c = new Cuenta();
-//            c.setId(Integer.parseInt(txtId.getText()));
-//            c.setUsuario(txtUsuario.getText());
-//            c.setContrasenia(txtContrasenia.getText());
-//            if (rbtnSi.isSelected()) {
-//                c.setEstado(true);
-//            } else {
-//                c.setEstado(false);
-//            }
-//            cuentaController.setCuenta(c);
-//            cuentasList.modificarPoscicion(cuentaController, posicion);
-//            try {
-//                Utilidades.guardarCuentas(cuentasList);
-//                JOptionPane.showMessageDialog(this, "Recuerde actualizar el listado");
-//                this.dispose();
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
->>>>>>> propiedad-contrato_Rojas
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

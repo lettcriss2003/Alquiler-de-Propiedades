@@ -366,6 +366,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnPagos1.setForeground(new java.awt.Color(0, 0, 102));
         btnPagos1.setText("SALIR");
         btnPagos1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPagos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagos1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -587,6 +592,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         administrarPropiedades.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAdministrarPropiedadesActionPerformed
+
+    private void btnPagos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagos1ActionPerformed
+       
+    }//GEN-LAST:event_btnPagos1ActionPerformed
 
     /**
      * @param args the command line arguments

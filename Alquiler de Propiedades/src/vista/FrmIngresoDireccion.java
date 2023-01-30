@@ -235,12 +235,6 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
 
         if (txtCiudad.getText().isEmpty() || txtProvincia.getText().isEmpty() || txtCallePrincipal.getText().isEmpty() || txtCalleSecundaria.getText().isEmpty() || txtCodigoPostal.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campos vacios");
-<<<<<<< HEAD
-        }else{
-            Frmservicio btndireccion = new Frmservicio();
-        btndireccion.setVisible(true);
-        this.setVisible(false);
-=======
         } else {
             try {
                 guardarDATOS();
@@ -260,7 +254,6 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
 
             btndireccion.setVisible(true);
             this.setVisible(false);
->>>>>>> propiedad-contrato_Rojas
         }
 
 

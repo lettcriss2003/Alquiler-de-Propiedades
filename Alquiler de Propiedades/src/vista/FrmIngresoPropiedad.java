@@ -429,14 +429,6 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
         //        System.out.println(""+dateDisponibilidadDesde.getDate().toString());
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-<<<<<<< HEAD
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
-        Frmservicio servicio = new Frmservicio();
-        servicio.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnRegresarActionPerformed
-=======
     private void dateDisponibilidadDesdePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDisponibilidadDesdePropertyChange
         Date fechaActual=new Date();
         if (dateDisponibilidadDesde.getDate()!=null) {
@@ -456,7 +448,6 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_dateDisponibilidadHastaPropertyChange
->>>>>>> propiedad-contrato_Rojas
 
     /**
      * @param args the command line arguments

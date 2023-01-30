@@ -3,15 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
-<<<<<<< HEAD
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import controlador.listas.ListaEnlazada;
-=======
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
->>>>>>> propiedad-contrato_Rojas
+import controlador.listas.ListaEnlazada;
 import controlador.utiles.Utilidades;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +20,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import controlador.listas.ListaEnlazada;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,12 +39,9 @@ public class AdaptadorDao<T> implements InterfazDAO<T> {
 
     public AdaptadorDao(Class<T> clazz) {
         this.clazz = clazz;
-<<<<<<< HEAD
-        URL+=this.clazz.getSimpleName()+".json";
-=======
         URL += this.clazz.getSimpleName() + ".xml";
         URL2 += this.clazz.getSimpleName() + ".json";
->>>>>>> propiedad-contrato_Rojas
+
     }
 
     @Override
@@ -54,7 +49,7 @@ public class AdaptadorDao<T> implements InterfazDAO<T> {
         listar().imprimir();
         ListaEnlazada<T> lista = listar();
         lista.insertar(dato);
-<<<<<<< HEAD
+
 
         try (PrintWriter out = new PrintWriter(new FileWriter(URL))) {
             Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -70,46 +65,47 @@ public class AdaptadorDao<T> implements InterfazDAO<T> {
         ListaEnlazada<T> lista=listar();
         try (PrintWriter out = new PrintWriter(new FileWriter(URL))){
             lista.modificarPoscicion(dato, pos);
-=======
-        FileOutputStream file = new FileOutputStream(URL);
-        JAXBContext jabxc = JAXBContext.newInstance(new Class[]{ListaEnlazada.class, this.clazz});
-        Marshaller marshaller = jabxc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(lista, file);
+            FileOutputStream file = new FileOutputStream(URL);
+            JAXBContext jabxc = JAXBContext.newInstance(new Class[]{ListaEnlazada.class, this.clazz});
+            Marshaller marshaller = jabxc.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(lista, file);
+        } catch (IOException ex) {
+            Logger.getLogger(AdaptadorDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //        ObjectMapper JSON_MAPPER = new ObjectMapper();
 //        try {
 //            JSON_MAPPER.writeValue(new File(URL2), lista);
 //        } catch (Exception e) {
 //        }
         try ( PrintWriter out = new PrintWriter(new FileWriter(URL2))) {
->>>>>>> propiedad-contrato_Rojas
             Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
             String jsonString = prettyGson.toJson(lista);
             out.write(jsonString);
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
-
-    //todo
-    @Override
-    public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException {
-        ListaEnlazada<T> lista = listar();
-        lista.modificarPoscicion(dato, pos-1);
-        FileOutputStream file = new FileOutputStream(URL);
-        JAXBContext jabxc = JAXBContext.newInstance(new Class[]{ListaEnlazada.class, this.clazz});
-        Marshaller marshaller = jabxc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(lista, file);
-        try ( PrintWriter out = new PrintWriter(new FileWriter(URL2))) {
-            Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonString = prettyGson.toJson(lista);
-            out.write(jsonString);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-    }
+    }   
+    
+//    //todo
+//    @Override
+//    public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException {
+//        ListaEnlazada<T> lista = listar();
+//        lista.modificarPoscicion(dato, pos-1);
+//        FileOutputStream file = new FileOutputStream(URL);
+//        JAXBContext jabxc = JAXBContext.newInstance(new Class[]{ListaEnlazada.class, this.clazz});
+//        Marshaller marshaller = jabxc.createMarshaller();
+//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//        marshaller.marshal(lista, file);
+//        try ( PrintWriter out = new PrintWriter(new FileWriter(URL2))) {
+//            Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+//            String jsonString = prettyGson.toJson(lista);
+//            out.write(jsonString);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//    }
 
     @Override
     public ListaEnlazada<T> listar() {
@@ -155,21 +151,14 @@ public class AdaptadorDao<T> implements InterfazDAO<T> {
 
     @Override
     public T obtener(Integer id) {
-<<<<<<< HEAD
-        ListaEnlazada<T> Lista=listar();
-        try {
-            return Lista.obtener(id);
-=======
         ListaEnlazada<T> lista = listar();
         try {
             T dato = lista.obtener(id-1);
             return dato;
->>>>>>> propiedad-contrato_Rojas
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
-<<<<<<< HEAD
     }    
 
     @Override
@@ -183,12 +172,11 @@ public class AdaptadorDao<T> implements InterfazDAO<T> {
         } catch (Exception e) {
             System.out.println(e);
         }
-=======
+    }
+//
+//    @Override
+//    public void eliminar(Integer pos) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
     }
 
-    @Override
-    public void eliminar(Integer pos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
->>>>>>> propiedad-contrato_Rojas
-    }
-}

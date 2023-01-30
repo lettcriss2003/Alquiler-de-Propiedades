@@ -4,13 +4,8 @@
  */
 package vista;
 
-<<<<<<< HEAD
-import controlador.listas.ListaEnlazada;
-import java.awt.Image;
-=======
 import controlador.PropiedadDao;
 import controlador.listas.ListaEnlazada;
->>>>>>> propiedad-contrato_Rojas
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -24,16 +19,11 @@ import vista.Utilidades.Utilidades;
  * @author lettc
  */
 public class FrmPropiedadImagen extends javax.swing.JFrame {
-<<<<<<< HEAD
-    
-    public static ListaEnlazada PropiedadDatos = new ListaEnlazada<>();
-=======
 
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 0;
     public static ListaEnlazada<Propiedad> PropiedadDatos = new ListaEnlazada<>();
->>>>>>> propiedad-contrato_Rojas
 
     /**
      * Creates new form FrmPropiedad
@@ -276,17 +266,8 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
         try {
             propiedadDao.modificar(aux, aux.getId());
 
-<<<<<<< HEAD
-        ImageIcon imagen = new ImageIcon(file.getAbsolutePath());
-        Image img = imagen.getImage();
-        Image newimg = img.getScaledInstance(lblAgregarImagen.getWidth(), lblAgregarImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH);
-        imagen = new ImageIcon(newimg);
-        lblAgregarImagen.setIcon(imagen);
-        
-=======
         } catch (Exception e) {
         }
->>>>>>> propiedad-contrato_Rojas
     }//GEN-LAST:event_btnAgregarImgActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -303,67 +284,6 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-<<<<<<< HEAD
-    private void btnGuardarInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarInformacionActionPerformed
-        // TODO add your handling code here:
-        if (lblAgregarImagen.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, "Sin imagen");
-        } 
-        else {
-            String Ciudad = vista.FrmIngresoDireccion.txtProcincia.getText();
-            String provincia = vista.FrmIngresoDireccion.txtCiudad.getText();
-            String CalleP = vista.FrmIngresoDireccion.txtCallePrincipal.getText();
-            String CalleS = vista.FrmIngresoDireccion.txtCalleSecundaria.getText();
-            String CodigoP = vista.FrmIngresoDireccion.txtCodigoPostal.getText();
-
-            boolean Wifi = vista.Frmservicio.checkWifi.isSelected();
-            boolean TV = vista.Frmservicio.checkTV.isSelected();
-            boolean Lavadora = vista.Frmservicio.checkLavadora.isSelected();
-            boolean Secadora = vista.Frmservicio.checkSecadora.isSelected();
-            boolean Estacionamiento = vista.Frmservicio.checkEstacionamiento.isSelected();
-            boolean Cocina = vista.Frmservicio.checkCocina.isSelected();
-            boolean Picina = vista.Frmservicio.checkPicina.isSelected();
-            boolean Jacuzzi = vista.Frmservicio.checkJacuzzi.isSelected();
-            boolean Parrilla = vista.Frmservicio.checkParrilla.isSelected();
-            boolean Patio = vista.Frmservicio.checkPatio.isSelected();
-            boolean Comedor = vista.Frmservicio.checkComedor.isSelected();
-            boolean SalaJuegos = vista.Frmservicio.checkSalaJuegos.isSelected();
-            boolean AireAcondicionado = vista.Frmservicio.checkAireAcondicionado.isSelected();
-            boolean AguaCaliente = vista.Frmservicio.checkAguaCaliente.isSelected();
-            boolean Otros = vista.Frmservicio.checkOtros.isSelected();
-
-            String TipoPropiedad = vista.FrmIngresoPropiedad.cbxTipoPropiedad.getSelectedItem().toString();
-            String Descripcion = vista.FrmIngresoPropiedad.txtDescripcion.getText();
-            String NumeroPropiedad = vista.FrmIngresoPropiedad.txtNumeroPropiedad.getText();
-            String Huesped = vista.FrmIngresoPropiedad.spinHuespedes.getValue().toString();
-            String Habitaciones = vista.FrmIngresoPropiedad.spinHabitaciones.getValue().toString();
-            String Camas = vista.FrmIngresoPropiedad.spinCamas.getValue().toString();
-            String Baños = vista.FrmIngresoPropiedad.spinBanios.getValue().toString();
-            String Precio = vista.FrmIngresoPropiedad.txtPrecio.getText();
-            String FechaIngreso = vista.FrmIngresoPropiedad.dateDisponibilidadDesde.getDate().toString();
-            String FechaSalida = vista.FrmIngresoPropiedad.dateDisponibilidadHasta.getDate().toString();
-
-            ImageIcon imagen = (ImageIcon) lblAgregarImagen.getIcon();
-
-            Propiedad propiedad = new Propiedad(Ciudad, provincia, CalleP, CalleS, CodigoP,
-                    Wifi, TV, Lavadora, Secadora, Estacionamiento, Cocina, Picina, Jacuzzi, Parrilla, Patio, Comedor, SalaJuegos, AireAcondicionado, AguaCaliente, Otros,
-                    TipoPropiedad, Descripcion, NumeroPropiedad, Huesped, Habitaciones, Camas, Baños, Precio, FechaIngreso, FechaSalida, imagen);
-            PropiedadDatos.añadir(propiedad);
-            JOptionPane.showMessageDialog(null, "Propiedad guardada");
-        }
-        
-    }//GEN-LAST:event_btnGuardarInformacionActionPerformed
-
-    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
-        FrmDescripcionPropiedad btndireccion = new FrmDescripcionPropiedad();
-        btndireccion.setVisible(true);
-        this.setVisible(false);
-
-        
-        for (int i = 0; i < PropiedadDatos.getTamanio(); i++) {
-            System.out.println(PropiedadDatos.get(i) + " ");
-=======
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         if (aux.getImg() != null && aux.getImg1() != null && aux.getImg2() != null && aux.getImg3() != null && aux.getImg4() != null && aux.getImg5() != null) {
             JOptionPane.showMessageDialog(null, "Propiedad guardada");
@@ -372,7 +292,6 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
             this.setVisible(false);
         } else{
             JOptionPane.showMessageDialog(null, "Ingrese todas las imagenes para seguir con el ingreso de la propiedad", "Error", JOptionPane.ERROR_MESSAGE);
->>>>>>> propiedad-contrato_Rojas
         }
 
 //        
