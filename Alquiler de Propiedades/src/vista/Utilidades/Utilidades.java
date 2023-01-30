@@ -139,7 +139,7 @@ public class Utilidades {
      * <b>Permite obtener la fecha actual, y retorna un String con la Fecha formateada </b>
      */
     public static String obtenerFechaActual() {
-        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy");
         String fecha = dateFormat.format(new Date());
         return fecha;
     }
