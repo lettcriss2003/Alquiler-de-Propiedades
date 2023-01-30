@@ -12,13 +12,13 @@ import modelo.Cuenta;
  *
  * @author leomah
  */
-public class Mapeo {
+public class MapeoCuentas {
     private CuentasController cc;
 
-    public Mapeo() {
+    public MapeoCuentas() {
     }
 
-    public Mapeo(CuentasController cc) {
+    public MapeoCuentas(CuentasController cc) {
         this.cc = cc;
     }
 

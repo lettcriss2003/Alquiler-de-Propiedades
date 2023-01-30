@@ -210,6 +210,8 @@ public class CuentaDialog extends javax.swing.JDialog {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

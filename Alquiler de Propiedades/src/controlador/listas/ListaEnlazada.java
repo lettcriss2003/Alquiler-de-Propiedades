@@ -167,6 +167,7 @@ public class ListaEnlazada <E> {
         //return dato;
     }
     
+    /*
     public E eliminarPosicion(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
         if(!estaVacia()){
             E dato = null;
@@ -191,6 +192,41 @@ public class ListaEnlazada <E> {
         }else 
             throw new ListaVaciaException();
     }
+    */
+    
+    public E eliminarPosicion(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
+        if(!estaVacia()){
+            E dato = null;
+            if(pos >= 0 && pos < tamanio){
+                if (pos == 0){
+                    dato = cabecera.getDato();
+                    if (cabecera.getSiguiente() != null) {
+                        cabecera = cabecera.getSiguiente();
+                    }else{
+                        cabecera = null;
+                    }
+                    this.tamanio--;
+                }else{
+                    NodoLista<E> aux = cabecera;
+                    for (int i = 1; i < pos; i++) {
+                        aux = aux.getSiguiente();
+                    } 
+                    dato = aux.getSiguiente().getDato();
+                    if (aux.getSiguiente().getSiguiente() != null) {
+                        NodoLista<E> proximo = aux.getSiguiente();
+                        aux.setSiguiente(proximo.getSiguiente());
+                    }else{
+                        aux.setSiguiente(null);
+                    }
+                    tamanio--;
+                }
+            }else 
+                throw new PosicionNoEncontradaException();
+            return dato;
+        }else 
+            throw new ListaVaciaException();
+    }
+    
 
     public NodoLista<E> getCabecera() {
         return cabecera;
