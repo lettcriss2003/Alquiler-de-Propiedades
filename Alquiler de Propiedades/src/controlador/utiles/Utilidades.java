@@ -3,8 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador.utiles;
+
+import controlador.loginExcepciones.cedulaNovalidaException;
+import controlador.loginExcepciones.contraseniaNoCoincideException;
+import controlador.loginExcepciones.correoNoValidoException;
 import controlador.utiles.modelo.AbecedarioMinusculas;
 import java.lang.reflect.Field;
+import java.util.Base64;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import modelo.TipoPropiedad;
 
@@ -13,6 +20,7 @@ import modelo.TipoPropiedad;
  * @author leomah
  */
 public class Utilidades {
+
     public static Integer[] valorLetrasString(String cadena) {
         char arrayCadena[] = cadena.toLowerCase().toCharArray();
         Integer a[] = new Integer[arrayCadena.length];
@@ -25,7 +33,7 @@ public class Utilidades {
         }
         return a;
     }
-    
+
     public static Integer valorCharacter(Character caracter) {
         Integer valor = null;
         for (AbecedarioMinusculas letra : AbecedarioMinusculas.values()) {
@@ -35,40 +43,45 @@ public class Utilidades {
         }
         return valor;
     }
-    
-    public static String capitalizar(String nombre){
+
+    public static String capitalizar(String nombre) {
         char aux[] = nombre.toCharArray();
         aux[0] = Character.toUpperCase(aux[0]);
         return new String(aux);
     }
-    
-    public static Field obtenerAtributos(Class clazz, String nombre){
+
+    public static Field obtenerAtributos(Class clazz, String nombre) {
         Field atributo = null;
-        for (Field aux:clazz.getDeclaredFields()) {
-            if(nombre.equalsIgnoreCase(aux.getName())){
+        for (Field aux : clazz.getDeclaredFields()) {
+            if (nombre.equalsIgnoreCase(aux.getName())) {
                 atributo = aux;
                 break;
             }
         }
         return atributo;
     }
-    
-    public static Object transformarDato(Field atributo, String dato){
+
+    public static Object transformarDato(Field atributo, String dato) {
         Object transformar = null;
-        if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")){
-            if(atributo.getType().getSimpleName().equals("Integer")){
+        if (atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")) {
+            if (atributo.getType().getSimpleName().equals("Integer")) {
                 transformar = Integer.parseInt(dato);
             }
-        }else if(atributo.getType().isEnum()){
-            Enum enumeracion = Enum.valueOf((Class)atributo.getType(), dato.toString());
+        } else if (atributo.getType().isEnum()) {
+            Enum enumeracion = Enum.valueOf((Class) atributo.getType(), dato.toString());
             transformar = enumeracion;
+<<<<<<< HEAD
         } else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
+=======
+        } else if (atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Boolean")) {
+>>>>>>> inicioSesion-registroUsuario_chimbo
             transformar = Boolean.parseBoolean(dato);
-        } else{
+        } else {
             transformar = dato;
         }
         return transformar;
     }
+<<<<<<< HEAD
     
     
     
@@ -77,34 +90,71 @@ public class Utilidades {
             for(TipoPropiedad tipo: TipoPropiedad.values()){
                  cbx.addItem(tipo);
             }
+=======
+
+    public static void cargarTipoPropiedad(JComboBox cbx) {
+        for (TipoPropiedad tipo : TipoPropiedad.values()) {
+            cbx.addItem(tipo);
+        }
+>>>>>>> inicioSesion-registroUsuario_chimbo
     }
-    
-    public static TipoPropiedad obtenerTipoPropiedad(JComboBox cbx){
+
+    public static TipoPropiedad obtenerTipoPropiedad(JComboBox cbx) {
         return (TipoPropiedad) cbx.getSelectedItem();
     }
-    
-    public static Boolean isObject(Class clazz){
+
+    public static Boolean isObject(Class clazz) {
         return (!isBoolean(clazz) && !isCharacter(clazz) && !isNumber(clazz) && !isString(clazz) && !isPrimitive(clazz));
     }
-    
-    public static Boolean isNumber(Class clazz){
+
+    public static Boolean isNumber(Class clazz) {
         return clazz.getSuperclass().getSimpleName().equalsIgnoreCase("Number");
     }
-    
-    public static Boolean isString(Class clazz){
+
+    public static Boolean isString(Class clazz) {
         return clazz.getSimpleName().equalsIgnoreCase("String");
     }
-    
-    public static Boolean isCharacter(Class clazz){
+
+    public static Boolean isCharacter(Class clazz) {
         return clazz.getSimpleName().equalsIgnoreCase("Character");
     }
-    
-    public static Boolean isBoolean(Class clazz){
+
+    public static Boolean isBoolean(Class clazz) {
         return clazz.getSimpleName().equalsIgnoreCase("Boolean");
     }
-    
-    public static Boolean isPrimitive(Class clazz){
+
+    public static Boolean isPrimitive(Class clazz) {
         return clazz.isPrimitive();
     }
+
+    
+    
+    /**
+     * Permite encriptar constrasenias mediante el esquema de codificacion
+     * Base64
+     *
+     * @param dato
+     * @return
+     */
+    public static String encriptarContrasenia(String dato) {
+        if (dato != null) {
+            return Base64.getEncoder().encodeToString(dato.getBytes());
+        }
+        return "";
+    }
+
+    /**
+     * Permite desencriptar contraseñas mediante el esquema de codificacion
+     * Base64
+     *
+     * @param dato
+     * @return
+     */
+    public static String desencriptarContrasenia(String dato) {
+        return new String(Base64.getDecoder().decode(dato));
+    }
+    
+    
+    
 
 }
