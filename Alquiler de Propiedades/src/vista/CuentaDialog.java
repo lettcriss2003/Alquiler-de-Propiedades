@@ -203,6 +203,7 @@ public class CuentaDialog extends javax.swing.JDialog {
 //            cuentaController.setCuenta(c);
 //            cuentasList.modificarPoscicion(cuentaController, posicion);
             cuentaController.getCuentaslList().modificarPoscicion(c, posicion);
+<<<<<<< HEAD
             try {
                 Utilidades.guardarCuentas(cuentaController);
                 //JOptionPane.showMessageDialog(this, "Recuerde actualizar el listado");
@@ -212,6 +213,16 @@ public class CuentaDialog extends javax.swing.JDialog {
             }
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
+=======
+//            try {
+//                Utilidades.guardarCuentas(cuentaController);
+//                //JOptionPane.showMessageDialog(this, "Recuerde actualizar el listado");
+//                this.dispose();
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

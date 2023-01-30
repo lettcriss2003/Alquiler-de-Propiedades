@@ -24,8 +24,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
               <Component id="jPanel1" min="-2" pref="1011" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+=======
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,7 +39,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
               <EmptySpace min="-2" max="-2" attributes="0"/>
+=======
+              <EmptySpace max="-2" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,17 +51,23 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
+<<<<<<< HEAD
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
             <EtchetBorder/>
           </Border>
         </Property>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
       </Properties>
 
       <Layout>
@@ -62,6 +77,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -122,6 +138,60 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" max="32767" attributes="0"/>
+=======
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel9" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="dateDisponibilidadDesde1" min="-2" pref="213" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="label2" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="label1" min="-2" pref="53" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="dateDisponibilidadDesde" min="-2" pref="213" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="btnVerSiguientePropiedad" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Component id="btnPagar" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -136,6 +206,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                           <Component id="jPanel2" min="-2" pref="297" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -192,6 +263,52 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+=======
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel8" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel9" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel4" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel3" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel7" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel6" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="label1" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateDisponibilidadDesde" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="label2" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateDisponibilidadDesde1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnPagar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVerSiguientePropiedad" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,10 +317,14 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
               <Font name="Segoe UI" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+              <Font name="Segoe UI" size="16" style="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="DATOS DE LA PROPIEDAD"/>
@@ -211,8 +332,15 @@
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel8">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -233,7 +361,11 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                                   <Component id="txtCiudad" alignment="0" pref="339" max="32767" attributes="0"/>
+=======
+                                  <Component id="txtCiudad" alignment="0" pref="241" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                                   <Component id="txtProvincia" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtCallePrincipal" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtCalleSegundaria" alignment="0" max="32767" attributes="0"/>
@@ -287,7 +419,11 @@
                   <Font name="Segoe UI" size="15" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+<<<<<<< HEAD
                   <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+                  <Color blue="0" green="0" red="cc" type="rgb"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="DIRECCION"/>
@@ -320,6 +456,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCiudad">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -329,6 +469,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtProvincia">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -338,6 +482,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCallePrincipal">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -347,6 +495,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCalleSegundaria">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -356,6 +508,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCodigoPostal">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -367,18 +523,32 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel9">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" alignment="0" pref="270" max="32767" attributes="0"/>
+=======
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="0" pref="338" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                           <Component id="jLabel29" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel30" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -391,6 +561,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtHabitaciones" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtNumeroPropiedad" alignment="0" max="32767" attributes="0"/>
+<<<<<<< HEAD
                                   <Component id="txtBanios" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -407,6 +578,13 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+=======
+                                  <Component id="txtBaños" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                   </Group>
               </Group>
             </DimensionLayout>
@@ -432,6 +610,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="txtBanios" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -445,6 +624,11 @@
                           <Component id="txtCamas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+=======
+                          <Component id="txtBaños" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                   </Group>
               </Group>
             </DimensionLayout>
@@ -456,7 +640,11 @@
                   <Font name="Segoe UI" size="15" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+<<<<<<< HEAD
                   <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+                  <Color blue="0" green="0" red="cc" type="rgb"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="TIPO DE PROPIEDAD"/>
@@ -484,6 +672,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNumeroPropiedad">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -493,6 +685,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtHabitaciones">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -500,8 +696,14 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
+<<<<<<< HEAD
             <Component class="javax.swing.JTextField" name="txtBanios">
               <Properties>
+=======
+            <Component class="javax.swing.JTextField" name="txtBa&#xf1;os">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -519,9 +721,12 @@
                 <Component class="javax.swing.JTextArea" name="txtDescripcion">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+<<<<<<< HEAD
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -532,6 +737,7 @@
                 </Component>
               </SubComponents>
             </Container>
+<<<<<<< HEAD
             <Component class="javax.swing.JLabel" name="jLabel36">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Huepedes"/>
@@ -568,12 +774,21 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -591,7 +806,11 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                                   <Component id="txtWifi" alignment="0" pref="235" max="32767" attributes="0"/>
+=======
+                                  <Component id="txtWifi" alignment="0" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                                   <Component id="txtTV" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -644,18 +863,29 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtWifi">
               <Properties>
+<<<<<<< HEAD
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtWifiActionPerformed"/>
               </Events>
+=======
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="focusable" type="boolean" value="false"/>
+              </Properties>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTV">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -669,7 +899,11 @@
                   <Font name="Segoe UI" size="15" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+<<<<<<< HEAD
                   <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+                  <Color blue="0" green="0" red="cc" type="rgb"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="SERVICIOS"/>
@@ -679,8 +913,15 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel7">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -689,6 +930,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel27" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel28" alignment="0" max="32767" attributes="0"/>
@@ -703,6 +945,22 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jLabel26" min="-2" pref="141" max="-2" attributes="0"/>
+=======
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel27" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel28" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtAireAcondicionado" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAguaCaliente" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                   </Group>
               </Group>
             </DimensionLayout>
@@ -730,10 +988,14 @@
             <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                   <Font name="Segoe UI" size="13" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+                  <Font name="Segoe UI" size="13" style="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 </Property>
                 <Property name="text" type="java.lang.String" value="AMBIENTACION"/>
               </Properties>
@@ -750,6 +1012,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtAireAcondicionado">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -759,6 +1025,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtAguaCaliente">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -770,14 +1040,22 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -799,10 +1077,14 @@
                       </Group>
                       <EmptySpace pref="35" max="32767" attributes="0"/>
                   </Group>
+=======
+                  <Component id="lblImagen" alignment="0" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -818,6 +1100,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
+=======
+                  <Component id="lblImagen" alignment="0" pref="346" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
               </Group>
             </DimensionLayout>
           </Layout>
@@ -830,6 +1115,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
+<<<<<<< HEAD
             <Component class="javax.swing.JLabel" name="lblImagen1">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -870,12 +1156,21 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -884,6 +1179,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel23" alignment="0" max="32767" attributes="0"/>
@@ -896,6 +1192,21 @@
                           </Group>
                           <Component id="txtLavadora" alignment="0" pref="214" max="32767" attributes="0"/>
                           <Component id="txtSecadora" alignment="0" max="32767" attributes="0"/>
+=======
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel22" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel23" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtLavadora" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtSecadora" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -925,10 +1236,14 @@
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                   <Font name="Segoe UI" size="13" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+                  <Font name="Segoe UI" size="13" style="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 </Property>
                 <Property name="text" type="java.lang.String" value="SERVICIOS DE LIMPIEZA"/>
               </Properties>
@@ -945,6 +1260,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtLavadora">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -954,6 +1273,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtSecadora">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -965,8 +1288,15 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel6">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -975,6 +1305,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
@@ -1009,6 +1340,42 @@
                       <Component id="jLabel13" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
+=======
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabel19" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jLabel17" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCocina" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtEstacionamiento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPicina" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtJacuzzi" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtParrilla" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtPatio" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtComedor" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtSalaJuegos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtOtros" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -1070,10 +1437,14 @@
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                   <Font name="Segoe UI" size="13" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
+=======
+                  <Font name="Segoe UI" size="13" style="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 </Property>
                 <Property name="text" type="java.lang.String" value="AREAS"/>
               </Properties>
@@ -1125,6 +1496,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCocina">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1134,6 +1509,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtEstacionamiento">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1143,6 +1522,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtPicina">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1152,6 +1535,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtJacuzzi">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1161,6 +1548,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtParrilla">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1170,6 +1561,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtPatio">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1179,6 +1574,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtComedor">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1188,6 +1587,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtSalaJuegos">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -1197,6 +1600,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtOtros">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
@@ -1223,8 +1630,15 @@
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel5">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+=======
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -1234,21 +1648,32 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtFechaF" max="32767" attributes="0"/>
+=======
+                          <Component id="jLabel25" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtFechaF" pref="151" max="32767" attributes="0"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtFechaI" max="32767" attributes="0"/>
                           </Group>
+<<<<<<< HEAD
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel25" min="-2" pref="139" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1277,12 +1702,15 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel25">
               <Properties>
+<<<<<<< HEAD
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
                 </Property>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="text" type="java.lang.String" value="DISPONIBILIDAD"/>
               </Properties>
             </Component>
@@ -1298,6 +1726,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtFechaI">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
@@ -1306,6 +1738,10 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtFechaF">
               <Properties>
+<<<<<<< HEAD
+=======
+                <Property name="editable" type="boolean" value="false"/>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
@@ -1314,6 +1750,14 @@
             </Component>
           </SubComponents>
         </Container>
+<<<<<<< HEAD
+=======
+        <Component class="com.toedter.calendar.JDateChooser" name="dateDisponibilidadDesde">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
         <Component class="java.awt.Label" name="label1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Entrada"/>
@@ -1324,6 +1768,14 @@
             <Property name="text" type="java.lang.String" value="Salida"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+=======
+        <Component class="com.toedter.calendar.JDateChooser" name="dateDisponibilidadDesde1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
         <Component class="javax.swing.JButton" name="btnPagar">
           <Properties>
             <Property name="text" type="java.lang.String" value="PAGAR"/>
@@ -1332,6 +1784,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPagarActionPerformed"/>
           </Events>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="jLabel38">
           <Properties>
             <Property name="text" type="java.lang.String" value="Precio por noche"/>
@@ -1371,6 +1824,8 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
+=======
+>>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
       </SubComponents>
     </Container>
   </SubComponents>

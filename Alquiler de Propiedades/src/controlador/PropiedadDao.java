@@ -8,18 +8,18 @@ import modelo.Propiedad;
 
 /**
  *
- * @author lettc
+ * @author Dennys
  */
-public class PropiedadDao extends AdaptadorDao<Propiedad> {
+public class PropiedadDAO extends AdaptadorDao<Propiedad>{
     private Propiedad propiedad;
-    
-    public PropiedadDao() {
+
+    public PropiedadDAO() {
         super(Propiedad.class);
     }
 
     public Propiedad getPropiedad() {
-        if(propiedad == null){
-            this.propiedad = new Propiedad();
+        if (propiedad==null) {
+            this.propiedad=new Propiedad();
         }
         return propiedad;
     }
@@ -28,19 +28,13 @@ public class PropiedadDao extends AdaptadorDao<Propiedad> {
         this.propiedad = propiedad;
     }
     
-    /**
-     * guardar y obtener la propiedad a partir del id
-     * @return
-     * @throws Exception 
-     */
     public boolean guardar() throws Exception{
         this.propiedad.setId(generarId());
         guardar(this.propiedad);
         return true;
-    
     }
-    
-     private Integer generarId(){
+
+    private Integer generarId(){
         return listar().getTamanio()+1;
     }
     
@@ -57,5 +51,4 @@ public class PropiedadDao extends AdaptadorDao<Propiedad> {
         modificar(this.propiedad, pos);
         return true;
     }
-    
 }

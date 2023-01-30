@@ -1,0 +1,232 @@
+{
+  "cabecera": {
+    "dato": {
+      "id": 1,
+      "metodoPago": "Transferencia",
+      "tipoDePago": "plazos",
+      "estadoPago": true,
+      "mesesPlazo": 5
+    },
+    "siguiente": {
+      "dato": {
+        "id": 1,
+        "metodoPago": "Transferencia",
+        "tipoDePago": "plazos",
+        "estadoPago": true,
+        "mesesPlazo": 7
+      },
+      "siguiente": {
+        "dato": {
+          "id": 3,
+          "metodoPago": "Transferencia",
+          "tipoDePago": "plazos",
+          "estadoPago": true,
+          "mesesPlazo": 1
+        },
+        "siguiente": {
+          "dato": {
+            "id": 5,
+            "metodoPago": "Transferencia",
+            "tipoDePago": "plazos",
+            "estadoPago": true,
+            "mesesPlazo": 1
+          },
+          "siguiente": {
+            "dato": {
+              "id": 5,
+              "metodoPago": "Transferencia",
+              "tipoDePago": "plazos",
+              "estadoPago": true
+            },
+            "siguiente": {
+              "dato": {
+                "id": 6,
+                "metodoPago": "Transferencia",
+                "tipoDePago": "plazos",
+                "estadoPago": true
+              },
+              "siguiente": {
+                "dato": {
+                  "id": 6,
+                  "metodoPago": "Transferencia",
+                  "tipoDePago": "plazos",
+                  "estadoPago": true,
+                  "mesesPlazo": 5
+                },
+                "siguiente": {
+                  "dato": {
+                    "id": 8,
+                    "metodoPago": "Transferencia",
+                    "tipoDePago": "plazos",
+                    "estadoPago": true
+                  },
+                  "siguiente": {
+                    "dato": {
+                      "id": 8,
+                      "metodoPago": "Transferencia",
+                      "tipoDePago": "plazos",
+                      "estadoPago": true,
+                      "mesesPlazo": 5
+                    },
+                    "siguiente": {
+                      "dato": {
+                        "id": 10,
+                        "metodoPago": "TarjetaCredito",
+                        "tipoDePago": "plazos",
+                        "estadoPago": true
+                      },
+                      "siguiente": {
+                        "dato": {
+                          "id": 11,
+                          "metodoPago": "TarjetaDebito",
+                          "tipoDePago": "plazos",
+                          "estadoPago": true
+                        },
+                        "siguiente": {
+                          "dato": {
+                            "id": 11,
+                            "metodoPago": "TarjetaDebito",
+                            "tipoDePago": "plazos",
+                            "estadoPago": true,
+                            "mesesPlazo": 7
+                          },
+                          "siguiente": {
+                            "dato": {
+                              "id": 13,
+                              "metodoPago": "TarjetaDebito",
+                              "tipoDePago": "plazos",
+                              "estadoPago": true
+                            },
+                            "siguiente": {
+                              "dato": {
+                                "id": 14,
+                                "metodoPago": "TarjetaDebito",
+                                "tipoDePago": "plazos",
+                                "estadoPago": true
+                              },
+                              "siguiente": {
+                                "dato": {
+                                  "id": 15,
+                                  "metodoPago": "Transferencia",
+                                  "tipoDePago": "plazos",
+                                  "estadoPago": true
+                                },
+                                "siguiente": {
+                                  "dato": {
+                                    "id": 16,
+                                    "metodoPago": "TarjetaCredito",
+                                    "tipoDePago": "plazos",
+                                    "estadoPago": true,
+                                    "mesesPlazo": 12
+                                  },
+                                  "siguiente": {
+                                    "dato": {
+                                      "id": 17,
+                                      "metodoPago": "TarjetaDebito",
+                                      "tipoDePago": "plazos",
+                                      "estadoPago": true,
+                                      "mesesPlazo": 1
+                                    },
+                                    "siguiente": {
+                                      "dato": {
+                                        "id": 18,
+                                        "metodoPago": "Transferencia",
+                                        "tipoDePago": "plazos",
+                                        "estadoPago": true,
+                                        "mesesPlazo": 7
+                                      },
+                                      "siguiente": {
+                                        "dato": {
+                                          "id": 19,
+                                          "metodoPago": "TarjetaCredito",
+                                          "tipoDePago": "plazos",
+                                          "estadoPago": true,
+                                          "mesesPlazo": 1
+                                        },
+                                        "siguiente": {
+                                          "dato": {
+                                            "id": 20,
+                                            "metodoPago": "Transferencia",
+                                            "tipoDePago": "plazos",
+                                            "estadoPago": true,
+                                            "mesesPlazo": 12
+                                          },
+                                          "siguiente": {
+                                            "dato": {
+                                              "id": 21,
+                                              "metodoPago": "Transferencia",
+                                              "tipoDePago": "plazos",
+                                              "estadoPago": true
+                                            },
+                                            "siguiente": {
+                                              "dato": {
+                                                "id": 22,
+                                                "metodoPago": "Transferencia",
+                                                "tipoDePago": "plazos",
+                                                "estadoPago": true,
+                                                "mesesPlazo": 11
+                                              },
+                                              "siguiente": {
+                                                "dato": {
+                                                  "id": 23,
+                                                  "metodoPago": "Transferencia",
+                                                  "tipoDePago": "plazos",
+                                                  "estadoPago": true
+                                                },
+                                                "siguiente": {
+                                                  "dato": {
+                                                    "id": 24,
+                                                    "metodoPago": "Transferencia",
+                                                    "tipoDePago": "unSoloPago",
+                                                    "estadoPago": true
+                                                  },
+                                                  "siguiente": {
+                                                    "dato": {
+                                                      "id": 25,
+                                                      "metodoPago": "Transferencia",
+                                                      "tipoDePago": "unSoloPago",
+                                                      "estadoPago": true
+                                                    },
+                                                    "siguiente": {
+                                                      "dato": {
+                                                        "id": 26,
+                                                        "metodoPago": "TarjetaDebito",
+                                                        "tipoDePago": "unSoloPago",
+                                                        "estadoPago": true
+                                                      },
+                                                      "siguiente": {
+                                                        "dato": {
+                                                          "id": 27,
+                                                          "metodoPago": "TarjetaDebito",
+                                                          "tipoDePago": "unSoloPago",
+                                                          "estadoPago": true
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tamanio": 27
+}
