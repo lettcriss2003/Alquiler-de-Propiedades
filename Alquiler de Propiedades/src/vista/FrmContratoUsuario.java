@@ -114,7 +114,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             txtBanios.setText((aux.getBanios() != null) ? aux.getBanios() : "No definido");
             txtHuespedes.setText((aux.getHuesped() != null) ? aux.getHuesped() : "No definido");
             txtCamas.setText((aux.getCamas() != null) ? aux.getCamas() : "No definido");
-            txtWifi.setText((aux.getWifi() != null) ? (aux.getWifi() == true)?"no":"si" : "no definido"); //OJOOOO ASI ES CON TODAS SOLO TE CAMBIE UNA PERO TIENES QUE CAMBIARLAS ASI A TODAS
+            txtWifi.setText((aux.getWifi() != null) ? (aux.getWifi() == true)?"no":"si" : "no definido"); 
             txtTV.setText((aux.getTV() != null) ? (aux.getTV()== true)?"no":"si" : "no definido");
             txtLavadora.setText((aux.getLavadora() != null) ?  (aux.getLavadora() == true)?"no":"si"  : "no definido");
             txtSecadora.setText((aux.getSecadora() != null) ?  (aux.getSecadora() == true)?"no":"si" : "no");
@@ -1010,167 +1010,13 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerSiguientePropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSiguientePropiedadActionPerformed
-<<<<<<< HEAD
      
-=======
-        // TODO add your handling code here:
-        if(index > PropiedadDatos.getTamanio()){
-            System.out.println("hola");
-        }else{
-            index++;
-            if(index == PropiedadDatos.getTamanio()){
-                index = 0;
-            }
-            Propiedad SacarDtoPro;
-            for (int i = PropiedadDatos.getTamanio() - 1; i >= 0; i--) {
-
-//                SacarDtoPro = (Propiedad) PropiedadDatos.get(index);
-//
-//                vista.FrmDescripcionPropiedad.lblImagen.setIcon(SacarDtoPro.getImagen());
-//                vista.FrmDescripcionPropiedad.txtCiudad.setText(SacarDtoPro.getCiudad());
-//                vista.FrmDescripcionPropiedad.txtProvincia.setText(SacarDtoPro.getProvincia());
-//                vista.FrmDescripcionPropiedad.txtCallePrincipal.setText(SacarDtoPro.getCalleP());
-//                vista.FrmDescripcionPropiedad.txtCalleSegundaria.setText(SacarDtoPro.getCalleS());
-//                vista.FrmDescripcionPropiedad.txtCodigoPostal.setText(SacarDtoPro.getCodigoP());
-//
-//                vista.FrmDescripcionPropiedad.txtDescripcion.setText(SacarDtoPro.getDescripcion());
-//                vista.FrmDescripcionPropiedad.txtNumeroPropiedad.setText(SacarDtoPro.getNumeroPropiedad());
-//                vista.FrmDescripcionPropiedad.txtHabitaciones.setText(SacarDtoPro.getHabitaciones());
-//                vista.FrmDescripcionPropiedad.txtBaños.setText(SacarDtoPro.getBaños());
-//
-//                vista.FrmDescripcionPropiedad.txtFechaI.setText(SacarDtoPro.getFechaIngreso());
-//                vista.FrmDescripcionPropiedad.txtFechaF.setText(SacarDtoPro.getFechaSalida());
-//
-//                if (SacarDtoPro.Wifi) {
-//                    String Wifi = "Si";
-//                    vista.FrmDescripcionPropiedad.txtWifi.setText(Wifi);
-//                } else {
-//                    String Wifi = "No";
-//                    vista.FrmDescripcionPropiedad.txtWifi.setText(Wifi);
-//                }
-//
-//                if (SacarDtoPro.TV) {
-//                    String TV = "Si";
-//                    vista.FrmDescripcionPropiedad.txtTV.setText(TV);
-//                } else {
-//                    String TV = "No";
-//                    vista.FrmDescripcionPropiedad.txtTV.setText(TV);
-//                }
-//
-//                if (SacarDtoPro.Lavadora) {
-//                    String Lavadora = "Si";
-//                    vista.FrmDescripcionPropiedad.txtLavadora.setText(Lavadora);
-//                } else {
-//                    String Lavadora = "No";
-//                    vista.FrmDescripcionPropiedad.txtLavadora.setText(Lavadora);
-//                }
-//
-//                if (SacarDtoPro.Secadora) {
-//                    String Secadora = "Si";
-//                    vista.FrmDescripcionPropiedad.txtSecadora.setText(Secadora);
-//                } else {
-//                    String Secadora = "No";
-//                    vista.FrmDescripcionPropiedad.txtSecadora.setText(Secadora);
-//                }
-//
-//                if (SacarDtoPro.AireAcondicionado) {
-//                    String AireAcondicionado = "Si";
-//                    vista.FrmDescripcionPropiedad.txtAireAcondicionado.setText(AireAcondicionado);
-//                } else {
-//                    String AireAcondicionado = "No";
-//                    vista.FrmDescripcionPropiedad.txtAireAcondicionado.setText(AireAcondicionado);
-//                }
-//
-//                if (SacarDtoPro.AguaCaliente) {
-//                    String AguaCaliente = "Si";
-//                    vista.FrmDescripcionPropiedad.txtAguaCaliente.setText(AguaCaliente);
-//                } else {
-//                    String AguaCaliente = "No";
-//                    vista.FrmDescripcionPropiedad.txtAguaCaliente.setText(AguaCaliente);
-//                }
-//
-//                if (SacarDtoPro.Cocina) {
-//                    String Cocina = "Si";
-//                    vista.FrmDescripcionPropiedad.txtCocina.setText(Cocina);
-//                } else {
-//                    String Cocina = "No";
-//                    vista.FrmDescripcionPropiedad.txtCocina.setText(Cocina);
-//                }
-//
-//                if (SacarDtoPro.Estacionamiento) {
-//                    String Estacionamiento = "Si";
-//                    vista.FrmDescripcionPropiedad.txtEstacionamiento.setText(Estacionamiento);
-//                } else {
-//                    String Estacionamiento = "No";
-//                    vista.FrmDescripcionPropiedad.txtEstacionamiento.setText(Estacionamiento);
-//                }
-//
-//                if (SacarDtoPro.Picina) {
-//                    String Picina = "Si";
-//                    vista.FrmDescripcionPropiedad.txtPicina.setText(Picina);
-//                } else {
-//                    String Picina = "No";
-//                    vista.FrmDescripcionPropiedad.txtPicina.setText(Picina);
-//                }
-//
-//                if (SacarDtoPro.Jacuzzi) {
-//                    String Jacuzzi = "Si";
-//                    vista.FrmDescripcionPropiedad.txtJacuzzi.setText(Jacuzzi);
-//                } else {
-//                    String Jacuzzi = "No";
-//                    vista.FrmDescripcionPropiedad.txtJacuzzi.setText(Jacuzzi);
-//                }
-//
-//                if (SacarDtoPro.Parrilla) {
-//                    String Parrilla = "Si";
-//                    vista.FrmDescripcionPropiedad.txtParrilla.setText(Parrilla);
-//                } else {
-//                    String Parrilla = "No";
-//                    vista.FrmDescripcionPropiedad.txtParrilla.setText(Parrilla);
-//                }
-//
-//                if (SacarDtoPro.Patio) {
-//                    String Patio = "Si";
-//                    vista.FrmDescripcionPropiedad.txtPatio.setText(Patio);
-//                } else {
-//                    String Patio = "No";
-//                    vista.FrmDescripcionPropiedad.txtPatio.setText(Patio);
-//                }
-//
-//                if (SacarDtoPro.Comedor) {
-//                    String Comedor = "Si";
-//                    vista.FrmDescripcionPropiedad.txtComedor.setText(Comedor);
-//                } else {
-//                    String Comedor = "No";
-//                    vista.FrmDescripcionPropiedad.txtComedor.setText(Comedor);
-//                }
-//
-//                if (SacarDtoPro.SalaJuegos) {
-//                    String SalaJuegos = "Si";
-//                    vista.FrmDescripcionPropiedad.txtSalaJuegos.setText(SalaJuegos);
-//                } else {
-//                    String SalaJuegos = "No";
-//                    vista.FrmDescripcionPropiedad.txtSalaJuegos.setText(SalaJuegos);
-//                }
-//                if (SacarDtoPro.Otros) {
-//                    String Otros = vista.Frmservicio.txtOtros.getText();
-//                    vista.FrmDescripcionPropiedad.txtOtros.setText(Otros);
-//                } else {
-//                    String Otros = "No";
-//                    vista.FrmDescripcionPropiedad.txtOtros.setText(Otros);
-//                }
-
-            }
-        }
-
-        //        for (int i = 0; i < PropiedadDatos.size(); i++) {
-            //            System.out.println(PropiedadDatos.get(i) + " ");
-            //        }
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
     }//GEN-LAST:event_btnVerSiguientePropiedadActionPerformed
        
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        // TODO add your handling code here:
+        FrmSeleccionTipoDePago pagar = new FrmSeleccionTipoDePago();
+        pagar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void txtWifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWifiActionPerformed

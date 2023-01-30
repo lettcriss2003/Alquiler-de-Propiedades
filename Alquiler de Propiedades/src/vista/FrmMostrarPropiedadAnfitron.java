@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.PropiedadDAO;
+import controlador.PropiedadDao;
 import modelo.Propiedad;
 import vista.Utilidades.Utilidades;
 
@@ -14,7 +14,7 @@ import vista.Utilidades.Utilidades;
  */
 public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
 
-    PropiedadDAO propiedadDao = new PropiedadDAO();
+    PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 1;
 

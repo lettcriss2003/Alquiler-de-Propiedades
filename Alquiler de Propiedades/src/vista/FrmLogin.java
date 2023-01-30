@@ -273,7 +273,7 @@ public class FrmLogin extends javax.swing.JFrame {
         try {
             iniciarSesion();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "valio madres", "Error", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

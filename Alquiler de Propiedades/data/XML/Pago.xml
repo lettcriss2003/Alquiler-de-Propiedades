@@ -202,6 +202,22 @@
                     <metodoPago>TarjetaDebito</metodoPago>
                     <tipoDePago>unSoloPago</tipoDePago>
                 </pago>
+                <siguiente>
+                    <pago>
+                        <estadoPago>true</estadoPago>
+                        <id>28</id>
+                        <metodoPago>Transferencia</metodoPago>
+                        <tipoDePago>plazos</tipoDePago>
+                    </pago>
+                    <siguiente>
+                        <pago>
+                            <estadoPago>true</estadoPago>
+                            <id>29</id>
+                            <metodoPago>Transferencia</metodoPago>
+                            <tipoDePago>plazos</tipoDePago>
+                        </pago>
+                    </siguiente>
+                </siguiente>
             </siguiente>
         </siguiente>
     </siguiente>
@@ -229,5 +245,5 @@
             </siguiente>
         </siguiente>
     </cabecera>
-    <tamanio>27</tamanio>
+    <tamanio>29</tamanio>
 </listaEnlazada>

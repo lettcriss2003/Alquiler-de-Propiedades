@@ -1,8 +1,9 @@
 package controlador.listas;
 
+import java.lang.reflect.Array;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
-<<<<<<< HEAD
+import controlador.listas.NodoLista;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
@@ -11,11 +12,6 @@ import java.util.function.Consumer;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-=======
-import java.lang.reflect.Array;
-import javax.xml.bind.annotation.XmlRootElement;
-
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
 @XmlRootElement
 public class ListaEnlazada <E> {
     private NodoLista<E> cabecera;
@@ -58,12 +54,8 @@ public class ListaEnlazada <E> {
         
         tamanio++;
     }
-<<<<<<< HEAD
    
 
-=======
-    
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
     public void imprimir(){
         System.out.println("Lista Enlazada");
         NodoLista<E> aux = cabecera;
@@ -101,11 +93,8 @@ public class ListaEnlazada <E> {
                 nodo.setSiguiente(siguiente);
                 tamanio++;
             }
-<<<<<<< HEAD
         //}else if(pos == tamanio){
             //insertar(dato);
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
         }else {
             throw new PosicionNoEncontradaException();
         }
@@ -113,28 +102,21 @@ public class ListaEnlazada <E> {
     
     
     public void modificarPoscicion(E dato, Integer pos){
-        E[] arreglo=this.toArray();
-        if (pos<=tamanio) {
-            for (int i = 0; i < arreglo.length; i++) {
-                if (i==pos) {
-                    arreglo[i]=dato;
+        if(pos >= 0 && pos < tamanio){
+            NodoLista aux = this.cabecera;
+            for(int i = 0; i < tamanio; i++){
+                if(i == pos){
+                    aux.setDato(dato);
                 }
+                aux = aux.getSiguiente();
             }
         }
-<<<<<<< HEAD
 //        else if (pos == tamanio){
 //            
 //        }else {
 //            
         //}
        
-=======
-        else{
-            System.out.println("OUT OF SIZE");
-        }
-        this.toList(arreglo);
-  
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
     }
     
     public E obtener(Integer pos) throws ListaVaciaException, PosicionNoEncontradaException{
@@ -156,7 +138,8 @@ public class ListaEnlazada <E> {
             return dato;
         }else 
             throw new ListaVaciaException();
-               
+                
+        //return dato;
     }
     
     /**
@@ -233,16 +216,12 @@ public class ListaEnlazada <E> {
     public void setTamanio(Integer tamanio) {
         this.tamanio = tamanio;
     }
-<<<<<<< HEAD
  
 
     /**
      * convierte la lista en un arreglo en la pocicion indicada
      * @return 
      */
-=======
-    
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
     public E[] toArray(){
         //Class<E> clazz=(Class<E>) ;
         E[] matriz =null;
@@ -257,14 +236,11 @@ public class ListaEnlazada <E> {
         return matriz;
     }
     
-<<<<<<< HEAD
     /**
      * Convierte a lista simple
      * @param array
      * @return 
      */
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
     public ListaEnlazada<E> toList(E[] array){
         this.vaciar();
         for (int i = 0; i < array.length; i++) {
@@ -276,8 +252,5 @@ public class ListaEnlazada <E> {
         this.cabecera=null;
         setTamanio(0);
     }
-<<<<<<< HEAD
     
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
 }

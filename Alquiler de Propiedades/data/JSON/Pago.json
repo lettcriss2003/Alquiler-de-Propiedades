@@ -200,6 +200,22 @@
                                                           "metodoPago": "TarjetaDebito",
                                                           "tipoDePago": "unSoloPago",
                                                           "estadoPago": true
+                                                        },
+                                                        "siguiente": {
+                                                          "dato": {
+                                                            "id": 28,
+                                                            "metodoPago": "Transferencia",
+                                                            "tipoDePago": "plazos",
+                                                            "estadoPago": true
+                                                          },
+                                                          "siguiente": {
+                                                            "dato": {
+                                                              "id": 29,
+                                                              "metodoPago": "Transferencia",
+                                                              "tipoDePago": "plazos",
+                                                              "estadoPago": true
+                                                            }
+                                                          }
                                                         }
                                                       }
                                                     }
@@ -228,5 +244,5 @@
       }
     }
   },
-  "tamanio": 27
+  "tamanio": 29
 }

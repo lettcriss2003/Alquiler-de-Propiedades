@@ -34,14 +34,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel2">
-<<<<<<< HEAD
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
 
       <Layout>
         <DimensionLayout dim="0">
@@ -105,12 +102,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-<<<<<<< HEAD
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="0" type="rgb"/>
             </Property>
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Servicios"/>
           </Properties>
@@ -141,15 +135,8 @@
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
-<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-=======
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -184,12 +171,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-<<<<<<< HEAD
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
                 </Property>
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="CONECTIVIDAD"/>
               </Properties>
@@ -217,15 +201,8 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
-<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-=======
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -260,12 +237,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-<<<<<<< HEAD
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
                 </Property>
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="LIMPIEZA"/>
               </Properties>
@@ -290,15 +264,8 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
           <Properties>
-<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-=======
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -342,12 +309,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-<<<<<<< HEAD
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
                 </Property>
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="AMBIENTACION"/>
               </Properties>
@@ -391,15 +355,8 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel6">
           <Properties>
-<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-=======
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
             </Property>
           </Properties>
 
@@ -462,12 +419,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-<<<<<<< HEAD
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="0" type="rgb"/>
                 </Property>
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="ESPACIOS"/>
               </Properties>

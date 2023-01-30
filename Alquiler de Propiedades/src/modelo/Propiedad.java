@@ -47,7 +47,6 @@ public class Propiedad {
     private String Precio;
     private String FechaIngreso;
     private String FechaSalida;
-<<<<<<< HEAD
     
     private String Img;
     private String Img1;
@@ -55,6 +54,10 @@ public class Propiedad {
     private String Img3;
     private String Img4;
     private String Img5;
+    
+    private String ImgPropiedad;
+    
+    private Contrato contrato;
 
     public Propiedad() {
     }
@@ -109,14 +112,6 @@ public class Propiedad {
 
     
     
-=======
-    private Contrato contrato;
-
-    private String ImgPropiedad;
-    
-    public Propiedad() {
-    }
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
 
     public Integer getId() {
         return id;
@@ -158,14 +153,6 @@ public class Propiedad {
         this.CalleS = CalleS;
     }
 
-    public String getImgPropiedad() {
-        return ImgPropiedad;
-    }
-
-    public void setImgPropiedad(String ImgPropiedad) {
-        this.ImgPropiedad = ImgPropiedad;
-    }
-    
     public String getCodigoP() {
         return CodigoP;
     }
@@ -372,7 +359,6 @@ public class Propiedad {
 
     public void setOtros(Boolean Otros) {
         this.Otros = Otros;
-<<<<<<< HEAD
     }
 
     public String getImg() {
@@ -421,13 +407,28 @@ public class Propiedad {
 
     public void setImg5(String Img5) {
         this.Img5 = Img5;
-=======
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
     }
+
+    public String getImgPropiedad() {
+        return ImgPropiedad;
+    }
+
+    public void setImgPropiedad(String ImgPropiedad) {
+        this.ImgPropiedad = ImgPropiedad;
+    }
+
+    public Contrato getContrato() {
+        return contrato;
+    }
+
+    public void setContrato(Contrato contrato) {
+        this.contrato = contrato;
+    }
+    
+    
 
     @Override
     public String toString() {
-<<<<<<< HEAD
         return "Propiedad{" + "id=" + id + ", Ciudad=" + Ciudad + ", Provincia=" + Provincia + ", CalleP="
                 + CalleP + ", CalleS=" + CalleS + ", CodigoP=" + CodigoP + ", Wifi=" + Wifi + ", TV=" + TV 
                 + ", Lavadora=" + Lavadora + ", Secadora=" + Secadora + ", Estacionamiento=" + Estacionamiento + ", Cocina=" 
@@ -440,8 +441,4 @@ public class Propiedad {
                 + ", Img4=" + Img4 + ", Img5=" + Img5 + '}';
     }
  
-=======
-        return "Propiedad{" + "id=" + id + ", Ciudad=" + Ciudad + ", Provincia=" + Provincia + ", CalleP=" + CalleP + ", CalleS=" + CalleS + ", CodigoP=" + CodigoP + ", Wifi=" + Wifi + ", TV=" + TV + ", Lavadora=" + Lavadora + ", Secadora=" + Secadora + ", Estacionamiento=" + Estacionamiento + ", Cocina=" + Cocina + ", Picina=" + Picina + ", Jacuzzi=" + Jacuzzi + ", Parrilla=" + Parrilla + ", Patio=" + Patio + ", Comedor=" + Comedor + ", SalaJuegos=" + SalaJuegos + ", AireAcondicionado=" + AireAcondicionado + ", AguaCaliente=" + AguaCaliente + ", Otros=" + Otros + ", TipoPropiedad=" + TipoPropiedad + ", Descripcion=" + Descripcion + ", NumeroPropiedad=" + NumeroPropiedad + ", Huesped=" + Huesped + ", Habitaciones=" + Habitaciones + ", Camas=" + Camas + ", Ba\u00f1os=" + Baños + ", Precio=" + Precio + ", FechaIngreso=" + FechaIngreso + ", FechaSalida=" + FechaSalida + ", ImgPropiedad=" + ImgPropiedad + '}';
-    }
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
 }

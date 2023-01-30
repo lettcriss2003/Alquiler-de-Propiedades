@@ -43,10 +43,8 @@ public class Utilidades {
         }
         return valor;
     }
-<<<<<<< HEAD
 
-    public static String capitalizar(String nombre) {
-=======
+
     
     /**
      * <b>Este método permite capitalizar un dato por medio de su nombre </b>
@@ -55,7 +53,6 @@ public class Utilidades {
      * para poder trabajar más adecuadamente con las clases y sus atributos
      */
     public static String capitalizar(String nombre){
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
         char aux[] = nombre.toCharArray();
         aux[0] = Character.toUpperCase(aux[0]);
         return new String(aux);
@@ -71,10 +68,7 @@ public class Utilidades {
         }
         return atributo;
     }
-<<<<<<< HEAD
 
-   public static Object transformarDato(Field atributo, String dato){
-=======
     /**
      * <b>Este método permite transformar un dato mediante el atributo y el dato </b>
      * <b>Información:</b> En terminos generales obtiene de las clases el tipo de dato
@@ -82,7 +76,7 @@ public class Utilidades {
      * que pertenezca el mismo
      */
     public static Object transformarDato(Field atributo, String dato){
->>>>>>> pagosPropiedades-gestionPropiedadesAnfitrion-Pucha
+
         Object transformar = null;
         if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")){
             if(atributo.getType().getSimpleName().equals("Integer")){
