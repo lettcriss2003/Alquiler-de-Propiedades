@@ -4,51 +4,90 @@
  */
 package vista;
 
+import controlador.PropiedadDao;
 import controlador.listas.ListaEnlazada;
-import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import modelo.Propiedad;
+import vista.Utilidades.Utilidades;
 
 /**
  *
  * @author lettc
  */
 public class FrmPropiedadImagen extends javax.swing.JFrame {
-    
-    public static ListaEnlazada PropiedadDatos = new ListaEnlazada<>();
+
+    PropiedadDao propiedadDao = new PropiedadDao();
+    Propiedad aux = new Propiedad();
+    Integer iterador = 0;
+    public static ListaEnlazada<Propiedad> PropiedadDatos = new ListaEnlazada<>();
 
     /**
      * Creates new form FrmPropiedad
      */
     public FrmPropiedadImagen() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
         btnSiguiente.requestFocus();
     }
-    
-//    private File archivo;
-//    private Integer iterador=0;
-//    
-//    public void insertarImg(JLabel label){
-//        int resultado;
-//        FrmAgregarImagenes buscarImagen = new FrmAgregarImagenes();
-//        FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG, PNG Y GIF", "jpg", "png", "gif");
-//        FrmAgregarImagenes.JFCImg.setFileFilter(formato);
-//        resultado = buscarImagen.JFCImg.showOpenDialog(this);
-//        if (JFileChooser.APPROVE_OPTION == resultado) {
-//            archivo = buscarImagen.JFCImg.getSelectedFile();
-//            //jLDireccion.setText(archivo.getAbsolutePath());
-//            try {
-//                ImageIcon ImgIcon = new ImageIcon(archivo.toString());
-//                Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-//                label.setIcon(icono);
-//            } catch (Exception e) {
-//            }
-//        }
-//    }
+
+    public FrmPropiedadImagen(Integer id) {
+        aux = propiedadDao.obtenerPropiedad(id);
+        initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        setLocationRelativeTo(null);
+        btnSiguiente.requestFocus();
+    }
+
+    /**
+     * Carga las imagenes en los label
+     */
+    private void CargarImagen() {
+
+        JFileChooser archivo = new JFileChooser();
+        int seleccion = archivo.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File fichero = archivo.getSelectedFile();
+            switch (iterador) {
+                case 0:
+                    aux.setImg(fichero.getAbsolutePath());
+                    System.out.println(aux.getImg());
+                    Utilidades.DefinirImagenLabel(lblImagenIcon, aux.getImg());
+                    break;
+                case 1:
+                    aux.setImg1(fichero.getAbsolutePath());
+                    Utilidades.DefinirImagenLabel(lblImagenIcon1, aux.getImg1());
+                    break;
+                case 2:
+                    aux.setImg2(fichero.getAbsolutePath());
+                    Utilidades.DefinirImagenLabel(lblImagenIcon2, aux.getImg2());
+                    break;
+                case 3:
+                    aux.setImg3(fichero.getAbsolutePath());
+                    Utilidades.DefinirImagenLabel(lblImagenIcon3, aux.getImg3());
+                    break;
+                case 4:
+                    aux.setImg4(fichero.getAbsolutePath());
+                    Utilidades.DefinirImagenLabel(lblImagenIcon4, aux.getImg4());
+                    break;
+                case 5:
+                    aux.setImg5(fichero.getAbsolutePath());
+                    Utilidades.DefinirImagenLabel(lblImagenIcon5, aux.getImg5());
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            fichero = null;
+        }
+
+        iterador++;
+    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,48 +97,84 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblAgregarImagen = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
-        btnSiguiente = new javax.swing.JButton();
-        btnAgregarImg = new javax.swing.JButton();
-        btnRegresar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnGuardarInformacion = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lblImagenIcon1 = new javax.swing.JLabel();
+        lblImagenIcon2 = new javax.swing.JLabel();
+        lblImagenIcon3 = new javax.swing.JLabel();
+        lblImagenIcon = new javax.swing.JLabel();
+        lblImagenIcon5 = new javax.swing.JLabel();
+        lblImagenIcon4 = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnAgregarImg = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblAgregarImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("AGREGAR IMAGEN DE PROPIEDAD");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblImagenIcon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblImagenIcon2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblImagenIcon3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblImagenIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblImagenIcon5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblImagenIcon4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAgregarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblImagenIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImagenIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImagenIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblImagenIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImagenIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImagenIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAgregarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImagenIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblImagenIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblImagenIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblImagenIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblImagenIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblImagenIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnSiguiente.setText("SIGUIENTE");
-        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiguienteActionPerformed(evt);
-            }
-        });
-
-        btnAgregarImg.setText("AGREGAR IMAGEN");
-        btnAgregarImg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarImgActionPerformed(evt);
             }
         });
 
@@ -110,16 +185,60 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("AGREGAR IMAGEN DE PROPIEDAD");
-
-        btnGuardarInformacion.setText("GUARDAR INFORMACION");
-        btnGuardarInformacion.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarImg.setText("AGREGAR IMAGEN");
+        btnAgregarImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarInformacionActionPerformed(evt);
+                btnAgregarImgActionPerformed(evt);
             }
         });
+
+        btnSiguiente.setText("SIGUIENTE");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregarImg)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSiguiente)
+                        .addGap(12, 12, 12))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnRegresar)
+                    .addComponent(btnAgregarImg)
+                    .addComponent(btnSiguiente))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,53 +246,28 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregarImg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSiguiente))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuardarInformacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 495, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardarInformacion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSiguiente)
-                    .addComponent(btnAgregarImg)
-                    .addComponent(btnRegresar))
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnAgregarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarImgActionPerformed
 
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showOpenDialog(null);
-        File file = fileChooser.getSelectedFile();
+        CargarImagen();
+        try {
+            propiedadDao.modificar(aux, aux.getId());
 
-        ImageIcon imagen = new ImageIcon(file.getAbsolutePath());
-        Image img = imagen.getImage();
-        Image newimg = img.getScaledInstance(lblAgregarImagen.getWidth(), lblAgregarImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH);
-        imagen = new ImageIcon(newimg);
-        lblAgregarImagen.setIcon(imagen);
-        
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnAgregarImgActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -184,73 +278,27 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        // TODO Anadir your handling code here:
         FrmIngresoPropiedad direccion = new FrmIngresoPropiedad();
         direccion.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnGuardarInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarInformacionActionPerformed
-        // TODO add your handling code here:
-        if (lblAgregarImagen.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, "Sin imagen");
-        } 
-        else {
-            String Ciudad = vista.FrmIngresoDireccion.txtProcincia.getText();
-            String provincia = vista.FrmIngresoDireccion.txtCiudad.getText();
-            String CalleP = vista.FrmIngresoDireccion.txtCallePrincipal.getText();
-            String CalleS = vista.FrmIngresoDireccion.txtCalleSecundaria.getText();
-            String CodigoP = vista.FrmIngresoDireccion.txtCodigoPostal.getText();
-
-            boolean Wifi = vista.Frmservicio.checkWifi.isSelected();
-            boolean TV = vista.Frmservicio.checkTV.isSelected();
-            boolean Lavadora = vista.Frmservicio.checkLavadora.isSelected();
-            boolean Secadora = vista.Frmservicio.checkSecadora.isSelected();
-            boolean Estacionamiento = vista.Frmservicio.checkEstacionamiento.isSelected();
-            boolean Cocina = vista.Frmservicio.checkCocina.isSelected();
-            boolean Picina = vista.Frmservicio.checkPicina.isSelected();
-            boolean Jacuzzi = vista.Frmservicio.checkJacuzzi.isSelected();
-            boolean Parrilla = vista.Frmservicio.checkParrilla.isSelected();
-            boolean Patio = vista.Frmservicio.checkPatio.isSelected();
-            boolean Comedor = vista.Frmservicio.checkComedor.isSelected();
-            boolean SalaJuegos = vista.Frmservicio.checkSalaJuegos.isSelected();
-            boolean AireAcondicionado = vista.Frmservicio.checkAireAcondicionado.isSelected();
-            boolean AguaCaliente = vista.Frmservicio.checkAguaCaliente.isSelected();
-            boolean Otros = vista.Frmservicio.checkOtros.isSelected();
-
-            String TipoPropiedad = vista.FrmIngresoPropiedad.cbxTipoPropiedad.getSelectedItem().toString();
-            String Descripcion = vista.FrmIngresoPropiedad.txtDescripcion.getText();
-            String NumeroPropiedad = vista.FrmIngresoPropiedad.txtNumeroPropiedad.getText();
-            String Huesped = vista.FrmIngresoPropiedad.spinHuespedes.getValue().toString();
-            String Habitaciones = vista.FrmIngresoPropiedad.spinHabitaciones.getValue().toString();
-            String Camas = vista.FrmIngresoPropiedad.spinCamas.getValue().toString();
-            String Baños = vista.FrmIngresoPropiedad.spinBanios.getValue().toString();
-            String Precio = vista.FrmIngresoPropiedad.txtPrecio.getText();
-            String FechaIngreso = vista.FrmIngresoPropiedad.dateDisponibilidadDesde.getDate().toString();
-            String FechaSalida = vista.FrmIngresoPropiedad.dateDisponibilidadHasta.getDate().toString();
-
-            ImageIcon imagen = (ImageIcon) lblAgregarImagen.getIcon();
-
-            Propiedad propiedad = new Propiedad(Ciudad, provincia, CalleP, CalleS, CodigoP,
-                    Wifi, TV, Lavadora, Secadora, Estacionamiento, Cocina, Picina, Jacuzzi, Parrilla, Patio, Comedor, SalaJuegos, AireAcondicionado, AguaCaliente, Otros,
-                    TipoPropiedad, Descripcion, NumeroPropiedad, Huesped, Habitaciones, Camas, Baños, Precio, FechaIngreso, FechaSalida, imagen);
-            PropiedadDatos.añadir(propiedad);
-            JOptionPane.showMessageDialog(null, "Propiedad guardada");
-        }
-        
-    }//GEN-LAST:event_btnGuardarInformacionActionPerformed
-
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
-        FrmDescripcionPropiedad btndireccion = new FrmDescripcionPropiedad();
-        btndireccion.setVisible(true);
-        this.setVisible(false);
-
-        
-        for (int i = 0; i < PropiedadDatos.getTamanio(); i++) {
-            System.out.println(PropiedadDatos.get(i) + " ");
+        if (aux.getImg() != null && aux.getImg1() != null && aux.getImg2() != null && aux.getImg3() != null && aux.getImg4() != null && aux.getImg5() != null) {
+            JOptionPane.showMessageDialog(null, "Propiedad guardada");
+            FrmDescripcionPropiedad siguiente = new FrmDescripcionPropiedad();
+            siguiente.setVisible(true);
+            this.setVisible(false);
+        } else{
+            JOptionPane.showMessageDialog(null, "Ingrese todas las imagenes para seguir con el ingreso de la propiedad", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
+//        
+//        for (int i = 0; i < PropiedadDatos.getTamanio(); i++) {
+//            System.out.println(PropiedadDatos.get(i) + " ");
+//        }
+//        
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     /**
@@ -292,11 +340,16 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarImg;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardarInformacion;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAgregarImagen;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblImagenIcon;
+    private javax.swing.JLabel lblImagenIcon1;
+    private javax.swing.JLabel lblImagenIcon2;
+    private javax.swing.JLabel lblImagenIcon3;
+    private javax.swing.JLabel lblImagenIcon4;
+    private javax.swing.JLabel lblImagenIcon5;
     // End of variables declaration//GEN-END:variables
 }

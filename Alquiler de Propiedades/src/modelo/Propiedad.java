@@ -5,33 +5,37 @@
 package modelo;
 
 import javax.swing.ImageIcon;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lettc
  */
+
+@XmlRootElement
 public class Propiedad {
-        private String Ciudad;
+    private Integer id;
+    private String Ciudad;
     private String Provincia;
     private String CalleP;
     private String CalleS;
     private String CodigoP;
     
-    public boolean Wifi;
-    public boolean TV;
-    public boolean Lavadora;
-    public boolean Secadora;
-    public boolean Estacionamiento;
-    public boolean Cocina;
-    public boolean Picina;
-    public boolean Jacuzzi;
-    public boolean Parrilla;
-    public boolean Patio;
-    public boolean Comedor;
-    public boolean SalaJuegos;
-    public boolean AireAcondicionado;
-    public boolean AguaCaliente;
-    public boolean Otros;
+    private Boolean Wifi;
+    private Boolean TV;
+    private Boolean Lavadora;
+    private Boolean Secadora;
+    private Boolean Estacionamiento;
+    private Boolean Cocina;
+    private Boolean Picina;
+    private Boolean Jacuzzi;
+    private Boolean Parrilla;
+    private Boolean Patio;
+    private Boolean Comedor;
+    private Boolean SalaJuegos;
+    private Boolean AireAcondicionado;
+    private Boolean AguaCaliente;
+    private Boolean Otros;
     
     private String TipoPropiedad;
     private String Descripcion;
@@ -39,53 +43,82 @@ public class Propiedad {
     private String Huesped;
     private String Habitaciones;
     private String Camas;
-    private String Baños;
+    private String Banios;
     private String Precio;
     private String FechaIngreso;
     private String FechaSalida;
-    private ImageIcon Imagen;
     
+    private String Img;
+    private String Img1;
+    private String Img2;
+    private String Img3;
+    private String Img4;
+    private String Img5;
     
+    private String ImgPropiedad;
     
-    public Propiedad(String Ciudad,String Provincia,String CalleP,String CalleS, String CodigoP,
-            boolean Wifi,boolean TV,boolean Lavadora,boolean Secadora,boolean Estacionamiento,boolean Cocina,boolean Picina,boolean Jacuzzi,boolean Parrilla,boolean Patio,boolean Comedor,boolean SalaJuegos,boolean AireAcondicionado,boolean AguaCaliente,boolean Otros,
-            String TipoPropiedad,String Descripcion,String NumeroPropiedad,String Huesped,String Habitaciones,String Camas, String Baños,String Precio,String FechaIngreso,String FechaSalida,
-            ImageIcon Imagen){
-        
+    private Contrato contrato;
+
+    public Propiedad() {
+    }
+    
+    public Propiedad(String Ciudad1, String provincia, String CalleP1, String CalleS1, String CodigoP1, boolean Wifi1, boolean TV1, boolean Lavadora1, boolean Secadora1, boolean Estacionamiento1, boolean Cocina1, boolean Picina1, boolean Jacuzzi1, boolean Parrilla1, boolean Patio1, boolean Comedor1, boolean SalaJuegos1, boolean AireAcondicionado1, boolean AguaCaliente1, boolean Otros1, String TipoPropiedad1, String Descripcion1, String NumeroPropiedad1, String Huesped1, String Habitaciones1, String Camas1, String Banios1, String Precio1, String FechaIngreso1, String FechaSalida1, ImageIcon imagen, ImageIcon imagen1, ImageIcon imagen2, ImageIcon imagen3, ImageIcon imagen4, ImageIcon imagen5) {
+    }
+
+    public Propiedad(Integer id, String Ciudad, String Provincia, String CalleP, String CalleS, String CodigoP, 
+            Boolean Wifi, Boolean TV, Boolean Lavadora, Boolean Secadora, Boolean Estacionamiento, Boolean Cocina, 
+            Boolean Picina, Boolean Jacuzzi, Boolean Parrilla, Boolean Patio, Boolean Comedor, Boolean SalaJuegos, 
+            Boolean AireAcondicionado, Boolean AguaCaliente, Boolean Otros, String TipoPropiedad, String Descripcion, 
+            String NumeroPropiedad, String Huesped, String Habitaciones, String Camas, String Banios, String Precio, 
+            String FechaIngreso, String FechaSalida, String Img, String Img1, String Img2, String Img3, String Img4, String Img5) {
+        this.id = id;
         this.Ciudad = Ciudad;
         this.Provincia = Provincia;
         this.CalleP = CalleP;
-        this.CalleS=CalleS;
-        this.CodigoP=CodigoP;
-        
-        this.Wifi=Wifi;
-        this.TV=TV;
-        this.Lavadora=Lavadora;
-        this.Secadora=Secadora;
-        this.Estacionamiento=Estacionamiento;
-        this.Cocina=Cocina;
-        this.Picina=Picina;
-        this.Jacuzzi=Jacuzzi;
-        this.Parrilla=Parrilla;
-        this.Patio=Patio;
-        this.Comedor=Comedor;
-        this.SalaJuegos=SalaJuegos;
-        this.AireAcondicionado=AireAcondicionado;
-        this.AguaCaliente=AguaCaliente;
-        this.Otros=Otros;
-        
-        this.TipoPropiedad=TipoPropiedad;
-        this.Descripcion=Descripcion;
-        this.NumeroPropiedad=NumeroPropiedad;
-        this.Huesped=Huesped;
-        this.Habitaciones=Habitaciones;
-        this.Camas=Camas;
-        this.Baños=Baños;
-        this.Precio=Precio;
-        this.FechaIngreso=FechaIngreso;
-        this.FechaSalida=FechaSalida;
-        
-        this.Imagen=Imagen;
+        this.CalleS = CalleS;
+        this.CodigoP = CodigoP;
+        this.Wifi = Wifi;
+        this.TV = TV;
+        this.Lavadora = Lavadora;
+        this.Secadora = Secadora;
+        this.Estacionamiento = Estacionamiento;
+        this.Cocina = Cocina;
+        this.Picina = Picina;
+        this.Jacuzzi = Jacuzzi;
+        this.Parrilla = Parrilla;
+        this.Patio = Patio;
+        this.Comedor = Comedor;
+        this.SalaJuegos = SalaJuegos;
+        this.AireAcondicionado = AireAcondicionado;
+        this.AguaCaliente = AguaCaliente;
+        this.Otros = Otros;
+        this.TipoPropiedad = TipoPropiedad;
+        this.Descripcion = Descripcion;
+        this.NumeroPropiedad = NumeroPropiedad;
+        this.Huesped = Huesped;
+        this.Habitaciones = Habitaciones;
+        this.Camas = Camas;
+        this.Banios = Banios;
+        this.Precio = Precio;
+        this.FechaIngreso = FechaIngreso;
+        this.FechaSalida = FechaSalida;
+        this.Img = Img;
+        this.Img1 = Img1;
+        this.Img2 = Img2;
+        this.Img3 = Img3;
+        this.Img4 = Img4;
+        this.Img5 = Img5;
+    }
+
+    
+    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCiudad() {
@@ -128,124 +161,12 @@ public class Propiedad {
         this.CodigoP = CodigoP;
     }
 
-    public boolean isWifi() {
+    public Boolean getWifi() {
         return Wifi;
     }
 
-    public void setWifi(boolean Wifi) {
+    public void setWifi(Boolean Wifi) {
         this.Wifi = Wifi;
-    }
-
-    public boolean isTV() {
-        return TV;
-    }
-
-    public void setTV(boolean TV) {
-        this.TV = TV;
-    }
-
-    public boolean isLavadora() {
-        return Lavadora;
-    }
-
-    public void setLavadora(boolean Lavadora) {
-        this.Lavadora = Lavadora;
-    }
-
-    public boolean isSecadora() {
-        return Secadora;
-    }
-
-    public void setSecadora(boolean Secadora) {
-        this.Secadora = Secadora;
-    }
-
-    public boolean isEstacionamiento() {
-        return Estacionamiento;
-    }
-
-    public void setEstacionamiento(boolean Estacionamiento) {
-        this.Estacionamiento = Estacionamiento;
-    }
-
-    public boolean isCocina() {
-        return Cocina;
-    }
-
-    public void setCocina(boolean Cocina) {
-        this.Cocina = Cocina;
-    }
-
-    public boolean isPicina() {
-        return Picina;
-    }
-
-    public void setPicina(boolean Picina) {
-        this.Picina = Picina;
-    }
-
-    public boolean isJacuzzi() {
-        return Jacuzzi;
-    }
-
-    public void setJacuzzi(boolean Jacuzzi) {
-        this.Jacuzzi = Jacuzzi;
-    }
-
-    public boolean isParrilla() {
-        return Parrilla;
-    }
-
-    public void setParrilla(boolean Parrilla) {
-        this.Parrilla = Parrilla;
-    }
-
-    public boolean isPatio() {
-        return Patio;
-    }
-
-    public void setPatio(boolean Patio) {
-        this.Patio = Patio;
-    }
-
-    public boolean isComedor() {
-        return Comedor;
-    }
-
-    public void setComedor(boolean Comedor) {
-        this.Comedor = Comedor;
-    }
-
-    public boolean isSalaJuegos() {
-        return SalaJuegos;
-    }
-
-    public void setSalaJuegos(boolean SalaJuegos) {
-        this.SalaJuegos = SalaJuegos;
-    }
-
-    public boolean isAireAcondicionado() {
-        return AireAcondicionado;
-    }
-
-    public void setAireAcondicionado(boolean AireAcondicionado) {
-        this.AireAcondicionado = AireAcondicionado;
-    }
-
-    public boolean isAguaCaliente() {
-        return AguaCaliente;
-    }
-
-    public void setAguaCaliente(boolean AguaCaliente) {
-        this.AguaCaliente = AguaCaliente;
-    }
-
-    public boolean isOtros() {
-        return Otros;
-    }
-
-    public void setOtros(boolean Otros) {
-        this.Otros = Otros;
     }
 
     public String getTipoPropiedad() {
@@ -296,12 +217,12 @@ public class Propiedad {
         this.Camas = Camas;
     }
 
-    public String getBaños() {
-        return Baños;
+    public String getBanios() {
+        return Banios;
     }
 
-    public void setBaños(String Baños) {
-        this.Baños = Baños;
+    public void setBanios(String Baños) {
+        this.Banios = Baños;
     }
 
     public String getPrecio() {
@@ -328,18 +249,196 @@ public class Propiedad {
         this.FechaSalida = FechaSalida;
     }
 
-    public ImageIcon getImagen() {
-        return Imagen;
+    public Boolean getTV() {
+        return TV;
     }
 
-    public void setImagen(ImageIcon Imagen) {
-        this.Imagen = Imagen;
+    public void setTV(Boolean TV) {
+        this.TV = TV;
     }
+
+    public Boolean getLavadora() {
+        return Lavadora;
+    }
+
+    public void setLavadora(Boolean Lavadora) {
+        this.Lavadora = Lavadora;
+    }
+
+    public Boolean getSecadora() {
+        return Secadora;
+    }
+
+    public void setSecadora(Boolean Secadora) {
+        this.Secadora = Secadora;
+    }
+
+    public Boolean getEstacionamiento() {
+        return Estacionamiento;
+    }
+
+    public void setEstacionamiento(Boolean Estacionamiento) {
+        this.Estacionamiento = Estacionamiento;
+    }
+
+    public Boolean getCocina() {
+        return Cocina;
+    }
+
+    public void setCocina(Boolean Cocina) {
+        this.Cocina = Cocina;
+    }
+
+    public Boolean getPicina() {
+        return Picina;
+    }
+
+    public void setPicina(Boolean Picina) {
+        this.Picina = Picina;
+    }
+
+    public Boolean getJacuzzi() {
+        return Jacuzzi;
+    }
+
+    public void setJacuzzi(Boolean Jacuzzi) {
+        this.Jacuzzi = Jacuzzi;
+    }
+
+    public Boolean getParrilla() {
+        return Parrilla;
+    }
+
+    public void setParrilla(Boolean Parrilla) {
+        this.Parrilla = Parrilla;
+    }
+
+    public Boolean getPatio() {
+        return Patio;
+    }
+
+    public void setPatio(Boolean Patio) {
+        this.Patio = Patio;
+    }
+
+    public Boolean getComedor() {
+        return Comedor;
+    }
+
+    public void setComedor(Boolean Comedor) {
+        this.Comedor = Comedor;
+    }
+
+    public Boolean getSalaJuegos() {
+        return SalaJuegos;
+    }
+
+    public void setSalaJuegos(Boolean SalaJuegos) {
+        this.SalaJuegos = SalaJuegos;
+    }
+
+    public Boolean getAireAcondicionado() {
+        return AireAcondicionado;
+    }
+
+    public void setAireAcondicionado(Boolean AireAcondicionado) {
+        this.AireAcondicionado = AireAcondicionado;
+    }
+
+    public Boolean getAguaCaliente() {
+        return AguaCaliente;
+    }
+
+    public void setAguaCaliente(Boolean AguaCaliente) {
+        this.AguaCaliente = AguaCaliente;
+    }
+
+    public Boolean getOtros() {
+        return Otros;
+    }
+
+    public void setOtros(Boolean Otros) {
+        this.Otros = Otros;
+    }
+
+    public String getImg() {
+        return Img;
+    }
+
+    public void setImg(String Img) {
+        this.Img = Img;
+    }
+
+    public String getImg1() {
+        return Img1;
+    }
+
+    public void setImg1(String Img1) {
+        this.Img1 = Img1;
+    }
+
+    public String getImg2() {
+        return Img2;
+    }
+
+    public void setImg2(String Img2) {
+        this.Img2 = Img2;
+    }
+
+    public String getImg3() {
+        return Img3;
+    }
+
+    public void setImg3(String Img3) {
+        this.Img3 = Img3;
+    }
+
+    public String getImg4() {
+        return Img4;
+    }
+
+    public void setImg4(String Img4) {
+        this.Img4 = Img4;
+    }
+
+    public String getImg5() {
+        return Img5;
+    }
+
+    public void setImg5(String Img5) {
+        this.Img5 = Img5;
+    }
+
+    public String getImgPropiedad() {
+        return ImgPropiedad;
+    }
+
+    public void setImgPropiedad(String ImgPropiedad) {
+        this.ImgPropiedad = ImgPropiedad;
+    }
+
+    public Contrato getContrato() {
+        return contrato;
+    }
+
+    public void setContrato(Contrato contrato) {
+        this.contrato = contrato;
+    }
+    
     
 
     @Override
     public String toString() {
-        return "Ciudad=" + Ciudad + ", Provincia=" + Provincia + ", CalleP=" + CalleP + ", CalleS=" + CalleS + ", CodigoP=" + CodigoP + ", Wifi=" + Wifi + ", TV=" + TV + ", Lavadora=" + Lavadora + ", Secadora=" + Secadora + ", Estacionamiento=" + Estacionamiento + ", Cocina=" + Cocina + ", Picina=" + Picina + ", Jacuzzi=" + Jacuzzi + ", Parrilla=" + Parrilla + ", Patio=" + Patio + ", Comedor=" + Comedor + ", SalaJuegos=" + SalaJuegos + ", AireAcondicionado=" + AireAcondicionado + ", AguaCaliente=" + AguaCaliente + ", Otros=" + Otros + ", TipoPropiedad=" + TipoPropiedad + ", Descripcion=" + Descripcion + ", NumeroPropiedad=" + NumeroPropiedad + ", Huesped=" + Huesped + ", Habitaciones=" + Habitaciones + ", Camas=" + Camas + ", Ba\u00f1os=" + Baños + ", Precio=" + Precio + ", FechaIngreso=" + FechaIngreso + ", FechaSalida=" + FechaSalida + ", Imagen=" + Imagen;
+        return "Propiedad{" + "id=" + id + ", Ciudad=" + Ciudad + ", Provincia=" + Provincia + ", CalleP="
+                + CalleP + ", CalleS=" + CalleS + ", CodigoP=" + CodigoP + ", Wifi=" + Wifi + ", TV=" + TV 
+                + ", Lavadora=" + Lavadora + ", Secadora=" + Secadora + ", Estacionamiento=" + Estacionamiento + ", Cocina=" 
+                + Cocina + ", Picina=" + Picina + ", Jacuzzi=" + Jacuzzi + ", Parrilla=" + Parrilla + ", Patio=" + Patio 
+                + ", Comedor=" + Comedor + ", SalaJuegos=" + SalaJuegos + ", AireAcondicionado=" + AireAcondicionado 
+                + ", AguaCaliente=" + AguaCaliente + ", Otros=" + Otros + ", TipoPropiedad=" + TipoPropiedad + ", Descripcion=" 
+                + Descripcion + ", NumeroPropiedad=" + NumeroPropiedad + ", Huesped=" + Huesped + ", Habitaciones=" + Habitaciones 
+                + ", Camas=" + Camas + ", Banios=" + Banios + ", Precio=" + Precio + ", FechaIngreso=" + FechaIngreso
+                + ", FechaSalida=" + FechaSalida + ", Img=" + Img + ", Img1=" + Img1 + ", Img2=" + Img2 + ", Img3=" + Img3 
+                + ", Img4=" + Img4 + ", Img5=" + Img5 + '}';
     }
-    
+ 
 }

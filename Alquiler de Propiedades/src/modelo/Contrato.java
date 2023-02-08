@@ -4,19 +4,20 @@
  */
 package modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author lettc
  */
+@XmlRootElement
 public class Contrato {
     private Integer id;
     private Integer nroDias;
-    private MetodoPago metodoPago;
-
+    private Integer pagoID;
+    
     public Contrato() {
     }
-
-   
 
     public Integer getId() {
         return id;
@@ -33,20 +34,21 @@ public class Contrato {
     public void setNroDias(Integer nroDias) {
         this.nroDias = nroDias;
     }
-    
-    public MetodoPago getMetodoPago() {
-        return metodoPago;
+
+    public Integer getPagoID() {
+        return pagoID;
     }
 
-    public void setMetodoPago(MetodoPago metodoPago) {
-        this.metodoPago = metodoPago;
+    public void setPagoID(Integer pagoID) {
+        this.pagoID = pagoID;
     }
 
     @Override
     public String toString() {
-        return "Contrato{" + "nroDias=" + nroDias + '}';
+        return "Contrato{" + "id=" + id + ", nroDias=" + nroDias + ", pagoID=" + pagoID + '}';
     }
+
+ 
+
    
-    
-    
 }

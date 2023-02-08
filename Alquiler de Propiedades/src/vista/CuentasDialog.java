@@ -296,12 +296,12 @@ public class CuentasDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        try {
-            // TODO add your handling code here:
-            Utilidades.guardarCuentas(cuentasController);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            // TODO add your handling code here:
+//            Utilidades.guardarCuentas(cuentasController);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -323,23 +323,23 @@ public class CuentasDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        if (tblCuentas.getSelectedRow() >= 0) {
-            try {
-                cuentasController.getCuentaslList().eliminarPosicion(tblCuentas.getSelectedRow());
-                Utilidades.guardarCuentas(cuentasController);
-                cargarCuentas();
-                cargarTabla(cuentasController);
-            } catch (ListaVaciaException ex) {
-                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (PosicionNoEncontradaException ex) {
-                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Seleccione un elemento");
-        }
+//        // TODO add your handling code here:
+//        if (tblCuentas.getSelectedRow() >= 0) {
+//            try {
+//                cuentasController.getCuentaslList().eliminarPosicion(tblCuentas.getSelectedRow());
+//                Utilidades.guardarCuentas(cuentasController);
+//                cargarCuentas();
+//                cargarTabla(cuentasController);
+//            } catch (ListaVaciaException ex) {
+//                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (PosicionNoEncontradaException ex) {
+//                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Seleccione un elemento");
+//        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed

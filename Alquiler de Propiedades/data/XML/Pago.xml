@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaEnlazada>
+    <cabecera>
+        <pago>
+            <estadoPago>true</estadoPago>
+            <id>1</id>
+            <mesesPlazo>5</mesesPlazo>
+            <metodoPago>Transferencia</metodoPago>
+            <tipoDePago>plazos</tipoDePago>
+        </pago>
+        <siguiente>
+            <pago>
+                <estadoPago>true</estadoPago>
+                <id>1</id>
+                <mesesPlazo>7</mesesPlazo>
+                <metodoPago>Transferencia</metodoPago>
+                <tipoDePago>plazos</tipoDePago>
+            </pago>
+            <siguiente>
+                <pago>
+                    <estadoPago>true</estadoPago>
+                    <id>3</id>
+                    <mesesPlazo>1</mesesPlazo>
+                    <metodoPago>Transferencia</metodoPago>
+                    <tipoDePago>plazos</tipoDePago>
+                </pago>
+                <siguiente>
+                    <pago>
+                        <estadoPago>true</estadoPago>
+                        <id>5</id>
+                        <mesesPlazo>1</mesesPlazo>
+                        <metodoPago>Transferencia</metodoPago>
+                        <tipoDePago>plazos</tipoDePago>
+                    </pago>
+                    <siguiente>
+                        <pago>
+                            <estadoPago>true</estadoPago>
+                            <id>5</id>
+                            <metodoPago>Transferencia</metodoPago>
+                            <tipoDePago>plazos</tipoDePago>
+                        </pago>
+                        <siguiente>
+                            <pago>
+<estadoPago>true</estadoPago>
+<id>6</id>
+<metodoPago>Transferencia</metodoPago>
+<tipoDePago>plazos</tipoDePago>
+                            </pago>
+                            <siguiente>
+<pago>
+    <estadoPago>true</estadoPago>
+    <id>6</id>
+    <mesesPlazo>5</mesesPlazo>
+    <metodoPago>Transferencia</metodoPago>
+    <tipoDePago>plazos</tipoDePago>
+</pago>
+<siguiente>
+    <pago>
+        <estadoPago>true</estadoPago>
+        <id>8</id>
+        <metodoPago>Transferencia</metodoPago>
+        <tipoDePago>plazos</tipoDePago>
+    </pago>
+    <siguiente>
+        <pago>
+            <estadoPago>true</estadoPago>
+            <id>8</id>
+            <mesesPlazo>5</mesesPlazo>
+            <metodoPago>Transferencia</metodoPago>
+            <tipoDePago>plazos</tipoDePago>
+        </pago>
+        <siguiente>
+            <pago>
+                <estadoPago>true</estadoPago>
+                <id>10</id>
+                <metodoPago>TarjetaCredito</metodoPago>
+                <tipoDePago>plazos</tipoDePago>
+            </pago>
+            <siguiente>
+                <pago>
+                    <estadoPago>true</estadoPago>
+                    <id>11</id>
+                    <metodoPago>TarjetaDebito</metodoPago>
+                    <tipoDePago>plazos</tipoDePago>
+                </pago>
+                <siguiente>
+                    <pago>
+                        <estadoPago>true</estadoPago>
+                        <id>11</id>
+                        <mesesPlazo>7</mesesPlazo>
+                        <metodoPago>TarjetaDebito</metodoPago>
+                        <tipoDePago>plazos</tipoDePago>
+                    </pago>
+                    <siguiente>
+                        <pago>
+                            <estadoPago>true</estadoPago>
+                            <id>13</id>
+                            <metodoPago>TarjetaDebito</metodoPago>
+                            <tipoDePago>plazos</tipoDePago>
+                        </pago>
+                        <siguiente>
+                            <pago>
+<estadoPago>true</estadoPago>
+<id>14</id>
+<metodoPago>TarjetaDebito</metodoPago>
+<tipoDePago>plazos</tipoDePago>
+                            </pago>
+                            <siguiente>
+<pago>
+    <estadoPago>true</estadoPago>
+    <id>15</id>
+    <metodoPago>Transferencia</metodoPago>
+    <tipoDePago>plazos</tipoDePago>
+</pago>
+<siguiente>
+    <pago>
+        <estadoPago>true</estadoPago>
+        <id>16</id>
+        <mesesPlazo>12</mesesPlazo>
+        <metodoPago>TarjetaCredito</metodoPago>
+        <tipoDePago>plazos</tipoDePago>
+    </pago>
+    <siguiente>
+        <pago>
+            <estadoPago>true</estadoPago>
+            <id>17</id>
+            <mesesPlazo>1</mesesPlazo>
+            <metodoPago>TarjetaDebito</metodoPago>
+            <tipoDePago>plazos</tipoDePago>
+        </pago>
+        <siguiente>
+            <pago>
+                <estadoPago>true</estadoPago>
+                <id>18</id>
+                <mesesPlazo>7</mesesPlazo>
+                <metodoPago>Transferencia</metodoPago>
+                <tipoDePago>plazos</tipoDePago>
+            </pago>
+            <siguiente>
+                <pago>
+                    <estadoPago>true</estadoPago>
+                    <id>19</id>
+                    <mesesPlazo>1</mesesPlazo>
+                    <metodoPago>TarjetaCredito</metodoPago>
+                    <tipoDePago>plazos</tipoDePago>
+                </pago>
+                <siguiente>
+                    <pago>
+                        <estadoPago>true</estadoPago>
+                        <id>20</id>
+                        <mesesPlazo>12</mesesPlazo>
+                        <metodoPago>Transferencia</metodoPago>
+                        <tipoDePago>plazos</tipoDePago>
+                    </pago>
+                    <siguiente>
+                        <pago>
+                            <estadoPago>true</estadoPago>
+                            <id>21</id>
+                            <metodoPago>Transferencia</metodoPago>
+                            <tipoDePago>plazos</tipoDePago>
+                        </pago>
+                        <siguiente>
+                            <pago>
+<estadoPago>true</estadoPago>
+<id>22</id>
+<mesesPlazo>11</mesesPlazo>
+<metodoPago>Transferencia</metodoPago>
+<tipoDePago>plazos</tipoDePago>
+                            </pago>
+                            <siguiente>
+<pago>
+    <estadoPago>true</estadoPago>
+    <id>23</id>
+    <metodoPago>Transferencia</metodoPago>
+    <tipoDePago>plazos</tipoDePago>
+</pago>
+<siguiente>
+    <pago>
+        <estadoPago>true</estadoPago>
+        <id>24</id>
+        <metodoPago>Transferencia</metodoPago>
+        <tipoDePago>unSoloPago</tipoDePago>
+    </pago>
+    <siguiente>
+        <pago>
+            <estadoPago>true</estadoPago>
+            <id>25</id>
+            <metodoPago>Transferencia</metodoPago>
+            <tipoDePago>unSoloPago</tipoDePago>
+        </pago>
+        <siguiente>
+            <pago>
+                <estadoPago>true</estadoPago>
+                <id>26</id>
+                <metodoPago>TarjetaDebito</metodoPago>
+                <tipoDePago>unSoloPago</tipoDePago>
+            </pago>
+            <siguiente>
+                <pago>
+                    <estadoPago>true</estadoPago>
+                    <id>27</id>
+                    <metodoPago>TarjetaDebito</metodoPago>
+                    <tipoDePago>unSoloPago</tipoDePago>
+                </pago>
+                <siguiente>
+                    <pago>
+                        <estadoPago>true</estadoPago>
+                        <id>28</id>
+                        <metodoPago>Transferencia</metodoPago>
+                        <tipoDePago>plazos</tipoDePago>
+                    </pago>
+                    <siguiente>
+                        <pago>
+                            <estadoPago>true</estadoPago>
+                            <id>29</id>
+                            <metodoPago>Transferencia</metodoPago>
+                            <tipoDePago>plazos</tipoDePago>
+                        </pago>
+                    </siguiente>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </siguiente>
+</siguiente>
+                            </siguiente>
+                        </siguiente>
+                    </siguiente>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </siguiente>
+</siguiente>
+                            </siguiente>
+                        </siguiente>
+                    </siguiente>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </siguiente>
+</siguiente>
+                            </siguiente>
+                        </siguiente>
+                    </siguiente>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </cabecera>
+    <tamanio>29</tamanio>
+</listaEnlazada>

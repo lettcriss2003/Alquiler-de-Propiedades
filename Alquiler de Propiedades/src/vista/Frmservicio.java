@@ -4,17 +4,37 @@
  */
 package vista;
 
+import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import modelo.Propiedad;
+import static vista.FrmPropiedadImagen.PropiedadDatos;
+
 /**
  *
  * @author lettc
  */
 public class Frmservicio extends javax.swing.JFrame {
 
+    PropiedadDao propiedadDao = new PropiedadDao();
+    Propiedad aux = new Propiedad();
+
     /**
      * Creates new form Frmservicio
      */
     public Frmservicio() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        setLocationRelativeTo(null);
+        btnSiguiente.requestFocus();
+    }
+
+    public Frmservicio(Integer id) {
+        aux = propiedadDao.obtenerPropiedad(id);
+        initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
         btnSiguiente.requestFocus();
     }
@@ -60,7 +80,10 @@ public class Frmservicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Servicios");
 
@@ -85,8 +108,9 @@ public class Frmservicio extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("CONECTIVIDAD");
 
@@ -123,8 +147,9 @@ public class Frmservicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("LIMPIEZA");
 
@@ -156,8 +181,9 @@ public class Frmservicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AMBIENTACION");
 
@@ -206,8 +232,9 @@ public class Frmservicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("ESPACIOS");
 
@@ -332,11 +359,100 @@ public class Frmservicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/**
+ * guarda los datos de los check box
+ * 
+ */
+    private void guardarDATOS() {
+        if (checkWifi.isSelected()) {
+            aux.setWifi(Boolean.TRUE);
+        } else {
+            aux.setWifi(Boolean.FALSE);
+        }
+        if (checkTV.isSelected()) {
+            aux.setTV(Boolean.TRUE);
+        } else {
+            aux.setTV(Boolean.FALSE);
+        }
+        if (checkLavadora.isSelected()) {
+            aux.setLavadora(Boolean.TRUE);
+        } else {
+            aux.setLavadora(Boolean.FALSE);
+        }
+        if (checkSecadora.isSelected()) {
+            aux.setSecadora(Boolean.TRUE);
+        } else {
+            aux.setSecadora(Boolean.FALSE);
+        }
+        if (checkEstacionamiento.isSelected()) {
+            aux.setEstacionamiento(Boolean.TRUE);
+        } else {
+            aux.setEstacionamiento(Boolean.FALSE);
+        }
+        if (checkCocina.isSelected()) {
+            aux.setCocina(Boolean.TRUE);
+        } else {
+            aux.setCocina(Boolean.FALSE);
+        }
+        if (checkPicina.isSelected()) {
+            aux.setPicina(Boolean.TRUE);
+        } else {
+            aux.setPicina(Boolean.FALSE);
+        }
+        if (checkJacuzzi.isSelected()) {
+            aux.setJacuzzi(Boolean.TRUE);
+        } else {
+            aux.setJacuzzi(Boolean.FALSE);
+        }
+        if (checkParrilla.isSelected()) {
+            aux.setParrilla(Boolean.TRUE);
+        } else {
+            aux.setParrilla(Boolean.FALSE);
+        }
+        if (checkPatio.isSelected()) {
+            aux.setPatio(Boolean.TRUE);
+        } else {
+            aux.setPatio(Boolean.FALSE);
+        }
+        if (checkComedor.isSelected()) {
+            aux.setComedor(Boolean.TRUE);
+        } else {
+            aux.setComedor(Boolean.FALSE);
+        }
+        if (checkSalaJuegos.isSelected()) {
+            aux.setSalaJuegos(Boolean.TRUE);
+        } else {
+            aux.setSalaJuegos(Boolean.FALSE);
+        }
+        if (checkAireAcondicionado.isSelected()) {
+            aux.setAireAcondicionado(Boolean.TRUE);
+        } else {
+            aux.setAireAcondicionado(Boolean.FALSE);
+        }
+        if (checkAguaCaliente.isSelected()) {
+            aux.setAguaCaliente(Boolean.TRUE);
+        } else {
+            aux.setAguaCaliente(Boolean.FALSE);
+        }
+        if (checkOtros.isSelected()) {
+            aux.setOtros(Boolean.TRUE);
+        } else {
+            aux.setOtros(Boolean.FALSE);
+        }
+        System.out.println(aux.getId());
 
+        try {
+            propiedadDao.modificar(aux, aux.getId());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-       FrmIngresoPropiedad btndireccion = new FrmIngresoPropiedad();
+        guardarDATOS();
+        FrmIngresoPropiedad btndireccion = new FrmIngresoPropiedad(aux.getId());
         btndireccion.setVisible(true);
-        this.setVisible(false); 
+        this.setVisible(false);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -359,9 +475,9 @@ public class Frmservicio extends javax.swing.JFrame {
     private void checkOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOtrosActionPerformed
         // TODO add your handling code here:
         boolean OtrosChck = checkOtros.isSelected();
-        if(OtrosChck == true){
+        if (OtrosChck == true) {
             txtOtros.setEditable(true);
-        }else{
+        } else {
             txtOtros.setEditable(false);
         }
     }//GEN-LAST:event_checkOtrosActionPerformed
