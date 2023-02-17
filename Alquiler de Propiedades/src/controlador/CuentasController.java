@@ -20,20 +20,20 @@ import ordenacion.Excepciones.AtributoNoEncontradoException;
  */
 public class CuentasController {
 
-    private ListaEnlazada<Cuenta> cuentaslList = new ListaEnlazada<>();
+    //private ListaEnlazada<Cuenta> cuentaslList = new ListaEnlazada<>();
     private static CuentaDAO cuentadao = new CuentaDAO();
     protected Integer limite = 5;
 
     public CuentasController() {
     }
 
-    public ListaEnlazada<Cuenta> getCuentaslList() {
-        return cuentaslList;
-    }
-
-    public void setCuentaslList(ListaEnlazada<Cuenta> cuentaslList) {
-        this.cuentaslList = cuentaslList;
-    }
+//    public ListaEnlazada<Cuenta> getCuentaslList() {
+//        return cuentaslList;
+//    }
+//
+//    public void setCuentaslList(ListaEnlazada<Cuenta> cuentaslList) {
+//        this.cuentaslList = cuentaslList;
+//    }
 
     /**
      * Metodo para autentificar las credenciales ingresadas por el usuario
@@ -51,7 +51,7 @@ public class CuentasController {
      */
     public Boolean autentificar(String usuario, String contrasenia) throws ListaVaciaException, PosicionNoEncontradaException, intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         Boolean autentificacion = false;
-        if (cuentadao.getCuentas().estaVacia()) {
+        if (getCuentadao().getCuentas().estaVacia()) {
             throw new ListaVaciaException();
         } else {
             try {

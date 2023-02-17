@@ -35,7 +35,7 @@ public class ModeloTablaCuentas extends AbstractTableModel{
     
     @Override 
     public int getRowCount(){
-        return cc.getCuentaslList().getTamanio();
+        return cc.getCuentadao().getCuentas().getTamanio();
     }
     
     @Override
@@ -52,7 +52,7 @@ public class ModeloTablaCuentas extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cuenta c = null;
         try {
-            c = cc.getCuentaslList().obtener(rowIndex);
+            c = cc.getCuentadao().getCuentas().obtener(rowIndex);
             
         } catch (ListaVaciaException ex) {
             Logger.getLogger(ModeloTablaCuentas.class.getName()).log(Level.SEVERE, null, ex);

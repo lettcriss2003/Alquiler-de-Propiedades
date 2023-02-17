@@ -12,6 +12,9 @@ import controlador.loginExcepciones.datoIncorrectoException;
 import controlador.loginExcepciones.intentoExcedidoException;
 import controlador.loginExcepciones.usuarioNoExisteException;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import ordenacion.Excepciones.AtributoNoEncontradoException;
@@ -23,7 +26,7 @@ import vista.Utilidades.Utilidades;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
-    public CuentasController cc = new CuentasController();
+    public CuentasController cc;
 
     /**
      * Creates new form FrmLogin
@@ -33,6 +36,9 @@ public class FrmLogin extends javax.swing.JFrame {
         cargarJSon();
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
+        //cc.getCuentadao().getCuentas().imprimir();
+        ///cc.getCuentaslList().imprimir();
+        //System.out.println();
     }
 
     /**
@@ -89,23 +95,16 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Validar si las credenciales son correctas para iniciar sesion
      */
-    public void iniciarSesion() throws intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public void iniciarSesion() throws intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, ListaVaciaException, PosicionNoEncontradaException {
         if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && compararCampos()) {
-
-            try {
-                if (cc.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
-                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
-                    FrmPrincipal frmPrincipal = new FrmPrincipal();
-                    frmPrincipal.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-
-                }
-            } catch (ListaVaciaException | PosicionNoEncontradaException | intentoExcedidoException | datoIncorrectoException | usuarioNoExisteException e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            if (cc.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
+                JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                FrmPrincipal frmPrincipal = new FrmPrincipal();
+                frmPrincipal.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
         } else {
             JOptionPane.showMessageDialog(this, "Rellene campos usuario y/o contraseña", "Error", JOptionPane.ERROR_MESSAGE);
             actualizarCampos();
@@ -113,15 +112,16 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     /**
-     * Carga los usuarios que han sido registrados y guardados en un archivo tipo .json
+     * Carga los usuarios que han sido registrados y guardados en un archivo
+     * tipo .json
      */
     private void cargarJSon() {
         try {
-            CuentaDAO cd = new CuentaDAO();
-            cd = Utilidades.cargarJson();
+            CuentaDAO cd = Utilidades.cargarJson();
+            this.cc = new CuentasController();
             cc.setCuentadao(cd);
-           
-        } catch (Exception e) {
+        } catch (IOException ex) {
+            Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -271,8 +271,9 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         try {
+            cargarJSon();
             iniciarSesion();
-        } catch (Exception ex) {
+        } catch (ListaVaciaException | PosicionNoEncontradaException | datoIncorrectoException | intentoExcedidoException | usuarioNoExisteException | IllegalAccessException | IllegalArgumentException | AtributoNoEncontradoException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed

@@ -28,7 +28,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal() {
         initComponents();
         //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
-        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -111,7 +111,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         btnPropiedad1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad1.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\Img1pro1.png")); // NOI18N
         btnPropiedad1.setBorder(null);
         btnPropiedad1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +119,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad2.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad2.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img1pro2.png")); // NOI18N
         btnPropiedad2.setBorder(null);
         btnPropiedad2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +127,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad4.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad4.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro4\\img1pro4.png")); // NOI18N
         btnPropiedad4.setBorder(null);
         btnPropiedad4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +135,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad3.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad3.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro3\\img1pro3.png")); // NOI18N
         btnPropiedad3.setBorder(null);
         btnPropiedad3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +143,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad5.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad5.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro5\\img1pro5.png")); // NOI18N
         btnPropiedad5.setBorder(null);
         btnPropiedad5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +151,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad6.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad6.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro6\\img1pro6.png")); // NOI18N
         btnPropiedad6.setBorder(null);
         btnPropiedad6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +159,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad7.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad7.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro7\\img1pro7.png")); // NOI18N
         btnPropiedad7.setBorder(null);
         btnPropiedad7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +167,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad8.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad8.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro8\\img1pro8.png")); // NOI18N
         btnPropiedad8.setBorder(null);
         btnPropiedad8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +175,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnPropiedad9.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad9.setIcon(new javax.swing.ImageIcon("C:\\Users\\lettc\\OneDrive\\Desktop\\Tercer Ciclo\\ARREGLADO\\Alquiler de Propiedades (4)\\Alquiler de Propiedades\\ImgPropiedades\\pro9\\img1pro9.png")); // NOI18N
         btnPropiedad9.setBorder(null);
         btnPropiedad9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,7 +595,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagos1ActionPerformed
 
     private void btnCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentasActionPerformed
-        
+        CuentasDialog cd = new CuentasDialog(this, true);
+        cd.setVisible(true);
     }//GEN-LAST:event_btnCuentasActionPerformed
 
     /**

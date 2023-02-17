@@ -10,7 +10,7 @@ import modelo.Contrato;
  *
  * @author Dennys
  */
-public class ContratoDAO extends AdaptadorDao<Contrato> {
+public class ContratoDAO extends AdaptadorDAO<Contrato> {
     private Contrato contrato=new Contrato();
     
     public ContratoDAO() {

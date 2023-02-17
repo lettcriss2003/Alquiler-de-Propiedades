@@ -9,6 +9,7 @@ import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ import vista.Utilidades.Utilidades;
  * @author leomah
  */
 public class CuentaDialog extends javax.swing.JDialog {
+
     private CuentasController cuentaController;
     //private ListaEnlazada<CuentasController> cuentasList = new ListaEnlazada<>();
     private Integer posicion;
@@ -39,7 +41,6 @@ public class CuentaDialog extends javax.swing.JDialog {
 //    public void setCuentasList(ListaEnlazada<CuentasController> cuentasList) {
 //        this.cuentasList = cuentasList;
 //    }
-
     public CuentasController getCuentaController() {
         return cuentaController;
     }
@@ -54,9 +55,9 @@ public class CuentaDialog extends javax.swing.JDialog {
     public CuentaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(null);
     }
-    
+
     public CuentaDialog(java.awt.Frame parent, boolean modal, Integer pos, CuentasController cc) {
         super(parent, modal);
         this.posicion = pos;
@@ -69,17 +70,16 @@ public class CuentaDialog extends javax.swing.JDialog {
         } catch (PosicionNoEncontradaException ex) {
             Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(null);
     }
-    
-    public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException{
+
+    public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
         if (cuentaController != null) {
-            txtId.setText(String.valueOf(cuentaController.getCuentaslList().obtener(posicion).getId()));
-            txtUsuario.setText(cuentaController.getCuentaslList().obtener(posicion).getUsuario());
-            txtContrasenia.setText(cuentaController.getCuentaslList().obtener(posicion).getContrasenia());
-            if (cuentaController.getCuentaslList().obtener(posicion).getEstado()) {
+            txtUsuario.setText(cuentaController.getCuentadao().getCuentas().obtener(posicion).getUsuario());
+            txtContrasenia.setText(Utilidades.desEncriptarContrasenia(cuentaController.getCuentadao().getCuentas().obtener(posicion).getContrasenia()));
+            if (cuentaController.getCuentadao().getCuentas().obtener(posicion).getEstado()) {
                 rbtnSi.doClick();
-            }else{
+            } else {
                 rbtnNo.doClick();
             }
         }
@@ -102,8 +102,6 @@ public class CuentaDialog extends javax.swing.JDialog {
         txtUsuario = new javax.swing.JTextField();
         txtContrasenia = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         rbtnNo = new javax.swing.JRadioButton();
         rbtnSi = new javax.swing.JRadioButton();
         btnGuardar = new javax.swing.JButton();
@@ -118,19 +116,15 @@ public class CuentaDialog extends javax.swing.JDialog {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
         jLabel2.setText("Usuario:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jLabel3.setText("Contraseña:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 270, -1));
-        jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 250, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 270, -1));
+        jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 250, -1));
 
         jLabel4.setText("Activo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
-
-        jLabel5.setText("ID:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 290, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         buttonGroup1.add(rbtnNo);
         rbtnNo.setText("NO");
@@ -139,7 +133,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 rbtnNoActionPerformed(evt);
             }
         });
-        jPanel1.add(rbtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
+        jPanel1.add(rbtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
 
         buttonGroup1.add(rbtnSi);
         rbtnSi.setText("SI");
@@ -148,7 +142,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 rbtnSiActionPerformed(evt);
             }
         });
-        jPanel1.add(rbtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
+        jPanel1.add(rbtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +150,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
 
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +158,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +168,7 @@ public class CuentaDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
         );
 
         pack();
@@ -190,27 +184,34 @@ public class CuentaDialog extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (!txtId.getText().isEmpty() && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && (rbtnSi.isSelected() || rbtnNo.isSelected())) {
-            Cuenta c = new Cuenta();
-            c.setId(Integer.parseInt(txtId.getText()));
-            c.setUsuario(txtUsuario.getText());
-            c.setContrasenia(txtContrasenia.getText());
-            if (rbtnSi.isSelected()) {
-                c.setEstado(true);
-            } else {
-                c.setEstado(false);
-            }
-//            cuentaController.setCuenta(c);
-//            cuentasList.modificarPoscicion(cuentaController, posicion);
-            cuentaController.getCuentaslList().modificarPoscicion(c, posicion);
+        if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && (rbtnSi.isSelected() || rbtnNo.isSelected())) {
             try {
-                Utilidades.guardarCuentas(cuentaController);
-                //JOptionPane.showMessageDialog(this, "Recuerde actualizar el listado");
-                this.dispose();
-            } catch (FileNotFoundException ex) {
+                Cuenta c = new Cuenta();
+                c.setId(cuentaController.getCuentadao().getCuentas().obtener(posicion).getId());
+                c.setUsuario(txtUsuario.getText());
+                c.setContrasenia(Utilidades.encriptarContrasenia(txtContrasenia.getText()));
+                c.setPersona(cuentaController.getCuentadao().getCuentas().obtener(posicion).getPersona());
+                if (rbtnSi.isSelected()) {
+                    c.setEstado(true);
+                } else {
+                    c.setEstado(false);
+                }
+                cuentaController.getCuentadao().getCuentas().modificarPoscicion(c, posicion);
+                try {
+                    Utilidades.guardar(cuentaController.getCuentadao());
+                    //Utilidades.guardarCuentas(cuentaController);
+                    this.dispose();
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (ListaVaciaException ex) {
+                Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (PosicionNoEncontradaException ex) {
                 Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -270,12 +271,10 @@ public class CuentaDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbtnNo;
     private javax.swing.JRadioButton rbtnSi;
     private javax.swing.JTextField txtContrasenia;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

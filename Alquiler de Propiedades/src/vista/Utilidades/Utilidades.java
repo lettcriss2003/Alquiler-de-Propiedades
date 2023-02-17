@@ -54,18 +54,18 @@ import modelo.MetodoPago;
  * @author leomah
  */
 public class Utilidades {
-  
 
     private static String URL = "data";
-    public static RolesController cargarRoles() throws IOException{
+
+    public static RolesController cargarRoles() throws IOException {
         RolesController rc = new RolesController();
         Reader lector = Files.newBufferedReader(Paths.get("roles.json"));
         Gson gson = new Gson();
         rc = (gson.fromJson(lector, RolesController.class));
         return rc;
     }
-    
-    public static void guardarRoles(RolesController rc) throws FileNotFoundException{
+
+    public static void guardarRoles(RolesController rc) throws FileNotFoundException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(rc);
         try {
@@ -77,18 +77,18 @@ public class Utilidades {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar");
             System.out.println(e);
-        }        
+        }
     }
 
-public static CuentasController cargarCuentas() throws IOException{
+    public static CuentasController cargarCuentas() throws IOException {
         MapeoCuentas mapeo = new MapeoCuentas();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
         Gson gson = new Gson();
         mapeo = (gson.fromJson(lector, MapeoCuentas.class));
         return mapeo.getCc();
     }
-    
-    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException{
+
+    public static void guardarCuentas(CuentasController cc) throws FileNotFoundException {
         MapeoCuentas mapeo = new MapeoCuentas(cc);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(mapeo);
@@ -101,9 +101,8 @@ public static CuentasController cargarCuentas() throws IOException{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar");
             System.out.println(e);
-        }        
+        }
     }
-
 
     public static void cargarTipoIndentificacion(JComboBox cbx) {
         cbx.removeAllItems();
@@ -116,7 +115,6 @@ public static CuentasController cargarCuentas() throws IOException{
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
 
-    
 //    public static void guardar(Object expresiones[]) throws IOException {
 //        Gson json = new Gson();
 //        Integer ocupados = ultimoIndiceOcupado(expresiones);
@@ -129,7 +127,6 @@ public static CuentasController cargarCuentas() throws IOException{
 //        fw.write(jsons);
 //        fw.flush();
 //    }
-
     public static int cargar(Object expresiones[]) {
         int counter = 0;
 
@@ -155,20 +152,20 @@ public static CuentasController cargarCuentas() throws IOException{
         }
     }
 
-    public static void DefinirImagenLabel(JLabel label,String ruta){
-        ImageIcon image=new ImageIcon(ruta);
-        Icon icon=new ImageIcon( image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+    public static void DefinirImagenLabel(JLabel label, String ruta) {
+        ImageIcon image = new ImageIcon(ruta);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
         label.repaint();
     }
-    
+
     public static void DefinirImagenBoton(JButton btn, String ruta) {
         ImageIcon image = new ImageIcon(ruta);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(btn.getWidth(), btn.getHeight(), Image.SCALE_DEFAULT));
         btn.setIcon(icon);
         btn.repaint();
     }
-  
+
     public static JComboBox cargarCombo(JComboBox combo) {
         combo.removeAllItems();
         for (MetodoPago Metodo : MetodoPago.values()) {
@@ -176,16 +173,18 @@ public static CuentasController cargarCuentas() throws IOException{
         }
         return combo;
     }
-    
+
     /**
-     * <b>Permite calcular el valor de la cuota dependiendo de la taza de interez, el valor total y los meses plazo</b>
+     * <b>Permite calcular el valor de la cuota dependiendo de la taza de
+     * interez, el valor total y los meses plazo</b>
      */
     public static Double calcularValorCuota(Double tazaDeInterez, Double valorTotal, Integer mesesPlazo) {
         return (valorTotal / mesesPlazo) + ((valorTotal / mesesPlazo) * tazaDeInterez);
     }
 
-     /**
-     * <b>Permite calcular la fecha de pago máximo dependiendo del dia en el que se encuentre</b>
+    /**
+     * <b>Permite calcular la fecha de pago máximo dependiendo del dia en el que
+     * se encuentre</b>
      */
     public static String calcularFechaDePago() {
         Date fechaDePago = new Date();
@@ -200,8 +199,10 @@ public static CuentasController cargarCuentas() throws IOException{
             return fecha;
         }
     }
-     /**
-     * <b>Permite calcular la fecha de pago maximo dependiendo de los meses plazo que sean enviados</b>
+
+    /**
+     * <b>Permite calcular la fecha de pago maximo dependiendo de los meses
+     * plazo que sean enviados</b>
      */
     public static Date calcularFechaDePagoMaximo(Integer mesesPlazo) {
         Date fechaDePago = new Date();
@@ -217,7 +218,8 @@ public static CuentasController cargarCuentas() throws IOException{
     }
 
     /**
-     * <b>Permite mostrar en un JComboBox un Enum en este caso de Metodo de pago </b>
+     * <b>Permite mostrar en un JComboBox un Enum en este caso de Metodo de pago
+     * </b>
      */
     public static JComboBox cargarComboMetodoDePago(JComboBox combo) {
         combo.removeAllItems();
@@ -226,12 +228,13 @@ public static CuentasController cargarCuentas() throws IOException{
         }
         return combo;
     }
-    
+
     /**
      * <b>Verificador de Tarjeta</b><br>
-     * <b>Información:</b> Permite verificar que la tarjeta de crédito sea valida
-     * por medio del algoritmo de <b>LUHN</b>, metodo necesita del String del número
-     * de Tarjeta y retorna un Boolean dependiendo de la validez de la tarjeta
+     * <b>Información:</b> Permite verificar que la tarjeta de crédito sea
+     * valida por medio del algoritmo de <b>LUHN</b>, metodo necesita del String
+     * del número de Tarjeta y retorna un Boolean dependiendo de la validez de
+     * la tarjeta
      */
     public static Boolean verificarNumeroDeTarjeta(String NumTarjeta) {
         //112423425370
@@ -250,7 +253,7 @@ public static CuentasController cargarCuentas() throws IOException{
                 alternarPosicion = !alternarPosicion;
             }
             return (total % 10 == 0);
-        }else{
+        } else {
             return false;
         }
     }
@@ -299,8 +302,6 @@ public static CuentasController cargarCuentas() throws IOException{
         });
     }
 
-
-
     public static String obtenerFechaActual() {
         Date fechaActual = new Date();
         int anio = fechaActual.getYear() + 1900;
@@ -309,12 +310,12 @@ public static CuentasController cargarCuentas() throws IOException{
         String fechaFormateada = dia + "/" + mes + "/" + anio;
         return fechaFormateada;
     }
-    
-    /**
-     * Sirve para obtener la hora actual 
-     * @return 
-     */
 
+    /**
+     * Sirve para obtener la hora actual
+     *
+     * @return
+     */
     public static String obtenerHoraActual() {
         Calendar calendario = new GregorianCalendar();
         int hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -323,19 +324,17 @@ public static CuentasController cargarCuentas() throws IOException{
         return horaActual;
     }
 
-    
     /**
      * Sirve para parsear el date de jcalendarr
-     * 
+     *
      * @param fecha
-     * @return 
+     * @return
      */
     public static String obtenerFechaFormateada(Date fecha) {
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy");
         String fechaFormateada = dateFormat.format(fecha);
         return fechaFormateada;
     }
-    
 
     /**
      * Permite encriptar constrasenias mediante el esquema de codificacion
@@ -347,6 +346,13 @@ public static CuentasController cargarCuentas() throws IOException{
     public static String encriptarContrasenia(String dato) {
         if (dato != null) {
             return Base64.getEncoder().encodeToString(dato.getBytes());
+        }
+        return "";
+    }
+    
+    public static String desEncriptarContrasenia(String dato) {
+        if (dato != null) {
+            return new String(Base64.getDecoder().decode(dato));
         }
         return "";
     }
@@ -446,6 +452,20 @@ public static CuentasController cargarCuentas() throws IOException{
      * @throws IOException
      */
     public static Boolean guardar(CuentaDAO dato) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(dato);
+        try {
+            PrintWriter escritor = new PrintWriter(new File(URL + File.separatorChar + "datos.json"));
+            escritor.write(json);
+            escritor.flush();
+            escritor.close();
+            JOptionPane.showMessageDialog(null, "Se guardó");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar");
+            System.out.println(e);
+        }
+        
+        /*
         Parse parse = new Parse(dato);
         Gson gson = new Gson();
         String json = gson.toJson(parse);
@@ -458,7 +478,8 @@ public static CuentasController cargarCuentas() throws IOException{
         } catch (Exception e) {
             System.out.println("Error al guardar: " + e.getMessage());
             return false;
-        }
+        }*/
+        return true;
     }
 
     /**
@@ -467,23 +488,28 @@ public static CuentasController cargarCuentas() throws IOException{
      * @return
      * @throws FileNotFoundException
      */
-    public static CuentaDAO cargarJson() throws FileNotFoundException {
-        Parse parse = new Parse();
-        String json = "";
+    public static CuentaDAO cargarJson() throws FileNotFoundException, IOException {
+        CuentaDAO mapeo = new CuentaDAO();
+        Reader lector = Files.newBufferedReader(Paths.get(URL + File.separatorChar + "datos.json"));
         Gson gson = new Gson();
-        try ( BufferedReader br = new BufferedReader(new FileReader(URL + File.separatorChar + "datos.json"))) {
+        mapeo = (gson.fromJson(lector, CuentaDAO.class));
+        return mapeo;      
+//        Parse parse = new Parse();
+//        String json = "";
+//        Gson gson = new Gson();
+//        try ( BufferedReader br = new BufferedReader(new FileReader(URL + File.separatorChar + "datos.json"))) {
+//
+//            String linea = "";
+//            while ((linea = br.readLine()) != null) {
+//                json += linea;
+//            }
+//            br.close();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        parse = (gson.fromJson(json, Parse.class));
 
-            String linea = "";
-            while ((linea = br.readLine()) != null) {
-                json += linea;
-            }
-            br.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        parse = (gson.fromJson(json, Parse.class));
-
-        return parse.getCd();
+//        return parse.getCd();
     }
 
 }

@@ -32,14 +32,14 @@ public class CuentasDialog extends javax.swing.JDialog {
     public CuentasDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(null);
         cargarCuentas();
         cargarTabla(cuentasController);
     }
         
     private void cargarCuentas(){
         try {
-            this.cuentasController = Utilidades.cargarCuentas();
+            this.cuentasController.setCuentadao(Utilidades.cargarJson());
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Archivo no encontrado");
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,16 +58,16 @@ public class CuentasDialog extends javax.swing.JDialog {
             CuentasController ccAux = new CuentasController();
             ListaEnlazada<Integer> posAux = new ListaEnlazada<>();
             if(rbtnID.isSelected()) {
-                posAux = blb.linealBinaria(cuentasController.getCuentaslList(), Integer.parseInt(txtBusqueda.getText()), "ID");
+                posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), Integer.parseInt(txtBusqueda.getText()), "ID");
             }else if (rbtnUsuario.isSelected()){
-                posAux = blb.linealBinaria(cuentasController.getCuentaslList(), txtBusqueda.getText(), "usuario");
+                posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), txtBusqueda.getText(), "usuario");
             }else if (txtBusqueda.getText().equalsIgnoreCase("activo")) {
-                posAux = blb.linealBinaria(cuentasController.getCuentaslList(), true, "estado");
+                posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), true, "estado");
             }else{
-                posAux = blb.linealBinaria(cuentasController.getCuentaslList(), false, "estado");
+                posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), false, "estado");
             }
             for (int i = 0; i < posAux.getTamanio(); i++) {
-                ccAux.getCuentaslList().insertar(cuentasController.getCuentaslList().obtener(posAux.obtener(i)));
+                ccAux.getCuentadao().getCuentas().insertar(cuentasController.getCuentadao().getCuentas().obtener(posAux.obtener(i)));
             }
             cargarTabla(ccAux);
         }else{
@@ -352,7 +352,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             MetodoQuickSort mqs = new MetodoQuickSort();
-            cuentasController.setCuentaslList(mqs.quickSort(cuentasController.getCuentaslList(), "ID", MetodoQuickSort.DESCENDENTE));
+            cuentasController.getCuentadao().setCuentas(mqs.quickSort(cuentasController.getCuentadao().getCuentas(), "ID", MetodoQuickSort.DESCENDENTE));
             cargarTabla(cuentasController);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -367,7 +367,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             MetodoQuickSort mqs = new MetodoQuickSort();
-            cuentasController.setCuentaslList(mqs.quickSort(cuentasController.getCuentaslList(), "ID", MetodoQuickSort.ASCENDENTE));
+            cuentasController.getCuentadao().setCuentas(mqs.quickSort(cuentasController.getCuentadao().getCuentas(), "ID", MetodoQuickSort.ASCENDENTE));
             cargarTabla(cuentasController);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -382,7 +382,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             MetodoQuickSort mqs = new MetodoQuickSort();
-            cuentasController.setCuentaslList(mqs.quickSort(cuentasController.getCuentaslList(), "usuario", MetodoQuickSort.ASCENDENTE));
+            cuentasController.getCuentadao().setCuentas(mqs.quickSort(cuentasController.getCuentadao().getCuentas(), "usuario", MetodoQuickSort.ASCENDENTE));
             cargarTabla(cuentasController);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -397,7 +397,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             MetodoQuickSort mqs = new MetodoQuickSort();
-            cuentasController.setCuentaslList(mqs.quickSort(cuentasController.getCuentaslList(), "usuario", MetodoQuickSort.DESCENDENTE));
+            cuentasController.getCuentadao().setCuentas(mqs.quickSort(cuentasController.getCuentadao().getCuentas(), "usuario", MetodoQuickSort.DESCENDENTE));
             cargarTabla(cuentasController);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -412,7 +412,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             MetodoQuickSort mqs = new MetodoQuickSort();
-            cuentasController.setCuentaslList(mqs.quickSort(cuentasController.getCuentaslList(), "estado", MetodoQuickSort.DESCENDENTE));
+            cuentasController.getCuentadao().setCuentas(mqs.quickSort(cuentasController.getCuentadao().getCuentas(), "estado", MetodoQuickSort.DESCENDENTE));
             cargarTabla(cuentasController);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -427,7 +427,7 @@ public class CuentasDialog extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             MetodoQuickSort mqs = new MetodoQuickSort();
-            cuentasController.setCuentaslList(mqs.quickSort(cuentasController.getCuentaslList(), "estado", MetodoQuickSort.ASCENDENTE));
+            cuentasController.getCuentadao().setCuentas(mqs.quickSort(cuentasController.getCuentadao().getCuentas(), "estado", MetodoQuickSort.ASCENDENTE));
             cargarTabla(cuentasController);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);

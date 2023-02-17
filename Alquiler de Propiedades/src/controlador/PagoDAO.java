@@ -11,7 +11,7 @@ import modelo.Pago;
  * @author Dennys
  */
 
-public class PagoDAO extends AdaptadorDao<Pago>{
+public class PagoDAO extends AdaptadorDAO<Pago>{
     private Pago pago;
 
     public PagoDAO() {

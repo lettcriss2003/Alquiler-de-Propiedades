@@ -33,13 +33,13 @@ import controlador.InterfazDAO;
  * @author Dennys
  */
 
-public class AdaptadorDao<T> implements InterfazDAO<T> {
+public class AdaptadorDAO<T> implements InterfazDAO<T> {
 
     private String URL = "data/XML" + File.separatorChar;
     private String URL2 = "data/JSON" + File.separatorChar;
     private Class<T> clazz;
 
-    public AdaptadorDao(Class<T> clazz) {
+    public AdaptadorDAO(Class<T> clazz) {
         this.clazz = clazz;
         URL += this.clazz.getSimpleName() + ".xml";
         URL2 += this.clazz.getSimpleName() + ".json";

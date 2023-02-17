@@ -10,7 +10,7 @@ import modelo.Propiedad;
  *
  * @author Dennys
  */
-public class PropiedadDao extends AdaptadorDao<Propiedad>{
+public class PropiedadDao extends AdaptadorDAO<Propiedad>{
     private Propiedad propiedad;
 
     public PropiedadDao() {
