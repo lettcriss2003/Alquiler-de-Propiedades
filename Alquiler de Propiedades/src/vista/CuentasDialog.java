@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Rol;
 import ordenacion.Excepciones.AtributoNoEncontradoException;
 import vista.Modelo.ModeloTablaCuentas;
 import vista.Utilidades.Utilidades;
@@ -24,8 +25,10 @@ import vista.Utilidades.Utilidades;
  * @author leomah
  */
 public class CuentasDialog extends javax.swing.JDialog {
+
     private ModeloTablaCuentas mtc = new ModeloTablaCuentas();
     private CuentasController cuentasController = new CuentasController();
+
     /**
      * Creates new form CuentasDialog
      */
@@ -36,8 +39,8 @@ public class CuentasDialog extends javax.swing.JDialog {
         cargarCuentas();
         cargarTabla(cuentasController);
     }
-        
-    private void cargarCuentas(){
+
+    private void cargarCuentas() {
         try {
             this.cuentasController.setCuentadao(Utilidades.cargarJson());
         } catch (IOException ex) {
@@ -45,32 +48,39 @@ public class CuentasDialog extends javax.swing.JDialog {
             Logger.getLogger(CuentasDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void cargarTabla(CuentasController cc){
+
+    private void cargarTabla(CuentasController cc) {
         mtc.setCc(cc);
         tblCuentas.setModel(mtc);
         tblCuentas.updateUI();
     }
-    
-    private void buscar() throws AtributoNoEncontradoException, IllegalArgumentException, ListaVaciaException, PosicionNoEncontradaException, IllegalAccessException{
-        if (!txtBusqueda.getText().isEmpty() && (rbtnID.isSelected() || rbtnEstado.isSelected() || rbtnUsuario.isSelected())) {
+
+    private void buscar() throws AtributoNoEncontradoException, IllegalArgumentException, ListaVaciaException, PosicionNoEncontradaException, IllegalAccessException {
+        cargarCuentas();
+        cargarTabla(cuentasController);
+        if (!txtBusqueda.getText().isEmpty() && (rbtnID.isSelected() || rbtnRol.isSelected() || rbtnUsuario.isSelected() || rbtnEstado.isSelected())) {
             BusquedaLinealBinaria blb = new BusquedaLinealBinaria();
-            CuentasController ccAux = new CuentasController();
             ListaEnlazada<Integer> posAux = new ListaEnlazada<>();
-            if(rbtnID.isSelected()) {
+            if (rbtnID.isSelected()) {
                 posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), Integer.parseInt(txtBusqueda.getText()), "ID");
-            }else if (rbtnUsuario.isSelected()){
+            } else if (rbtnUsuario.isSelected()) {
                 posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), txtBusqueda.getText(), "usuario");
-            }else if (txtBusqueda.getText().equalsIgnoreCase("activo")) {
+            } else if (rbtnRol.isSelected()) {
+                posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), txtBusqueda.getText().toUpperCase(), "rol");
+            } else if (txtBusqueda.getText().equalsIgnoreCase("activo")) {
                 posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), true, "estado");
-            }else{
+            } else {
                 posAux = blb.linealBinaria(cuentasController.getCuentadao().getCuentas(), false, "estado");
             }
-            for (int i = 0; i < posAux.getTamanio(); i++) {
-                ccAux.getCuentadao().getCuentas().insertar(cuentasController.getCuentadao().getCuentas().obtener(posAux.obtener(i)));
+            for (int i = 0; i < cuentasController.getCuentadao().getCuentas().getTamanio(); i++) {
+                for (int j = 0; j < posAux.getTamanio(); j++) {
+                    if (!(i == posAux.obtener(j))) {
+                        cuentasController.getCuentadao().getCuentas().eliminarPosicion(i);
+                    }
+                }
             }
-            cargarTabla(ccAux);
-        }else{
+            cargarTabla(cuentasController);
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor, brinde toda la información \nsolicitada para la búsqueda");
         }
     }
@@ -97,8 +107,9 @@ public class CuentasDialog extends javax.swing.JDialog {
         txtBusqueda = new javax.swing.JTextField();
         rbtnID = new javax.swing.JRadioButton();
         rbtnUsuario = new javax.swing.JRadioButton();
-        rbtnEstado = new javax.swing.JRadioButton();
+        rbtnRol = new javax.swing.JRadioButton();
         btnBuscar = new javax.swing.JButton();
+        rbtnEstado = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnGuardar = new javax.swing.JMenuItem();
@@ -175,15 +186,15 @@ public class CuentasDialog extends javax.swing.JDialog {
                 rbtnIDActionPerformed(evt);
             }
         });
-        jPanel2.add(rbtnID, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
+        jPanel2.add(rbtnID, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
         rbtngBusqueda.add(rbtnUsuario);
         rbtnUsuario.setText("Usuario");
-        jPanel2.add(rbtnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, -1));
+        jPanel2.add(rbtnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
-        rbtngBusqueda.add(rbtnEstado);
-        rbtnEstado.setText("Estado");
-        jPanel2.add(rbtnEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, -1));
+        rbtngBusqueda.add(rbtnRol);
+        rbtnRol.setText("Rol");
+        jPanel2.add(rbtnRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, -1, -1));
 
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +203,10 @@ public class CuentasDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+
+        rbtngBusqueda.add(rbtnEstado);
+        rbtnEstado.setText("Estado");
+        jPanel2.add(rbtnEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 56, 820, 90));
 
@@ -311,7 +326,7 @@ public class CuentasDialog extends javax.swing.JDialog {
             cd.setVisible(true);
             cargarCuentas();
             cargarTabla(cuentasController);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Seleccione un elemento");
         }
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -527,6 +542,7 @@ public class CuentasDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbtnEstado;
     private javax.swing.JRadioButton rbtnID;
+    private javax.swing.JRadioButton rbtnRol;
     private javax.swing.JRadioButton rbtnUsuario;
     private javax.swing.ButtonGroup rbtngBusqueda;
     private javax.swing.JTable tblCuentas;

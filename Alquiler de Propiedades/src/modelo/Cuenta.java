@@ -15,20 +15,30 @@ public class Cuenta {
     private Boolean estado;
     private String contrasenia;
     private Persona persona;
+    private Rol rol;
 
     public Cuenta() {
     }
     
-    public Cuenta(String usuario, String contrasenia, Persona persona, Integer id, Boolean estado) {
+    public Cuenta(String usuario, String contrasenia, Persona persona, Integer id, Boolean estado, Rol rol) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.persona = persona;
         this.id = id;
         this.estado = estado;
+        this.rol = rol;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public void setId(Integer id) {

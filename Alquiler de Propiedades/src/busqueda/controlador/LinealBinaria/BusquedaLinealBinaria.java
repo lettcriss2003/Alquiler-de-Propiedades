@@ -271,10 +271,10 @@ public class BusquedaLinealBinaria<E> {
         }
         if (Utilidades.isNumber(arrayAtributos[0].getClass())) {
             return binariaNumber(arrayAtributos, dato, pos);
-        }else if(Utilidades.isString(arrayAtributos[0].getClass())){
-            return binariaString(arrayAtributos, dato, pos);
-        }else{
+        }else if(Utilidades.isBoolean(arrayAtributos[0].getClass())){
             return binariaBoolean(arrayAtributos, dato, pos);
+        }else{
+            return binariaString(arrayAtributos, dato, pos);
         }
     }
 }

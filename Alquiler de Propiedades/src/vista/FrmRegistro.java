@@ -21,6 +21,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Cuenta;
 import modelo.Persona;
+import modelo.Rol;
 import ordenacion.Excepciones.AtributoNoEncontradoException;
 import vista.Utilidades.Utilidades;
 
@@ -167,7 +168,7 @@ public class FrmRegistro extends javax.swing.JDialog {
                             Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                             true, txtCorreoR.getText());
 
-                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true);
+                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true, Rol.USUARIO);
                     if (cc.insertar(cuenta)) {
                         ordenarCuentas();
                         actualizarCamposRegistro();
@@ -205,7 +206,7 @@ public class FrmRegistro extends javax.swing.JDialog {
                         Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                         true, txtCorreoR.getText());
 
-                Cuenta cuenta = new Cuenta(txtUsuario.getText(), txtCont.getText(), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true);
+                Cuenta cuenta = new Cuenta(txtUsuario.getText(), txtCont.getText(), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true, Rol.USUARIO);
                 if (CuentasController.modificar(cuenta)) {
                     JOptionPane.showMessageDialog(this, "El usuario se ha modificado de manera correcta", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 } else {

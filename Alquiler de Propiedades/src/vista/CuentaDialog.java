@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Cuenta;
+import modelo.Rol;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -55,6 +56,7 @@ public class CuentaDialog extends javax.swing.JDialog {
     public CuentaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cargarComboRoles();
         this.setLocationRelativeTo(null);
     }
 
@@ -70,7 +72,17 @@ public class CuentaDialog extends javax.swing.JDialog {
         } catch (PosicionNoEncontradaException ex) {
             Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+        cargarComboRoles();
         this.setLocationRelativeTo(null);
+    }
+
+    private void cargarComboRoles() {
+        try {;
+            this.cbxRoles = Utilidades.cargarRoles(cbxRoles);
+        } catch (IOException ex) {
+            Logger.getLogger(CuentaDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
@@ -106,6 +118,8 @@ public class CuentaDialog extends javax.swing.JDialog {
         rbtnSi = new javax.swing.JRadioButton();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cbxRoles = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -118,13 +132,13 @@ public class CuentaDialog extends javax.swing.JDialog {
         jLabel2.setText("Usuario:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
-        jLabel3.setText("Contraseña:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        jLabel3.setText("Rol:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 270, -1));
         jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 250, -1));
 
         jLabel4.setText("Activo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         buttonGroup1.add(rbtnNo);
         rbtnNo.setText("NO");
@@ -133,7 +147,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 rbtnNoActionPerformed(evt);
             }
         });
-        jPanel1.add(rbtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
+        jPanel1.add(rbtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         buttonGroup1.add(rbtnSi);
         rbtnSi.setText("SI");
@@ -142,7 +156,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 rbtnSiActionPerformed(evt);
             }
         });
-        jPanel1.add(rbtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+        jPanel1.add(rbtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +164,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +172,13 @@ public class CuentaDialog extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+
+        jLabel5.setText("Contraseña:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        cbxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbxRoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,7 +188,7 @@ public class CuentaDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         );
 
         pack();
@@ -196,6 +216,7 @@ public class CuentaDialog extends javax.swing.JDialog {
                 } else {
                     c.setEstado(false);
                 }
+                c.setRol((Rol)cbxRoles.getSelectedItem());
                 cuentaController.getCuentadao().getCuentas().modificarPoscicion(c, posicion);
                 try {
                     Utilidades.guardar(cuentaController.getCuentadao());
@@ -267,10 +288,12 @@ public class CuentaDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbxRoles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbtnNo;
     private javax.swing.JRadioButton rbtnSi;

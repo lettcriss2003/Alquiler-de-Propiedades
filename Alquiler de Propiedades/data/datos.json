@@ -3,21 +3,41 @@
     "cabecera": {
       "dato": {
         "id": 1,
-        "usuario": "leo",
+        "usuario": "admin",
         "estado": true,
-        "contrasenia": "YXR1bg\u003d\u003d",
+        "contrasenia": "YWRtaW4\u003d",
         "persona": {
           "id": 1,
-          "nombres": "leo",
-          "apellidos": "leo",
-          "fechaNacimiento": "Mar 4, 2004 12:00:00 AM",
+          "nombres": "Administrador",
+          "apellidos": "Administrador",
+          "fechaNacimiento": "Jan 1, 2000 12:00:00 AM",
           "identificacion": "1105986689",
           "tipoIdentificacion": "CEDULA",
           "estado": true,
-          "correo": "asd@ymial.com"
+          "correo": "admin@gmail.com"
+        },
+        "rol": "ADMINISTRADOR"
+      },
+      "siguiente": {
+        "dato": {
+          "id": 2,
+          "usuario": "leo",
+          "estado": true,
+          "contrasenia": "bGVv",
+          "persona": {
+            "id": 2,
+            "nombres": "leo",
+            "apellidos": "maza",
+            "fechaNacimiento": "Mar 4, 2004 12:00:00 AM",
+            "identificacion": "1105986689",
+            "tipoIdentificacion": "CEDULA",
+            "estado": true,
+            "correo": "leo@ymail.com"
+          },
+          "rol": "USUARIO"
         }
       }
     },
-    "tamanio": 1
+    "tamanio": 2
   }
 }

@@ -20,6 +20,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Propiedad aux = new Propiedad();
     Integer iterador = 1;
     public static ListaEnlazada<Propiedad> PropiedadDatos = new ListaEnlazada<>();
+    private Boolean is_administrador;
     
 
     /**
@@ -28,6 +29,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal() {
         initComponents();
         //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        this.setLocationRelativeTo(null);
+    }
+    
+    public FrmPrincipal(Boolean is_administrador) {
+        initComponents();
+        //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        this.is_administrador = is_administrador;
+        verificarAdmin();
         this.setLocationRelativeTo(null);
     }
 
@@ -463,6 +472,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void verificarAdmin(){
+        if (!is_administrador) {
+            btnCuentas.setVisible(false);
+        }
+    }
+    
     private void btnIngresarNuevaPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarNuevaPropiedadActionPerformed
         FrmIngresoDireccion Propiedadprincipal = new FrmIngresoDireccion();
         Propiedadprincipal.setVisible(true);

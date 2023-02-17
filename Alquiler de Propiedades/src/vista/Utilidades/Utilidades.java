@@ -48,6 +48,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import modelo.MetodoPago;
+import modelo.Rol;
 
 /**
  *
@@ -57,12 +58,18 @@ public class Utilidades {
 
     private static String URL = "data";
 
-    public static RolesController cargarRoles() throws IOException {
-        RolesController rc = new RolesController();
-        Reader lector = Files.newBufferedReader(Paths.get("roles.json"));
-        Gson gson = new Gson();
-        rc = (gson.fromJson(lector, RolesController.class));
-        return rc;
+    public static JComboBox cargarRoles(JComboBox cbx) throws IOException {
+        cbx.removeAllItems();
+        for (Rol rol : Rol.values()) {
+            cbx.addItem(rol);
+        }
+        return cbx;
+        
+//        RolesController rc = new RolesController();
+//        Reader lector = Files.newBufferedReader(Paths.get("roles.json"));
+//        Gson gson = new Gson();
+//        rc = (gson.fromJson(lector, RolesController.class));
+//        return rc;
     }
 
     public static void guardarRoles(RolesController rc) throws FileNotFoundException {

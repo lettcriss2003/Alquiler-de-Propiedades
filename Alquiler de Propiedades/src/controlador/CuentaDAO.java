@@ -112,7 +112,7 @@ public class CuentaDAO {
      * @throws java.lang.IllegalAccessException
      */
     public Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
-        if (buscar(usuario) != 1) {
+        if (buscar(usuario) > -1) {
             return cuentas.obtener(buscar(usuario));
         } else {
             return null;

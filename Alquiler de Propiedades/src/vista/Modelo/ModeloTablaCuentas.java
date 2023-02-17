@@ -30,7 +30,7 @@ public class ModeloTablaCuentas extends AbstractTableModel{
     
     @Override
     public int getColumnCount(){
-        return 3;
+        return 4;
     }
     
     @Override 
@@ -44,6 +44,7 @@ public class ModeloTablaCuentas extends AbstractTableModel{
             case 0: return "Id";
             case 1: return "Usuario";
             case 2: return "Estado";
+            case 3: return "Rol";
             default: return null;
         }
     }
@@ -74,6 +75,8 @@ public class ModeloTablaCuentas extends AbstractTableModel{
                 }else{
                     return "No definido";
                 }
+            case 3: 
+                return (c != null) ? c.getRol() : "No definido";
             default:
                 return null;
         }
