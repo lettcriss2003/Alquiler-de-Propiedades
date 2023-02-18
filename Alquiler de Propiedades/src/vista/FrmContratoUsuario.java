@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.CuentasController;
 import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
@@ -14,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import modelo.Cuenta;
 import static vista.FrmPropiedadImagen.PropiedadDatos;
 import modelo.Propiedad;
 import static vista.FrmDescripcionPropiedad.lblImagen;
@@ -61,10 +63,12 @@ import vista.Utilidades.Utilidades;
  * @author lettc
  */
 public class FrmContratoUsuario extends javax.swing.JFrame {
+
     PropiedadDao propiedadDao = new PropiedadDao();
-    Propiedad aux = new Propiedad();
-    Integer iterador = 0;
+    private Propiedad aux;
+    private Integer iterador = 0;
     private ListaEnlazada<Propiedad> listaPropiedades;
+    private Cuenta cuentaActual;
 
     /**
      * Creates new form FrmContratoUsuario
@@ -89,15 +93,36 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
     }
-    
+
+    public FrmContratoUsuario(Cuenta cuentaActual) {
+
+        initComponents();
+        this.cuentaActual = cuentaActual;
+        try {
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            cargarDatos();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dateDisponibilidadDesde.setMinSelectableDate(new Date());
+        dateDisponibilidadHasta.setMinSelectableDate(new Date());
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        this.setLocationRelativeTo(null);
+    }
+
     /**
      * Carga todos los datos al frm
      *
      */
-  public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
-        Propiedad aux = new Propiedad();
-        aux=listaPropiedades.obtener(iterador);
-        if ( aux== null) {
+    public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
+        aux = listaPropiedades.obtener(iterador);
+        if (aux == null) {
             System.out.println("YA NO HAY MAS");
         } else {
             if (aux.getImg() != null) {
@@ -132,31 +157,28 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             txtBanios.setText((aux.getBanios() != null) ? aux.getBanios() : "No definido");
             txtHuespedes.setText((aux.getHuesped() != null) ? aux.getHuesped() : "No definido");
             txtCamas.setText((aux.getCamas() != null) ? aux.getCamas() : "No definido");
-            txtWifi.setText((aux.getWifi() != null) ? (aux.getWifi() == true)?"no":"si" : "no definido"); 
-            txtTV.setText((aux.getTV() != null) ? (aux.getTV()== true)?"no":"si" : "no definido");
-            txtLavadora.setText((aux.getLavadora() != null) ?  (aux.getLavadora() == true)?"no":"si"  : "no definido");
-            txtSecadora.setText((aux.getSecadora() != null) ?  (aux.getSecadora() == true)?"no":"si" : "no");
-            txtAireAcondicionado.setText((aux.getAireAcondicionado() != null) ?  (aux.getAireAcondicionado() == true)?"no":"si"  : "no definido");
-            txtAguaCaliente.setText((aux.getAguaCaliente() != null) ? (aux.getAguaCaliente()== true)? "no":"si" : "no");
-            txtCocina.setText((aux.getCocina() != null) ? (aux.getCocina() == true)?"no":"si": "no");
-            txtEstacionamiento.setText((aux.getEstacionamiento() != null) ? (aux.getEstacionamiento() == true)?"no":"si" : "no");
-            txtPicina.setText((aux.getPicina() != null) ?(aux.getPicina()== true)?"no":"si" : "no");
-            txtJacuzzi.setText((aux.getJacuzzi() != null) ? (aux.getJacuzzi()== true)?"no":"si" : "no");
-            txtParrilla.setText((aux.getParrilla() != null) ?(aux.getParrilla()== true)?"no":"si" : "no");
-            txtPatio.setText((aux.getPatio() != null) ? (aux.getPatio()== true)?"no":"si": "no");
-            txtComedor.setText((aux.getComedor() != null) ? (aux.getComedor()== true)?"no":"si" : "no");
-            txtSalaJuegos.setText((aux.getSalaJuegos() != null) ? (aux.getSalaJuegos()== true)?"no":"si" : "no");
-            txtOtros.setText((aux.getOtros() != null) ? (aux.getOtros()== true)?"no":"si" : "no");
+            txtWifi.setText((aux.getWifi() != null) ? (aux.getWifi() == true) ? "no" : "si" : "no definido");
+            txtTV.setText((aux.getTV() != null) ? (aux.getTV() == true) ? "no" : "si" : "no definido");
+            txtLavadora.setText((aux.getLavadora() != null) ? (aux.getLavadora() == true) ? "no" : "si" : "no definido");
+            txtSecadora.setText((aux.getSecadora() != null) ? (aux.getSecadora() == true) ? "no" : "si" : "no");
+            txtAireAcondicionado.setText((aux.getAireAcondicionado() != null) ? (aux.getAireAcondicionado() == true) ? "no" : "si" : "no definido");
+            txtAguaCaliente.setText((aux.getAguaCaliente() != null) ? (aux.getAguaCaliente() == true) ? "no" : "si" : "no");
+            txtCocina.setText((aux.getCocina() != null) ? (aux.getCocina() == true) ? "no" : "si" : "no");
+            txtEstacionamiento.setText((aux.getEstacionamiento() != null) ? (aux.getEstacionamiento() == true) ? "no" : "si" : "no");
+            txtPicina.setText((aux.getPicina() != null) ? (aux.getPicina() == true) ? "no" : "si" : "no");
+            txtJacuzzi.setText((aux.getJacuzzi() != null) ? (aux.getJacuzzi() == true) ? "no" : "si" : "no");
+            txtParrilla.setText((aux.getParrilla() != null) ? (aux.getParrilla() == true) ? "no" : "si" : "no");
+            txtPatio.setText((aux.getPatio() != null) ? (aux.getPatio() == true) ? "no" : "si" : "no");
+            txtComedor.setText((aux.getComedor() != null) ? (aux.getComedor() == true) ? "no" : "si" : "no");
+            txtSalaJuegos.setText((aux.getSalaJuegos() != null) ? (aux.getSalaJuegos() == true) ? "no" : "si" : "no");
+            txtOtros.setText((aux.getOtros() != null) ? (aux.getOtros() == true) ? "no" : "si" : "no");
             txtFechaI.setText(aux.getFechaIngreso());
             txtFechaF.setText(aux.getFechaSalida());
 
             System.out.println(aux);
             iterador++;
         }
-        
-
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -257,6 +279,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         dateDisponibilidadDesde = new com.toedter.calendar.JDateChooser();
         dateDisponibilidadHasta = new com.toedter.calendar.JDateChooser();
+        btnFavorito = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -495,7 +518,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -898,6 +921,13 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnFavorito.setText("FAVORITO");
+        btnFavorito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavoritoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -912,14 +942,17 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(73, 73, 73)
                                         .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSalir))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnSalir)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnFavorito)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -968,7 +1001,9 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSalir)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalir)
+                            .addComponent(btnFavorito))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1029,9 +1064,9 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerSiguientePropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSiguientePropiedadActionPerformed
-     
+
     }//GEN-LAST:event_btnVerSiguientePropiedadActionPerformed
-       
+
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         FrmSeleccionTipoDePago pagar = new FrmSeleccionTipoDePago();
         pagar.setVisible(true);
@@ -1043,24 +1078,46 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtWifiActionPerformed
 
     private void dateDisponibilidadDesdePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDisponibilidadDesdePropertyChange
-        Date fechaActual=new Date();
-        if (dateDisponibilidadDesde.getDate()!=null) {
+        Date fechaActual = new Date();
+        if (dateDisponibilidadDesde.getDate() != null) {
             if (dateDisponibilidadDesde.getDate().before(fechaActual)) {
-                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual", "Error", JOptionPane.ERROR_MESSAGE);
                 dateDisponibilidadDesde.setDate(null);
             }
         }
     }//GEN-LAST:event_dateDisponibilidadDesdePropertyChange
 
     private void dateDisponibilidadHastaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDisponibilidadHastaPropertyChange
-        Date fechaActual=new Date();
-        if (dateDisponibilidadHasta.getDate()!=null) {
+        Date fechaActual = new Date();
+        if (dateDisponibilidadHasta.getDate() != null) {
             if (dateDisponibilidadHasta.getDate().before(fechaActual)) {
-                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual", "Error", JOptionPane.ERROR_MESSAGE);
                 dateDisponibilidadHasta.setDate(null);
             }
         }
     }//GEN-LAST:event_dateDisponibilidadHastaPropertyChange
+
+    private void btnFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritoActionPerformed
+
+        try {
+            // TODO add your handling code here:
+            CuentasController cc = new CuentasController();
+            cc.setCuentadao(Utilidades.cargarJson());
+            cuentaActual.getFavoritas().insertar(aux);
+            for (int i = 0; i < cc.getCuentadao().getCuentas().getTamanio(); i++) {
+                if (cuentaActual.getUsuario().equals(cc.getCuentadao().getCuentas().obtener(i).getUsuario())) {
+                    cc.getCuentadao().getCuentas().modificarPoscicion(cuentaActual, i);
+                }
+            }
+            Utilidades.guardar(cc.getCuentadao());
+        } catch (IOException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnFavoritoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1098,6 +1155,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFavorito;
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerSiguientePropiedad;

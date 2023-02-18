@@ -168,7 +168,7 @@ public class FrmRegistro extends javax.swing.JDialog {
                             Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                             true, txtCorreoR.getText());
 
-                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, cc.getCuentadao().getCuentas().getTamanio() + 1, true, Rol.USUARIO);
+                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, cc.getCuentadao().getCuentas().obtener(cc.getCuentadao().getCuentas().getTamanio()-1).getId()+1, true, Rol.USUARIO);
                     if (cc.insertar(cuenta)) {
                         ordenarCuentas();
                         actualizarCamposRegistro();

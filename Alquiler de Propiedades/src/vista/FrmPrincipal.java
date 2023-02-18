@@ -526,7 +526,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarNuevaPropiedadActionPerformed
 
     private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
-        FrmAgregarFavoritos Propiedadprincipal = new FrmAgregarFavoritos();
+        FrmAgregarFavoritos Propiedadprincipal = new FrmAgregarFavoritos(cuentaActual);
         Propiedadprincipal.setVisible(true);
        // this.dispose();
     }//GEN-LAST:event_btnFavoritosActionPerformed
@@ -549,7 +549,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //
 //            iterador++;
 //        }
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
+        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario(cuentaActual);
         Propiedadprincipal.setVisible(true);
         //this.dispose();
     }//GEN-LAST:event_btnPropiedad1ActionPerformed

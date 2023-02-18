@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import controlador.listas.ListaEnlazada;
+
 /**
  *
  * @author lettc
@@ -16,6 +18,7 @@ public class Cuenta {
     private String contrasenia;
     private Persona persona;
     private Rol rol;
+    private ListaEnlazada<Propiedad> favoritas;
 
     public Cuenta() {
     }
@@ -27,6 +30,17 @@ public class Cuenta {
         this.id = id;
         this.estado = estado;
         this.rol = rol;
+    }
+
+    public ListaEnlazada<Propiedad> getFavoritas() {
+        if (this.favoritas == null) {
+            this.favoritas = new ListaEnlazada<>();
+        }
+        return favoritas;
+    }
+
+    public void setFavoritas(ListaEnlazada<Propiedad> favoritas) {
+        this.favoritas = favoritas;
     }
 
     public Integer getId() {
