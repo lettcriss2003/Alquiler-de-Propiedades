@@ -7,14 +7,19 @@ package vista;
 import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import modelo.Cuenta;
 import static vista.FrmPropiedadImagen.PropiedadDatos;
 import modelo.Propiedad;
+import modelo.Rol;
 import modelo.TipoPropiedad;
 import static vista.FrmIngresoPropiedad.dateDisponibilidadDesde;
 import static vista.FrmIngresoPropiedad.dateDisponibilidadHasta;
@@ -27,8 +32,10 @@ import vista.Utilidades.Utilidades;
 public class FrmDescripcionPropiedad extends javax.swing.JFrame {
 
     PropiedadDao propiedadDao = new PropiedadDao();
-
-    private Integer iterador = 1;
+    private Cuenta cuentaActual;
+    private Integer iterador = 0;
+    private ListaEnlazada<Propiedad> listaPropiedades;
+    private ListaEnlazada<Propiedad> listaAux = new ListaEnlazada<>();
 
     /**
      * Creates new form FrmPrincipal
@@ -39,19 +46,63 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
         btnNuevaPropiedad.requestFocus();
-        cargarDatos();
+        try {
+            cargarDatos();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
+    public FrmDescripcionPropiedad(Cuenta cuentaActual) {
+        initComponents();
+        //cargarDatos();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        setLocationRelativeTo(null);
+        this.cuentaActual = cuentaActual;
+        btnNuevaPropiedad.requestFocus();
+        try {
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            cargarPropiedades();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            cargarDatos();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void cargarPropiedades() throws ListaVaciaException, PosicionNoEncontradaException {
+        if (cuentaActual.getRol().equals(Rol.ADMINISTRADOR)) {
+            for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
+                listaAux.insertar(listaPropiedades.obtener(i));
+            }
+        } else {
+            for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
+                if (listaPropiedades.obtener(i).getAnfitrion().getUsuario().equals(cuentaActual.getUsuario())) {
+                    listaAux.insertar(listaPropiedades.obtener(i));
+                }
+            }
+        }
+    }
+
     /**
      * Craga los datos al frm
      */
-
-    public void cargarDatos() {
-        Propiedad aux = new Propiedad();
-        aux=propiedadDao.obtenerPropiedad(iterador);
-        if ( aux== null) {
-            System.out.println("YA NO HAY MAS");
-        } else {
+    public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
+        if (iterador < listaAux.getTamanio()) {
+            Propiedad aux = listaAux.obtener(iterador);
             if (aux.getImg() != null) {
                 Utilidades.DefinirImagenLabel(lblImagen, aux.getImg());
             }
@@ -84,32 +135,30 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
             txtBanios.setText((aux.getBanios() != null) ? aux.getBanios() : "No definido");
             txtHuespedes.setText((aux.getHuesped() != null) ? aux.getHuesped() : "No definido");
             txtCamas.setText((aux.getCamas() != null) ? aux.getCamas() : "No definido");
-            txtWifi.setText((aux.getWifi() != null) ? (aux.getWifi() == true)?"no":"si" : "no definido"); 
-            txtTV.setText((aux.getTV() != null) ? (aux.getTV()== true)?"no":"si" : "no definido");
-            txtLavadora.setText((aux.getLavadora() != null) ?  (aux.getLavadora() == true)?"no":"si"  : "no definido");
-            txtSecadora.setText((aux.getSecadora() != null) ?  (aux.getSecadora() == true)?"no":"si" : "no");
-            txtAireAcondicionado.setText((aux.getAireAcondicionado() != null) ?  (aux.getAireAcondicionado() == true)?"no":"si"  : "no definido");
-            txtAguaCaliente.setText((aux.getAguaCaliente() != null) ? (aux.getAguaCaliente()== true)? "no":"si" : "no");
-            txtCocina.setText((aux.getCocina() != null) ? (aux.getCocina() == true)?"no":"si": "no");
-            txtEstacionamiento.setText((aux.getEstacionamiento() != null) ? (aux.getEstacionamiento() == true)?"no":"si" : "no");
-            txtPicina.setText((aux.getPicina() != null) ?(aux.getPicina()== true)?"no":"si" : "no");
-            txtJacuzzi.setText((aux.getJacuzzi() != null) ? (aux.getJacuzzi()== true)?"no":"si" : "no");
-            txtParrilla.setText((aux.getParrilla() != null) ?(aux.getParrilla()== true)?"no":"si" : "no");
-            txtPatio.setText((aux.getPatio() != null) ? (aux.getPatio()== true)?"no":"si": "no");
-            txtComedor.setText((aux.getComedor() != null) ? (aux.getComedor()== true)?"no":"si" : "no");
-            txtSalaJuegos.setText((aux.getSalaJuegos() != null) ? (aux.getSalaJuegos()== true)?"no":"si" : "no");
-            txtOtros.setText((aux.getOtros() != null) ? (aux.getOtros()== true)?"no":"si" : "no");
+            txtWifi.setText((aux.getWifi() != null) ? (aux.getWifi() == true) ? "no" : "si" : "no definido");
+            txtTV.setText((aux.getTV() != null) ? (aux.getTV() == true) ? "no" : "si" : "no definido");
+            txtLavadora.setText((aux.getLavadora() != null) ? (aux.getLavadora() == true) ? "no" : "si" : "no definido");
+            txtSecadora.setText((aux.getSecadora() != null) ? (aux.getSecadora() == true) ? "no" : "si" : "no");
+            txtAireAcondicionado.setText((aux.getAireAcondicionado() != null) ? (aux.getAireAcondicionado() == true) ? "no" : "si" : "no definido");
+            txtAguaCaliente.setText((aux.getAguaCaliente() != null) ? (aux.getAguaCaliente() == true) ? "no" : "si" : "no");
+            txtCocina.setText((aux.getCocina() != null) ? (aux.getCocina() == true) ? "no" : "si" : "no");
+            txtEstacionamiento.setText((aux.getEstacionamiento() != null) ? (aux.getEstacionamiento() == true) ? "no" : "si" : "no");
+            txtPicina.setText((aux.getPicina() != null) ? (aux.getPicina() == true) ? "no" : "si" : "no");
+            txtJacuzzi.setText((aux.getJacuzzi() != null) ? (aux.getJacuzzi() == true) ? "no" : "si" : "no");
+            txtParrilla.setText((aux.getParrilla() != null) ? (aux.getParrilla() == true) ? "no" : "si" : "no");
+            txtPatio.setText((aux.getPatio() != null) ? (aux.getPatio() == true) ? "no" : "si" : "no");
+            txtComedor.setText((aux.getComedor() != null) ? (aux.getComedor() == true) ? "no" : "si" : "no");
+            txtSalaJuegos.setText((aux.getSalaJuegos() != null) ? (aux.getSalaJuegos() == true) ? "no" : "si" : "no");
+            txtOtros.setText((aux.getOtros() != null) ? (aux.getOtros() == true) ? "no" : "si" : "no");
             txtFechaI.setText(aux.getFechaIngreso());
             txtFechaF.setText(aux.getFechaSalida());
 
             System.out.println(aux);
             iterador++;
+        } else {
+            JOptionPane.showMessageDialog(this, "No existen más propiedades registradas");
         }
-        
-
     }
-    
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -464,7 +513,7 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -972,6 +1021,11 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
         jMenu1.add(jmUsuario);
 
         jmAnfitrion.setText("Anfitrion");
+        jmAnfitrion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAnfitrionActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmAnfitrion);
 
         jMenuBar1.add(jMenu1);
@@ -1006,21 +1060,32 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
     }//GEN-LAST:event_jmUsuarioActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        FrmPrincipal regresar = new FrmPrincipal();
-        regresar.setVisible(true);
-        this.setVisible(false);
+//        FrmPrincipal regresar = new FrmPrincipal();
+//        regresar.setVisible(true);
+//        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnNuevaPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaPropiedadActionPerformed
-        FrmIngresoDireccion btndireccion = new FrmIngresoDireccion();
+        FrmIngresoDireccion btndireccion = new FrmIngresoDireccion(this.cuentaActual);
         btndireccion.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnNuevaPropiedadActionPerformed
 
     private void btnVerSiguientePropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSiguientePropiedadActionPerformed
-        // TODO add your handling code here:
-        cargarDatos();
+        try {
+            // TODO add your handling code here:
+            cargarDatos();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmDescripcionPropiedad.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVerSiguientePropiedadActionPerformed
+
+    private void jmAnfitrionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAnfitrionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmAnfitrionActionPerformed
 
     /**
      * @param args the command line arguments

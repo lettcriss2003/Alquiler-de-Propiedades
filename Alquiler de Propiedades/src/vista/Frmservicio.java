@@ -6,11 +6,15 @@ package vista;
 
 import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import modelo.Propiedad;
 import static vista.FrmPropiedadImagen.PropiedadDatos;
+import vista.Utilidades.Utilidades;
 
 /**
  *
@@ -20,6 +24,7 @@ public class Frmservicio extends javax.swing.JFrame {
 
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
+    private ListaEnlazada<Propiedad> listaPropiedades;
 
     /**
      * Creates new form Frmservicio
@@ -32,11 +37,68 @@ public class Frmservicio extends javax.swing.JFrame {
     }
 
     public Frmservicio(Integer id) {
-        aux = propiedadDao.obtenerPropiedad(id);
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
+        try {
+            listaPropiedades = Utilidades.cargarPropiedades();
+            aux = listaPropiedades.obtener(id - 1);
+        } catch (IOException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cargarDatos();
         btnSiguiente.requestFocus();
+    }
+
+    private void cargarDatos() {
+        if (aux.getWifi() != null) {
+            if (aux.getWifi()) {
+                checkWifi.setSelected(true);
+            }
+            if (aux.getTV()) {
+                checkTV.setSelected(true);
+            }
+            if (aux.getLavadora()) {
+                checkLavadora.setSelected(true);
+            }
+            if (aux.getSecadora()) {
+                checkSecadora.setSelected(true);
+            }
+            if (aux.getEstacionamiento()) {
+                checkEstacionamiento.setSelected(true);
+            }
+            if (aux.getCocina()) {
+                checkCocina.setSelected(true);
+            }
+            if (aux.getPicina()) {
+                checkPicina.setSelected(true);
+            }
+            if (aux.getJacuzzi()) {
+                checkJacuzzi.setSelected(true);
+            }
+            if (aux.getParrilla()) {
+                checkParrilla.setSelected(true);
+            }
+            if (aux.getPatio()) {
+                checkPatio.setSelected(true);
+            }
+            if (aux.getComedor()) {
+                checkComedor.setSelected(true);
+            }
+            if (aux.getSalaJuegos()) {
+                checkSalaJuegos.setSelected(true);
+            }
+            if (aux.getAireAcondicionado()) {
+                checkAireAcondicionado.setSelected(true);
+            }
+            if (aux.getAguaCaliente()) {
+                checkAguaCaliente.setSelected(true);
+            }
+        }
     }
 
     /**
@@ -360,9 +422,9 @@ public class Frmservicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * guarda los datos de los check box
- * 
- */
+     * guarda los datos de los check box
+     *
+     */
     private void guardarDATOS() {
         if (checkWifi.isSelected()) {
             aux.setWifi(Boolean.TRUE);
@@ -442,11 +504,17 @@ public class Frmservicio extends javax.swing.JFrame {
         System.out.println(aux.getId());
 
         try {
-            propiedadDao.modificar(aux, aux.getId());
-        } catch (Exception e) {
-            System.out.println(e);
+            listaPropiedades.modificarPoscicion(aux, aux.getId() - 1);
+            Utilidades.guardarPropiedades(listaPropiedades);
+        } catch (IOException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+//        try {
+//            propiedadDao.modificar(aux, aux.getId());
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         guardarDATOS();
@@ -463,7 +531,7 @@ public class Frmservicio extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        FrmIngresoDireccion direccion = new FrmIngresoDireccion();
+        FrmIngresoDireccion direccion = new FrmIngresoDireccion(aux.getId());
         direccion.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed

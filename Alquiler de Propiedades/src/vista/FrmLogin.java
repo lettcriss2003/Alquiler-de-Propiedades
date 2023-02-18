@@ -100,13 +100,15 @@ public class FrmLogin extends javax.swing.JFrame {
         if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && compararCampos()) {
             if (cc.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
                 JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
-                if (cc.obtener(txtUsuario.getText().trim()).getRol() == Rol.ADMINISTRADOR) {
-                    FrmPrincipal frmPrincipal = new FrmPrincipal(new Boolean(true));
-                    frmPrincipal.setVisible(true);
-                } else {
-                    FrmPrincipal frmPrincipal = new FrmPrincipal(new Boolean(false));
-                    frmPrincipal.setVisible(true);
-                }
+                FrmPrincipal frmPrincipal = new FrmPrincipal(cc.obtener(txtUsuario.getText().trim()));
+                frmPrincipal.setVisible(true);
+//                if (cc.obtener(txtUsuario.getText().trim()).getRol() == Rol.ADMINISTRADOR) {
+//                    FrmPrincipal frmPrincipal = new FrmPrincipal(new Boolean(true));
+//                    frmPrincipal.setVisible(true);
+//                } else {
+//                    FrmPrincipal frmPrincipal = new FrmPrincipal(new Boolean(false));
+//                    frmPrincipal.setVisible(true);
+//                }
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);

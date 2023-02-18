@@ -5,9 +5,17 @@
 package vista;
 
 import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import modelo.Cuenta;
 import modelo.Propiedad;
+import vista.Utilidades.Utilidades;
 
 /**
  *
@@ -17,6 +25,9 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
 
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
+    private Cuenta anfitrion;
+    private ListaEnlazada<Propiedad> listaPropiedades;
+    private Integer id;
 
     /**
      * Creates new form IngresoDireccion
@@ -28,12 +39,50 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         btnOk.requestFocus();
         cargarRestriciones();
+        cargarPropiedades();
     }
-    
+
+    public FrmIngresoDireccion(Integer id) {
+        // limpiar();
+        initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        setLocationRelativeTo(null);
+        cargarPropiedades();
+        this.id = id;
+        try {
+            aux = listaPropiedades.obtener(id - 1);
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmIngresoDireccion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmIngresoDireccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btnOk.requestFocus();
+        cargarRestriciones();
+        cargarDatos();
+    }
+
+    public FrmIngresoDireccion(Cuenta anfitrion) {
+        // limpiar();
+        initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        setLocationRelativeTo(null);
+        this.anfitrion = anfitrion;
+        btnOk.requestFocus();
+        cargarRestriciones();
+        cargarPropiedades();
+    }
+
+    private void cargarDatos() {
+        txtCiudad.setText(aux.getCiudad());
+        txtProvincia.setText(aux.getProvincia());
+        txtCallePrincipal.setText(aux.getCalleP());
+        txtCalleSecundaria.setText(aux.getCalleS());
+        txtCodigoPostal.setText(aux.getCodigoP());
+    }
+
     /**
      * Guarda los datos inggresados
      */
-
     private void guardarDATOS() {
 
         propiedadDao.getPropiedad().setCiudad(txtCiudad.getText());
@@ -41,7 +90,22 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
         propiedadDao.getPropiedad().setCalleP(txtCallePrincipal.getText());
         propiedadDao.getPropiedad().setCalleS(txtCalleSecundaria.getText());
         propiedadDao.getPropiedad().setCodigoP(txtCodigoPostal.getText());
+        if (id == null) {
+            propiedadDao.getPropiedad().setAnfitrion(anfitrion);
+            propiedadDao.getPropiedad().setId(listaPropiedades.getTamanio() + 1);
+        }else{
+            propiedadDao.getPropiedad().setAnfitrion(aux.getAnfitrion());
+            propiedadDao.getPropiedad().setId(aux.getId());
+        }
 
+    }
+
+    private void cargarPropiedades() {
+        try {
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmIngresoDireccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /* private void limpiar(){
@@ -238,39 +302,62 @@ public class FrmIngresoDireccion extends javax.swing.JFrame {
         } else {
             try {
                 guardarDATOS();
-                propiedadDao.guardar();
-                if (propiedadDao.listar().getTamanio() == 0) {
-                    aux=propiedadDao.obtenerPropiedad(0);
-                    System.out.println(aux.getId());
-                } else {
-                    aux=propiedadDao.obtenerPropiedad(propiedadDao.listar().getTamanio()-1);
-                    System.out.println(aux.getId());
+                if (id == null) {
+                    listaPropiedades.insertar(propiedadDao.getPropiedad());
+                }else{
+                    listaPropiedades.modificarPoscicion(propiedadDao.getPropiedad(), id-1);
                 }
+                
+                Utilidades.guardarPropiedades(listaPropiedades);
+                cargarPropiedades();
+                aux = listaPropiedades.obtener(propiedadDao.getPropiedad().getId()-1);
             } catch (Exception e) {
                 System.out.println(e);
             }
-            
-            Frmservicio btndireccion = new Frmservicio(aux.getId()+1);
+
+            Frmservicio btndireccion = new Frmservicio(aux.getId());
 
             btndireccion.setVisible(true);
             this.setVisible(false);
         }
 
+//        if (txtCiudad.getText().isEmpty() || txtProvincia.getText().isEmpty() || txtCallePrincipal.getText().isEmpty() || txtCalleSecundaria.getText().isEmpty() || txtCodigoPostal.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campos vacios");
+//        } else {
+//            try {
+//                guardarDATOS();
+//                propiedadDao.guardar();
+//                if (propiedadDao.listar().getTamanio() == 0) {
+//                    aux=propiedadDao.obtenerPropiedad(0);
+//                    System.out.println(aux.getId());
+//                } else {
+//                    aux=propiedadDao.obtenerPropiedad(propiedadDao.listar().getTamanio()-1);
+//                    System.out.println(aux.getId());
+//                }
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//            
+//            Frmservicio btndireccion = new Frmservicio(aux.getId());
+//
+//            btndireccion.setVisible(true);
+//            this.setVisible(false);
+//        }
 
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
-        Propiedadprincipal.setVisible(true);
+        //FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        //Propiedadprincipal.setVisible(true);
         this.dispose();
 //        this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO Anadir your handling code here:
-        FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
-        Propiedadprincipal.setVisible(true);
-        this.setVisible(false);
+        //FrmDescripcionPropiedad Propiedadprincipal = new FrmDescripcionPropiedad();
+        //Propiedadprincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtCodigoPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPostalActionPerformed

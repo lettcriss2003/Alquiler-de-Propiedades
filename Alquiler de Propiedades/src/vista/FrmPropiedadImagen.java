@@ -5,8 +5,13 @@
 package vista;
 
 import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -23,6 +28,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 0;
+    private ListaEnlazada<Propiedad> listaPropiedades;
     public static ListaEnlazada<Propiedad> PropiedadDatos = new ListaEnlazada<>();
 
     /**
@@ -36,7 +42,16 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     }
 
     public FrmPropiedadImagen(Integer id) {
-        aux = propiedadDao.obtenerPropiedad(id);
+        try {
+            listaPropiedades = Utilidades.cargarPropiedades();
+            aux = listaPropiedades.obtener(id-1);
+        } catch (IOException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
@@ -263,11 +278,19 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     private void btnAgregarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarImgActionPerformed
 
         CargarImagen();
+        
         try {
-            propiedadDao.modificar(aux, aux.getId());
-
-        } catch (Exception e) {
+            listaPropiedades.modificarPoscicion(aux, aux.getId()-1);
+            Utilidades.guardarPropiedades(listaPropiedades);
+        } catch (IOException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+//        try {
+//            propiedadDao.modificar(aux, aux.getId());
+//
+//        } catch (Exception e) {
+//        }
     }//GEN-LAST:event_btnAgregarImgActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -279,7 +302,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO Anadir your handling code here:
-        FrmIngresoPropiedad direccion = new FrmIngresoPropiedad();
+        FrmIngresoPropiedad direccion = new FrmIngresoPropiedad(aux.getId());
         direccion.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
@@ -287,9 +310,10 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         if (aux.getImg() != null && aux.getImg1() != null && aux.getImg2() != null && aux.getImg3() != null && aux.getImg4() != null && aux.getImg5() != null) {
             JOptionPane.showMessageDialog(null, "Propiedad guardada");
-            FrmDescripcionPropiedad siguiente = new FrmDescripcionPropiedad();
-            siguiente.setVisible(true);
-            this.setVisible(false);
+            //FrmDescripcionPropiedad siguiente = new FrmDescripcionPropiedad();
+            //siguiente.setVisible(true);
+            //this.setVisible(false);
+            this.dispose();
         } else{
             JOptionPane.showMessageDialog(null, "Ingrese todas las imagenes para seguir con el ingreso de la propiedad", "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -5,22 +5,28 @@
 package vista;
 
 import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import controlador.utiles.Utilidades;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Propiedad;
 import static vista.FrmIngresoDireccion.txtCallePrincipal;
 import static vista.FrmIngresoDireccion.txtCalleSecundaria;
 import static vista.FrmIngresoDireccion.txtCiudad;
 import static vista.FrmIngresoDireccion.txtCodigoPostal;
 import static vista.FrmIngresoDireccion.txtProvincia;
+import vista.Utilidades.Utilidades;
 
 
 
@@ -32,6 +38,8 @@ import static vista.FrmIngresoDireccion.txtProvincia;
 public class FrmIngresoPropiedad extends javax.swing.JFrame {
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
+    private ListaEnlazada<Propiedad> listaPropiedades;
+    
     /**
      * Creates new form IngresoPropiedad
      */
@@ -54,13 +62,30 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
         /*limpiar();
         setLocationRelativeTo(this);*/
         initComponents();
-        aux=propiedadDao.obtenerPropiedad(id);
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         setLocationRelativeTo(null);
+        try {
+            listaPropiedades = Utilidades.cargarPropiedades();
+            aux = listaPropiedades.obtener(id-1);
+        } catch (IOException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cargarDatos();
         cargarRestriciones();
         btnSiguiente.requestFocus();
 //        dateDisponibilidadDesde.setMinSelectableDate(new Date());
 //        dateDisponibilidadHasta.setMinSelectableDate(new Date());
+    }
+    
+    private void cargarDatos(){
+        cbxTipoPropiedad.setSelectedItem(aux.getTipoPropiedad());
+        txtDescripcion.setText(aux.getDescripcion());
+        txtPrecio.setText(aux.getPrecio());
+        txtNumeroPropiedad.setText(aux.getNumeroPropiedad());
     }
     
     /**
@@ -89,12 +114,20 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
         aux.setFechaSalida(vista.Utilidades.Utilidades.obtenerFechaFormateada(dateDisponibilidadHasta.getDate()));
 //        aux.setFechaSalida(dateDisponibilidadHasta.getDate().toString());
         
+
         try {
-            propiedadDao.modificar(aux, aux.getId());
-            propiedadDao.listar();
-        } catch (Exception e) {
-            System.out.println(e);
+            listaPropiedades.modificarPoscicion(aux, aux.getId()-1);
+            Utilidades.guardarPropiedades(listaPropiedades);
+        } catch (IOException ex) {
+            Logger.getLogger(Frmservicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+//        try {
+//            propiedadDao.modificar(aux, aux.getId());
+//            propiedadDao.listar();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
 
     }
     
@@ -403,9 +436,10 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        Frmservicio servicio = new Frmservicio();
+        Frmservicio servicio = new Frmservicio(aux.getId());
         servicio.setVisible(true);
-        this.setVisible(false);
+        //this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed

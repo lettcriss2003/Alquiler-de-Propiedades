@@ -213,7 +213,16 @@
                                                               "id": 29,
                                                               "metodoPago": "Transferencia",
                                                               "tipoDePago": "plazos",
-                                                              "estadoPago": true
+                                                              "estadoPago": true,
+                                                              "mesesPlazo": 3
+                                                            },
+                                                            "siguiente": {
+                                                              "dato": {
+                                                                "id": 30,
+                                                                "metodoPago": "Transferencia",
+                                                                "tipoDePago": "plazos",
+                                                                "estadoPago": true
+                                                              }
                                                             }
                                                           }
                                                         }
@@ -244,5 +253,5 @@
       }
     }
   },
-  "tamanio": 29
+  "tamanio": 30
 }

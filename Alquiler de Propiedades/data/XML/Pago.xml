@@ -213,9 +213,18 @@
                         <pago>
                             <estadoPago>true</estadoPago>
                             <id>29</id>
+                            <mesesPlazo>3</mesesPlazo>
                             <metodoPago>Transferencia</metodoPago>
                             <tipoDePago>plazos</tipoDePago>
                         </pago>
+                        <siguiente>
+                            <pago>
+<estadoPago>true</estadoPago>
+<id>30</id>
+<metodoPago>Transferencia</metodoPago>
+<tipoDePago>plazos</tipoDePago>
+                            </pago>
+                        </siguiente>
                     </siguiente>
                 </siguiente>
             </siguiente>
@@ -245,5 +254,5 @@
             </siguiente>
         </siguiente>
     </cabecera>
-    <tamanio>29</tamanio>
+    <tamanio>30</tamanio>
 </listaEnlazada>

@@ -58,6 +58,8 @@ public class Propiedad {
     private String ImgPropiedad;
     
     private Contrato contrato;
+    
+    private Cuenta anfitrion;
 
     public Propiedad() {
     }
@@ -110,8 +112,13 @@ public class Propiedad {
         this.Img5 = Img5;
     }
 
-    
-    
+    public Cuenta getAnfitrion() {
+        return anfitrion;
+    }
+
+    public void setAnfitrion(Cuenta anfitrion) {
+        this.anfitrion = anfitrion;
+    }
 
     public Integer getId() {
         return id;

@@ -20,24 +20,43 @@
       },
       "siguiente": {
         "dato": {
-          "id": 2,
-          "usuario": "leo",
+          "id": 3,
+          "usuario": "atun",
           "estado": true,
-          "contrasenia": "bGVv",
+          "contrasenia": "YXR1bg\u003d\u003d",
           "persona": {
-            "id": 2,
-            "nombres": "leo",
-            "apellidos": "maza",
-            "fechaNacimiento": "Mar 4, 2004 12:00:00 AM",
+            "id": 3,
+            "nombres": "atun",
+            "apellidos": "atun",
+            "fechaNacimiento": "Aug 2, 2001 12:00:00 AM",
             "identificacion": "1105986689",
             "tipoIdentificacion": "CEDULA",
             "estado": true,
-            "correo": "leo@ymail.com"
+            "correo": "atun@gmail.com"
           },
           "rol": "USUARIO"
+        },
+        "siguiente": {
+          "dato": {
+            "id": 2,
+            "usuario": "leo",
+            "estado": true,
+            "contrasenia": "bGVv",
+            "persona": {
+              "id": 2,
+              "nombres": "leo",
+              "apellidos": "maza",
+              "fechaNacimiento": "Mar 4, 2004 12:00:00 AM",
+              "identificacion": "1105986689",
+              "tipoIdentificacion": "CEDULA",
+              "estado": true,
+              "correo": "leo@ymail.com"
+            },
+            "rol": "USUARIO"
+          }
         }
       }
     },
-    "tamanio": 2
+    "tamanio": 3
   }
 }

@@ -581,6 +581,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPagosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPagos1">
           <Properties>

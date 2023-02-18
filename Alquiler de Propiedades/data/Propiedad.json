@@ -1,0 +1,63 @@
+{
+  "listaPropiedades": {
+    "cabecera": {
+      "dato": {
+        "id": 1,
+        "Ciudad": "loj",
+        "Provincia": "loja",
+        "CalleP": "sucre",
+        "CalleS": "colon",
+        "CodigoP": "234323",
+        "Wifi": true,
+        "TV": false,
+        "Lavadora": true,
+        "Secadora": false,
+        "Estacionamiento": true,
+        "Cocina": false,
+        "Picina": true,
+        "Jacuzzi": false,
+        "Parrilla": false,
+        "Patio": false,
+        "Comedor": true,
+        "SalaJuegos": true,
+        "AireAcondicionado": false,
+        "AguaCaliente": false,
+        "Otros": false,
+        "TipoPropiedad": "Vivienda",
+        "Descripcion": "asdff",
+        "NumeroPropiedad": "1552",
+        "Huesped": "3",
+        "Habitaciones": "3",
+        "Camas": "1",
+        "Banios": "3",
+        "Precio": "152",
+        "FechaIngreso": "26 feb 2023",
+        "FechaSalida": "28 feb 2023",
+        "Img": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\Img1pro1.png",
+        "Img1": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\img2pro1.png",
+        "Img2": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\img3pro1.png",
+        "Img3": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\img4pro1.png",
+        "Img4": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\img5pro1.png",
+        "Img5": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro1\\img6pro1.png",
+        "anfitrion": {
+          "id": 2,
+          "usuario": "leo",
+          "estado": true,
+          "contrasenia": "bGVv",
+          "persona": {
+            "id": 2,
+            "nombres": "leo",
+            "apellidos": "maza",
+            "fechaNacimiento": "Mar 4, 2004 12:00:00 AM",
+            "identificacion": "1105986689",
+            "tipoIdentificacion": "CEDULA",
+            "estado": true,
+            "correo": "leo@ymail.com"
+          },
+          "rol": "USUARIO"
+        }
+      }
+    },
+    "tamanio": 1
+  }
+}

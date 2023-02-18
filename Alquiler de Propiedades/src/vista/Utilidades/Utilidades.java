@@ -48,6 +48,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import modelo.MetodoPago;
+import modelo.Propiedad;
 import modelo.Rol;
 
 /**
@@ -101,6 +102,33 @@ public class Utilidades {
         String json = gson.toJson(mapeo);
         try {
             PrintWriter escritor = new PrintWriter(new File("cuentas.json"));
+            escritor.write(json);
+            escritor.flush();
+            escritor.close();
+            JOptionPane.showMessageDialog(null, "Se guardó");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar");
+            System.out.println(e);
+        }
+    }
+    
+    public static ListaEnlazada<Propiedad> cargarPropiedades() throws IOException {
+        MapeoPropiedades mapeo = new MapeoPropiedades();
+        Reader lector = Files.newBufferedReader(Paths.get(URL + File.separatorChar + "Propiedad.json"));
+        Gson gson = new Gson();
+        mapeo = (gson.fromJson(lector, MapeoPropiedades.class));
+        if (mapeo == null) {
+            mapeo = new MapeoPropiedades();
+        }
+        return mapeo.getListaPropiedades();
+    }
+
+    public static void guardarPropiedades(ListaEnlazada<Propiedad> lista) throws FileNotFoundException {
+        MapeoPropiedades mapeo = new MapeoPropiedades(lista);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(mapeo);
+        try {
+            PrintWriter escritor = new PrintWriter(new File(URL + File.separatorChar + "Propiedad.json"));
             escritor.write(json);
             escritor.flush();
             escritor.close();

@@ -5,7 +5,13 @@
 package vista;
 
 import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static vista.FrmPropiedadImagen.PropiedadDatos;
@@ -57,7 +63,8 @@ import vista.Utilidades.Utilidades;
 public class FrmContratoUsuario extends javax.swing.JFrame {
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
-    Integer iterador = 1;
+    Integer iterador = 0;
+    private ListaEnlazada<Propiedad> listaPropiedades;
 
     /**
      * Creates new form FrmContratoUsuario
@@ -65,20 +72,31 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     public FrmContratoUsuario() {
 
         initComponents();
-        cargarDatos();
+        try {
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            cargarDatos();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dateDisponibilidadDesde.setMinSelectableDate(new Date());
         dateDisponibilidadHasta.setMinSelectableDate(new Date());
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
-        
+        this.setLocationRelativeTo(null);
     }
     
     /**
      * Carga todos los datos al frm
      *
      */
-  public void cargarDatos() {
+  public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
         Propiedad aux = new Propiedad();
-        aux=propiedadDao.obtenerPropiedad(iterador);
+        aux=listaPropiedades.obtener(iterador);
         if ( aux== null) {
             System.out.println("YA NO HAY MAS");
         } else {
@@ -1006,7 +1024,8 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        //System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerSiguientePropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSiguientePropiedadActionPerformed

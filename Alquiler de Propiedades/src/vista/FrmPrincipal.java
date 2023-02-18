@@ -5,10 +5,17 @@
 package vista;
 
 import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import modelo.Cuenta;
 import modelo.Propiedad;
+import modelo.Rol;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -19,8 +26,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 1;
-    public static ListaEnlazada<Propiedad> PropiedadDatos = new ListaEnlazada<>();
+    public static ListaEnlazada<Propiedad> listaPropiedades;
     private Boolean is_administrador;
+    private Cuenta cuentaActual;
     
 
     /**
@@ -38,6 +46,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.is_administrador = is_administrador;
         verificarAdmin();
         this.setLocationRelativeTo(null);
+    }
+    
+    public FrmPrincipal(Cuenta cuenta) {
+        initComponents();
+        try {
+            //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.cuentaActual = cuenta;
+        verificarRolCuenta();
+        this.setLocationRelativeTo(null);
+        try {
+            cargarContrato();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -366,6 +394,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnPagos.setForeground(new java.awt.Color(0, 0, 102));
         btnPagos.setText("Pagos");
         btnPagos.setBorder(null);
+        btnPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagosActionPerformed(evt);
+            }
+        });
 
         btnPagos1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPagos1.setForeground(new java.awt.Color(0, 0, 102));
@@ -456,10 +489,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Carga el contrato dentro de los botones
      */
-    public void cargarContrato() {
-        for (int i = 0; i < propiedadDao.listar().getTamanio(); i++) {
-            if (propiedadDao.obtenerPropiedad(i) != null) {
-                aux = propiedadDao.obtenerPropiedad(i);
+    public void cargarContrato() throws ListaVaciaException, PosicionNoEncontradaException {
+        for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
+            if (listaPropiedades.obtener(i) != null) {
+                aux = listaPropiedades.obtener(i);
                 JButton btnPropiedad = new JButton();
                 btnPropiedad.setBounds(2, 14, 3, 14);
                 add(btnPropiedad);
@@ -479,23 +512,30 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     
+    private void verificarRolCuenta(){
+        if (!(this.cuentaActual.getRol() == Rol.ADMINISTRADOR)) {
+            btnCuentas.setVisible(false);
+        }
+    }
+    
     private void btnIngresarNuevaPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarNuevaPropiedadActionPerformed
-        FrmIngresoDireccion Propiedadprincipal = new FrmIngresoDireccion();
+        FrmIngresoDireccion Propiedadprincipal = new FrmIngresoDireccion(this.cuentaActual);
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.setVisible(false);
+        //this.dispose();
     }//GEN-LAST:event_btnIngresarNuevaPropiedadActionPerformed
 
     private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
         FrmAgregarFavoritos Propiedadprincipal = new FrmAgregarFavoritos();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+       // this.dispose();
     }//GEN-LAST:event_btnFavoritosActionPerformed
 
     private void btnPropiedad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad2ActionPerformed
 
             FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
             Propiedadprincipal.setVisible(true);
-            this.dispose();
+            //this.dispose();
 
 
     }//GEN-LAST:event_btnPropiedad2ActionPerformed
@@ -511,97 +551,98 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        }
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad1ActionPerformed
 
     private void btnPropiedad3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad3ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad3ActionPerformed
 
     private void btnPropiedad4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad4ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
        Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad4ActionPerformed
 
     private void btnPropiedad5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad5ActionPerformed
        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad5ActionPerformed
 
     private void btnPropiedad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad6ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad6ActionPerformed
 
     private void btnPropiedad7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad7ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad7ActionPerformed
 
     private void btnPropiedad8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad8ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad8ActionPerformed
 
     private void btnPropiedad9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad9ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad9ActionPerformed
 
     private void btnPropiedad10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad10ActionPerformed
        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad10ActionPerformed
 
     private void btnPropiedad11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad11ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad11ActionPerformed
 
     private void btnPropiedad12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad12ActionPerformed
        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad12ActionPerformed
 
     private void btnPropiedad13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad13ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad13ActionPerformed
 
     private void btnPropiedad14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad14ActionPerformed
        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad14ActionPerformed
 
     private void btnPropiedad15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad15ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad15ActionPerformed
 
     private void btnPropiedad16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad16ActionPerformed
         FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
         Propiedadprincipal.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnPropiedad16ActionPerformed
 
     private void btnAdministrarPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarPropiedadesActionPerformed
-        FrmDescripcionPropiedad administrarPropiedades = new FrmDescripcionPropiedad();
+        FrmDescripcionPropiedad administrarPropiedades = new FrmDescripcionPropiedad(this.cuentaActual);
         administrarPropiedades.setVisible(true);
-        this.dispose();
+        //this.setVisible(false);
+        //this.dispose();
     }//GEN-LAST:event_btnAdministrarPropiedadesActionPerformed
 
     private void btnPagos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagos1ActionPerformed
@@ -614,6 +655,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         CuentasDialog cd = new CuentasDialog(this, true);
         cd.setVisible(true);
     }//GEN-LAST:event_btnCuentasActionPerformed
+
+    private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPagosActionPerformed
 
     /**
      * @param args the command line arguments
