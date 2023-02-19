@@ -8,9 +8,15 @@ import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import modelo.Cuenta;
@@ -23,13 +29,14 @@ import vista.Utilidades.Utilidades;
  * @author LENOVO
  */
 public class FrmPrincipal extends javax.swing.JFrame {
+
     PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 1;
     public static ListaEnlazada<Propiedad> listaPropiedades;
     private Boolean is_administrador;
     private Cuenta cuentaActual;
-    
+    JButton[] buttons;
 
     /**
      * Creates new form FrmPrincipal
@@ -39,7 +46,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
     }
-    
+
     public FrmPrincipal(Boolean is_administrador) {
         initComponents();
         //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
@@ -47,7 +54,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         verificarAdmin();
         this.setLocationRelativeTo(null);
     }
-    
+
     public FrmPrincipal(Cuenta cuenta) {
         initComponents();
         try {
@@ -60,12 +67,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         verificarRolCuenta();
         this.setLocationRelativeTo(null);
         try {
-            cargarContrato();
-        } catch (ListaVaciaException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PosicionNoEncontradaException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            cargarBotones();
+            cargarImagenesBotones();
+        } catch (Exception e) {
+            System.out.println(e);
         }
+//        try {
+//            cargarContrato();
+//        } catch (ListaVaciaException ex) {
+//            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (PosicionNoEncontradaException ex) {
+//            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**
@@ -82,24 +95,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
-        btnPropiedad1 = new javax.swing.JButton();
-        btnPropiedad2 = new javax.swing.JButton();
-        btnPropiedad4 = new javax.swing.JButton();
-        btnPropiedad3 = new javax.swing.JButton();
-        btnPropiedad5 = new javax.swing.JButton();
-        btnPropiedad6 = new javax.swing.JButton();
-        btnPropiedad7 = new javax.swing.JButton();
-        btnPropiedad8 = new javax.swing.JButton();
-        btnPropiedad9 = new javax.swing.JButton();
-        btnPropiedad10 = new javax.swing.JButton();
-        btnPropiedad11 = new javax.swing.JButton();
-        btnPropiedad12 = new javax.swing.JButton();
-        btnPropiedad16 = new javax.swing.JButton();
-        btnPropiedad15 = new javax.swing.JButton();
-        btnPropiedad14 = new javax.swing.JButton();
-        btnPropiedad13 = new javax.swing.JButton();
+        panelBotones = new javax.swing.JPanel();
         btnCuentas = new javax.swing.JButton();
         btnIngresarNuevaPropiedad = new javax.swing.JButton();
         btnAdministrarPropiedades = new javax.swing.JButton();
@@ -120,15 +118,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Lupa Busqueda.png"))); // NOI18N
 
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnActualizar)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -138,217 +146,30 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnActualizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane2.setBorder(null);
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
+        panelBotones.setBackground(new java.awt.Color(255, 255, 255));
+        panelBotones.setBorder(javax.swing.BorderFactory.createTitledBorder("Propiedades"));
+        panelBotones.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnPropiedad1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad1.setBorder(null);
-        btnPropiedad1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad1ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad2.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad2.setBorder(null);
-        btnPropiedad2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad2ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad4.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad4.setBorder(null);
-        btnPropiedad4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad4ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad3.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad3.setBorder(null);
-        btnPropiedad3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad3ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad5.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad5.setBorder(null);
-        btnPropiedad5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad5ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad6.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad6.setBorder(null);
-        btnPropiedad6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad6ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad7.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad7.setBorder(null);
-        btnPropiedad7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad7ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad8.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad8.setBorder(null);
-        btnPropiedad8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad8ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad9.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad9.setBorder(null);
-        btnPropiedad9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad9ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad10.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad10.setBorder(null);
-        btnPropiedad10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad10ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad11.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad11.setBorder(null);
-        btnPropiedad11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad11ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad12.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad12.setBorder(null);
-        btnPropiedad12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad12ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad16.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad16.setBorder(null);
-        btnPropiedad16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad16ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad15.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad15.setBorder(null);
-        btnPropiedad15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad15ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad14.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad14.setBorder(null);
-        btnPropiedad14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad14ActionPerformed(evt);
-            }
-        });
-
-        btnPropiedad13.setForeground(new java.awt.Color(255, 255, 255));
-        btnPropiedad13.setBorder(null);
-        btnPropiedad13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPropiedad13ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnPropiedad9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnPropiedad10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPropiedad11, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPropiedad12, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnPropiedad13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPropiedad14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPropiedad15, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPropiedad16, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnPropiedad1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnPropiedad2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnPropiedad3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPropiedad4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnPropiedad5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPropiedad6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnPropiedad7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPropiedad8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(422, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
+        panelBotones.setLayout(panelBotonesLayout);
+        panelBotonesLayout.setHorizontalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1013, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPropiedad2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPropiedad3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPropiedad4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPropiedad1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPropiedad7, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnPropiedad5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPropiedad6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPropiedad8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPropiedad10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnPropiedad9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPropiedad11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPropiedad12, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPropiedad13, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPropiedad14, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPropiedad15, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPropiedad16, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(214, Short.MAX_VALUE))
+        panelBotonesLayout.setVerticalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setViewportView(jPanel4);
+        jScrollPane2.setViewportView(panelBotones);
 
         btnCuentas.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         btnCuentas.setForeground(new java.awt.Color(0, 0, 102));
@@ -464,7 +285,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -489,35 +310,65 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Carga el contrato dentro de los botones
      */
-    public void cargarContrato() throws ListaVaciaException, PosicionNoEncontradaException {
+//    public void cargarContrato() throws ListaVaciaException, PosicionNoEncontradaException {
+//        for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
+//            if (listaPropiedades.obtener(i) != null) {
+//                aux = listaPropiedades.obtener(i);
+//                JButton btnPropiedad = new JButton();
+//                btnPropiedad.setBounds(2, 14, 3, 14);
+//                add(btnPropiedad);
+//                jPanel4.add(btnPropiedad);
+//                jPanel4.revalidate();
+//                jPanel4.repaint();
+//            }
+//            if (aux.getImg() != null) {
+//                Utilidades.DefinirImagenBoton(btnPropiedad1, aux.getImg());
+//            }
+//        }
+//    }
+    public void cargarBotones() throws ListaVaciaException, PosicionNoEncontradaException {
+        buttons = new JButton[listaPropiedades.getTamanio()];
+        panelBotones.removeAll();
+        panelBotones.setLayout(new GridLayout(0, 5));
         for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
-            if (listaPropiedades.obtener(i) != null) {
-                aux = listaPropiedades.obtener(i);
-                JButton btnPropiedad = new JButton();
-                btnPropiedad.setBounds(2, 14, 3, 14);
-                add(btnPropiedad);
-                jPanel4.add(btnPropiedad);
-                jPanel4.revalidate();
-                jPanel4.repaint();
-            }
+            Propiedad aux = listaPropiedades.obtener(i);
+            buttons[i] = new JButton();
+            buttons[i].setBackground(Color.WHITE);
             if (aux.getImg() != null) {
-                Utilidades.DefinirImagenBoton(btnPropiedad1, aux.getImg());
+                ImageIcon imageIcon = new ImageIcon(aux.getImg());
+//                buttons[i].setPreferredSize(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight()));
+                Icon icon = new ImageIcon(imageIcon.getImage().getScaledInstance(150, 200, Image.SCALE_DEFAULT));
+                buttons[i].setIcon(icon);
             }
+            final int index = i;
+            buttons[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    FrmContratoUsuario fm = new FrmContratoUsuario(cuentaActual, index);
+                    fm.setVisible(true);
+                }
+            });
+            panelBotones.add(buttons[i]);
         }
     }
-    
-    private void verificarAdmin(){
+
+    public void cargarImagenesBotones() throws ListaVaciaException, PosicionNoEncontradaException {
+        for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
+
+        }
+    }
+
+    private void verificarAdmin() {
         if (!is_administrador) {
             btnCuentas.setVisible(false);
         }
     }
-    
-    private void verificarRolCuenta(){
+
+    private void verificarRolCuenta() {
         if (!(this.cuentaActual.getRol() == Rol.ADMINISTRADOR)) {
             btnCuentas.setVisible(false);
         }
     }
-    
+
     private void btnIngresarNuevaPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarNuevaPropiedadActionPerformed
         FrmIngresoDireccion Propiedadprincipal = new FrmIngresoDireccion(this.cuentaActual);
         Propiedadprincipal.setVisible(true);
@@ -528,115 +379,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
         FrmAgregarFavoritos Propiedadprincipal = new FrmAgregarFavoritos(cuentaActual);
         Propiedadprincipal.setVisible(true);
-       // this.dispose();
+        // this.dispose();
     }//GEN-LAST:event_btnFavoritosActionPerformed
-
-    private void btnPropiedad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad2ActionPerformed
-
-            FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-            Propiedadprincipal.setVisible(true);
-            //this.dispose();
-
-
-    }//GEN-LAST:event_btnPropiedad2ActionPerformed
-
-    private void btnPropiedad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad1ActionPerformed
-//        if (propiedadDao.obtenerPropiedad(iterador)!=null) {
-//            aux = propiedadDao.obtenerPropiedad(iterador);
-//        }
-//        if (aux.getImg()!=null) {
-//            Utilidades.DefinirImagenBoton(btnPropiedad1, aux.getImg());
-//
-//            iterador++;
-//        }
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario(cuentaActual);
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad1ActionPerformed
-
-    private void btnPropiedad3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad3ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad3ActionPerformed
-
-    private void btnPropiedad4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad4ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-       Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad4ActionPerformed
-
-    private void btnPropiedad5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad5ActionPerformed
-       FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad5ActionPerformed
-
-    private void btnPropiedad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad6ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad6ActionPerformed
-
-    private void btnPropiedad7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad7ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad7ActionPerformed
-
-    private void btnPropiedad8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad8ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad8ActionPerformed
-
-    private void btnPropiedad9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad9ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad9ActionPerformed
-
-    private void btnPropiedad10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad10ActionPerformed
-       FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad10ActionPerformed
-
-    private void btnPropiedad11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad11ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad11ActionPerformed
-
-    private void btnPropiedad12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad12ActionPerformed
-       FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad12ActionPerformed
-
-    private void btnPropiedad13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad13ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad13ActionPerformed
-
-    private void btnPropiedad14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad14ActionPerformed
-       FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad14ActionPerformed
-
-    private void btnPropiedad15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad15ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad15ActionPerformed
-
-    private void btnPropiedad16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropiedad16ActionPerformed
-        FrmContratoUsuario Propiedadprincipal = new FrmContratoUsuario();
-        Propiedadprincipal.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnPropiedad16ActionPerformed
 
     private void btnAdministrarPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarPropiedadesActionPerformed
         FrmDescripcionPropiedad administrarPropiedades = new FrmDescripcionPropiedad(this.cuentaActual);
@@ -646,9 +390,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministrarPropiedadesActionPerformed
 
     private void btnPagos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagos1ActionPerformed
-       FrmLogin login = new FrmLogin();
-       login.setVisible(true);
-       this.dispose();
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPagos1ActionPerformed
 
     private void btnCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentasActionPerformed
@@ -659,6 +403,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPagosActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        try {
+            // TODO add your handling code here:
+            cargarBotones();
+            cargarImagenesBotones();
+        } catch (ListaVaciaException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PosicionNoEncontradaException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -696,34 +452,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAdministrarPropiedades;
     private javax.swing.JButton btnCuentas;
     private javax.swing.JButton btnFavoritos;
     private javax.swing.JButton btnIngresarNuevaPropiedad;
     private javax.swing.JButton btnPagos;
     private javax.swing.JButton btnPagos1;
-    private javax.swing.JButton btnPropiedad1;
-    private javax.swing.JButton btnPropiedad10;
-    private javax.swing.JButton btnPropiedad11;
-    private javax.swing.JButton btnPropiedad12;
-    private javax.swing.JButton btnPropiedad13;
-    private javax.swing.JButton btnPropiedad14;
-    private javax.swing.JButton btnPropiedad15;
-    private javax.swing.JButton btnPropiedad16;
-    private javax.swing.JButton btnPropiedad2;
-    private javax.swing.JButton btnPropiedad3;
-    private javax.swing.JButton btnPropiedad4;
-    private javax.swing.JButton btnPropiedad5;
-    private javax.swing.JButton btnPropiedad6;
-    private javax.swing.JButton btnPropiedad7;
-    private javax.swing.JButton btnPropiedad8;
-    private javax.swing.JButton btnPropiedad9;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel panelBotones;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,9 @@ import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,7 +97,7 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public FrmContratoUsuario(Cuenta cuentaActual) {
+    public FrmContratoUsuario(Cuenta cuentaActual, Integer id) {
 
         initComponents();
         this.cuentaActual = cuentaActual;
@@ -103,6 +106,9 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        iterador = id;
+
         try {
             cargarDatos();
         } catch (ListaVaciaException ex) {
@@ -178,6 +184,14 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             System.out.println(aux);
             iterador++;
         }
+    }
+    
+    private void calcularNumDias() {
+        LocalDate localDate1 = dateDisponibilidadDesde.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localDate2 = dateDisponibilidadHasta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Long daysBetween = Duration.between(localDate1.atStartOfDay(), localDate2.atStartOfDay()).toDays();
+        aux.getContrato().setNroDias(Integer.valueOf(daysBetween.toString()));
+        listaPropiedades.modificarPoscicion(aux, iterador-1);
     }
 
     /**
@@ -1064,13 +1078,36 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerSiguientePropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSiguientePropiedadActionPerformed
-
+        try {
+            cargarDatos();
+            dateDisponibilidadDesde.setDate(null);
+            dateDisponibilidadHasta.setDate(null);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnVerSiguientePropiedadActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        FrmSeleccionTipoDePago pagar = new FrmSeleccionTipoDePago();
-        pagar.setVisible(true);
-        this.dispose();
+        if (!txtFechaI.getText().equalsIgnoreCase("Sin dias disponibles")) {
+            if (dateDisponibilidadHasta.getDate().after(dateDisponibilidadDesde.getDate())) {
+                if (dateDisponibilidadDesde.getDate() != null && dateDisponibilidadHasta.getDate() != null) {
+                    try {
+                        calcularNumDias();
+                        FrmSeleccionTipoDePago pagar = new FrmSeleccionTipoDePago(iterador);
+                        pagar.setVisible(true);
+                        this.dispose();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione las fechas para alquilar la propiedad", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Seleccione correctamente las fechas", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No quedan dias disponibles para alquilar esta propiedad", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void txtWifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWifiActionPerformed

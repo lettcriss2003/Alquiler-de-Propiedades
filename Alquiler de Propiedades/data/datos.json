@@ -36,7 +36,68 @@
           },
           "rol": "USUARIO",
           "favoritas": {
-            "tamanio": 0
+            "cabecera": {
+              "dato": {
+                "id": 2,
+                "Ciudad": "huaquillas",
+                "Provincia": "el oro",
+                "CalleP": "aca",
+                "CalleS": "alla",
+                "CodigoP": "120598",
+                "Wifi": true,
+                "TV": false,
+                "Lavadora": false,
+                "Secadora": false,
+                "Estacionamiento": true,
+                "Cocina": false,
+                "Picina": true,
+                "Jacuzzi": false,
+                "Parrilla": true,
+                "Patio": false,
+                "Comedor": true,
+                "SalaJuegos": false,
+                "AireAcondicionado": true,
+                "AguaCaliente": true,
+                "Otros": false,
+                "TipoPropiedad": "Vivienda",
+                "Descripcion": "asdf",
+                "NumeroPropiedad": "12532",
+                "Huesped": "3",
+                "Habitaciones": "3",
+                "Camas": "2",
+                "Banios": "3",
+                "Precio": "12552",
+                "FechaIngreso": "26 feb 2023",
+                "FechaSalida": "28 feb 2023",
+                "Img": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img1pro2.png",
+                "Img1": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img2pro2.png",
+                "Img2": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img3pro2.png",
+                "Img3": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img4por2.png",
+                "Img4": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img5pro2.png",
+                "Img5": "C:\\Users\\LeoMah\\Desktop\\unl_dalton\\Tercer_ciclo\\Estructura de datos\\Alquiler_De_Propiedades\\Alquiler-de-Propiedades\\Alquiler de Propiedades\\ImgPropiedades\\pro2\\img6pro2.png",
+                "anfitrion": {
+                  "id": 3,
+                  "usuario": "atun",
+                  "estado": true,
+                  "contrasenia": "YXR1bg\u003d\u003d",
+                  "persona": {
+                    "id": 3,
+                    "nombres": "atun",
+                    "apellidos": "atun",
+                    "fechaNacimiento": "Mar 2, 2001 12:00:00 AM",
+                    "identificacion": "1105986689",
+                    "tipoIdentificacion": "CEDULA",
+                    "estado": true,
+                    "correo": "atun@gmail.com"
+                  },
+                  "rol": "USUARIO",
+                  "favoritas": {
+                    "tamanio": 0
+                  }
+                }
+              }
+            },
+            "tamanio": 1
           }
         },
         "siguiente": {
