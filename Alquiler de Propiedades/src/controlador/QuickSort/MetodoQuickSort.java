@@ -17,6 +17,16 @@ public class MetodoQuickSort<E> {
     public static Integer ASCENDENTE = 1;
     public static Integer DESCENDENTE = 2;
     
+    /**
+     * quickSort
+     * @param a
+     * @param atributo
+     * @param orden
+     * @return lista enlazada
+     * @throws IllegalAccessException
+     * @throws AtributoNoEncontradoException
+     * @throws IllegalArgumentException 
+     */
     public ListaEnlazada<E> quickSort(ListaEnlazada<E> a, String atributo, Integer orden) throws IllegalAccessException, AtributoNoEncontradoException, IllegalArgumentException{
         Class clazz = null;
         E []matriz = a.toArray();
@@ -301,61 +311,4 @@ public class MetodoQuickSort<E> {
         return ini;
     }
     
-    /*
-    public static ListaEnlazada<Integer> quickSortListIntegerAscendente(ListaEnlazada<Integer> a){
-        Object array[] = a.toArray();
-        array = quickSortNumberAscendente(array, 0, array.length-1);
-        a = a.toList((Integer[])array);
-        return a;
-    }
-    
-    public static ListaEnlazada<Integer> quickSortListIntegerDescendente(ListaEnlazada<Integer> a){
-        Object array[] = a.toArray();
-        array = quickSortNumberDescendente(array, 0, array.length-1);
-        a = a.toList((Integer[])array);
-        return a;
-    }
-        
-    public static ListaEnlazada<String> quickSortListStringAscendente(ListaEnlazada<String> a){
-        String array[] = a.toArray();
-        array = quickSortStringAscendente(array, 0, array.length-1);
-        a = a.toList(array);
-        return a;
-    }
-    
-    public static ListaEnlazada<String> quickSortListStringDescendente(ListaEnlazada<String> a){
-        String array[] = a.toArray();
-        array = quickSortStringDescendente(array, 0, array.length-1);
-        a = a.toList(array);
-        return a;
-    }
-        
-    public static ListaEnlazada<Float> quickSortListFloatAscendente(ListaEnlazada<Float> a){
-        Object array[] = a.toArray();
-        array = quickSortNumberAscendente(array, 0, array.length-1);
-        a = a.toList((Float[])array);
-        return a;
-    }
-    
-    public static ListaEnlazada<Float> quickSortListFloatDescendente(ListaEnlazada<Float> a){
-        Object array[] = a.toArray();
-        array = quickSortNumberDescendente(array, 0, array.length-1);
-        a = a.toList((Float[])array);
-        return a;
-    }
-    
-    
-    public static ListaEnlazada<Double> quickSortListDoubleAscendente(ListaEnlazada<Double> a){
-        Object array[] = a.toArray();
-        array = quickSortNumberAscendente(array, 0, array.length-1);
-        a = a.toList((Double[])array);
-        return a;
-    }
-    
-    public static ListaEnlazada<Double> quickSortListDoubleDescendente(ListaEnlazada<Double> a){
-        Object array[] = a.toArray();
-        array = quickSortNumberDescendente(array, 0, array.length-1);
-        a = a.toList((Double[])array);
-        return a;
-    }*/
 }

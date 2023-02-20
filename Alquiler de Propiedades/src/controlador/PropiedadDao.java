@@ -17,6 +17,10 @@ public class PropiedadDao extends AdaptadorDAO<Propiedad>{
         super(Propiedad.class);
     }
 
+    /**
+     * get propiedad
+     * @return propiedad
+     */
     public Propiedad getPropiedad() {
         if (propiedad==null) {
             this.propiedad=new Propiedad();
@@ -24,10 +28,19 @@ public class PropiedadDao extends AdaptadorDAO<Propiedad>{
         return propiedad;
     }
 
+    /**
+     * set propiedad
+     * @param propiedad 
+     */
     public void setPropiedad(Propiedad propiedad) {
         this.propiedad = propiedad;
     }
     
+    /**
+     * guardar
+     * @return boolean
+     * @throws Exception 
+     */
     public boolean guardar() throws Exception{
         this.propiedad.setId(generarId());
         guardar(this.propiedad);
@@ -38,6 +51,7 @@ public class PropiedadDao extends AdaptadorDAO<Propiedad>{
         return listar().getTamanio()+1;
     }
     
+
     public Propiedad obtenerPropiedad(Integer id){
         if (id<=listar().getTamanio()) {
             return obtener(id);
@@ -47,6 +61,12 @@ public class PropiedadDao extends AdaptadorDAO<Propiedad>{
         }
     }
     
+    /**
+     * modificar
+     * @param pos
+     * @return boolean
+     * @throws Exception 
+     */
     public boolean modificar(Integer pos) throws Exception{
         modificar(this.propiedad, pos);
         return true;

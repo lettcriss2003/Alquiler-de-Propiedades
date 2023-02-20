@@ -16,6 +16,12 @@ import controlador.utiles.Utilidades;
  *
  * @author leomah
  */
+
+/**
+ * Busqueda Lineal binario
+ * @author lettc
+ * @param <E> 
+ */
 public class BusquedaLinealBinaria<E> {
     public ListaEnlazada<Integer> linealBinaria(ListaEnlazada<E> lista, E dato, String atributo) throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, ListaVaciaException, PosicionNoEncontradaException{
         MetodoShell ms = new MetodoShell();
@@ -35,6 +41,7 @@ public class BusquedaLinealBinaria<E> {
         return pos;
     }
     
+
     private static Object[] binariaNumber(Object array[], Object dato, ListaEnlazada<Integer> pos) throws ListaVaciaException, PosicionNoEncontradaException, PosicionNoEncontradaException{
         Integer mitad = array.length/2;
         Object arrayAux[] = null;
@@ -80,6 +87,7 @@ public class BusquedaLinealBinaria<E> {
         
         return arrayAux;
     }
+   
     
     private static ListaEnlazada<Integer> linealNumber(Object array[], Object dato, ListaEnlazada<Integer> pos, Boolean mayor, Integer mitad) throws ListaVaciaException, PosicionNoEncontradaException{
         for (int i = 0; i < array.length; i++) {

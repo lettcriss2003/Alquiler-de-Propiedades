@@ -17,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.Rol;
 import ordenacion.Excepciones.AtributoNoEncontradoException;
 import vista.Utilidades.Utilidades;
 
@@ -45,6 +44,7 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Carga el campo de contraseña a predeterminado
      */
+    
     private void cargarCampoC() {
         if (txtUsuario.getText().isEmpty()) {
             txtUsuario.setText("Ingrese su nombre de usuario");
@@ -74,6 +74,7 @@ public class FrmLogin extends javax.swing.JFrame {
      * Actualiza los campos de la interfaz de inicion de sesion de manera
      * predeterminada
      */
+    
     public void actualizarCampos() {
         txtUsuario.setText("Ingrese su nombre de usuario");
         txtContrasenia.setText("Contrasenia");
@@ -81,8 +82,10 @@ public class FrmLogin extends javax.swing.JFrame {
         txtContrasenia.setForeground(Color.gray);
     }
 
+
     /**
-     * Comparar los campos de Usuario y contraseña
+     * Compara los campos de usuario y contrasenia
+     * @return  boolean
      */
     public Boolean compararCampos() {
         Boolean valido = true;
@@ -95,20 +98,23 @@ public class FrmLogin extends javax.swing.JFrame {
 
     /**
      * Validar si las credenciales son correctas para iniciar sesion
+     * @throws intentoExcedidoException
+     * @throws datoIncorrectoException
+     * @throws usuarioNoExisteException
+     * @throws AtributoNoEncontradoException
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws Exception 
      */
-    public void iniciarSesion() throws intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, ListaVaciaException, PosicionNoEncontradaException {
+    public void iniciarSesion() throws intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, ListaVaciaException, PosicionNoEncontradaException, Exception {
         if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() && compararCampos()) {
             if (cc.autentificar(txtUsuario.getText().trim(), txtContrasenia.getText().trim())) {
                 JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso", "Bienvendido", JOptionPane.INFORMATION_MESSAGE);
                 FrmPrincipal frmPrincipal = new FrmPrincipal(cc.obtener(txtUsuario.getText().trim()));
                 frmPrincipal.setVisible(true);
-//                if (cc.obtener(txtUsuario.getText().trim()).getRol() == Rol.ADMINISTRADOR) {
-//                    FrmPrincipal frmPrincipal = new FrmPrincipal(new Boolean(true));
-//                    frmPrincipal.setVisible(true);
-//                } else {
-//                    FrmPrincipal frmPrincipal = new FrmPrincipal(new Boolean(false));
-//                    frmPrincipal.setVisible(true);
-//                }
+
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -123,6 +129,7 @@ public class FrmLogin extends javax.swing.JFrame {
      * Carga los usuarios que han sido registrados y guardados en un archivo
      * tipo .json
      */
+    
     private void cargarJSon() {
         try {
             CuentaDAO cd = Utilidades.cargarJson();
@@ -281,7 +288,7 @@ public class FrmLogin extends javax.swing.JFrame {
         try {
             cargarJSon();
             iniciarSesion();
-        } catch (ListaVaciaException | PosicionNoEncontradaException | datoIncorrectoException | intentoExcedidoException | usuarioNoExisteException | IllegalAccessException | IllegalArgumentException | AtributoNoEncontradoException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
@@ -290,7 +297,7 @@ public class FrmLogin extends javax.swing.JFrame {
         if (chkMostrarContrasenia.isSelected()) {
             txtContrasenia.setEchoChar((char) 0);
         } else {
-            txtContrasenia.setEchoChar('•');
+            txtContrasenia.setEchoChar('*');
         }
     }//GEN-LAST:event_chkMostrarContraseniaActionPerformed
 

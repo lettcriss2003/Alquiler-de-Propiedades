@@ -5,8 +5,6 @@
 package vista.Utilidades;
 
 import controlador.CuentasController;
-import controlador.listas.ListaEnlazada;
-import modelo.Cuenta;
 
 /**
  *
@@ -18,14 +16,26 @@ public class MapeoCuentas {
     public MapeoCuentas() {
     }
 
+    /**
+     * Contructor Mapeo Cuentas
+     * @param cc 
+     */
     public MapeoCuentas(CuentasController cc) {
         this.cc = cc;
     }
 
+    /**
+     * Get Cuentas controller
+     * @return cuentaController
+     */
     public CuentasController getCc() {
         return cc;
     }
 
+    /**
+     * Set Cuentas controller
+     * @param cc 
+     */
     public void setCc(CuentasController cc) {
         this.cc = cc;
     }

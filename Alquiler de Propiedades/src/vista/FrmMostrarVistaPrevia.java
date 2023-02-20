@@ -5,6 +5,11 @@
 package vista;
 
 import controlador.PropiedadDao;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
+import javax.swing.ImageIcon;
+import modelo.Cuenta;
 import modelo.Propiedad;
 import vista.Utilidades.Utilidades;
 
@@ -12,54 +17,88 @@ import vista.Utilidades.Utilidades;
  *
  * @author Dennys
  */
-public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
+public class FrmMostrarVistaPrevia extends javax.swing.JFrame {
 
-    PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
-    Integer iterador = 1;
+    Integer iterador = 0;
+    private Cuenta cuentaActual;
+    private ListaEnlazada<Propiedad> listaPropiedades;
 
     /**
      * Creates new form FrmMostrarPropiedadAnfitron
      */
-    public FrmMostrarPropiedadAnfitron() {
+    public FrmMostrarVistaPrevia() {
         initComponents();
-    }
-    /**
-     * Permite cargar los datos de las propiedades guardadas en la propiedadDAO de acuerdo al anfitrion
-     */
-    public void cargarDatos() {
-        if (propiedadDao.obtenerPropiedad(iterador) != null) {
-            aux = propiedadDao.obtenerPropiedad(iterador);
+        try {
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+            cargarDatos();
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        if (aux.getImgPropiedad() != null) {
-            Utilidades.DefinirImagenLabel(lblImagen, aux.getImgPropiedad());
-        }
-        System.out.println(aux);
-        txtDescripcion.setText((aux.getDescripcion() != null) ? aux.getDescripcion() : "No definido");
-        txtCamas.setText((aux.getWifi() != null) ? aux.getWifi().toString() : "No definido");
-        txtPropiedad.setText((aux.getNumeroPropiedad() != null) ? aux.getNumeroPropiedad() : "No definido");
-        txtOcupante.setText((aux.getHuesped() != null) ? aux.getHuesped() : "No definido");
-        txtCiudad.setText((aux.getCiudad() != null) ? aux.getCiudad() : "No definido");
-        iterador++;
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        this.setLocationRelativeTo(null);
     }
+
     /**
-     * Permite cargar los datos de las propiedades guardadas en la propiedadDAO de acuerdo al anfitrion en el otro sentido
+     *  Contructor vista previa
+     * @param cuenta 
      */
-    public void cargarDatosAlreves() {
-        if (iterador > 1) {
-            if (propiedadDao.obtenerPropiedad(iterador) != null) {
-                aux = propiedadDao.obtenerPropiedad(iterador);
-            }
-            if (aux.getImgPropiedad() != null) {
-                Utilidades.DefinirImagenLabel(lblImagen, aux.getImgPropiedad());
-            }
-            System.out.println(aux);
+    public FrmMostrarVistaPrevia(Cuenta cuenta) {
+        initComponents();
+
+        this.cuentaActual = cuenta;
+        try {
+            this.listaPropiedades = Utilidades.cargarPropiedades();
+            cargarDatos();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
+        this.setLocationRelativeTo(null);
+    }
+
+    /**
+     * Permite cargar los datos de las propiedades guardadas en la propiedadDAO
+     * de acuerdo al anfitrion
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
+    public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
+        if (listaPropiedades.obtener(iterador) != null) {
+            aux = listaPropiedades.obtener(iterador);
+            System.out.println(iterador);
             txtDescripcion.setText((aux.getDescripcion() != null) ? aux.getDescripcion() : "No definido");
             txtCamas.setText((aux.getWifi() != null) ? aux.getWifi().toString() : "No definido");
             txtPropiedad.setText((aux.getNumeroPropiedad() != null) ? aux.getNumeroPropiedad() : "No definido");
-            txtOcupante.setText((aux.getHuesped() != null) ? aux.getHuesped() : "No definido");
+            txtHabitaciones.setText((aux.getHabitaciones() != null) ? aux.getHabitaciones() : "No definido");
             txtCiudad.setText((aux.getCiudad() != null) ? aux.getCiudad() : "No definido");
-            iterador--;
+            iterador++;
+        }
+        if (aux.getImg() != null) {
+            Utilidades.DefinirImagenLabel(lblImagen, aux.getImg());
+        }
+
+    }
+
+    /**
+     * Permite cargar los datos de las propiedades guardadas en la propiedadDAO
+     * de acuerdo al anfitrion en el otro sentido
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
+    public void cargarDatosAlreves() throws ListaVaciaException, PosicionNoEncontradaException {
+        if (listaPropiedades.obtener(iterador) != null) {
+
+            aux = listaPropiedades.obtener(iterador);
+            System.out.println(iterador);
+            txtDescripcion.setText((aux.getDescripcion() != null) ? aux.getDescripcion() : "No definido");
+            txtCamas.setText((aux.getWifi() != null) ? aux.getWifi().toString() : "No definido");
+            txtPropiedad.setText((aux.getNumeroPropiedad() != null) ? aux.getNumeroPropiedad() : "No definido");
+            txtHabitaciones.setText((aux.getHabitaciones() != null) ? aux.getHabitaciones() : "No definido");
+            txtCiudad.setText((aux.getCiudad() != null) ? aux.getCiudad() : "No definido");
+        }
+        if (aux.getImg() != null) {
+            Utilidades.DefinirImagenLabel(lblImagen, aux.getImg());
         }
     }
 
@@ -85,12 +124,14 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtOcupante = new javax.swing.JTextField();
+        txtHabitaciones = new javax.swing.JTextField();
         btnAbrirPropiedad = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -105,6 +146,7 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel3);
 
+        panelPropiedad.setBackground(new java.awt.Color(255, 255, 255));
         panelPropiedad.setBorder(javax.swing.BorderFactory.createTitledBorder("Propiedad"));
 
         lblImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -117,9 +159,14 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
 
         jLabel5.setText("Ciudad:");
 
-        jLabel6.setText("Ocupante:");
+        jLabel6.setText("Habitaciones:");
 
         btnAbrirPropiedad.setText("Abrir Propiedad");
+        btnAbrirPropiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirPropiedadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPropiedadLayout = new javax.swing.GroupLayout(panelPropiedad);
         panelPropiedad.setLayout(panelPropiedadLayout);
@@ -146,7 +193,7 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
                     .addGroup(panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtCamas, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                         .addComponent(txtCiudad)
-                        .addComponent(txtOcupante)
+                        .addComponent(txtHabitaciones)
                         .addComponent(txtPropiedad))
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                 .addContainerGap())
@@ -154,11 +201,12 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
         panelPropiedadLayout.setVerticalGroup(
             panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPropiedadLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPropiedadLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2))
+                    .addComponent(txtDescripcion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -170,10 +218,10 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
                 .addGroup(panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addGroup(panelPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtOcupante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
             .addGroup(panelPropiedadLayout.createSequentialGroup()
                 .addContainerGap()
@@ -183,17 +231,24 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Anterior");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAnterior.setText("Anterior");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAnteriorActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Siguiente");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSiguienteActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -204,15 +259,16 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(panelPropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(panelPropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -226,8 +282,9 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
                         .addComponent(panelPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btnAnterior)
+                            .addComponent(btnSiguiente)
+                            .addComponent(btnCancelar))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -235,13 +292,42 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        cargarDatos();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        if (iterador < listaPropiedades.getTamanio()) {
+            try {
+                cargarDatos();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cargarDatosAlreves();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        if (iterador > 0) {
+            iterador--;
+        }
+        try {
+            cargarDatosAlreves();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAbrirPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirPropiedadActionPerformed
+        cargarPropiedadSeleccionada();
+    }//GEN-LAST:event_btnAbrirPropiedadActionPerformed
+
+    private void cargarPropiedadSeleccionada() {
+        for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
+            FrmContratoUsuario fm = new FrmContratoUsuario(cuentaActual, i);
+            fm.setVisible(true);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -260,20 +346,21 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMostrarPropiedadAnfitron.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMostrarVistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMostrarPropiedadAnfitron.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMostrarVistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMostrarPropiedadAnfitron.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMostrarVistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMostrarPropiedadAnfitron.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMostrarVistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMostrarPropiedadAnfitron().setVisible(true);
+                new FrmMostrarVistaPrevia().setVisible(true);
             }
         });
     }
@@ -281,8 +368,9 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirPropiedad;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -295,7 +383,7 @@ public class FrmMostrarPropiedadAnfitron extends javax.swing.JFrame {
     private javax.swing.JTextField txtCamas;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtOcupante;
+    private javax.swing.JTextField txtHabitaciones;
     private javax.swing.JTextField txtPropiedad;
     // End of variables declaration//GEN-END:variables
 }

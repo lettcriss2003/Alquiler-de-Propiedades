@@ -21,6 +21,11 @@ import modelo.TipoPropiedad;
  */
 public class Utilidades {
 
+    /**
+     * valor Letras
+     * @param cadena
+     * @return a
+     */
     public static Integer[] valorLetrasString(String cadena) {
         char arrayCadena[] = cadena.toLowerCase().toCharArray();
         Integer a[] = new Integer[arrayCadena.length];
@@ -34,6 +39,11 @@ public class Utilidades {
         return a;
     }
 
+    /**
+     * valor caracteres
+     * @param caracter
+     * @return valor
+     */
     public static Integer valorCharacter(Character caracter) {
         Integer valor = null;
         for (AbecedarioMinusculas letra : AbecedarioMinusculas.values()) {
@@ -44,11 +54,11 @@ public class Utilidades {
         return valor;
     }
 
-
-    
     /**
-     * <b>Este método permite capitalizar un dato por medio de su nombre </b>
-     * <b>Información:</b> En principios básicos este método permite generalizar
+     * capitalizar
+     * @param nombre
+     * @return aux
+     * En principios básicos este método permite generalizar
      * o formatear los atributos de las clases, en este caso en tuUpperCase, necesario
      * para poder trabajar más adecuadamente con las clases y sus atributos
      */
@@ -58,6 +68,12 @@ public class Utilidades {
         return new String(aux);
     }
 
+    /**
+     * Obtener atributos
+     * @param clazz
+     * @param nombre
+     * @return atributo
+     */
     public static Field obtenerAtributos(Class clazz, String nombre) {
         Field atributo = null;
         for (Field aux : clazz.getDeclaredFields()) {
@@ -69,9 +85,13 @@ public class Utilidades {
         return atributo;
     }
 
+
     /**
-     * <b>Este método permite transformar un dato mediante el atributo y el dato </b>
-     * <b>Información:</b> En terminos generales obtiene de las clases el tipo de dato
+     * Este método permite transformar un dato mediante el atributo y el dato
+     * @param atributo
+     * @param dato
+     * @return dato
+     * En terminos generales obtiene de las clases el tipo de dato
      * del que se trata y transforma el dato enviado dependiendo de la super clase a la 
      * que pertenezca el mismo
      */
@@ -92,25 +112,7 @@ public class Utilidades {
         }
         return transformar;
     }
-//    
-//   public static Object transformarDato(Field atributo, String dato){
-//        Object transformar = null;
-//        if(atributo.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")){
-//            if(atributo.getType().getSimpleName().equals("Integer")){
-//                transformar = Integer.parseInt(dato);
-//            }
-//        }else if(atributo.getType().isEnum()){
-//            Enum enumeracion = Enum.valueOf((Class)atributo.getType(), dato.toString());
-//            transformar = enumeracion;
-//        } else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
-//            transformar = Boolean.parseBoolean(dato);
-//        } else{
-//            transformar = dato;
-//        }
-//        return transformar;
-//    }
-    
-    
+
     
     public static void cargarTipoPropiedad(JComboBox cbx){
             for(TipoPropiedad tipo: TipoPropiedad.values()){
@@ -153,7 +155,7 @@ public class Utilidades {
      * Base64
      *
      * @param dato
-     * @return
+     * @return contrasenia encriptada
      */
     public static String encriptarContrasenia(String dato) {
         if (dato != null) {
@@ -167,7 +169,7 @@ public class Utilidades {
      * Base64
      *
      * @param dato
-     * @return
+     * @return contrasenia desencriptada
      */
     public static String desencriptarContrasenia(String dato) {
         return new String(Base64.getDecoder().decode(dato));

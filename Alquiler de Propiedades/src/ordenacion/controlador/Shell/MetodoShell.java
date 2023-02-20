@@ -16,6 +16,16 @@ public class MetodoShell<E> {
     public static Integer ASCENDENTE = 1;
     public static Integer DESCENDENTE = 2;
     
+    /**
+     * shell ordenamiento
+     * @param a
+     * @param atributo
+     * @param orden
+     * @return lista enlazada
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
+     * @throws AtributoNoEncontradoException 
+     */
     public ListaEnlazada<E> shell(ListaEnlazada<E> a, String atributo, Integer orden) throws IllegalAccessException, IllegalArgumentException, AtributoNoEncontradoException{
         Class clazz = (Class)a.getCabecera().getDato().getClass();
         E []matriz = a.toArray();

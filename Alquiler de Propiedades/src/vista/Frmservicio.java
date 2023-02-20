@@ -36,6 +36,10 @@ public class Frmservicio extends javax.swing.JFrame {
         btnSiguiente.requestFocus();
     }
 
+    /**
+     * Contructor servicio
+     * @param id 
+     */
     public Frmservicio(Integer id) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
@@ -54,6 +58,9 @@ public class Frmservicio extends javax.swing.JFrame {
         btnSiguiente.requestFocus();
     }
 
+    /**
+     * Carga los datos 
+     */
     private void cargarDatos() {
         if (aux.getWifi() != null) {
             if (aux.getWifi()) {
@@ -421,9 +428,9 @@ public class Frmservicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
-     * guarda los datos de los check box
-     *
+
+    /**
+     * Guarda los datos de los check box
      */
     private void guardarDATOS() {
         if (checkWifi.isSelected()) {

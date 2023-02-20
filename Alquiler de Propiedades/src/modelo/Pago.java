@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author lettc
  */
 
-@XmlRootElement 
 public class Pago {
     
     private Integer id;

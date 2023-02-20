@@ -425,6 +425,9 @@ public class Propiedad {
     }
 
     public Contrato getContrato() {
+        if (contrato==null) {
+            this.contrato=new Contrato();
+        }
         return contrato;
     }
 

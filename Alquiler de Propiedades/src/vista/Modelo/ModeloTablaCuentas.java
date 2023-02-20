@@ -7,7 +7,6 @@ package vista.Modelo;
 import controlador.CuentasController;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
-import controlador.listas.ListaEnlazada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
@@ -38,6 +37,11 @@ public class ModeloTablaCuentas extends AbstractTableModel{
         return cc.getCuentadao().getCuentas().getTamanio();
     }
     
+    /**
+     * Presentar columnas 
+     * @param column
+     * @return String
+     */
     @Override
     public String getColumnName(int column) {
         switch(column){
@@ -48,7 +52,13 @@ public class ModeloTablaCuentas extends AbstractTableModel{
             default: return null;
         }
     }
-
+    
+    /**
+     * Presentar valores tabla
+     * @param rowIndex
+     * @param columnIndex
+     * @return object 
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cuenta c = null;

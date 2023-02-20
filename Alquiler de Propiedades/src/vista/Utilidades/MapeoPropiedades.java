@@ -17,10 +17,18 @@ public class MapeoPropiedades {
     public MapeoPropiedades() {
     }
     
+    /**
+     * Contructor mapeo Propiedades
+     * @param lista 
+     */
     public MapeoPropiedades(ListaEnlazada<Propiedad> lista) {
         this.listaPropiedades = lista;
     }
 
+    /**
+     * get lista propiedades
+     * @return  lista de propiedades
+     */
     public ListaEnlazada<Propiedad> getListaPropiedades() {
         if (this.listaPropiedades == null) {
             this.listaPropiedades = new ListaEnlazada<>();
@@ -28,6 +36,10 @@ public class MapeoPropiedades {
         return listaPropiedades;
     }
 
+    /**
+     * set lista propiedades
+     * @param listaPropiedades 
+     */
     public void setListaPropiedades(ListaEnlazada<Propiedad> listaPropiedades) {
         this.listaPropiedades = listaPropiedades;
     }

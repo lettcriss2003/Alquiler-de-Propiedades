@@ -25,14 +25,12 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
@@ -59,20 +57,37 @@ public class Utilidades {
 
     private static String URL = "data";
 
+    /**
+     * Cargar roles
+     * @param cbx
+     * @return rol
+     * @throws IOException 
+     */
     public static JComboBox cargarRoles(JComboBox cbx) throws IOException {
         cbx.removeAllItems();
         for (Rol rol : Rol.values()) {
             cbx.addItem(rol);
         }
         return cbx;
-        
-//        RolesController rc = new RolesController();
-//        Reader lector = Files.newBufferedReader(Paths.get("roles.json"));
-//        Gson gson = new Gson();
-//        rc = (gson.fromJson(lector, RolesController.class));
-//        return rc;
     }
 
+    /**
+     * Obtener fecha 
+     * @param fechaString
+     * @return date
+     * @throws ParseException 
+     */
+    public static Date obtenerDateofString(String fechaString) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("d MMM yyyy");
+        Date date = formatter.parse(fechaString);
+        return date;
+    }
+
+    /**
+     * Guarda los roles
+     * @param rc
+     * @throws FileNotFoundException 
+     */
     public static void guardarRoles(RolesController rc) throws FileNotFoundException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(rc);
@@ -88,6 +103,11 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Carga cuenta
+     * @return cuenta
+     * @throws IOException 
+     */
     public static CuentasController cargarCuentas() throws IOException {
         MapeoCuentas mapeo = new MapeoCuentas();
         Reader lector = Files.newBufferedReader(Paths.get("cuentas.json"));
@@ -96,6 +116,11 @@ public class Utilidades {
         return mapeo.getCc();
     }
 
+    /**
+     * Guardar cuenta
+     * @param cc
+     * @throws FileNotFoundException 
+     */
     public static void guardarCuentas(CuentasController cc) throws FileNotFoundException {
         MapeoCuentas mapeo = new MapeoCuentas(cc);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -111,7 +136,12 @@ public class Utilidades {
             System.out.println(e);
         }
     }
-    
+
+    /**
+     * Carga propiedades
+     * @return lista de propiedades
+     * @throws IOException 
+     */
     public static ListaEnlazada<Propiedad> cargarPropiedades() throws IOException {
         MapeoPropiedades mapeo = new MapeoPropiedades();
         Reader lector = Files.newBufferedReader(Paths.get(URL + File.separatorChar + "Propiedad.json"));
@@ -123,6 +153,11 @@ public class Utilidades {
         return mapeo.getListaPropiedades();
     }
 
+    /**
+     * Guarda las propiedades
+     * @param lista
+     * @throws FileNotFoundException 
+     */
     public static void guardarPropiedades(ListaEnlazada<Propiedad> lista) throws FileNotFoundException {
         MapeoPropiedades mapeo = new MapeoPropiedades(lista);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -139,6 +174,10 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Carga el tipo de identificacion
+     * @param cbx 
+     */
     public static void cargarTipoIndentificacion(JComboBox cbx) {
         cbx.removeAllItems();
         for (TipoIdentificacion tipo : TipoIdentificacion.values()) {
@@ -146,22 +185,20 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Obtiene el tipo de identificacion
+     * @param cbx
+     * @return identificacion
+     */
     public static TipoIdentificacion obtenerTipoIdentificacion(JComboBox cbx) {
         return (TipoIdentificacion) cbx.getSelectedItem();
     }
 
-//    public static void guardar(Object expresiones[]) throws IOException {
-//        Gson json = new Gson();
-//        Integer ocupados = ultimoIndiceOcupado(expresiones);
-//
-//        Object[] expresionesCompletas = new Object[ocupados];
-//        System.arraycopy(expresiones, 0, expresionesCompletas, 0, expresionesCompletas.length);
-//
-//        String jsons = json.toJson(expresionesCompletas);
-//        FileWriter fw = new FileWriter("ObjectsArray" + ".json");
-//        fw.write(jsons);
-//        fw.flush();
-//    }
+/**
+ * Carga el json
+ * @param expresiones
+ * @return Integer
+ */
     public static int cargar(Object expresiones[]) {
         int counter = 0;
 
@@ -187,6 +224,11 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Definir imagenes en los label
+     * @param label
+     * @param ruta 
+     */
     public static void DefinirImagenLabel(JLabel label, String ruta) {
         ImageIcon image = new ImageIcon(ruta);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
@@ -194,6 +236,11 @@ public class Utilidades {
         label.repaint();
     }
 
+    /**
+     * Define las imagenes en el boton
+     * @param btn
+     * @param ruta 
+     */
     public static void DefinirImagenBoton(JButton btn, String ruta) {
         ImageIcon image = new ImageIcon(ruta);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(btn.getWidth(), btn.getHeight(), Image.SCALE_DEFAULT));
@@ -201,6 +248,11 @@ public class Utilidades {
         btn.repaint();
     }
 
+    /**
+     * Carga el combo del metodo de pago
+     * @param combo
+     * @return metodo de pago
+     */
     public static JComboBox cargarCombo(JComboBox combo) {
         combo.removeAllItems();
         for (MetodoPago Metodo : MetodoPago.values()) {
@@ -209,17 +261,24 @@ public class Utilidades {
         return combo;
     }
 
+
     /**
-     * <b>Permite calcular el valor de la cuota dependiendo de la taza de
-     * interez, el valor total y los meses plazo</b>
+     * Permite calcular el valor de la cuota dependiendo de la taza de
+     * interez, el valor total y los meses plazo
+     * @param tazaDeInterez
+     * @param valorTotal
+     * @param mesesPlazo
+     * @return double
      */
     public static Double calcularValorCuota(Double tazaDeInterez, Double valorTotal, Integer mesesPlazo) {
         return (valorTotal / mesesPlazo) + ((valorTotal / mesesPlazo) * tazaDeInterez);
     }
 
+
     /**
-     * <b>Permite calcular la fecha de pago máximo dependiendo del dia en el que
-     * se encuentre</b>
+     * Permite calcular la fecha de pago máximo dependiendo del dia en el que
+     * se encuentre
+     * @return fecha
      */
     public static String calcularFechaDePago() {
         Date fechaDePago = new Date();
@@ -235,9 +294,12 @@ public class Utilidades {
         }
     }
 
+
     /**
-     * <b>Permite calcular la fecha de pago maximo dependiendo de los meses
-     * plazo que sean enviados</b>
+     * Permite calcular la fecha de pago maximo dependiendo de los meses
+     * plazo que sean enviados
+     * @param mesesPlazo
+     * @return fecha de pago
      */
     public static Date calcularFechaDePagoMaximo(Integer mesesPlazo) {
         Date fechaDePago = new Date();
@@ -252,9 +314,11 @@ public class Utilidades {
 
     }
 
+
     /**
-     * <b>Permite mostrar en un JComboBox un Enum en este caso de Metodo de pago
-     * </b>
+     * Permite mostrar en un JComboBox un Enum en este caso de Metodo de pago
+     * @param combo
+     * @return metodo de pago
      */
     public static JComboBox cargarComboMetodoDePago(JComboBox combo) {
         combo.removeAllItems();
@@ -268,6 +332,15 @@ public class Utilidades {
      * <b>Verificador de Tarjeta</b><br>
      * <b>Información:</b> Permite verificar que la tarjeta de crédito sea
      * valida por medio del algoritmo de <b>LUHN</b>, metodo necesita del String
+     * del número de Tarjeta y retorna un Boolean dependiendo de la validez de
+     * la tarjeta
+     */
+    /**
+     * Verificador de Tarjeta
+     * @param NumTarjeta
+     * @return boolean
+     * Permite verificar que la tarjeta de crédito sea
+     * valida por medio del algoritmo de LUHN, metodo necesita del String
      * del número de Tarjeta y retorna un Boolean dependiendo de la validez de
      * la tarjeta
      */
@@ -293,6 +366,11 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Insertar panel
+     * @param panelPrincipal
+     * @param panelSecundario 
+     */
     public static void InsertarPanel(JPanel panelPrincipal, JPanel panelSecundario) {
         panelSecundario.setSize(641, 290);
         panelSecundario.setLocation(0, 0);
@@ -304,6 +382,10 @@ public class Utilidades {
         panelPrincipal.repaint();
     }
 
+    /**
+     * Permite solo numeros en los txt
+     * @param txt 
+     */
     public static void permitirSoloNumTxt(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -315,6 +397,10 @@ public class Utilidades {
         });
     }
 
+    /**
+     * Permite solo letras en los txt
+     * @param txt 
+     */
     public static void permitirSoloLetrasTxt(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -326,6 +412,11 @@ public class Utilidades {
         });
     }
 
+    /**
+     * limita tamanio
+     * @param txt
+     * @param tamanio 
+     */
     public static void limitarTamanioTxt(JTextField txt, Integer tamanio) {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -337,19 +428,21 @@ public class Utilidades {
         });
     }
 
+    /**
+     * Obtiene la fecha actual
+     * @return fecha actual
+     */
     public static String obtenerFechaActual() {
-        Date fechaActual = new Date();
-        int anio = fechaActual.getYear() + 1900;
-        int mes = fechaActual.getMonth() + 1;
-        int dia = fechaActual.getDay() + 25;
-        String fechaFormateada = dia + "/" + mes + "/" + anio;
-        return fechaFormateada;
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaActualStr = fechaActual.format(formatter);
+        return fechaActualStr;
     }
 
     /**
      * Sirve para obtener la hora actual
      *
-     * @return
+     * @return hora actual
      */
     public static String obtenerHoraActual() {
         Calendar calendario = new GregorianCalendar();
@@ -363,7 +456,7 @@ public class Utilidades {
      * Sirve para parsear el date de jcalendarr
      *
      * @param fecha
-     * @return
+     * @return fecha en string
      */
     public static String obtenerFechaFormateada(Date fecha) {
         DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy");
@@ -376,7 +469,7 @@ public class Utilidades {
      * Base64
      *
      * @param dato
-     * @return
+     * @return contrasenia encriptada
      */
     public static String encriptarContrasenia(String dato) {
         if (dato != null) {
@@ -384,7 +477,12 @@ public class Utilidades {
         }
         return "";
     }
-    
+
+    /**
+     * Permiute desencriptar la contrasenia
+     * @param dato
+     * @return contrasenia desencriptada
+     */
     public static String desEncriptarContrasenia(String dato) {
         if (dato != null) {
             return new String(Base64.getDecoder().decode(dato));
@@ -396,7 +494,7 @@ public class Utilidades {
      * Validar cedula ecuatoriana
      *
      * @param cedula
-     * @return
+     * @return boolean
      */
     public static boolean validadorDeCedula(String cedula) throws cedulaNovalidaException {
         boolean cedulaCorrecta = false;
@@ -444,7 +542,7 @@ public class Utilidades {
      * Validar correo del usuario
      *
      * @param correo
-     * @return
+     * @return boolean
      * @throws correoNoValidoException
      */
     public static Boolean validarCorreo(String correo) throws correoNoValidoException {
@@ -466,7 +564,7 @@ public class Utilidades {
      *
      * @param contrasenia1
      * @param contrasenia2
-     * @return
+     * @return boolean
      * @throws contraseniaNoCoincideException
      */
     public static Boolean validarContrasenia(String contrasenia1, String contrasenia2) throws contraseniaNoCoincideException {
@@ -483,7 +581,7 @@ public class Utilidades {
      * Guardar la cuentas registradas en un archivo de tipo .json
      *
      * @param dato
-     * @return
+     * @return json
      * @throws IOException
      */
     public static Boolean guardar(CuentaDAO dato) throws IOException {
@@ -494,33 +592,17 @@ public class Utilidades {
             escritor.write(json);
             escritor.flush();
             escritor.close();
-            JOptionPane.showMessageDialog(null, "Se guardó");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar");
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
-        
-        /*
-        Parse parse = new Parse(dato);
-        Gson gson = new Gson();
-        String json = gson.toJson(parse);
-        try ( BufferedWriter bw = new BufferedWriter(new FileWriter(URL + File.separatorChar + "datos.json"))) {
-            bw.write(json);
-            bw.flush();
-            bw.close();
-            System.out.println("Se guardo perrin");
-            return true;
-        } catch (Exception e) {
-            System.out.println("Error al guardar: " + e.getMessage());
-            return false;
-        }*/
+
         return true;
     }
 
     /**
      * Cargar las cuentas que hayan sido registradas de un archivo .json
      *
-     * @return
+     * @return jason cuenta
      * @throws FileNotFoundException
      */
     public static CuentaDAO cargarJson() throws FileNotFoundException, IOException {
@@ -528,23 +610,8 @@ public class Utilidades {
         Reader lector = Files.newBufferedReader(Paths.get(URL + File.separatorChar + "datos.json"));
         Gson gson = new Gson();
         mapeo = (gson.fromJson(lector, CuentaDAO.class));
-        return mapeo;      
-//        Parse parse = new Parse();
-//        String json = "";
-//        Gson gson = new Gson();
-//        try ( BufferedReader br = new BufferedReader(new FileReader(URL + File.separatorChar + "datos.json"))) {
-//
-//            String linea = "";
-//            while ((linea = br.readLine()) != null) {
-//                json += linea;
-//            }
-//            br.close();
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        parse = (gson.fromJson(json, Parse.class));
+        return mapeo;
 
-//        return parse.getCd();
     }
 
 }

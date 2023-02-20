@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Cuenta;
 import modelo.Persona;
@@ -80,7 +82,7 @@ public class FrmRegistro extends javax.swing.JDialog {
     /**
      * Compara los campos de cuenta y usuario
      *
-     * @return
+     * @return boolean
      */
     public Boolean compararCampos() {
         Boolean valido = true;
@@ -100,7 +102,7 @@ public class FrmRegistro extends javax.swing.JDialog {
     /**
      * Comprabar que la cedula ingresada sea valida
      *
-     * @return
+     * @return boolean
      * @throws cedulaNovalidaException
      */
     private Boolean validarCedula() throws cedulaNovalidaException {
@@ -120,7 +122,7 @@ public class FrmRegistro extends javax.swing.JDialog {
     /**
      * Comprobar si los campos estan compleatados
      *
-     * @return
+     * @return boolean
      */
     private Boolean campoCompletado() {
         Boolean vacio = false;
@@ -134,11 +136,12 @@ public class FrmRegistro extends javax.swing.JDialog {
         return vacio;
     }
 
+
     /**
      * Ordena las cuentas en orden ascedente con el atributo de "usuario"
-     *
+     * @return boolean
      * @throws IllegalAccessException
-     * @throws AtributoNoEncontradoException
+     * @throws AtributoNoEncontradoException 
      */
     private Boolean ordenarCuentas() throws IllegalAccessException, AtributoNoEncontradoException {
         try {
@@ -151,8 +154,12 @@ public class FrmRegistro extends javax.swing.JDialog {
         return true;
     }
 
+
     /**
      * Registrar una nueva cuenta con los datos que el usuario ingrese
+     * @throws cedulaNovalidaException
+     * @throws contraseniaNoCoincideException
+     * @throws correoNoValidoException 
      */
     public void registrar() throws cedulaNovalidaException, contraseniaNoCoincideException, correoNoValidoException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -167,8 +174,7 @@ public class FrmRegistro extends javax.swing.JDialog {
                             txtApellidoR.getText(), dtf, txtIndentificacionR.getText().trim(),
                             Utilidades.obtenerTipoIdentificacion(cbxIndentificacion),
                             true, txtCorreoR.getText());
-
-                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, cc.getCuentadao().getCuentas().obtener(cc.getCuentadao().getCuentas().getTamanio()-1).getId()+1, true, Rol.USUARIO);
+                    Cuenta cuenta = new Cuenta(txtUsuario.getText().trim(), Utilidades.encriptarContrasenia(txtCont.getText().trim()), personar, generarId(), true, Rol.USUARIO);
                     if (cc.insertar(cuenta)) {
                         ordenarCuentas();
                         actualizarCamposRegistro();
@@ -187,12 +193,35 @@ public class FrmRegistro extends javax.swing.JDialog {
             actualizarCamposRegistro();
         }
     }
+    
+    
+    /**
+     * Genera un id para la nueva cuenta a registrar
+     * @return Integer
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
+    private Integer generarId() throws ListaVaciaException, PosicionNoEncontradaException{
+        Integer id = new Integer(0);
+        
+        for (int i = 0; i < cc.getCuentadao().getCuentas().getTamanio(); i++) {
+            if (id < cc.getCuentadao().getCuentas().obtener(i).getId()) {
+                id = cc.getCuentadao().getCuentas().obtener(i).getId();
+            }
+        }
+        id++;
+        return id;
+    }
+
 
     /**
      * Modificar las cuentas del usuario, solo para administradores
-     *
+     * @throws AtributoNoEncontradoException
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     * @throws Exception 
      */
-    public void modificar() throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public void modificar() throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, Exception {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (!txtUsuario.getText().isEmpty()
                 && !txtNombreR.getText().isEmpty() && !txtApellidoR.getText().isEmpty()
@@ -219,8 +248,13 @@ public class FrmRegistro extends javax.swing.JDialog {
         }
     }
 
+ 
+    
     /**
      * Eliminar cuentas de usuario, solo para administradores
+     * @throws AtributoNoEncontradoException
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException 
      */
     public void eliminar() throws AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
         if (!txtUsuario.getText().isEmpty()) {
@@ -326,6 +360,11 @@ public class FrmRegistro extends javax.swing.JDialog {
                 txtNombreRMousePressed(evt);
             }
         });
+        txtNombreR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreRKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombreR, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 210, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 240, 10));
 
@@ -349,6 +388,11 @@ public class FrmRegistro extends javax.swing.JDialog {
                 txtApellidoRActionPerformed(evt);
             }
         });
+        txtApellidoR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoRKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtApellidoR, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 210, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 240, 10));
 
@@ -365,6 +409,11 @@ public class FrmRegistro extends javax.swing.JDialog {
         txtFechaNac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtFechaNacMousePressed(evt);
+            }
+        });
+        txtFechaNac.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaNacKeyTyped(evt);
             }
         });
         jPanel1.add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 210, -1));
@@ -393,6 +442,11 @@ public class FrmRegistro extends javax.swing.JDialog {
         txtIndentificacionR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIndentificacionRActionPerformed(evt);
+            }
+        });
+        txtIndentificacionR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIndentificacionRKeyTyped(evt);
             }
         });
         jPanel1.add(txtIndentificacionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 210, -1));
@@ -595,7 +649,7 @@ public class FrmRegistro extends javax.swing.JDialog {
         if (chkMostrarContrasenia.isSelected()) {
             txtCont.setEchoChar((char) 0);
         } else {
-            txtCont.setEchoChar('•');
+            txtCont.setEchoChar('*');
 
         }
     }//GEN-LAST:event_chkMostrarContraseniaActionPerformed
@@ -612,7 +666,7 @@ public class FrmRegistro extends javax.swing.JDialog {
         if (chkMostrarContrasenia1.isSelected()) {
             txtCont1.setEchoChar((char) 0);
         } else {
-            txtCont1.setEchoChar('•');
+            txtCont1.setEchoChar('*');
 
         }
     }//GEN-LAST:event_chkMostrarContrasenia1ActionPerformed
@@ -642,6 +696,42 @@ public class FrmRegistro extends javax.swing.JDialog {
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void txtNombreRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtNombreRKeyTyped
+
+    private void txtApellidoRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoRKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtApellidoRKeyTyped
+
+    private void txtFechaNacKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaNacKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtFechaNacKeyTyped
+
+    private void txtIndentificacionRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIndentificacionRKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtIndentificacionRKeyTyped
 
     /**
      * @param args the command line arguments

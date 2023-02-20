@@ -82,6 +82,7 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
     }
     
     private void cargarDatos(){
+        vista.Utilidades.Utilidades.permitirSoloNumTxt(txtPrecio);
         cbxTipoPropiedad.setSelectedItem(aux.getTipoPropiedad());
         txtDescripcion.setText(aux.getDescripcion());
         txtPrecio.setText(aux.getPrecio());
@@ -92,7 +93,7 @@ public class FrmIngresoPropiedad extends javax.swing.JFrame {
      * Va a cargar las restricciones
      */
     private void cargarRestriciones(){
-    vista.Utilidades.Utilidades.permitirSoloNumTxt(txtNumeroPropiedad);
+    //vista.Utilidades.Utilidades.permitirSoloNumTxt(txtNumeroPropiedad);
 
     }
     

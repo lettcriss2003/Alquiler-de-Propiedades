@@ -4,12 +4,20 @@
  */
 package vista;
 
-import controlador.PagoDAO;
+import controlador.listas.Exepciones.ListaVaciaException;
+import controlador.listas.Exepciones.PosicionNoEncontradaException;
+import controlador.listas.ListaEnlazada;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import modelo.Contrato;
 import modelo.MetodoPago;
-import modelo.Pago;
+import modelo.Propiedad;
 import modelo.TipoDePago;
+import vista.Utilidades.Utilidades;
 
 /**
  *
@@ -17,13 +25,12 @@ import modelo.TipoDePago;
  */
 public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
 
-    PagoDAO pagoDAO = new PagoDAO();
-    
     FrmPagos fPagoUnico = new FrmPagos();
     public static boolean verificadorPago;
     public static Integer verificadorMetodoDePago;
-    Pago pago = new Pago();
-
+    Propiedad aux = new Propiedad();
+    private ListaEnlazada<Propiedad> listaPropiedades;
+    Contrato cont = new Contrato();
     /**
      * Creates new form FrmSeleccionTipoDePago
      */
@@ -32,12 +39,26 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
     }
+
+
+    
     /**
-     * <b>Crea un nuevo FrmSeleccionTipoDePago con un id unica para hacer referencia a al contrato/b>
+     * Crea un nuevo FrmSeleccionTipoDePago con un id unica para hacer
+     * referencia a al contrato
+     * @param id 
      */
     public FrmSeleccionTipoDePago(Integer id) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
+        try {
+            listaPropiedades = Utilidades.cargarPropiedades();
+            aux = listaPropiedades.obtener(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        txtTotal.setEnabled(false);
+        txtTotal.setText((Double.valueOf(aux.getPrecio()) * aux.getContrato().getNroDias()) + "");
     }
 
     /**
@@ -55,13 +76,18 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         CbxTipoDePago = new javax.swing.JComboBox<>();
         btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        txtTotal = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Selección Tipo De Pago"));
 
         jLabel1.setText("Bienvenido usuari@ a la ventana de Pagos:");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Selección"));
 
         jLabel2.setText("Seleccione por favor el tipo de Pago que desea realizar:");
@@ -72,6 +98,13 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -86,12 +119,14 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 137, Short.MAX_VALUE)
-                        .addComponent(CbxTipoDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(btnAceptar)
+                .addGap(129, 129, 129)
+                .addComponent(CbxTipoDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -102,8 +137,12 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CbxTipoDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        jLabel3.setText("Total:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,16 +152,25 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -149,20 +197,39 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        if (!guardarPago()) {
-            cargarVentana();
-        } else {
-            JOptionPane.showMessageDialog(null, "TODO CORRECTO", "Información", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+        try {
+            if (!guardarPago()) {
+                cargarVentana();
+            } else {
+                JOptionPane.showMessageDialog(null, "TODO CORRECTO", "Información", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                FrmPagoPlazos.verificador = null;
+                FrmPagos.verificador = null;
+                FrmPagoPlazos.verificador=null;
+                FrmPagos.verificador=null;
+                verificadorMetodoDePago=null;        
+                FrmContratoUsuario fm = new FrmContratoUsuario();
+                fm.setVisible(true);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-     /**
-     * <b>Permite mostrar una ventana dependiendo del tipo de pago que seleccione el usuario</b>
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        FrmContratoUsuario fm = new FrmContratoUsuario();
+        fm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+
+    /**
+     * Permite mostrar una ventana dependiendo del tipo de pago que
+     * seleccione el usuario
      */
     private void cargarVentana() {
         if (CbxTipoDePago.getSelectedItem().toString().equals("Pago a plazos")) {
-            FrmPagoPlazos fpagosplazos = new FrmPagoPlazos(pagoDAO.listar().getTamanio());
+            FrmPagoPlazos fpagosplazos = new FrmPagoPlazos(aux.getId()-1);
             fpagosplazos.setVisible(true);
             //this.dispose();
         } else {
@@ -170,43 +237,73 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
             //this.dispose();
         }
     }
-     /**
-     * <b>Permite guardar el pago dependiendo de los verificadore enviados desde los frames FrmPagoPlazos o FrmPago</b>
+
+
+    /**
+     * Permite guardar el pago dependiendo de los verificadore enviados desde
+     * los frames FrmPagoPlazos o FrmPago
+     * @return boolean
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws IOException 
      */
-    private Boolean guardarPago() {
+    private Boolean guardarPago() throws ListaVaciaException, PosicionNoEncontradaException, IOException {
+        listaPropiedades=Utilidades.cargarPropiedades();
+        aux = listaPropiedades.obtener(aux.getId()-1);
+        
+        cont = aux.getContrato();
         if (FrmPagoPlazos.verificador != null || FrmPagos.verificador != null) {
             if (FrmPagoPlazos.verificador || FrmPagos.verificador) {
-                pagoDAO.getPago().setEstadoPago(true);
+                cont.getPago().setEstadoPago(true);
                 if (CbxTipoDePago.getSelectedItem().toString().equals("Pago a plazos")) {
-                    pagoDAO.getPago().setTipoDePago(TipoDePago.plazos);
+                    cont.getPago().setTipoDePago(TipoDePago.plazos);
                 } else {
-                    pagoDAO.getPago().setTipoDePago(TipoDePago.unSoloPago);
+                    cont.getPago().setTipoDePago(TipoDePago.unSoloPago);
                 }
                 switch (verificadorMetodoDePago) {
                     case 1:
-                        pagoDAO.getPago().setMetodoPago(MetodoPago.TarjetaDebito);
+                        cont.getPago().setMetodoPago(MetodoPago.TarjetaDebito);
                         break;
                     case 2:
-                        pagoDAO.getPago().setMetodoPago(MetodoPago.TarjetaCredito);
+                        cont.getPago().setMetodoPago(MetodoPago.TarjetaCredito);
                         break;
                     case 3:
-                        pagoDAO.getPago().setMetodoPago(MetodoPago.Transferencia);
+                        cont.getPago().setMetodoPago(MetodoPago.Transferencia);
                         break;
                     default:
                         throw new AssertionError();
-                       
+
                 }
-                 
-                try {
-                    pagoDAO.guardar();
-                } catch (Exception e) {
-                }
-                return true;
             }
+            try {
+                cont.setId(aux.getId());
+                cont.getPago().setId(aux.getId());
+                
+                aux.setContrato(cont);
+                System.out.println(aux.getContrato());
+                generarAlquiler();
+                listaPropiedades.modificarPoscicion(aux,aux.getId()-1);
+                Utilidades.guardarPropiedades(listaPropiedades);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return true;
         }
         return false;
     }
-
+    
+    /**
+     * Genera alquiler
+     * @throws ParseException 
+     */
+    private void generarAlquiler() throws ParseException {
+        Date aux1 = vista.Utilidades.Utilidades.obtenerDateofString(aux.getFechaIngreso());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(aux1);
+        calendar.add(Calendar.DATE, aux.getContrato().getNroDias());
+        Date nuevaFecha = calendar.getTime();
+        aux.setFechaIngreso(vista.Utilidades.Utilidades.obtenerFechaFormateada(nuevaFecha));
+    }
     /**
      * @param args the command line arguments
      */
@@ -245,9 +342,12 @@ public class FrmSeleccionTipoDePago extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CbxTipoDePago;
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

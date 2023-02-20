@@ -4,13 +4,11 @@
  */
 package vista;
 
-import controlador.PagoDAO;
+import controlador.listas.ListaEnlazada;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.Pago;
-import modelo.TipoDePago;
-import static sun.net.www.http.HttpClient.New;
+import modelo.Propiedad;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -18,8 +16,9 @@ import vista.Utilidades.Utilidades;
  * @author Dennys
  */
 public class FrmPagoPlazos extends javax.swing.JFrame {
-    PagoDAO DaoPago=new PagoDAO();
-    Pago pago=new Pago();
+
+    Propiedad aux = new Propiedad();
+    private ListaEnlazada<Propiedad> listaPropiedades;
     FrmPagos fpagos = new FrmPagos();
     public static Boolean verificador;
 
@@ -33,11 +32,19 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         cambiarColorBtn();
         this.setLocationRelativeTo(null);
     }
+
     /**
-     * Crea un nuevo FrmPagoPlazos con un id para hacer referencia al Pago guardado en especifico
+     * Crea un nuevo FrmPagoPlazos con un id para hacer referencia al Pago
+     * guardado en especifico
+     * @param id
      */
     public FrmPagoPlazos(Integer id) {
-        pago=DaoPago.obtenerPago(id);
+        try {
+            listaPropiedades = Utilidades.cargarPropiedades();
+            aux = listaPropiedades.obtener(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
         cargarDatos();
@@ -45,10 +52,11 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-     /**
-     * Crea un nuevo FrmPagoPlazos con un id para hacer referencia al Pago guardado en especifico
+    /**
+     * Crea un nuevo FrmPagoPlazos con un id para hacer referencia al Pago
+     * guardado en especifico
      */
-    public  void cambiarColorBtn() {
+    public void cambiarColorBtn() {
         if (verificador != null) {
             if (verificador) {
                 BtnAgregarMetodoDePago.setBackground(new Color(121, 189, 154));
@@ -85,14 +93,16 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(630, 310));
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccion a Plazos"));
         jPanel1.setMinimumSize(new java.awt.Dimension(580, 300));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Selección a Plazos");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(189, 24, 186, 30);
+        jLabel1.setBounds(170, 20, 290, 28);
 
         BtnAgregarMetodoDePago.setText("Agregar Método de Pago");
         BtnAgregarMetodoDePago.addActionListener(new java.awt.event.ActionListener() {
@@ -106,9 +116,9 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Total:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(270, 70, 43, 25);
+        jLabel2.setBounds(270, 70, 60, 25);
         jPanel1.add(txtTotal);
-        txtTotal.setBounds(320, 70, 100, 30);
+        txtTotal.setBounds(350, 70, 100, 30);
 
         jLabel3.setText("Seleccione los meses plazo:");
         jPanel1.add(jLabel3);
@@ -180,6 +190,9 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
 
     private void cbxMesesPlazoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMesesPlazoItemStateChanged
         dateFechaPagoTotal.setDate(Utilidades.calcularFechaDePagoMaximo(Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString())));
+        System.out.println(aux.getPrecio());
+        System.out.println(aux.getContrato().getNroDias());
+        txtPagoPorMes.setText(String.valueOf(Utilidades.calcularValorCuota(0.12, Double.valueOf(aux.getPrecio()) * aux.getContrato().getNroDias(), Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString()))));
     }//GEN-LAST:event_cbxMesesPlazoItemStateChanged
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -204,25 +217,31 @@ public class FrmPagoPlazos extends javax.swing.JFrame {
      * Permite cargar los datos del pago seleccionado en especifico
      */
     public void cargarDatos() {
+        txtTotal.setText(Double.valueOf(aux.getPrecio()) * aux.getContrato().getNroDias() + "");
         txtDiaDePago.setText("Día " + Utilidades.calcularFechaDePago() + " de cada mes");
         txtDiaDePago.setEnabled(false);
         dateFechaPagoTotal.setEnabled(false);
-        txtPagoPorMes.setText(String.valueOf(Utilidades.calcularValorCuota(0.15, 200.0, 10)));
         txtTotal.setEnabled(false);
         txtPagoPorMes.setEnabled(false);
     }
+
     /**
      * Permite guardar los datos del pago seleccionado en especifico
      */
-    private void guardarDatosPago(){
+    private void guardarDatosPago() {
         try {
-            pago=DaoPago.obtenerPago(pago.getId());
-            pago.setMesesPlazo(Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString()));
-            pago.setCuotaPorMes(Double.valueOf(txtPagoPorMes.getText()));
-            DaoPago.modificar(pago, pago.getId()-1);
+            aux.getContrato().getPago().setMesesPlazo(Integer.valueOf(cbxMesesPlazo.getSelectedItem().toString()));
+            aux.getContrato().getPago().setCuotaPorMes(Double.valueOf(txtPagoPorMes.getText()));
+//            System.out.println(cont);
+//            aux.setContrato(cont);
+            System.out.println(aux.getContrato());
+            listaPropiedades.modificarPoscicion(aux, aux.getId()-1);
+            Utilidades.guardarPropiedades(listaPropiedades);
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
+
     /**
      * @param args the command line arguments
      */

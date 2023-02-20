@@ -47,6 +47,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Contructor principal
+     * @param is_administrador 
+     */
     public FrmPrincipal(Boolean is_administrador) {
         initComponents();
         //setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
@@ -55,6 +59,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Contructor
+     * @param cuenta 
+     */
     public FrmPrincipal(Cuenta cuenta) {
         initComponents();
         try {
@@ -68,17 +76,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         try {
             cargarBotones();
-            cargarImagenesBotones();
         } catch (Exception e) {
             System.out.println(e);
         }
-//        try {
-//            cargarContrato();
-//        } catch (ListaVaciaException ex) {
-//            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (PosicionNoEncontradaException ex) {
-//            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
     }
 
     /**
@@ -96,6 +97,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        btnVistaPreviaPropiedades = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         panelBotones = new javax.swing.JPanel();
         btnCuentas = new javax.swing.JButton();
@@ -125,18 +127,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnVistaPreviaPropiedades.setText("Vista Rápida de propiedades");
+        btnVistaPreviaPropiedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVistaPreviaPropiedadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnActualizar)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnVistaPreviaPropiedades)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizar)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -147,8 +159,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnActualizar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnActualizar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVistaPreviaPropiedades))))
         );
 
         jScrollPane2.setBorder(null);
@@ -213,7 +230,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btnPagos.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         btnPagos.setForeground(new java.awt.Color(0, 0, 102));
-        btnPagos.setText("Pagos");
+        btnPagos.setText("Historial Transferencias");
         btnPagos.setBorder(null);
         btnPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,19 +260,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(btnCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(43, 43, 43)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(btnIngresarNuevaPropiedad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAdministrarPropiedades, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(btnPagos1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPagos1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdministrarPropiedades)
+                            .addComponent(btnIngresarNuevaPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFavoritos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -271,13 +286,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCuentas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(btnIngresarNuevaPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdministrarPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFavoritos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFavoritos)
+                .addGap(12, 12, 12)
                 .addComponent(btnPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPagos1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,25 +322,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     /**
      * Carga el contrato dentro de los botones
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
      */
-//    public void cargarContrato() throws ListaVaciaException, PosicionNoEncontradaException {
-//        for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
-//            if (listaPropiedades.obtener(i) != null) {
-//                aux = listaPropiedades.obtener(i);
-//                JButton btnPropiedad = new JButton();
-//                btnPropiedad.setBounds(2, 14, 3, 14);
-//                add(btnPropiedad);
-//                jPanel4.add(btnPropiedad);
-//                jPanel4.revalidate();
-//                jPanel4.repaint();
-//            }
-//            if (aux.getImg() != null) {
-//                Utilidades.DefinirImagenBoton(btnPropiedad1, aux.getImg());
-//            }
-//        }
-//    }
     public void cargarBotones() throws ListaVaciaException, PosicionNoEncontradaException {
         buttons = new JButton[listaPropiedades.getTamanio()];
         panelBotones.removeAll();
@@ -351,18 +353,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void cargarImagenesBotones() throws ListaVaciaException, PosicionNoEncontradaException {
-        for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
 
-        }
-    }
-
+    /**
+     * Verificar si es un admin
+     */
     private void verificarAdmin() {
         if (!is_administrador) {
             btnCuentas.setVisible(false);
         }
     }
 
+    /**
+     * Verificar el rol de la cuenta
+     */
     private void verificarRolCuenta() {
         if (!(this.cuentaActual.getRol() == Rol.ADMINISTRADOR)) {
             btnCuentas.setVisible(false);
@@ -401,20 +404,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCuentasActionPerformed
 
     private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
-        // TODO add your handling code here:
+        FrmHistorialTransferencias hp=new FrmHistorialTransferencias(cuentaActual);
+        hp.setVisible(true);
     }//GEN-LAST:event_btnPagosActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
             // TODO add your handling code here:
             cargarBotones();
-            cargarImagenesBotones();
         } catch (ListaVaciaException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (PosicionNoEncontradaException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnVistaPreviaPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVistaPreviaPropiedadesActionPerformed
+        FrmMostrarVistaPrevia fm=new FrmMostrarVistaPrevia(cuentaActual);
+        fm.setVisible(true);
+    }//GEN-LAST:event_btnVistaPreviaPropiedadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,6 +467,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresarNuevaPropiedad;
     private javax.swing.JButton btnPagos;
     private javax.swing.JButton btnPagos1;
+    private javax.swing.JButton btnVistaPreviaPropiedades;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

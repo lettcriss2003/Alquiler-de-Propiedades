@@ -40,6 +40,9 @@ public class CuentasDialog extends javax.swing.JDialog {
         cargarTabla(cuentasController);
     }
 
+    /**
+     * Carga cuentas
+     */
     private void cargarCuentas() {
         try {
             this.cuentasController.setCuentadao(Utilidades.cargarJson());
@@ -49,12 +52,24 @@ public class CuentasDialog extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Carga tabla
+     * @param cc 
+     */
     private void cargarTabla(CuentasController cc) {
         mtc.setCc(cc);
         tblCuentas.setModel(mtc);
         tblCuentas.updateUI();
     }
 
+    /**
+     * Busca
+     * @throws AtributoNoEncontradoException
+     * @throws IllegalArgumentException
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException
+     * @throws IllegalAccessException 
+     */
     private void buscar() throws AtributoNoEncontradoException, IllegalArgumentException, ListaVaciaException, PosicionNoEncontradaException, IllegalAccessException {
         cargarCuentas();
         cargarTabla(cuentasController);

@@ -9,20 +9,13 @@ import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Cuenta;
-import static vista.FrmPropiedadImagen.PropiedadDatos;
 import modelo.Propiedad;
 import modelo.Rol;
-import modelo.TipoPropiedad;
-import static vista.FrmIngresoPropiedad.dateDisponibilidadDesde;
-import static vista.FrmIngresoPropiedad.dateDisponibilidadHasta;
 import vista.Utilidades.Utilidades;
 
 /**
@@ -55,6 +48,10 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Contructor para la descripcion de la propiedad
+     * @param cuentaActual 
+     */
     public FrmDescripcionPropiedad(Cuenta cuentaActual) {
         initComponents();
         //cargarDatos();
@@ -83,6 +80,11 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Carga las propiedades
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
     private void cargarPropiedades() throws ListaVaciaException, PosicionNoEncontradaException {
         if (cuentaActual.getRol().equals(Rol.ADMINISTRADOR)) {
             for (int i = 0; i < listaPropiedades.getTamanio(); i++) {
@@ -97,8 +99,11 @@ public class FrmDescripcionPropiedad extends javax.swing.JFrame {
         }
     }
 
+
     /**
-     * Craga los datos al frm
+     * Carga los datos de la propiedad
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
      */
     public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
         if (iterador < listaAux.getTamanio()) {

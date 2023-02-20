@@ -34,6 +34,10 @@ public class FrmAgregarFavoritos extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/recursos/favicon.png")).getImage());
     }
 
+    /**
+     * Contructor, genera un nuevo frm
+     * @param cuenta 
+     */
     public FrmAgregarFavoritos(Cuenta cuenta) {
         initComponents();
         this.cuentaActual = cuenta;
@@ -42,12 +46,18 @@ public class FrmAgregarFavoritos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Carga tabla
+     */
     private void cargarTabla() {
         mtf.setLista(cuentaActual.getFavoritas());
         tblFavoritos.setModel(mtf);
         tblFavoritos.updateUI();
     }
 
+    /**
+     * elimina cuenta
+     */
     private void eliminar() {
         if (tblFavoritos.getSelectedRow() >= 0) {
             try {

@@ -34,7 +34,6 @@ public class CuentasController {
 //    public void setCuentaslList(ListaEnlazada<Cuenta> cuentaslList) {
 //        this.cuentaslList = cuentaslList;
 //    }
-
     /**
      * Metodo para autentificar las credenciales ingresadas por el usuario
      *
@@ -49,33 +48,29 @@ public class CuentasController {
      * @throws ordenacion.Excepciones.AtributoNoEncontradoException
      * @throws java.lang.IllegalAccessException
      */
-    public Boolean autentificar(String usuario, String contrasenia) throws ListaVaciaException, PosicionNoEncontradaException, intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public Boolean autentificar(String usuario, String contrasenia) throws ListaVaciaException, PosicionNoEncontradaException, intentoExcedidoException, datoIncorrectoException, usuarioNoExisteException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, Exception {
         Boolean autentificacion = false;
         if (getCuentadao().getCuentas().estaVacia()) {
             throw new ListaVaciaException();
         } else {
-            try {
-                if (obtener(usuario) != null) {
-                    Cuenta cuentaConsulta = obtener(usuario);
-                    if (cuentaConsulta.getUsuario().equals(usuario)
-                            && Utilidades.desencriptarContrasenia(cuentaConsulta.getContrasenia()).equals(contrasenia)) {
-                        autentificacion = true;
-                        limite = 5;
-                        return autentificacion;
-                    } else if (limite > 1) {
-                        throw new datoIncorrectoException(--limite);
-                    } else {
-                        System.exit(0);
-                        throw new intentoExcedidoException();
-                    }
-                } else {
-                    throw new usuarioNoExisteException();
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
 
-                return autentificacion;
+            if (obtener(usuario) != null) {
+                Cuenta cuentaConsulta = obtener(usuario);
+                if (cuentaConsulta.getUsuario().equals(usuario)
+                        && Utilidades.desencriptarContrasenia(cuentaConsulta.getContrasenia()).equals(contrasenia)) {
+                    autentificacion = true;
+                    limite = 5;
+                    return autentificacion;
+                } else if (limite > 1) {
+                    throw new datoIncorrectoException(--limite);
+                } else {
+                    System.exit(0);
+                    throw new intentoExcedidoException();
+                }
+            } else {
+                throw new usuarioNoExisteException();
             }
+
         }
     }
 
@@ -89,7 +84,7 @@ public class CuentasController {
      * @throws ordenacion.Excepciones.AtributoNoEncontradoException
      * @throws java.lang.IllegalAccessException
      */
-    public static Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public static Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, Exception {
         return cuentadao.obtener(usuario);
     }
 
@@ -117,7 +112,7 @@ public class CuentasController {
      * @throws ordenacion.Excepciones.AtributoNoEncontradoException
      * @throws java.lang.IllegalAccessException
      */
-    public static Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
+    public static Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, Exception {
         return cuentadao.modificar(cuenta);
     }
 

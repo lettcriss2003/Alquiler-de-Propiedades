@@ -5,10 +5,10 @@
 package vista;
 
 import controlador.CuentasController;
-import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -19,44 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Cuenta;
-import static vista.FrmPropiedadImagen.PropiedadDatos;
 import modelo.Propiedad;
-import static vista.FrmDescripcionPropiedad.lblImagen;
-import static vista.FrmDescripcionPropiedad.lblImagen1;
-import static vista.FrmDescripcionPropiedad.lblImagen2;
-import static vista.FrmDescripcionPropiedad.lblImagen3;
-import static vista.FrmDescripcionPropiedad.lblImagen4;
-import static vista.FrmDescripcionPropiedad.lblImagen5;
-import static vista.FrmDescripcionPropiedad.txtAguaCaliente;
-import static vista.FrmDescripcionPropiedad.txtAireAcondicionado;
-import static vista.FrmDescripcionPropiedad.txtBanios;
-import static vista.FrmDescripcionPropiedad.txtCallePrincipal;
-import static vista.FrmDescripcionPropiedad.txtCalleSegundaria;
-import static vista.FrmDescripcionPropiedad.txtCamas;
-import static vista.FrmDescripcionPropiedad.txtCiudad;
-import static vista.FrmDescripcionPropiedad.txtCocina;
-import static vista.FrmDescripcionPropiedad.txtCodigoPostal;
-import static vista.FrmDescripcionPropiedad.txtComedor;
-import static vista.FrmDescripcionPropiedad.txtDescripcion;
-import static vista.FrmDescripcionPropiedad.txtEstacionamiento;
-import static vista.FrmDescripcionPropiedad.txtFechaF;
-import static vista.FrmDescripcionPropiedad.txtFechaI;
-import static vista.FrmDescripcionPropiedad.txtHabitaciones;
-import static vista.FrmDescripcionPropiedad.txtHuespedes;
-import static vista.FrmDescripcionPropiedad.txtJacuzzi;
-import static vista.FrmDescripcionPropiedad.txtLavadora;
-import static vista.FrmDescripcionPropiedad.txtNumeroPropiedad;
-import static vista.FrmDescripcionPropiedad.txtOtros;
-import static vista.FrmDescripcionPropiedad.txtParrilla;
-import static vista.FrmDescripcionPropiedad.txtPatio;
-import static vista.FrmDescripcionPropiedad.txtPicina;
-import static vista.FrmDescripcionPropiedad.txtPrecio;
-import static vista.FrmDescripcionPropiedad.txtProvincia;
-import static vista.FrmDescripcionPropiedad.txtSalaJuegos;
-import static vista.FrmDescripcionPropiedad.txtSecadora;
-import static vista.FrmDescripcionPropiedad.txtTV;
-import static vista.FrmDescripcionPropiedad.txtWifi;
-import static vista.FrmIngresoPropiedad.dateDisponibilidadDesde;
 //import static vista.FrmIngresoPropiedad.dateDisponibilidadDesde;
 //import static vista.FrmIngresoPropiedad.dateDisponibilidadHasta;
 import vista.Utilidades.Utilidades;
@@ -67,7 +30,6 @@ import vista.Utilidades.Utilidades;
  */
 public class FrmContratoUsuario extends javax.swing.JFrame {
 
-    PropiedadDao propiedadDao = new PropiedadDao();
     private Propiedad aux;
     private Integer iterador = 0;
     private ListaEnlazada<Propiedad> listaPropiedades;
@@ -81,15 +43,9 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         initComponents();
         try {
             this.listaPropiedades = Utilidades.cargarPropiedades();
-        } catch (IOException ex) {
-            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             cargarDatos();
-        } catch (ListaVaciaException ex) {
-            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PosicionNoEncontradaException ex) {
-            Logger.getLogger(FrmContratoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println(e);
         }
         dateDisponibilidadDesde.setMinSelectableDate(new Date());
         dateDisponibilidadHasta.setMinSelectableDate(new Date());
@@ -97,6 +53,11 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     *  Contructor crea un nuevo frm
+     * @param cuentaActual
+     * @param id 
+     */
     public FrmContratoUsuario(Cuenta cuentaActual, Integer id) {
 
         initComponents();
@@ -122,9 +83,11 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+
     /**
-     * Carga todos los datos al frm
-     *
+     * Carga los datos de la propiedad
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
      */
     public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
         aux = listaPropiedades.obtener(iterador);
@@ -178,20 +141,29 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
             txtComedor.setText((aux.getComedor() != null) ? (aux.getComedor() == true) ? "no" : "si" : "no");
             txtSalaJuegos.setText((aux.getSalaJuegos() != null) ? (aux.getSalaJuegos() == true) ? "no" : "si" : "no");
             txtOtros.setText((aux.getOtros() != null) ? (aux.getOtros() == true) ? "no" : "si" : "no");
-            txtFechaI.setText(aux.getFechaIngreso());
-            txtFechaF.setText(aux.getFechaSalida());
-
-            System.out.println(aux);
+            if (aux.getFechaIngreso().equalsIgnoreCase(aux.getFechaSalida())) {
+                txtFechaI.setText("Sin dias disponibles");
+                txtFechaF.setText("Sin dias disponibles");
+            } else {
+                txtFechaI.setText(aux.getFechaIngreso());
+                txtFechaF.setText(aux.getFechaSalida());
+            }
+            
             iterador++;
         }
     }
-    
-    private void calcularNumDias() {
+
+    /**
+     * Calcula el numero de dias a pagar 
+     * @throws FileNotFoundException 
+     */
+    private void calcularNumDias() throws FileNotFoundException {
         LocalDate localDate1 = dateDisponibilidadDesde.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate localDate2 = dateDisponibilidadHasta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Long daysBetween = Duration.between(localDate1.atStartOfDay(), localDate2.atStartOfDay()).toDays();
         aux.getContrato().setNroDias(Integer.valueOf(daysBetween.toString()));
         listaPropiedades.modificarPoscicion(aux, iterador-1);
+        Utilidades.guardarPropiedades(listaPropiedades);
     }
 
     /**
@@ -1088,11 +1060,13 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         if (!txtFechaI.getText().equalsIgnoreCase("Sin dias disponibles")) {
-            if (dateDisponibilidadHasta.getDate().after(dateDisponibilidadDesde.getDate())) {
-                if (dateDisponibilidadDesde.getDate() != null && dateDisponibilidadHasta.getDate() != null) {
+            if (dateDisponibilidadDesde.getDate() != null && dateDisponibilidadHasta.getDate() != null) {
+                if (dateDisponibilidadHasta.getDate().after(dateDisponibilidadDesde.getDate())) {
+
                     try {
                         calcularNumDias();
-                        FrmSeleccionTipoDePago pagar = new FrmSeleccionTipoDePago(iterador);
+                        System.out.println(iterador);
+                        FrmSeleccionTipoDePago pagar = new FrmSeleccionTipoDePago(iterador-1);
                         pagar.setVisible(true);
                         this.dispose();
                     } catch (Exception e) {
@@ -1100,10 +1074,10 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Seleccione las fechas para alquilar la propiedad", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Seleccione correctamente las fechas", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "Seleccione correctamente las fechas", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione las fechas para alquilar la propiedad", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No quedan dias disponibles para alquilar esta propiedad", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1115,22 +1089,36 @@ public class FrmContratoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtWifiActionPerformed
 
     private void dateDisponibilidadDesdePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDisponibilidadDesdePropertyChange
-        Date fechaActual = new Date();
-        if (dateDisponibilidadDesde.getDate() != null) {
-            if (dateDisponibilidadDesde.getDate().before(fechaActual)) {
-                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual", "Error", JOptionPane.ERROR_MESSAGE);
-                dateDisponibilidadDesde.setDate(null);
+        try {
+            Date fechaActual = vista.Utilidades.Utilidades.obtenerDateofString(aux.getFechaIngreso());
+            Date fechafinal = vista.Utilidades.Utilidades.obtenerDateofString(aux.getFechaSalida());
+            fechafinal.setMinutes(59);
+            fechafinal.setHours(23);
+            fechafinal.setSeconds(23);
+            if (dateDisponibilidadDesde.getDate() != null) {
+                if (dateDisponibilidadDesde.getDate().before(fechaActual) || dateDisponibilidadDesde.getDate().after(fechafinal)) {
+                    JOptionPane.showMessageDialog(null, "La fecha debe estar dentro de los limites disponibles", "Error", JOptionPane.ERROR_MESSAGE);
+                    dateDisponibilidadDesde.setDate(null);
+                }
             }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_dateDisponibilidadDesdePropertyChange
 
     private void dateDisponibilidadHastaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDisponibilidadHastaPropertyChange
-        Date fechaActual = new Date();
-        if (dateDisponibilidadHasta.getDate() != null) {
-            if (dateDisponibilidadHasta.getDate().before(fechaActual)) {
-                JOptionPane.showMessageDialog(null, "La fecha debe ser mayor a la actual", "Error", JOptionPane.ERROR_MESSAGE);
-                dateDisponibilidadHasta.setDate(null);
+        try {
+            Date fechaActual = vista.Utilidades.Utilidades.obtenerDateofString(aux.getFechaIngreso());
+            Date fechafinal = vista.Utilidades.Utilidades.obtenerDateofString(aux.getFechaSalida());
+            fechafinal.setMinutes(59);
+            fechafinal.setHours(23);
+            fechafinal.setSeconds(23);
+            if (dateDisponibilidadHasta.getDate() != null) {
+                if (dateDisponibilidadHasta.getDate().before(fechaActual) || dateDisponibilidadHasta.getDate().after(fechafinal)) {
+                    JOptionPane.showMessageDialog(null, "La fecha debe estar dentro de los limites disponibles", "Error", JOptionPane.ERROR_MESSAGE);
+                    dateDisponibilidadHasta.setDate(null);
+                }
             }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_dateDisponibilidadHastaPropertyChange
 

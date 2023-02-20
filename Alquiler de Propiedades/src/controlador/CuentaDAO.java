@@ -19,11 +19,11 @@ public class CuentaDAO {
      * Buscar los usuarios registrados
      *
      * @param usuario
-     * @return
+     * @return n
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
      */
-    public int buscar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException{
+    public int buscar(String usuario) throws ListaVaciaException, PosicionNoEncontradaException {
         int n = -1;
         for (int i = 0; i < cuentas.getTamanio(); i++) {
             if (cuentas.obtener(i).getUsuario().equals(usuario)) {
@@ -38,11 +38,11 @@ public class CuentaDAO {
      * Inserta en la lista de cuentas un nuevo usuario
      *
      * @param cuenta
-     * @return
+     * @return boolean
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
      */
-    public Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException{
+    public Boolean insertar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException {
         if (buscar(cuenta.getUsuario()) == -1) {
             cuentas.insertar(cuenta);
             return true;
@@ -56,13 +56,13 @@ public class CuentaDAO {
      * Modifica en la lista de cuentas un usuario que haya sido registrado
      *
      * @param cuenta
-     * @return
+     * @return boolean
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
      * @throws ordenacion.Excepciones.AtributoNoEncontradoException
      * @throws java.lang.IllegalAccessException
      */
-    public Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalAccessException{
+    public Boolean modificar(Cuenta cuenta) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalAccessException, Exception {
         if (buscar(cuenta.getUsuario()) != -1) {
             Cuenta cuentaaux = obtener(cuenta.getUsuario());
 
@@ -88,7 +88,7 @@ public class CuentaDAO {
      * Elimina un usurio de la lista de cuentas
      *
      * @param cuenta
-     * @return
+     * @return boolean
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
      */
@@ -105,20 +105,27 @@ public class CuentaDAO {
      * Obtener un usuario de la lista de cuentas
      *
      * @param usuario
-     * @return
+     * @return cuenta
      * @throws ListaVaciaException
      * @throws PosicionNoEncontradaException
      * @throws ordenacion.Excepciones.AtributoNoEncontradoException
      * @throws java.lang.IllegalAccessException
      */
-    public Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException {
-        if (buscar(usuario) > -1) {
-            return cuentas.obtener(buscar(usuario));
-        } else {
-            return null;
+    public Cuenta obtener(String usuario) throws ListaVaciaException, PosicionNoEncontradaException, AtributoNoEncontradoException, IllegalArgumentException, IllegalAccessException, Exception {
+        try {
+            if (!cuentas.busquedaBinaria("usuario", usuario).equals(usuario)) {
+                return cuentas.obtener(buscar(usuario));
+            }
+        } catch (Exception e) {
+
         }
+        return null;
     }
 
+    /**
+     * get Cuentas
+     * @return cuentas
+     */
     public ListaEnlazada<Cuenta> getCuentas() {
         if (cuentas == null) {
             cuentas = new ListaEnlazada<>();
@@ -126,6 +133,10 @@ public class CuentaDAO {
         return cuentas;
     }
 
+    /**
+     * set cuentas
+     * @param cuentas 
+     */
     public void setCuentas(ListaEnlazada<Cuenta> cuentas) {
         this.cuentas = cuentas;
     }

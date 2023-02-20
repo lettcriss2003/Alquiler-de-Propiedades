@@ -35,13 +35,7 @@ public class CuentaDialog extends javax.swing.JDialog {
         this.posicion = posicion;
     }
 
-//    public ListaEnlazada<CuentasController> getCuentasList() {
-//        return cuentasList;
-//    }
-//
-//    public void setCuentasList(ListaEnlazada<CuentasController> cuentasList) {
-//        this.cuentasList = cuentasList;
-//    }
+
     public CuentasController getCuentaController() {
         return cuentaController;
     }
@@ -50,8 +44,11 @@ public class CuentaDialog extends javax.swing.JDialog {
         this.cuentaController = cuentaController;
     }
 
+
     /**
-     * Creates new form CuentaDialog
+     * Crea nueva cuentas dialog
+     * @param parent
+     * @param modal 
      */
     public CuentaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -60,6 +57,13 @@ public class CuentaDialog extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * contructor 
+     * @param parent
+     * @param modal
+     * @param pos
+     * @param cc 
+     */
     public CuentaDialog(java.awt.Frame parent, boolean modal, Integer pos, CuentasController cc) {
         super(parent, modal);
         this.posicion = pos;
@@ -76,6 +80,9 @@ public class CuentaDialog extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Carga combo roles
+     */
     private void cargarComboRoles() {
         try {;
             this.cbxRoles = Utilidades.cargarRoles(cbxRoles);
@@ -85,6 +92,12 @@ public class CuentaDialog extends javax.swing.JDialog {
 
     }
 
+    
+    /**
+     * Carga los datos de laa cuenta
+     * @throws ListaVaciaException
+     * @throws PosicionNoEncontradaException 
+     */
     public void cargarDatos() throws ListaVaciaException, PosicionNoEncontradaException {
         if (cuentaController != null) {
             txtUsuario.setText(cuentaController.getCuentadao().getCuentas().obtener(posicion).getUsuario());

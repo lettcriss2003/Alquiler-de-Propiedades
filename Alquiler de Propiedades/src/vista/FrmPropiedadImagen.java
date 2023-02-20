@@ -4,7 +4,6 @@
  */
 package vista;
 
-import controlador.PropiedadDao;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
@@ -14,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import modelo.Propiedad;
 import vista.Utilidades.Utilidades;
@@ -25,7 +23,6 @@ import vista.Utilidades.Utilidades;
  */
 public class FrmPropiedadImagen extends javax.swing.JFrame {
 
-    PropiedadDao propiedadDao = new PropiedadDao();
     Propiedad aux = new Propiedad();
     Integer iterador = 0;
     private ListaEnlazada<Propiedad> listaPropiedades;
@@ -41,6 +38,10 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
         btnSiguiente.requestFocus();
     }
 
+    /**
+     * Contructor propiedad imagen
+     * @param id 
+     */
     public FrmPropiedadImagen(Integer id) {
         try {
             listaPropiedades = Utilidades.cargarPropiedades();
@@ -61,6 +62,7 @@ public class FrmPropiedadImagen extends javax.swing.JFrame {
     /**
      * Carga las imagenes en los label
      */
+    //*
     private void CargarImagen() {
 
         JFileChooser archivo = new JFileChooser();

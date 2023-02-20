@@ -1,17 +1,15 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package vista.Modelo;
 
-import controlador.CuentasController;
 import controlador.listas.Exepciones.ListaVaciaException;
 import controlador.listas.Exepciones.PosicionNoEncontradaException;
 import controlador.listas.ListaEnlazada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
-import modelo.Cuenta;
 import modelo.Propiedad;
 
 /**
@@ -39,6 +37,11 @@ public class ModeloTablaFavoritos extends AbstractTableModel{
         return lista.getTamanio();
     }
     
+    /**
+     * Genera las columnas de la tabla
+     * @param column
+     * @return Strin 
+     */
     @Override
     public String getColumnName(int column) {
         switch(column){
@@ -49,6 +52,12 @@ public class ModeloTablaFavoritos extends AbstractTableModel{
         }
     }
 
+    /**
+     * Presenta los valores de la tabla
+     * @param rowIndex
+     * @param columnIndex
+     * @return Object
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Propiedad p = null;

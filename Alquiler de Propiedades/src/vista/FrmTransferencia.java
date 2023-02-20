@@ -53,6 +53,7 @@ public class FrmTransferencia extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Transferencia"));
 
         jLabel10.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -99,14 +100,14 @@ public class FrmTransferencia extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addComponent(jLabel36)
                                         .addGap(18, 18, 18)
-                                        .addComponent(lblHora3)))
-                                .addGap(48, 48, 48)
+                                        .addComponent(lblHora3))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel35)
                                 .addGap(7, 7, 7)
                                 .addComponent(lblFechaActual3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,7 +216,7 @@ public class FrmTransferencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JPanel jPanel5;
+    public static javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblFechaActual3;
     private javax.swing.JLabel lblHora3;
     // End of variables declaration//GEN-END:variables
