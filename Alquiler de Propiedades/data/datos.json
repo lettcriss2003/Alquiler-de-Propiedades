@@ -1,0 +1,43 @@
+{
+  "cuentas": {
+    "cabecera": {
+      "dato": {
+        "id": 6,
+        "usuario": "admin",
+        "estado": true,
+        "contrasenia": "YWRtaW4\u003d",
+        "persona": {
+          "id": 6,
+          "nombres": "admin",
+          "apellidos": "admin",
+          "fechaNacimiento": "Jan 1, 2000 12:00:00 AM",
+          "identificacion": "1105986689",
+          "tipoIdentificacion": "CEDULA",
+          "estado": true,
+          "correo": "admin@gmail.com"
+        },
+        "rol": "ADMINISTRADOR"
+      },
+      "siguiente": {
+        "dato": {
+          "id": 4,
+          "usuario": "usuario",
+          "estado": true,
+          "contrasenia": "dXN1YXJpbw\u003d\u003d",
+          "persona": {
+            "id": 4,
+            "nombres": "Maria",
+            "apellidos": "Galarza",
+            "fechaNacimiento": "May 28, 2003 12:00:00 AM",
+            "identificacion": "1105965360",
+            "tipoIdentificacion": "CEDULA",
+            "estado": true,
+            "correo": "mariag2003@gmail.com"
+          },
+          "rol": "USUARIO"
+        }
+      }
+    },
+    "tamanio": 2
+  }
+}
